@@ -1,0 +1,108 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+%
+%       Šablona pro prezentaci k SZZ, FBMI ČVUT
+% 		by Marek Sokol :)))		
+%  
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% arara: xelatex: { shell : yes }
+
+\documentclass[czech,aspectratio=169,12pt]{beamer}   % nastavení formátu prezentace 16:9 (beamer)
+
+% Nastavení vzhledu prezentace
+% Hezká dokumentace od overleafu: https://www.overleaf.com/learn/latex/beamer
+\usetheme{Madrid}
+\usecolortheme{whale}
+\useinnertheme{rectangles}                      % možnosti: default,circles,rectangles,rounded,inmargin
+\useoutertheme{default}                         % možnosti: default,miniframes,smoothbars,sidebar,split,shadow,tree,smoothtree,infolines
+\definecolor{CVUT}{HTML}{0065BD}                % definice ČVUT modré barvy
+\setbeamercolor{structure}{bg=white,fg=CVUT}    % nastavení barvy
+
+% Zapnutí navigačního panelu prezentace (pro vypnutí odkomentujte)
+%\beamertemplatenavigationsymbolsempty
+
+% Generování slidu s poznámkami:
+% Pro vygenerovaní poznámek odkomentujte příkaz níže
+%\setbeameroption{show notes}
+
+% Základní balíčky
+\usepackage[english,main=czech]{babel}          % čeština
+\usepackage{fontspec}                           % specifické fonty
+\setmainfont{Arial}
+\usepackage{graphicx}
+\usepackage{hyperref}                           % odkazy
+\usepackage{tikz}                               % pro kreslení a vizualizaci tvarů and shit
+\usetikzlibrary{chains,fit,shapes}
+
+% Deklarace názvů - přepsat dle autora
+\title[Zpracování a analýza záznamu srdeční aktivity]{Zpracování a analýza záznamu srdeční aktivity}
+\subtitle{Bakalářská práce}
+\institute[FBMI ČVUT v~Praze]{Fakulta biomedicínského inženýrství \\ České vysoké učení technické v~Praze}
+\author[M. Sokol]{Marek Sokol \\ Vedoucí práce: Mgr. Ksenia Sedova, Ph.D.}
+\date{1. 1. 2020}
+\titlegraphic{\includegraphics[width=.1\textwidth]{assets/slides/logo-cvut}}
+
+% Příklad slidu s poznámkou
+\begin{document}
+\begin{frame}
+    \titlepage
+    \note{Nezapomenout pozdravit}
+\end{frame}
+
+% Generování slidu s obsahem - třeba použít pak u obsahu slidu \section, \subsection jinak nebude nic vidět :)))
+% \begin{frame}{Obsah}
+%     \tableofcontents
+% \end{frame}
+
+\begin{frame}{Test frame bez odrážek}
+    \begin{center}
+        50 \% lidí má tendenci přejít k temné straně
+        \vskip5mm
+        Barva lightsaberu neodpovídá barvě očí\\
+        Impérium nebo rebelové?\\
+    \end{center}
+\end{frame}
+
+\begin{frame}{Test frame s odrážkami}
+    \begin{itemize}
+        \item mango1
+        \item \textbf{mango2}
+        \item mango3
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Test frame s obrázkem}
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{assets/slides/logo-cvut}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Test frame s citací}
+    \begin{center}
+        {\large ``I find your lack of faith disturbing.''}
+        \vskip5mm
+        --- Darth Vader
+    \end{center}
+\end{frame}
+
+\begin{frame}{Test frame se shrnutím}
+    \begin{itemize}
+        \item Užasna prezentace
+        \item Imperium padlo
+        \item Mandalorian skončil
+        \item Bude serial Kenobi!
+        \item Disney trilogie je příšerná
+        \item Lucas se plácá po čele
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Otázky oponenta}
+    Otázka první:
+    Jakým jazykem mluví Ewokové?
+
+    \vfill
+
+    Odpověď: Mluví kombinací tibetštiny a nepálštiny.
+\end{frame}
+
+\end{document}

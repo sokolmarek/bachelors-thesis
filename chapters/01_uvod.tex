@@ -1,0 +1,46 @@
+Záznam srdeční aktivity neboli elektrokardiogram (EKG), na kterém vidíme časový
+průběh změn elektrického potenciálu srdce, hraje velmi důležitou roli v
+kardiologické diagnostice. Uchovává v sobě komponenty jak v časové, tak i ve
+frekvenční doméně, díky kterým jsme schopni provádět EKG analýzu, a to i za
+jinými účely než jen z hlediska kardiologie. Abychom ale mohli tuto analýzu
+provést či extrahovat potřebné komponenty, musíme signál patřičně zpracovat,
+jelikož jeho surová podoba může být zkreslená a často obsahuje mnohočetné
+nežádoucí artefakty.
+
+Důležitými východisky, od kterých se odvíjí následně zvolená metodika při
+zpracování signálu a tím pádem i samotný výstup, jsou zejména kvalita a
+charakteristika biosignálu. V ideálním případě se nabízí myšlenka univerzálního
+způsobu, který signál spolehlivě zbaví všech nežádoucích elementů nehledě na
+zmíněné východiska. Jelikož v posledních letech nastal velký průlom v oblasti
+využití strojového učení (machine learning) a umělé inteligence (AI, artificial
+intelligence) pro zpracování biosignálů, tak úvaha v rámci metod z těchto
+oblastí může právě k takové zavádějící myšlence vést. V praxi se ale při
+zpracování EKG signálu neorientuje jen jeho kvalitou či charakterem ale také
+povahou nadcházející analýzy. Proto se při zpracování využívají variace,
+kombinace a obdoby konvenčních metod, kde každou volíme na základě zvolené dílčí
+oblasti analýzy nebo jiných specifických požadavků. Průnik všech metod obsahuje
+v první řadě snahu o efektivní potlačení nežádoucích prvků a odkrývá tak část
+problematiky této práce.
+
+Při samotném základním EKG vyšetření srdce, zde hraje roli několik vnějších i
+vnitřních vlivů, které se ve výsledku mohou jevit jako stěžejní při zpracovávání
+biosignálu. Takové jevy můžeme právě nazvat nežádoucími prvky. Těmi jsou zejména
+elektrické a magnetické vlastnosti tkání, zvláště svalový akční potenciál (AP),
+nebo umístění a vodivost elektrod využívaných při vyšetření. Proto je velmi
+důležité signál pečlivě analyzovat a filtrovat exaktními metodami, jinak by jeho
+použití mohlo vést k vágním výsledkům. 
+
+Po správném zpracování EKG signálu je možné začít s jeho analýzou. Její
+interpretace umožňuje detekovat potencionální srdeční vady či jiné srdeční
+stavy. Dále také můžeme pracovat s extrahovanými komponenty, s jejichž pomocí
+lze například určit variabilitu srdečního rytmu (HRV, Heart rate variability).
+Tato specifická metrika a analýza jejích parametrů má pro nás mnoho dalších
+klinických významů a umožňuje využití nejen v rámci kardiologie ale také
+neurologie a psychofyziologie.
+
+V této práci se zaměříme na problematiku týkající se zpracování a analýzy EKG
+signálu, a to nejen v rámci naměřených signálů (offline) ale také při měření v
+reálném čase (online). Vybranou dílčí oblastí analýzy je především detekce a
+hodnocení kognitivní zátěže z HRV společně se statistickými parametry,
+vypočtenými v časové oblasti, které jsou založené na intervalech beat-to-beat
+(N-N).

@@ -1,0 +1,269 @@
+%% Šablona pro psaní závěrečných prací FBMI ČVUT
+% Upraveno na základě požadavků na závěrečné práce schválených dne 24.2.2020.
+%
+% Vytvořeno ve spolupráci členů BRAIN Teamu.
+% 
+% Šablonu pro vás upravil/a:    Ing. Václava Piorecká, Ph.D.
+% Kontakt:                      vaclava.piorecka@fbmi.cvut.cz
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+%
+% 		Upravená verze pro xeLaTeX by Marek Sokol :)			
+%  
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% arara: xelatex: { shell : yes }
+% arara: biber
+% arara: xelatex: { shell : yes }
+% arara: xelatex: { shell : yes }
+
+\documentclass[a4paper,12pt]{article}   % Definice - velikost dokumentu, základní velikost písma, typ
+\usepackage[a4paper, top=2.5cm, left=3.5cm, right=2.5cm, bottom=2.5cm]{geometry}		% nastavení okrajů
+
+%% Přidání balíčků podporujících různé funkcionality - ZÁKLADNÍ
+\usepackage{amsmath,float}				% balíček pro matiku
+\usepackage[dvipsnames]{xcolor}
+\usepackage{color}
+\usepackage{footnote}					% poznámka pod čarou
+\usepackage{url}						% url odkazy
+\DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{same}}   % nastavení URL odkazů pro podle normy ČSN ISO 690
+
+\usepackage{float}						% plovoucí prostředí
+%\usepackage[utf8]{inputenc}			% kódování (v tomto případě useless protože používáme unicode engine)
+\usepackage[czech]{babel}				% čeština
+\usepackage{enumitem}      			    % seznamy 
+\usepackage{xevlna}						%
+\usepackage{hyperref}					%
+\usepackage{pdfpages}					%
+\usepackage{amsfonts}      				% množiny Z,R,N dvojitě
+\usepackage{amssymb}      				% znaky úhlu a tak
+\usepackage{graphicx}					%
+\usepackage{setspace}					%
+\usepackage{multicol}					% tabulka, slučování sloupců
+\usepackage{multirow}                   % tabulka, slučování řádků
+\usepackage{fancyhdr}					% záhlaví a zápatí stránky
+\usepackage{chngcntr}                   % číslování (číslování rovnic, obrázků dle kapitol)
+\usepackage{array}                      % rozšíření práce s tabulkami
+\usepackage{helvet}                     % předefinuje \sfdefault to uhv (pro úvodní stránku)
+\usepackage[flushleft]{threeparttable}  % prostředí pro tabulky - přidává vysvětlující poznámky pod tabulku
+
+% Následující balíčky řeší citace v dokumentu. 
+\usepackage{csquotes}   
+\usepackage{expl3}                    
+\usepackage[style=iso-numeric]{biblatex}
+\addbibresource{biblio.bib}             % zdrojový soubor s citacemi
+
+%% Přidání balíčků podporujících různé funkcionality - VOLITELNÉ, DOPLŇKOVÉ
+% Existuje celá řada dalších
+\usepackage[]{algorithm2e}				    % balíček pro pseudokód
+%\usepackage{ifthen}                        % pro algoritmy if else
+%\usepackage{paralist}                      % Rozšířená možnost pro seznamy. Větší škála a možnosti jak seznamy dělat automaticky. 
+\usepackage{fontspec}                       % nastavení specifických fontů
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+%\usepackage{icomma}      				    % není mezera za desetinnou čárkou
+% \usepackage[titletoc,title]{appendix}     % automatické vytvoření příloh
+
+%% Přidání speciálních příkazů 
+\newcommand{\at}{\makeatletter @\makeatother}           % Vytiskne zavináč - \at
+\newcommand{\degree}[1][]{\ensuremath{{#1}^\circ}}      % Vytiskne stupeň - \degree
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	% zarovnání v tabulce, vycentrování, potřebuje \usepackage{array}
+
+% Zalamování slov na konci věty - napodobení justify jako MS-Word
+%\tolerance=1
+%\emergencystretch=\maxdimen
+%\hyphenpenalty=10000
+%\hbadness=10000
+%\sloppy
+
+%% Ostatní definice a nastavení
+\clubpenalty 10000		% penalizace sirotků, sirotek: poslední řádek odstavce je na nové stránce
+\widowpenalty 10000		% penalizace vdov, vdova: první řádek nového odstavce je na konci stránky
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}	    % nahrávání obrázků, rozšíření
+\graphicspath{{assets/}} 				        % umístění obrázků
+
+\counterwithin{figure}{section}         % číslování obrázků dle sekcí/kapitol
+\counterwithin{table}{section}          % číslování tabulek dle sekcí/kapitol
+\numberwithin{equation}{section}        % číslování rovnic dle sekcí/kapitol
+
+\setlength{\parskip}{6pt}                   % odsazení mezi odstavci
+\setlength{\parindent}{0.75cm}              % odsazení odstavců od okraje
+\renewcommand{\baselinestretch}{1.20}	    % řádkování 1,2 - odpovídá pevnému řádkování 17 bodů
+
+\usepackage{tocloft}                    % Nastaví tučné zvýraznění sekcí v obsahu
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}   % přidá vodící linku do obsahu u sekcí
+
+%% Ostatní neimplementované, pouze návod jak případně doplnit
+% Vytvořit seznam použitých algoritmů a přejmenování názvu objektu na Algoritmus.
+% \usepackage[algosection]{algorithm2e}
+% \SetAlgorithmName{Algoritmus}{algorithm}{Seznam algoritmů}
+   
+%% Deklarace názvů - přepsat dle autora
+\newcommand{\autor}{Marek Sokol}
+\newcommand{\vedouci}{Mgr. Ksenia Sedova, Ph.D.}
+\newcommand{\nazev}{Zpracování a analýza záznamu srdeční aktivity}
+\newcommand{\nazevENG}{Heart activity record processing and analysis}
+\newcommand{\typ}{Bakalářská práce}
+\newcommand{\rok}{2021}
+% Pro program a obor jsou instrukce zde: http://www.fbmi.cvut.cz/fakulta/uredni-deska 
+% Nově akreditované mají pouze studijní programy
+\newcommand{\program}{Biomedicínská a klinická technika}
+\newcommand{\obor}{Biomedicínský technik}       % u nových akreditací vypustit
+
+%% Vlastní začátek dokumentu
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{titlepage}
+	\begin{center}
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=0.2\textwidth]{symbol_cvut_konturova_verze}
+		\end{figure}
+		\textsf{\large{\textbf{ČESKÉ VYSOKÉ UČENÍ TECHNICKÉ V PRAZE}}}\\
+		%\vspace{0pt}   		
+		{\color{NavyBlue}\makebox[\linewidth]{\rule{\textwidth}{0.4mm}}}
+		%{\color{NavyBlue}\hrule }  	    \vspace{6pt}
+		\textsf{\normalsize{\textbf{FAKULTA BIOMEDICÍNSKÉHO INŽENÝRSVÍ}}}\\
+		\textsf{\textbf{Katedra biomedicínské techniky}}\\
+
+		\vfill
+
+		\textsf{\Large{\textbf{\nazev}}}\\
+		\vspace{24pt}
+		\textsf{\Large{\textbf{\nazevENG}}}\\
+		\vspace{24pt}
+		\textsf{\typ}\\
+		\vfill
+	\end{center}
+	\textsf{Studijní program: \program} \\
+	\textsf{Studijní obor: \obor} \\ % u nových akreditací zakomentovat či smazat tento řádek
+	\\
+	\textsf{Vedoucí práce: \vedouci}\\
+
+	\begin{center}
+		\textsf{\textbf{\autor}} \\ [0.5cm]
+
+		{\color{NavyBlue}\makebox[\linewidth]{\rule{\textwidth}{0.4mm}}}
+
+		\textsf{\textbf{Kladno \rok}}
+	\end{center}
+
+	\clearpage
+
+\end{titlepage}
+
+% Vloženi kopie zadaní v pdf
+\includepdf[pages=-, trim=1mm 1mm 6mm 1mm, clip]{assignment/assignment_colored}
+
+\null\vfill
+\section*{Prohlášení}
+% \hspace ruší odsazení odstavce - v šabloně u prohlášení odstavce odsazené nejsou. 
+Prohlašuji, že jsem bakalářskou práci s názvem \uv{\nazev} vypracoval/a samostatně a~použil/a k~tomu úplný výčet citací použitých pramenů, které uvádím v seznamu přiloženém k~bakalářské práci.
+
+\hspace{-0.75cm}Nemám závažný důvod proti užití tohoto školního díla ve smyslu \S 60 Zákona č.121/2000~Sb., o~právu autorském, o~právech souvisejících s právem autorským a~o~změně některých zákonů (autorský zákon), ve znění pozdějších předpisů.
+
+\vspace{1em}
+
+\hspace{-0.75cm}V Kladně dne \ldots \ldots \ldots \hfill \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots
+
+\hspace{10cm} \textbf{\autor}
+
+\clearpage
+
+\null\vfill
+\section*{Poděkování}
+% Mé poděkováni patři též XXXXXXXX za spolupráci při získávání údajů pro výzkumnou část práce.
+Rád bych poděkoval vedoucí své bakalářské práce, Mgr. Ksenii Sedové, Ph.D. za
+odborné vedení práce, za pomoc, vstřícnost a rady při zpracování této práce.
+Dále bych rád poděkoval panu Ing et Ing. Janu Hejdovi, Ph.D. za všestrannou
+pomoc, množství cenných a inspirativních rad, podnětů, doporučení a čas, který
+mi věnoval při řešení dané problematiky. V neposlední řadě děkuji své rodině a
+všem přátelům, kteří mě při vytváření této práce podpořili.
+
+\clearpage
+
+
+\null\vfill
+\section*{ABSTRAKT}
+\subsection*{\nazev:}
+\input{chapters/abstract_cz.tex}
+\subsection*{Klíčová slova}
+EKG (Elektrokardiogram), zpracování EKG, detekce EKG komponentů, EKG analýza, HRV analýza, HRV parametry, MATLAB, Python
+\clearpage
+
+
+\null\vfill
+\section*{ABSTRACT}
+\subsection*{\nazevENG:}
+\input{chapters/abstract_en.tex}
+\subsection*{Key words}
+ECG (Electrocardiogram), ECG processing, detection of ECG components, ECG analysis, HRV analysis, HRV parameters, MATLAB, Python
+\clearpage
+
+\pagestyle{plain}	% Číslování stránek začíná odsud
+
+\tableofcontents			% Vloží obsah
+
+\clearpage
+
+\section*{Seznam symbolů a zkratek} %sekce = nadpis, s * není v obsahu
+\addcontentsline{toc}{section}{Seznam symbolů zkratek}
+\input{chapters/00_seznam_symbolu_a_zkratek}
+\clearpage
+
+%\addcontentsline{toc}{section}{Seznam tabulek}
+%\listoftables 		% seznam tabulek
+
+%\clearpage 			% konec stránky a odskok na další
+
+%\addcontentsline{toc}{section}{Seznam obrázků}
+%\listoffigures 		% seznam obrázků
+%\clearpage
+
+%\addcontentsline{toc}{section}{Seznam algoritmů}
+%\listofalgorithms
+%\clearpage
+
+
+\section{Úvod}
+\input{chapters/01_uvod}
+\clearpage
+
+\section{Přehled současného stavu}
+\input{chapters/02_prehled_soucasneho_stavu}
+\clearpage
+
+\section{Cíle práce}
+\input{chapters/03_cile_prace}
+\clearpage
+
+\section{Metody}
+\input{chapters/04_metody}
+\clearpage
+
+\section{Výsledky}
+\input{chapters/05_vysledky}
+\clearpage
+
+\section{Diskuse}
+\input{chapters/06_diskuse}
+\clearpage
+
+\section{Závěr}
+\input{chapters/07_zaver}
+\clearpage
+
+%-------------Literatura-------------------
+\clearpage
+\renewcommand{\refname}{Seznam použité literatury} 	% Přejmenování Reference
+\addcontentsline{toc}{section}{Seznam použité literatury}     % Přidání této kapitoly do obsahu
+\printbibliography
+\clearpage
+
+%-------------Přílohy----------------------
+\input{chapters/08_prilohy}
+
+\end{document}
