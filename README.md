@@ -1,2 +1,2 @@
-# bachelor-thesis
-My bachelor's thesis - Heart Activity Record Processing 💗
+# Zpracování a analýza záznamu srdeční aktivity
+# Heart activity record processing and analysis
