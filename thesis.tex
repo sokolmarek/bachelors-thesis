@@ -13,9 +13,9 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 % arara: xelatex: { shell : yes }
-% arara: biber
-% arara: xelatex: { shell : yes }
-% arara: xelatex: { shell : yes }
+%% arara: biber
+%% arara: xelatex: { shell : yes }
+%% arara: xelatex: { shell : yes }
 
 \documentclass[a4paper,12pt]{article}   % Definice - velikost dokumentu, základní velikost písma, typ
 \usepackage[a4paper, top=2.5cm, left=3.5cm, right=2.5cm, bottom=2.5cm]{geometry}		% nastavení okrajů
@@ -33,11 +33,12 @@
 \usepackage[czech]{babel}				% čeština
 \usepackage{enumitem}      			    % seznamy 
 \usepackage{xevlna}						%
-\usepackage{hyperref}					%
+\usepackage{subcaption}					%
 \usepackage{pdfpages}					%
 \usepackage{amsfonts}      				% množiny Z,R,N dvojitě
 \usepackage{amssymb}      				% znaky úhlu a tak
 \usepackage{graphicx}					%
+\usepackage{textgreek}					%
 \usepackage{setspace}					%
 \usepackage{multicol}					% tabulka, slučování sloupců
 \usepackage{multirow}                   % tabulka, slučování řádků
@@ -53,9 +54,10 @@
 \usepackage[style=iso-numeric]{biblatex}
 \addbibresource{biblio.bib}             % zdrojový soubor s citacemi
 
+\usepackage{siunitx}					%
 %% Přidání balíčků podporujících různé funkcionality - VOLITELNÉ, DOPLŇKOVÉ
 % Existuje celá řada dalších
-\usepackage[]{algorithm2e}				    % balíček pro pseudokód
+%\usepackage[]{algorithm2e}				    % balíček pro pseudokód
 %\usepackage{ifthen}                        % pro algoritmy if else
 %\usepackage{paralist}                      % Rozšířená možnost pro seznamy. Větší škála a možnosti jak seznamy dělat automaticky. 
 \usepackage{fontspec}                       % nastavení specifických fontů
@@ -68,6 +70,7 @@
 \newcommand{\at}{\makeatletter @\makeatother}           % Vytiskne zavináč - \at
 \newcommand{\degree}[1][]{\ensuremath{{#1}^\circ}}      % Vytiskne stupeň - \degree
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	% zarovnání v tabulce, vycentrování, potřebuje \usepackage{array}
+\addto\captionsczech{\renewcommand{\figurename}{Obr.}}		%
 
 % Zalamování slov na konci věty - napodobení justify jako MS-Word
 %\tolerance=1
@@ -96,8 +99,10 @@
 
 %% Ostatní neimplementované, pouze návod jak případně doplnit
 % Vytvořit seznam použitých algoritmů a přejmenování názvu objektu na Algoritmus.
-% \usepackage[algosection]{algorithm2e}
-% \SetAlgorithmName{Algoritmus}{algorithm}{Seznam algoritmů}
+\usepackage[algosection]{algorithm2e}
+\SetAlgorithmName{Algoritmus}{algorithm}{Seznam algoritmů}
+% // TODO: Turn on referencing
+% \usepackage{hyperref}					%
    
 %% Deklarace názvů - přepsat dle autora
 \newcommand{\autor}{Marek Sokol}

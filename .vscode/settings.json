@@ -15,12 +15,21 @@
         "Teamu",
         "arara",
         "biber",
+        "ch",
+        "elektrofyziologick",
+        "elektrofyziologických",
+        "elektrokardiografie",
         "ho",
+        "ln",
         "multiplatform",
+        "parasympatikus",
         "proband",
         "probandi",
         "probands",
-        "probandů"
+        "probandů",
+        "sinoatri",
+        "sinoatriálního",
+        "sympatikus"
     ],
     "todo-tree.tree.showCountsInTree": false,
     "todo-tree.tree.disableCompactFolders": true
