@@ -55,7 +55,7 @@ událostí, uskutečněných během jedné časové periody, nazývané srdečn�
 Konkrétně se jedná o svalovou kontrakci (systola) a svalovou relaxaci
 (diastola). Blíže je tento cyklus popsán v kapitole \ref{section:cardiac_cycle}.
 Průtok krve srdcem je znázorněn pomocí bílých šipek na ilustraci níže
-\cite{Memorix2017,Abbasi2014,Stejfa2006}.
+\cite{Memorix2017,Stejfa2006}.
 
 \begin{figure}[h]
 	\begin{center}
@@ -112,7 +112,7 @@ nízkotlaké fází, se srdce krví plní. Síně i komory podléhají oběma t�
 jsou koordinovány otvíráním a zavíráním atriventrikulárních a semilunárních
 chlopní. Zároveň je regulována i čerpací funkce srdce, tak aby v každém momentu
 byly splněny nároky tkání na okysličenou krev
-\cite{OpenStax,Weinhaus2005,Abbasi2014}.
+\cite{OpenStax,Weinhaus2005}.
 
 \begin{figure}[h]
 	\begin{center}
@@ -225,7 +225,6 @@ repolarizace (fáze 3) a návrat ke klidovému potenciálu (fáze 4)
 
 \begin{figure}[h]
 	\centering
-	\setkeys{Gin}{width=\linewidth}
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=1\textwidth]{../assets/figures/myokard_ap}
 		\caption{Akční potenciál buňky pracovního myokardu \cite{Petrek2019}}
@@ -375,13 +374,13 @@ skupin: \cite{Haberl2012,Stejfa2006,Kittnar2020}:
 
 \begin{enumerate}
 	\item \textbf{Einthovenovy bipolární končetinové svody (I, II, III)} ---
-	       vytváří tzv. teoretický Einthovenovův rovnoramenný trojúhelník, jehož
-	       přibližným středem je srdce. Elektrody se v tomto případě většinou
-	       nachází na horních končetinách a levé dolní končetině, přičemž dvě z
-	       nich jsou elektrody aktivní. Měřenou amplitudu udává rozdíl
-	       potenciálu aktivních elektrod a zároveň zde platí Einthovenovův
-	       zákon, který říká že vektorový součet všech amplitud je roven nule.
-	       Tyto svody jsou často nazývané standardními \cite{Kittnar2020}.
+	      vytváří tzv. teoretický Einthovenovův rovnoramenný trojúhelník, jehož
+	      přibližným středem je srdce. Elektrody se v tomto případě většinou
+	      nachází na horních končetinách a levé dolní končetině, přičemž dvě z
+	      nich jsou elektrody aktivní. Měřenou amplitudu udává rozdíl
+	      potenciálu aktivních elektrod a zároveň zde platí Einthovenovův
+	      zákon, který říká že vektorový součet všech amplitud je roven nule.
+	      Tyto svody jsou často nazývané standardními \cite{Kittnar2020}.
 	      \begin{figure}[h]
 		      \begin{center}
 			      \includegraphics[width=0.8\textwidth]{../assets/anatomy/bipolar}
@@ -390,52 +389,131 @@ skupin: \cite{Haberl2012,Stejfa2006,Kittnar2020}:
 		      \end{center}
 	      \end{figure}
 	\item \textbf{Goldbergerovy unipolární končetinové svody (aVR, aVL, aVF)}
-		  --- vznikají spojením aktivní elektrody s Wilsonovou svorkou. K
-		  Wilsonově neobli nulové svorce jsou připojeny všechny končetinové
-		  svody přes odpor ke zajištění nulového potenciálu na této svorce.
-		  Pozdějí byl tento způsob upraven Goldbergerem, který touto modifikací
-		  zesílil amplitudu svodů na záznamu. Zesílení vzniká odpojením aktivní
-		  elektrody od Wilsonovy svorky čimž je následně měřen potenciál pouze
-		  mezi odpojenou elektrodou a těmi zapojenými. Na Wilsonově svorce tímto
-		  vzniká potenciál a dochází ke zvýšení amplitudy \cite{Kittnar2020}.
-		\begin{figure}[h]
-			\begin{center}
-				\includegraphics[width=0.8\textwidth]{../assets/anatomy/unipolar1}
-				\caption{Unipolární končetinové svody \cite{Kittnar2020}}
-				\label{img:unipolar1}
-			\end{center}
-		\end{figure}
+	      --- původně tvořily spoje aktivních elektrod s Wilsonovou virtuální
+	      svorkou. K Wilsonově neboli nulové svorce jsou připojeny všechny
+	      končetinové svody přes vyoský odpor ke zajištění nulového potenciálu
+	      na této svorce. Pozdějí byl tento způsob upraven Goldbergerem, který
+	      touto modifikací zesílil amplitudu svodů na záznamu. Zesílení vzniká
+	      odpojením aktivní elektrody od Wilsonovy svorky čimž je následně měřen
+	      potenciál pouze mezi odpojenou elektrodou a zbylými. Na Wilsonově
+	      svorce tímto vzniká potenciál a dochází ke zvýšení amplitudy
+	      \cite{Kittnar2020}.
+	      \begin{figure}[h]
+		      \begin{center}
+			      \includegraphics[width=0.8\textwidth]{../assets/anatomy/unipolar1}
+			      \caption{Unipolární končetinové svody \cite{Kittnar2020}}
+			      \label{img:unipolar1}
+		      \end{center}
+	      \end{figure}
 	\item \textbf{Wilsonovy unipolární hrudní svody (V1 -- V6)} --- sestávají z
-		šesti hrudních elektrod zapojených proti referenční Wilsonově svorce.
-		Wilsonova nulová svorka je zde opět tvořená spojením končetinových svodů
-		přes odpor. Změnou v tomto zapojení je přechod z frontální roviny měření
-		elektrické aktivity srdce do horizontální. V kombinaci s předešlími
-		Goldbergerovy svody tak vzniká prostorová informace o elektrickém
-		srdečním poli \cite{Kittnar2020}.
-		\begin{figure}[h]
-			\begin{center}
-				\includegraphics[width=0.35\textwidth]{../assets/anatomy/unipolar2}
-				\caption{Unipolární hrudní svod \cite{Kittnar2020}}
-				\label{img:unipolar2}
-			\end{center}
-		\end{figure}
+	      šesti hrudních elektrod zapojených proti referenční Wilsonově svorce.
+	      Wilsonova nulová svorka je zde opět tvořená spojením končetinových
+	      svodů přes odpor. Změnou v tomto zapojení je přechod z frontální
+	      roviny měření elektrické aktivity srdce do horizontální. V kombinaci s
+	      předešlími Goldbergerovy svody tak vzniká prostorová informace o
+	      elektrickém poli myokardu \cite{Kittnar2020}.
+	      \begin{figure}[h]
+		      \centering
+		      \subcaptionbox{Unipolární hrudní svod \cite{Kittnar2020}}
+		      [.3\linewidth]{\includegraphics[height=5.5cm]{../assets/anatomy/unipolar2}}
+		      \hfill
+		      \subcaptionbox{Přiložení unipolárních hrudních svodů podle Wilsona
+			      (vlevo) a přiřazení elektrod k srdci v příčném průřezu (vpravo)
+			      \cite{Haberl2012}}
+		      [.65\linewidth]{\includegraphics[height=4.5cm]{../assets/anatomy/unipolar3}}
+		      \caption{Wilsonovy unipolární hrudní svody}
+		      \label{fig:wilson}
+	      \end{figure}
 \end{enumerate}
 
-Kombinací všech výše zmíněných svodů vzniká standardní, běžně používaný,
-12-svodový EKG záznam. Graficky se zaznamenává na milimetrový papír nebo je
-vidět na obrazovce v digitalizované podobě.
+Kombinací všech výše zmíněných svodů vzniká standardní klinický 12-svodový EKG
+záznam, který se běžně používá v praxi. Graficky se zaznamenává na milimetrový
+papír nebo je vidět na obrazovce v digitalizované podobě. Délka záznamu se
+obvykle liší v závislosti na prováděné diagnostice či terapii. K záznamu se
+používají různé typy EKG přístrojů, které často snímají více biologických
+veličin, něž pouze elektrickou aktivitu srdce. Mezi přístroje, které se k měření
+využívají, se řadí například pacientské monitory vitálních funkcí nebo v případě
+mobilnějšího řešení Holterův monitor (Holter). Holterovo monitorování se
+nejčastěji uplatňuje u dlouhodobého kontinuálního záznamu srdeční aktivity,
+obvykle 24 hodin, kde je třeba v rámci diagnostiky sledovat příležitostné
+srdeční úkazy. Největší výhodou v případě Holtru je jeho malá konstrukce v
+podobě krabičky o velikosti většího mobilního telefonu což umožňuje jeho
+jednoduchou přenosnost \cite{}. %//TODO: Cite
 
+Na elektrokardiografy a přístroje k záznamu biologických potenciálů je obecně
+kladeno mnoho požadavků. Jelikož potenciály zaznamenané elektrodami se pohybují
+na úrovní milivoltů a obsahují šum musí být signál zesílen a patřičně filtrován.
+Tyto operace jsou běžně realizovány na úrovní obvodů. Například k zesílení
+signálu se využívá přístrojových zesilovačů a filtrace je obvodově řešena RC
+články v podobě horní nebo dolní propusti. Další nezbytnou součástí tvoří
+ochranné obvody, které přístroj chrání před nežádoucími okolními vlivy a
+poškozením. Jednotlivé přístroje se na základě použité technologie a způsobu
+řešení požadavků liší. Zpracování měřeného signálu je dále podrobněji rozebráno
+v následujících kapitolách.
 
+%//TODO: Rewrite and cite this subsection 9, 10
 \subsection{Zpracování záznamu srdeční aktivity}
-\subsubsection{Nežádoucí elementy a artefakty EKG}
-\subsubsection{Metody zpracování}
+Monitorování či analýza EKG tvoří nepostradatelnou část v mnoha diagnostických a
+terapeutických případech. Díky mobilním implementacím, pomocí kterých jsme
+schopni sledovat tuto biologickou aktivitu skrze chytrá zařízení je to v
+současnosti trend. Než se ale na výstupu, například v podobě displeje, objeví
+EKG křivka či jiné vypočtené parametry, tak se signál musí předzpracovat, jinak
+by tyto parametry byly v praxi zavádějící.
+
+\subsubsection{Potlačení nežádoucích elementů signálu}
+Nezbytným krokem v předzpracování je filtrace signálu, jelikož ho zkreslují
+mnohočetné okolní a elektrofyziologické vlivy. Nejčastější rušivé prkvy, které
+se projevují na signálu jsou: síťový brum (elektrický 50 \si\Hz~šum),
+myopotenciály, pohybové artefakty, odklonění od izolinie nebo špatné umístění či
+vodivost elektrod. 
+
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+
+Filtrace se zpravidla provádí kombinací filtrů typu horní a dolní propust, a to
+jak hardwarově, například v podobě RLC obvodů (pásmová propust), tak i
+výpočetně. Výpočetní část tvoří především matematické aplikace diskrétních
+lineárních a nelineárních filtrů či algoritmů kombinující více metod nebo jejich
+částí. Dnes se často využívá neuronových sítí, vlnkových transformací a jiných
+algoritmů někdy ve spojení s umělou inteligencí. Záleží na charakteristice
+signálu a typu následně požadované dílčí analýze. Hlavním cílem často bývá
+identifikace a segmentace jednotlivých komponentů QRS komplexu nebo extrakce
+specifických složek z frekvenčního spektra signálu. Pokud je předzpracování
+dostatečně efektivní a je možné tyto složky úspěšně extrahovat, aplikují se na
+tyto komponenty další postupy, díky kterým jsme schopni hodnotit a analyzovat
+další fyziologické jevy mezi které nejčastěji patří variabilita srdečního rytmu.
+
+\subsubsection{Vybrané metody zpracování a extrakce komponentů}
 \subsubsection{Rozdíly mezi offline a online zpracováním signálu}
 
+%//TODO: Rewrite and cite this subsection 9, 10
 \subsection{Variabilita srdeční frekvence}
 \label{section:hrv}
 
 \subsubsection{Metody hodnocení HRV}
+Nejčastější a základní neinvazivní metody hodnocení HRV lze sjednotit do časové
+a frekvenční oblasti ale existují i další geomterické a nelineární postupy.
+Nejzákladnější běžná metoda je spektrální analýza variability srdečního rytmu,
+která nám umožňuje zaznamenat a deklarovat vlivy kardiálního autonomního
+nervového systému (ANS). Další využívanou metodou je akcelerovaná
+fotopletysmografie (APG), kde vyšetřované místo vystavíme světelným paprskům,
+které procházejí tkání a jejich odezva je pak zpracována do podoby pulsových vln
+vynesených na křivce. Tyto metody jsou pak v praxi využitelné pro včasné
+odhalení kardiovaskulárních onemocnění, nicméně jsou použitelné pouze ve
+specifických laboratorních podmínkách a jako jiné jsou ovlivnitelné právě
+fyzickými a psychologickými faktory \cite{[2, 4, 5]}. Parametry HRV můžou
+sloužit pro predikci kognitivní zátěže, ale pro jejich spolehlivé určení je
+nezbytný pečlivý výběr vhodných metod předzpracování signálu \cite{[1, 3]}.
+Pokud bychom byli schopni hodnotit změny a vlivy kognitivní zátěže a spojit tyto
+výsledky s dosavadními metodami, které hodnotí zbylé vlivy a faktory, můžeme
+díky jedné metrice efektivněji určit a předpovědět zdravotní stav pacienta a
+jeho potencionální změny.
+
 \subsubsection{Korelace kvantitativních parametrů HRV s fyziologickými veličinami}
+
+
 \subsubsection{Model neuroviscerální integrace}
 Tento neustále doplňující se model, popisuje vztahy v rámci periferní
 psychofyziologie, neurověd a autonomních funkci spjatých s regulací vagálního
@@ -451,4 +529,5 @@ vzájemnými poměry slouží pří samotné analýze jako indikátory činnosti
 vegetativní nervové soustavy (VNS). Aby bylo ale možné tyto komponenty získat a
 porovnávat či jakkoliv hodnotit srdeční aktivitu, musí se záznam srdeční
 aktivity patřičně zpracovat.
+
 \subsubsection{Praktické aplikace HRV v diagnostice a terapii}
