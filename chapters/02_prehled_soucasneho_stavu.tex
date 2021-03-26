@@ -422,11 +422,11 @@ jeho jednoduchou přenosnost \cite{Surawicz2008}.
 %//TODO: Rewrite and cite this subsection 9, 10
 \subsection{Zpracování záznamu srdeční aktivity}
 Monitorování či analýza EKG tvoří nepostradatelnou část v mnoha diagnostických a
-terapeutických případech. Díky mobilním implementacím, pomocí kterých jsme
-schopni sledovat tuto biologickou aktivitu skrze chytrá zařízení je to v
-současnosti trend. Než se ale na výstupu, například v podobě displeje, objeví
-EKG křivka či jiné vypočtené parametry, tak se signál musí předzpracovat, jinak
-by tyto parametry byly v praxi zavádějící.
+terapeutických případech. Díky mobilním implementacím, pomocí kterých lze
+sledovat tuto biologickou aktivitu skrze chytrá zařízení je to v současnosti
+trend. Než se ale na výstupu, například v podobě displeje, objeví EKG křivka či
+jiné vypočtené parametry, tak se signál musí předzpracovat, jinak by tyto
+parametry byly v praxi zavádějící.
 
 Biologické signály se zpravidla předzpracovávají použitím filtrů. Filtrace
 signálu mění tvar a spektrum původního sígnálu, čímž dochází ke zvýraznění nebo
@@ -551,7 +551,7 @@ jsou IIR filtry definované rekurzivními diferenčními rovnicemi: \cite{Jan200
 
 kde $r$ spolu s $L_i$ je řád a koeficienty nerekurzivní části filtru. Naopak $m$
 je řád a $K_i$ jsou koeficienty rekurzivní části filtru. Obecně platí $r \leq
-m$. Níže jsou další vybrané vlastnosti IIR filtrů \cite{Jan2002}:
+	m$. Níže jsou další vybrané vlastnosti IIR filtrů \cite{Jan2002}:
 
 \begin{itemize}
 	\item Rekurzivní struktura,
@@ -569,12 +569,12 @@ m$. Níže jsou další vybrané vlastnosti IIR filtrů \cite{Jan2002}:
 \end{figure}
 
 Rozdíl mezi FIR a IIR filtry je viditelný vzájemným porovnáním jejich impulsní a
-frekvenční charakteristiky. Na Obr. \ref{filters_comparison} jsou graficky
-znázorněny tyto charektaristiky pro FIR filtr 15. řádu a Čebyševův filtr 5. řádu
+frekvenční charakteristiky. Na Obr. \ref{fig:filters_comparison} jsou graficky
+znázorněny tyto charakteristiky pro FIR filtr 15. řádu a Čebyševův filtr 5. řádu
 typu I. Filtry byly navrženy jako dolní propust s mezní frekvencí 25 \si\Hz. I
 přes značný grafický rozdíl impulsních charakteristik je útlumová úroveň filtrů
 velmi podobná, avšak výpočetně IIR filtru stačilo 6 koeficientů oproti FIR
-filtru, který jich vyžadoval 15. Hlavní rozdíl vyplivá především z fázové
+filtru, který jich vyžadoval 15. Hlavní rozdíl vyplívá především z fázové
 charakteristiky, kde se v propustném pásmu, a hlavně kolem mezní frekvence
 projevuje nelineární fázový charakter IIR filtru.
 
@@ -582,7 +582,7 @@ Včetně lineárních metod filtrace se v praxi často užívají i další meto
 předzpracování mezi které se řadí například nelineární a adaptivní filtrace,
 vlnkové transformace, korelační analýza, kumulační metody nebo se využívá
 neuronových sítí \cite{Jan2002}. Po filtraci signálu a potlačení nežádoucích
-rušivých složek přicházi na řadu jeho segmentace a extrace komponentů potřebných
+rušivých složek přichází na řadu jeho segmentace a extrakce komponentů potřebných
 k analýze. Na extrahované komponenty se následně aplikují další postupy
 hodnotící fyziologické jevy, mezi které nejčastěji patří HRV.
 
@@ -596,14 +596,19 @@ Sítový brum neboli elektrická interference generovaná střídavým proudem z
 zásuvky, je jedním z nejběžnějších artefaktů projevujících se u biologických
 signálu. Příčinou jeho vzniku může být špatné uzemnění či chod zařízení nebo
 vliv elektromagnetického rušení okolní techniky v blízkosti měřícího přístroje.
-Na Obr. \ref{fig:ac_Interference} je vidět vliv střídavého proudu o
-frekvenci 50 \si\Hz~na EKG signál \cite{Goldberger2017}.
+Na Obr. \ref{fig:ac_Interference} je vidět vliv střídavého proudu o frekvenci 50
+\si\Hz~na EKG signál \cite{Goldberger2017}. Nejčastěji se k eliminaci
+úzkopásmového rušení tohoto typu volí filtry navržené jako pásmová zádrž, které
+nepropouští specifikované frekvence signálu \cite{Kher2019}.
 
 Pohybové artefakty se primárně na EKG signálu projevují kolísáním elektrické
-izolinie od její nulové hodnoty jako je tomu na Obr. \ref{fig:w_baseline}.
-Nevznikají však pouze pohybem pacienta ale i například manipulací měřicími
-kabely, špatným kontaktem elektrod nebo vlivem dýchání pacienta
-\cite{Goldberger2017}.
+izolinie (drift) od její nulové hodnoty jako je tomu na Obr.
+\ref{fig:w_baseline}. Nevznikají však pouze pohybem pacienta ale i například
+manipulací měřicími kabely, špatným kontaktem elektrod nebo vlivem dýchání
+pacienta \cite{Goldberger2017}. V lepších případech stačí ke korekci driftu
+filtry typu horní propusti, avšak někdy je potřeba využít například vlnkových
+transformací nebo adaptivní filtrace, obzvláště v situacích fyzického pohybu
+nebo špatného kontaktu elektrod \cite{Kher2019}.
 
 \begin{figure}[h]
 	\begin{subfigure}[b]{0.5\linewidth}
@@ -645,7 +650,10 @@ pulzace arteriální tepny pod elektrodou \cite{Surawicz2008}. Vlivem pohybů
 kosterního svalstva vzniká svalová elektrická aktivita (EMG), která náhodně
 interferuje s EKG signálem. Na Obr. \ref{fig:muscle_tremor} je vidět tato
 interference v podobě překrytí QRS komplexu myopotenciálem
-\cite{Goldberger2017}.
+\cite{Goldberger2017}. K potlačení myopotenciálu se často využivájí vyhlazovací
+filtry nebo například filtry typu dolní propust s Gaussovou impulsní odezvou
+\cite{Kher2019}. Populárním vyhlazovacím digitálním filtrem je Savitzky–Golay
+filtr \cite{Schafer2011}.
 
 V neposlední řadě, spíše než rušení, je častou chybou při záznamu EKG špatné
 umístění nebo prohození elektrod. Proto je nutné pamatovat si význam barev
@@ -655,8 +663,48 @@ potenciálu. Na Obr. \ref{fig:rev_electrodes} je vidět situace, kdy došlo k
 záměně bíle a červené elektrody. Výsledkem je inverze všech vln EKG křivky (P,
 Q, R, S, T) \cite{Goldberger2017,Surawicz2008}.
 
-\subsubsection{Detekce a extrakce EKG komponentů}
-\subsubsection{Rozdíly mezi offline a online zpracováním signálu}
+\subsubsection{Vybrané metody detekce EKG komponentů}
+Po předzpracování (filtraci) EKG signálu přichází na řadu detekce a extrakce
+žádoucích komponentů. Prvním východiskem je oblast analýzy, od které se odvíjí
+potřebné komponenty a jejich doména. Oblast může být časová nebo frekvenční.
+Dalším krokem je výběr nebo návrh samotné metody pro detekci. Nejčastějším
+případem v rámci EKG signálu je detekce QRS komplexu, případně jeho dílčích
+částí. EKG signál se následně segmentuje na jednotlivé úseky v závilosti na
+detekovaných komplexech \cite{Canento2012}. Detekční algoritmy zpravidla
+obsahují další filtry a matematické operace spolu s rozhodovacími pravidly pro
+zváraznění a selekci hledaných složek. Většina nově vzniklých metod čerpá a
+kombinuje poznatky z těch, které se postupem času staly konvenčními.
+Nejznámějším případem takové metody, kterou lze nazývat konvenční, je
+Pan-Tompkinsův algoritmus \cite{Pan1985}.
+
+QRS detekční aloritmus, který navrh a realizoval Pan-Tompkins v roce 1985, je
+doposud jedním z nejpopulárnějších algoritmů v oblasti zpracování EKG signálu.
+Algortimus má dvě hlavní části, předzpracování signálu a rozhodovací část. Část
+předzpracování používá 3 typy filtrů --- pásmová propust, derivační filtr,
+integrační filtr --- k potlační šumu a artefaktů signálu \cite{Alvarez2013}.
+Derivační filtr potlačuje vlivy P a T vln. Integrační filtr, se aplikuje v
+podobě pohyblivého okna pro vyhlazení signálu \cite{Pan1985}.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance=2cm]
+		\node (start) [startstop] {Vstupní EKG signál};
+		\node (pro1) [process, below of=start] {Pásmová propust};
+		\node (pro2) [process, right of=pro1, xshift=1.7cm] {Derivační filtr};
+		\node (pro3) [process, right of=pro2, xshift=1.7cm] {Umocnění signálu};
+		\node (pro4) [process, right of=pro3, xshift=1.7cm] {Integrační filtr};
+		\node (stop) [startstop, below of=pro4] {Detekce komponentů};
+
+		\draw [arrow] (start) -- (pro1);
+		\draw [arrow] (pro1) -- (pro2);
+		\draw [arrow] (pro2) -- (pro3);
+		\draw [arrow] (pro3) -- (pro4);
+		\draw [arrow] (pro4) -- (stop);
+	\end{tikzpicture}
+	\caption{Pan-Tompkinsův algoritmus [zdroj: autor]}
+	\label{fig:pan_tompkins}
+\end{figure}
+
 
 %//TODO: Rewrite and cite this subsection 9, 10
 \subsection{Variabilita srdeční frekvence}
@@ -693,7 +741,7 @@ se promítají do frekvenčních domén. Specificky se projevují jako velmi ní
 nízko a vysoko frekvenční komponenty (VLF, LF, HF), které spolu s jejich
 vzájemnými poměry slouží pří samotné analýze jako indikátory činnosti
 vegetativní nervové soustavy (VNS). Aby bylo ale možné tyto komponenty získat a
-porovnávat či jakkoliv hodnotit srdeční aktivitu, musí se záznam srdeční
-aktivity patřičně zpracovat.
+porovnávat či jakkoliv hodnotit srdeční aktivitu, musí být záznam srdeční
+aktivity patřičně zpracován.
 
 \subsubsection{Praktické aplikace HRV v diagnostice a terapii}
