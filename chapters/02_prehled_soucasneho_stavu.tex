@@ -511,19 +511,39 @@ když je potřeba lineární fázové charakteristiky. Lineární fáze způsobu
 ekvivalentní fázovy posun všech frekvencí v čase, tudíž je zachované stejné
 zpoždění signálu na výstupu ve srovnání se vstupním signálem. FIR filtry se dají
 navrhnout s přesně lineární fázovou charakteristikou, pokud je jejich impulzní
-odezva symetrická nebo asymetrická. Matematická definice filtru vychází z
-principu superpozice DLI systémů a je definována jako konečná diskrétní
-konvoluce \cite{Prchal2000,Jan2002}:
+odezva symetrická nebo asymetrická \cite{Prchal2000}. Matematická definice
+filtru vychází z principu superpozice DLI systémů a je definována jako konečná
+diskrétní konvoluce \cite{Jan2002}:
 
 \begin{equation}
-	\label{conv:fir}
+	\label{eq:conv_fir}
 	y_n = \sum_{k=1}^{N-1} k_{n-k} h_k
 \end{equation}
 
 kde $N$ je řád filtru, $x$ vstupní signál a $h$ je vektor obsahující koeficienty
 impulzní odezvy filtru pro které platí $n \in \langle 0,N-1 \rangle$
-\cite{Jan2002}. Další vlastnosti FIR filtrů, které mohou sloužit jako
-rozhodovací kritérium při návrhu filtru jsou \cite{Prchal2000}:
+\cite{Jan2002}. Stabilita filtrů vychází z-transformace impulzní odezvy:
+
+\begin{equation}
+	\label{eq:transfer_fir}
+	H(z) = \sum_{n=0}^{N-1} h_n z_{-n}
+\end{equation}
+
+která je po transformaci ve své rovině dána jen nulovými body \cite{Jan2002}.
+Frekvenční charakteristika filtrů:
+
+\begin{equation}
+	\label{eq:freq_fir}
+	G(\omega) = H(e^{j \omega T}) = \sum_{n=0}^{N-1} h_n e^{-j \omega T}
+\end{equation}
+
+je spojitá periodická funkce s periodou $2\pi/T$ \cite{Jan2002}. Jelikož je
+frekvenční charakteristika $G(\widetilde\omega)$ spojená s impulzní odezvou
+$h(n)$ Fourierovou transformací \cite{Prchal2000}, tak koeficienty impulzní
+odezvy $h_n$ vycházejí z Fourierovy řady. Díky tomu lze filtry tohoto typu
+poměrně snadno navrhnout \cite{Jan2002}. Další vlastnosti FIR filtrů, které
+mohou sloužit jako rozhodovací kritérium při návrhu filtru jsou
+\cite{Prchal2000}:
 
 \begin{itemize}
 	\item Absolutní stabilita,
@@ -545,13 +565,35 @@ FIR filtrů a často může představovat složitou optimalizační úlohu. Mate
 jsou IIR filtry definované rekurzivními diferenčními rovnicemi: \cite{Jan2002}:
 
 \begin{equation}
-	\label{conv:iir}
+	\label{eq:conv_iir}
 	y_n = \sum_{i=0}^{r} L_i x_{n-1} - \sum_{i=1}^{m} K_i y_{n-1}
 \end{equation}
 
 kde $r$ spolu s $L_i$ je řád a koeficienty nerekurzivní části filtru. Naopak $m$
-je řád a $K_i$ jsou koeficienty rekurzivní části filtru. Obecně platí $r \leq
-	m$. Níže jsou další vybrané vlastnosti IIR filtrů \cite{Jan2002}:
+je řád a $K_i$ jsou koeficienty rekurzivní části filtru. Obecně platí $r \leq m$
+\cite{Jan2002,Prchal2000}. Přenosová funkce:
+
+\begin{equation}
+	\label{eq:transfer_iir}
+	H(z) = \frac{\sum_{i=0}^{r} L_i z^{m-i}}{\sum_{i=0}^{m} K_i z^{m-i}} = A \frac{\prod_{i=1}^{r} (z-n_i)}{\prod_{i=1}^{m} (z-p_i)}
+\end{equation}
+
+je v z-rovině vyjádřená podílem polynomů, kde $Li$ $Ki$ jsou systémové
+konstanty. Často se lze setkat s následným součinovým vyjádřením, které filtr
+popisuje pomocí konfigurace pólů $p_i$, nulových bodů $n_i$ a zesílení $A$
+\cite{Jan2002,Prchal2000}. Vyjádření frekvenční charakteristiky je v případě IIR
+filtrů složitější a obvykle se používa k popisu spíše vztah pro amplitudovou a
+fázovou charakteristiku:
+
+\begin{equation}
+	\label{eq:conv_iir}
+	|G(\omega)| = A \frac{\prod_{i=1}^{r} d_i}{\prod_{i=1}^{m} l_i} ~a~ arg(G(\omega)) = (m-r)\omega T + \sum_{i=1}^{r} \Phi_i - \sum_{i=1}^{m} \Psi_i
+\end{equation}
+
+kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
+(póly). $\Phi_i$ a $\Psi_i$ jsou úhly náležitých spojnic
+\cite{PrPrchal2000,Jan2002}. Níže jsou další vybrané vlastnosti IIR filtrů
+\cite{Jan2002}:
 
 \begin{itemize}
 	\item Rekurzivní struktura,
@@ -579,12 +621,13 @@ charakteristiky, kde se v propustném pásmu, a hlavně kolem mezní frekvence
 projevuje nelineární fázový charakter IIR filtru.
 
 Včetně lineárních metod filtrace se v praxi často užívají i další metody
-předzpracování mezi které se řadí například nelineární a adaptivní filtrace,
-vlnkové transformace, korelační analýza, kumulační metody nebo se využívá
-neuronových sítí \cite{Jan2002}. Po filtraci signálu a potlačení nežádoucích
-rušivých složek přichází na řadu jeho segmentace a extrakce komponentů potřebných
-k analýze. Na extrahované komponenty se následně aplikují další postupy
-hodnotící fyziologické jevy, mezi které nejčastěji patří HRV.
+předzpracování mezi které se řadí například nelineární a adaptivní filtrace
+\cite{Sornmo1982,Pan1985}, vlnkové transformace \cite{Yao2020,Ndiaye2020},
+korelační analýza, kumulační metody nebo se využívá neuronových
+sítí\cite{Kiranyaz2016,Zhai2018} \cite{Jan2002}. Po filtraci signálu a potlačení
+nežádoucích rušivých složek přichází na řadu jeho segmentace a extrakce
+komponentů potřebných k analýze. Na extrahované komponenty se následně aplikují
+další postupy hodnotící fyziologické jevy, mezi které nejčastěji patří HRV.
 
 \subsubsection{Nežádoucí elementy EKG signálu}
 EKG signál často zkreslují mnohočetné okolní a elektrofyziologické vlivy, které
@@ -663,85 +706,298 @@ potenciálu. Na Obr. \ref{fig:rev_electrodes} je vidět situace, kdy došlo k
 záměně bíle a červené elektrody. Výsledkem je inverze všech vln EKG křivky (P,
 Q, R, S, T) \cite{Goldberger2017,Surawicz2008}.
 
-\subsubsection{Vybrané metody detekce EKG komponentů}
-Po předzpracování (filtraci) EKG signálu přichází na řadu detekce a extrakce
-žádoucích komponentů. Prvním východiskem je oblast analýzy, od které se odvíjí
-potřebné komponenty a jejich doména. Oblast může být časová nebo frekvenční.
-Dalším krokem je výběr nebo návrh samotné metody pro detekci. Nejčastějším
-případem v rámci EKG signálu je detekce QRS komplexu, případně jeho dílčích
-částí. EKG signál se následně segmentuje na jednotlivé úseky v závilosti na
-detekovaných komplexech \cite{Canento2012}. Detekční algoritmy zpravidla
-obsahují další filtry a matematické operace spolu s rozhodovacími pravidly pro
-zváraznění a selekci hledaných složek. Většina nově vzniklých metod čerpá a
-kombinuje poznatky z těch, které se postupem času staly konvenčními.
-Nejznámějším případem takové metody, kterou lze nazývat konvenční, je
-Pan-Tompkinsův algoritmus \cite{Pan1985}.
-
-QRS detekční aloritmus, který navrh a realizoval Pan-Tompkins v roce 1985, je
-doposud jedním z nejpopulárnějších algoritmů v oblasti zpracování EKG signálu.
-Algortimus má dvě hlavní části, předzpracování signálu a rozhodovací část. Část
-předzpracování používá 3 typy filtrů --- pásmová propust, derivační filtr,
-integrační filtr --- k potlační šumu a artefaktů signálu \cite{Alvarez2013}.
-Derivační filtr potlačuje vlivy P a T vln. Integrační filtr, se aplikuje v
-podobě pohyblivého okna pro vyhlazení signálu \cite{Pan1985}.
+\subsubsection{Detekce EKG komponentů}
+Detekce, segmentace a extrakce EKG komponentů, nejčastěji QRS komplexu, je v
+posledním století velmí žhavé téma, které těží z rozvoje výpočetní techniky.
+Největší zlom nastal při vzniku neuronovýh sítí a příchodu umělé inteligence,
+která přinesla v této oblasti nespočet nových řešení, primárně v automatizované
+detekci a klasifikaci kardiovaskulárních onemocnění \cite{Kashou2020}. I
+přestože softwarové implementace detektorů čim dál častějí nahrazují hardwarová
+řešení, tak po hardwarové stránce dochází v rozvojí hlavně v mobilních
+zařízeních \cite{Kohler2002}.
 
 \begin{figure}[h]
 	\centering
-	\begin{tikzpicture}[node distance=2cm]
+	\begin{tikzpicture}[node distance=2.5cm,thick,scale=0.85, every node/.style={scale=0.9}]
+		\node (pro1) [process, xshift=2cm, text width=2cm] {Lineární filtrace};
+		\node (pro2) [process, right of=pro1, xshift=0.8cm, text width=2cm] {Nelineární filtrace};
+		\node (Title1) [text=black!50, below of=pro1, node distance=1.2cm, xshift=1.7cm] {Předzpracování};
+		\node (blok1) [draw=black!50, dashed, inner sep=0.4cm, fit={(pro1) (pro2) (Title1)}] {};
+		\node (start) [left of=blok1, node distance=5cm] {};
+
+		\node (pro3) [process, right of=pro2, xshift=2cm, text width=2cm] {Detekční algoritmus};
+		\node (pro4) [process, right of=pro3, xshift=0.8cm, text width=2cm] {Rozhodovací pravidlo};
+		\node (Title2) [text=black!50, below of=pro3, node distance=1.2cm, xshift=1.7cm] {Rozhodování};
+		\node (blok2) [draw=black!50, dashed, inner sep=0.4cm, fit={(pro3) (pro4) (Title2)}] {};
+		\node (stop) [right of=blok2, xshift=1.5cm] {};
+
+		\draw [arrow] (start) -- node [above] {EKG} (blok1);
+		\draw [arrow] (blok1) -- (blok2);
+		\draw [arrow] (blok2) -- (stop);
+	\end{tikzpicture}
+	\caption{Běžná struktura QRS detektorů \cite{Kohler2002}}
+	\label{fig:qrs_detection}
+\end{figure}
+
+Prvním východiskem detekce je oblast analýzy, od které se odvíjí potřebné
+komponenty a jejich doména. Oblast může být časová nebo frekvenční. Dalším
+krokem je výběr nebo návrh samotné metody pro detekci. Nejčastějším případem v
+rámci EKG signálu je detekce QRS komplexu, případně jeho dílčích částí. EKG
+signál se následně segmentuje na jednotlivé úseky v závislosti na detekovaných
+komplexech \cite{Canento2012}. Detekční algoritmy zpravidla obsahují další
+filtry a matematické operace zvýrazňující QRS komplexy spolu s rozhodovacími
+pravidly. Rozhodovací pravidla si lze představit jako podmínky, jejichž splněním
+je definován nalezený komponent. Z hlediska principu předzpracování se často
+používají například algoritmy založené na \cite{Kohler2002,Vaneghi2012}:
+
+\begin{itemize}
+	\item \textit{digitální filtraci} \cite{Sornmo1982,Kesel1997481},
+	\item \textit{diferenciaci} \cite{Tompkins1983,Okada1979},
+	\item \textit{vlnkové transformaci} \cite{Yao2020,Ndiaye2020},
+	\item \textit{počítání průchodů nulou} \cite{Kohler2003,Turnip2018},
+	\item \textit{Hilbertově transformaci} \cite{Valluraiah2015, Ouali2020},
+	\item \textit{matematické morfologii} \cite{Li1999,Tadejko2007},
+	\item \textit{použití neuronových sítí} \cite{Kiranyaz2016,Zhai2018}.
+\end{itemize}
+
+Většina nově vzniklých metod často čerpá a kombinuje poznatky z těch, které se
+postupem času staly konvenčními. Nejznámějším případem takové metody, kterou lze
+nazývat konvenční, je Pan-Tompkinsův algoritmus \cite{Pan1985}.
+
+QRS detekční aloritmus, který navrhl a realizoval Pan-Tompkins v roce 1985, je
+doposud jedním z nejpopulárnějších algoritmů v oblasti zpracování EKG signálu.
+Navržen byl primárně pro aplikace v reálném čase. Algortimus má dvě hlavní
+části, předzpracování signálu a rozhodovací část. Část předzpracování používá 3
+typy filtrů --- pásmová propust, derivační filtr, integrační filtr --- k
+potlační šumu a artefaktů signálu \cite{Alvarez2013}. Derivační filtr potlačuje
+vlivy P a T vln. Integrační filtr, se aplikuje v podobě pohyblivého okna pro
+vyhlazení signálu \cite{Pan1985}. Rozhodovací část neboli část zpracování, se
+věnuje detekci QRS komplexů. Pro zvýšení spolehlivosti algoritmu probíha detekce
+zároveň na derivovaném a na vyhlazeném signálu. Prvotním krokem je nalezení
+lokálních maxim v podobě R vln. Následně se aplikuje adaptivní prahování formou
+pohyblivého okna pří kterém jsou rozhodovacím pravidlem vybrány pouze R vlny
+překračující prahovou hodnotu. Vybrané R vlny představují referenční body
+detekovaných QRS komplexů \cite{Pan1985,Alvarez2013}.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance=2.5cm,thick,scale=0.85, every node/.style={scale=0.85}]
 		\node (start) [startstop] {Vstupní EKG signál};
 		\node (pro1) [process, below of=start] {Pásmová propust};
-		\node (pro2) [process, right of=pro1, xshift=1.7cm] {Derivační filtr};
-		\node (pro3) [process, right of=pro2, xshift=1.7cm] {Umocnění signálu};
-		\node (pro4) [process, right of=pro3, xshift=1.7cm] {Integrační filtr};
-		\node (stop) [startstop, below of=pro4] {Detekce komponentů};
+		\node (pro2) [process, right of=pro1, xshift=2cm] {Derivační filtr};
+		\node (pro3) [process, right of=pro2, xshift=2cm] {Umocnění signálu};
+		\node (pro4) [process, right of=pro3, xshift=2cm] {Integrační filtr};
+		\node (pro5) [process, below of=pro4, text width=3cm] {Počáteční detekce R vln};
+		\node (pro6) [process, below of=pro3, text width=3cm] {Adaptivní prahování};
+		\node (pro7) [process, below of=pro2, text width=3cm] {Rozhodovací pravidlo};
+		\node (stop) [startstop, below of=pro1] {QRS komplex};
 
 		\draw [arrow] (start) -- (pro1);
 		\draw [arrow] (pro1) -- (pro2);
 		\draw [arrow] (pro2) -- (pro3);
 		\draw [arrow] (pro3) -- (pro4);
-		\draw [arrow] (pro4) -- (stop);
+		\draw [arrow] (pro4) -- (pro5);
+		\draw [arrow] (pro5) -- (pro6);
+		\draw [arrow] (pro6) -- (pro7);
+		\draw [arrow] (pro7) -- (stop);
 	\end{tikzpicture}
 	\caption{Pan-Tompkinsův algoritmus [zdroj: autor]}
 	\label{fig:pan_tompkins}
 \end{figure}
 
+Existuje mnoho dalších QRS detektorů, jejichž řešení se orientuje především
+povahou dat a způsobem zpracování. Způsobem zpracování se rozumí, zdali detekce
+probíhá na již naměřených datech --- offline --- nebo v reálném čase --- online.
+Povaha dat je dána způsobem měření. Záznamy srdeční aktivity naměřené
+intrakardiálně nejsou zatížené artefakty tolik jako záznamy pořízené
+Holterovským monitorováním. Z toho vyplivá i komplexita detektoru, jelikož EKG
+záznamy zatížené mnohočetnými artefakty vyžadují mnohem sofistikovanější
+detekční algoritmy. Další populární QRS detektory a jejich srovnání je rozebráno
+v \cite{Alvarez2013,Kohler2002,Canento2012,Karpagachelvi2010,Vaneghi2012}.
+
 
 %//TODO: Rewrite and cite this subsection 9, 10
 \subsection{Variabilita srdeční frekvence}
 \label{section:hrv}
+Jednou z nejčastěji sledovaných elektrofyziologických veličin je srdeční rytmus.
+Je to veličina, měnící se s každým dalším úderem srdce, ovlivňována aktivitou
+ANS. Jelikož srdeční rytmus vychází normálně ze sinoatriálního uzlu, mluvíme o
+sinusovém rytmu závislém na tonu sympatiku a parasympatiku. Proto se mezi
+faktory ovlivňující srdeční rytmus řadí vnější a vnitřní vlivy jako vznik
+ischemie, metabolická dysbalance nebo zvýšená kognitivní, emoční a fyzická
+zátěž, které jsou zároveň stěžejními pro rozbor samotného EKG záznamu
+\cite{Pumprla2014}. Blíže jsou tyto vztahy popsány v sekci
+\ref{section:hr_regulation}. Autonomní procesy regulující srdeční činnost nebo
+jiné aktivity podmíněné fyziologickými a psychofyziologickými vlivy se včetně
+změny rychlosti srdečního rytmu promítají jako časové variace mezi jednotlivými
+stahy srdce. Časové variace neboli lišící se délky jednotlivých R-R intervalů se
+obecně označují jako variabilita srdečního rytmu.
+\cite{Pumprla2014,Rajendra2007}.
+
+Jak již vyplývá z předešlého odstavce, variabilita srdeční frekvence je časová
+variace mezi jednotilvými stahy srdce, která se v rámci naměřeného EKG záznamu
+musí vypočítat, stejně jako parametry z ní vycházející. Výpočet a smysl
+specifických parametrů už spadá pod jednotlivé metody hodnocení HRV v
+následující kapitole. K tomu aby bylo možné HRV kvantitativně hodnotit je
+potřeba z EKG signálu extrahovat R vlny, jejichž časová diference je právě
+hledanou variabilitou. Artefakty EKG mohou v případě HRV analýzy hrát stěžejní
+roli pokud došlo k zániku nebo významnému zkreslení některých R vln. Nejčastěji
+se u zaniklých R vln používají metody lineární interpolace, které zachovávají
+správnou variabilitu. Srovnání rozdílných metod interpolace, včetně té lineární
+a dopad chybějících R vln na HRV analýzu již bylo popsáno v
+\cite{Kim2007,Peltola2012,Morelli2019}. Další častou příčinou abnormálních R
+vln, se kterou se lze v praxi setkat, jsou ektopické stahy. Proto existuje mnoho
+algoritmů, které se věnují zpracování R-R intervalů aby bylo možné HRV hodnotit
+\cite{Lipponen2019}.
 
 \subsubsection{Metody hodnocení HRV}
+Hodnocení variability srdečního rytmu neboli zkoumání variace mezi jednotlivými
+srdečními stahy nachází dnes velké uplatnění v diagnostice, například v rámci
+rychlého neinvazivního zhodnocení kardiovaskulární autonomní regulace.
 Nejčastější a základní neinvazivní metody hodnocení HRV mohou být sjednoceny do
 časové a frekvenční oblasti ale existují i další geomterické a nelineární
 postupy. Nejzákladnější běžná metoda je spektrální analýza variability srdečního
-rytmu, která nám umožňuje zaznamenat a deklarovat vlivy kardiálního autonomního
-nervového systému (ANS). Další využívanou metodou je akcelerovaná
-fotopletysmografie (APG), kde vyšetřované místo vystavíme světelným paprskům,
-které procházejí tkání a jejich odezva je pak zpracována do podoby pulsových vln
-vynesených na křivce. Tyto metody jsou pak v praxi využitelné pro včasné
-odhalení kardiovaskulárních onemocnění, nicméně jsou použitelné pouze ve
-specifických laboratorních podmínkách a jako jiné jsou ovlivnitelné právě
-fyzickými a psychologickými faktory \cite{[2, 4, 5]}. Parametry HRV můžou
+rytmu, která umožňuje zaznamenat a deklarovat vlivy kardiálního autonomního
+nervového systému \cite{Pumprla2014}. Často se lze setkat, primárně u hodnocení
+dlouhodobých EKG záznamů, se statistickou analýzou, která využívá parametry
+vypočítané z HRV v časové doméně. Hodnoty jednotlivých parametrů následně slouží
+jako indikátory změn pro různé oblasti kardiovaskulárního systému a ANS
+\cite{Malik1996}. Časové a frekvenční metody mají však své technické omezení
+jako například předpoklad linearity dat a v některých případech se neumějí
+vypořádat s interferencemi způsobené ektopickým rytmem \cite{Hsu2012}. Další
+populární geometrickou nelineární metodou je analýza Poincarého grafu, na kterém
+je každý R-R interval vynesen proti nadcházejícímu R-R intervalu. 
+
+Poincarého graf (plot) lze interpretovat jako kartezský souřadnicový systém
+tvořící mapu bodů, kde každý bod je definován dvojící $RR_i$ (osa x) a
+$RR_{i+1}$ (osa y) \cite{Hsu2012,Hejjel2001}. Narozdíl od předešlých metod se
+Poincarého graf vyhodnocuje jak kvalitativně, pomocí tvaru (vzoru) vzniklého z
+bodů, tak i kvantitativně, výpočtem SD indexů grafu, které poskytují podobné
+informace jako LF a HF složky spektrálního výkonu nebo statistické parametry
+SDNN a RMSSD. Z grafu tak lze získat souhrné i detailní informace o dynamickém
+chování srdečního rytmu \cite{Hsu2012,Kubickova2016}. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{../assets/figures/wiki_poincare}
+		\caption{Poincarého graf \cite{wikiPoincare}}
+		\label{fig:wiki_poincare}
+	\end{center}
+\end{figure}
+
+Jak již bylo zmíněno, kvalitativní analýza se orientuje rozložením bodů na
+Poincarého grafu a vypovídá o variabilitě. Čím menší je plocha vzoru bodů, tím
+menší je variabilita, a naopak. Disperze bodů podél osy grafu procházející
+počátkem vypovídá a dlouhodobě variabilitě a rozptýlení bodu kolmo na tuto osu o
+krátkodobé. Průnikem diagonálních os grafu je průměrná hodnota R-R intervalů
+\cite{Hejjel2001}. Poloha shluku bodů na diagonále procházející počátkem hraje
+také roli. Pozice shluku blíže počátku indikuje vliv sympatiku zatímco pozice
+dál směrem na opačnou stranu vliv parasympatiku. Pokud se v grafu nachází více
+shluků lze očekávat arytmie. Asymetrie vzoru bodů může vypovídat o poruchách
+srdečního rytmu \cite{Habib2013}. Vizuální charakteristiky Poincarého grafu se
+dají vyjádřit i kvantitativně. Nejpopulárnější technikou kvantitativního
+hodnocení Poincarého grafu je konstrukce elipsy podle vzoru bodů. Z hlavní a
+vedlejší osy elipsy lze vypočítat indexy SD1 a SD2. Tvarové vlasnosti elipsy
+jsou v souladu se zmíněnými vlasnosti tvaru shluku bodů výše. SD indexy jsou
+směrodátné odchylky okamžité variability ve směru osy
+\cite{Habib2013,Mazhar2007}.
+
+Všechny metody jsou pak v praxi využitelné pro včasné odhalení
+kardiovaskulárních onemocnění, nicméně jsou použitelné pouze ve specifických
+laboratorních podmínkách a jako jiné jsou ovlivnitelné právě fyzickými a
+psychologickými faktory \cite{Habib2013,Kubickova2016}. Parametry HRV můžou
 sloužit pro predikci kognitivní zátěže, ale pro jejich spolehlivé určení je
-nezbytný pečlivý výběr vhodných metod předzpracování signálu \cite{[1, 3]}.
-
-\subsubsection{Korelace kvantitativních parametrů HRV s fyziologickými veličinami}
-
+nezbytný pečlivý výběr vhodných metod předzpracování signálu.
 
 \subsubsection{Model neuroviscerální integrace}
-Tento neustále doplňující se model, popisuje vztahy v rámci periferní
+Model neuroviscerální integrace popisuje vztahy v rámci periferní
 psychofyziologie, neurověd a autonomních funkci spjatých s regulací vagálního
 tonu. Tyto znalosti a vztahy jsou kombinovány do několika detailně popsaných
 teoretických vrstev, dohromady tvořících jediný framework sloužící také jako
 prediktivní model, který pak usnadňuje vyhodnotit souvislosti a důsledky
-zásadních fyziologických změn srdeční aktivity či veličin s ní spojených.
+zásadních fyziologických změn srdeční aktivity či veličin s ní spojených
+\cite{Smith2017}.
 
-Tyto souvislosti mají například za následek, že odlišné druhy kognitivní zátěže
-se promítají do frekvenčních domén. Specificky se projevují jako velmi nízko,
-nízko a vysoko frekvenční komponenty (VLF, LF, HF), které spolu s jejich
-vzájemnými poměry slouží pří samotné analýze jako indikátory činnosti
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{../assets/diagrams/nvi}
+		\caption{Zjednodušený model neuroviscerální integrace (Upraveno a převzato z \cite{NVI20017})}
+		\label{fig:nvi_model}
+	\end{center}
+\end{figure}
+
+Souvislosti modelu NVI mají například za následek, že odlišné druhy kognitivní
+zátěže se promítají do časové a frekvenční domény EKG signálu. Specificky se
+projevují jako kvantitativní lineární a nelineární časové parametry nebo velmi
+nízko, nízko a vysoko frekvenční složky (VLF, LF, HF) výkonového spektra.
+Jednotlivé komponenty slouží pří samotné analýze jako indikátory činnosti
 vegetativní nervové soustavy (VNS). Aby bylo ale možné tyto komponenty získat a
 porovnávat či jakkoliv hodnotit srdeční aktivitu, musí být záznam srdeční
-aktivity patřičně zpracován.
+aktivity patřičně zpracován. Model NVI je nad rámec této práce a detailněji je
+rozebrán v \cite{Smith2017}.
 
-\subsubsection{Praktické aplikace HRV v diagnostice a terapii}
+\subsubsection{Aplikace HRV v diagnostice a terapii}
+Dříve panovalo obecné přesvědčení že variace v srdečním rytmu jsou patologický
+úkaz a nebylo jim věnováno žádné zvláštní pozornosti. Falešná domněnka o HRV
+byla poprvé vyvrácena v roce 1978, klinickou studií \cite{Wolf1978}, která
+potvrzuje korelaci snížené HRV s úmrtností a arytmickými komplikacemi během
+postinfarktového období. Od té doby se studie na téma nepravidelností sinusového
+rytmu začaly rozvíjet a hromadit. V současnosti je HRV klinicky významnou a
+velmi využívanou biometrikou napříč obory. Na Obr. \ref{fig:hrv_infarct} níže je
+vidět vývoj HRV během 24h Holterovského monitorování dvou pacientů (D, S) v
+postinfarktovém období, konkrétně 7. den po infarktu myokardu. U pacienta $D$
+lze pozorovat nekomplikovaný postinfarktový průběh v podobě konstantního vývoje
+R-R intervalů. Pacient $S$ umřel 27. den pod infarktu \cite{Malik1990}. Další
+rizikové faktory korelující s HRV parametry lze najít v tabulce
+\ref{tab:hrv_factors}.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{../assets/figures/hrv_infarct}
+		\caption{Rozdíly v HRV mezi pacienty (S, D) s vysokým a nízkým rizikem úmrtí v
+			postinfarktovém období \cite{Malik1990}}
+		\label{fig:hrv_infarct}
+	\end{center}
+\end{figure}
+
+Ačkoli hodnocení HRV našlo pochopitelně největší praktické uplatnění v oboru
+kardiologie, existují další obory, do kterých vnesla tato biometrika v
+posledních letech mnoho nových poznatků. Jedním z takových oborů je psychologie
+a kognitivní psychologie v rámci neuropsychofyziologických vlivů, které jsou
+důsledkem změn a procesů probíhajících v ANS \cite{Bernardi2009}. Blíže je
+kognitivní teorie popsána v \cite{Forte2019,Plass2010}. Studie v rámci
+kognitivní psychologie
+\cite{Bernardi2009,Solhjoo2019,Salahuddin2007,Ishaque2020} potvrzují, že různé
+druhy kognitivní zátěže ovliňují kardiovaskulární systém, primárně HRV, a to i z
+hlediska dlouhodobých korelací se statistickými HRV parametry. Proto je možné v
+tabulce \ref{tab:hrv_factors} vidět faktor typu pracovního stresu, který se řadí
+mezi specifický druh kognitivní zátěže.
+
+Prognostický význám má HRV i v řadě dalších klinických a intenzivistických oborů
+mezi které například patří diabetologie, renologie a neurologie. S využitím HRV
+se lze dále setkat na jednotkách intenzivní péče, kde monitorování této metriky
+slouží k predikci potenciálních pooperačních komplikací. Své uplatnění našla i
+ve farmakokinetice při posuzování odezvy organismu na podané léčiva
+\cite{Pumprla2014}.
+
+%//TODO: Add acronyms to acronyms table ICHS, SDNN, SDNNi, RMSSD, SD1, SD2, SD1/SD2
+\begin{table}[h]
+	\catcode`\-=12
+	\scriptsize
+	\begin{center}
+		\caption[HRV a rizikové faktory]{Vybrané vztahy mezi HRV parametry a rizikovými faktory
+			(Upraveno a převzato z \cite{Pumprla2014,Thayer2009})}
+		\label{tab:hrv_factors}
+		\vspace{1ex}
+		\begin{tabular}{|p{1.3cm}|p{1.7cm}|p{4.5cm}|p{5.5cm}|}
+			\noalign{\hrule height 2pt}
+			\textbf{Riziko} & \textbf{Autor}     & \textbf{Sledovaný parametr a populace}                                  & \textbf{Závěr}                                                                                                                                                                                  \\ \hline
+			Hypertenze      & Schroeder          & HRV, hypertenze, krevní tlak. n=11061, 28\% incidence hypertenze        & 1,1–-1,6x riziko rozvoje hypertenze u subjektů s patologickými hodnotami časové analýzy HRV (SDNN, RMSSD, délka R-R int.)                                                                       \\ \hline
+			Cholesterol     & Christensen        & HRV a cholesterol. n=85, 55\% s ICHS                                    & Asociace mezi nižší HRV (časová analýza, SDNN, RMSSD) a vyšším cholesterolem u pacientů s ICHS i u zdravých jedinců                                                                             \\ \hline
+			Diabetes        & Liao (ARIC studie) & HRV, diabetes, glykemie, inzulinemie. n=1933, 8\% diabetiků             & Snížený výkon v HF pásmu u diabetiků ve srovnání s nediabetiky (p=0,01)                                                                                                                         \\ \hline
+			Pohyb           & Sloan              & HRV, aerobní aktivita. n=149 zdravých                                   & Zvýšení SDNN a HF výkonu po 12 týdenním aerobním tréninku. Opětný pokles SDNN a HF výkonu za 4 týdny po ukončení vytrvalostního tréninku                                                        \\ \hline
+			Kouření         & Hayano             & HRV, krátko a dlouhodobý efekt kouření. n=81 mužů, 69\% kuřáci          & Pokles HF výkonu již po 1 cigaretě (p=0,006). Zvýšení CCV v LF pásmu za 10–-17 min po kouření (p=0,0001). Nižší CCV v HF pásmu u těžkých kuřáků ve srovnání s nekuřáky/lehkými kuřáky (p=0,008) \\ \hline
+			Pracovní stres  & van Amelsvoort     & HRV, pracovní zátěž, fyzická aktivita, pracovní směny. n=135, 84\% mužů & SDNNi během spánku: 69.3 ms proti 85.8 ms, p < 0.05, směna a denní pracovníci                                                                                                                   \\ \noalign{\hrule height 2pt}
+		\end{tabular}
+	\end{center}
+\end{table}
