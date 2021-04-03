@@ -489,7 +489,7 @@ filtru se používají toleranční diagramy \cite{Prchal2000,Lyons1997}.
 	\end{minipage}
 \end{figure}
 
-Na tolerančním diagramu výše (Obr. \ref{fig:tolerance_diagram}) jsou znázorněny
+V tolerančním diagramu na Obr. \ref{fig:tolerance_diagram} jsou znázorněny
 další parametry, na které je také třeba dbát při návrhu filtru. Oscilacím,
 viditelným v propustném a nepropustném pásmu, se přezdívá vlněni. Parametr
 \textdelta \textsubscript{1} (passband ripple), vyjadřuje variaci amplitudy v
@@ -522,7 +522,7 @@ diskrétní konvoluce \cite{Jan2002}:
 
 kde $N$ je řád filtru, $x$ vstupní signál a $h$ je vektor obsahující koeficienty
 impulzní odezvy filtru pro které platí $n \in \langle 0,N-1 \rangle$
-\cite{Jan2002}. Stabilita filtrů vychází z-transformace impulzní odezvy:
+\cite{Jan2002}. Stabilita filtrů vychází ze z-transformace impulzní odezvy:
 
 \begin{equation}
 	\label{eq:transfer_fir}
@@ -592,7 +592,7 @@ fázovou charakteristiku:
 
 kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
 (póly). $\Phi_i$ a $\Psi_i$ jsou úhly náležitých spojnic
-\cite{PrPrchal2000,Jan2002}. Níže jsou další vybrané vlastnosti IIR filtrů
+\cite{Prchal2000,Jan2002}. Níže jsou další vybrané vlastnosti IIR filtrů
 \cite{Jan2002}:
 
 \begin{itemize}
@@ -644,15 +644,6 @@ Na Obr. \ref{fig:ac_Interference} je vidět vliv střídavého proudu o frekvenc
 úzkopásmového rušení tohoto typu volí filtry navržené jako pásmová zádrž, které
 nepropouští specifikované frekvence signálu \cite{Kher2019}.
 
-Pohybové artefakty se primárně na EKG signálu projevují kolísáním elektrické
-izolinie (drift) od její nulové hodnoty jako je tomu na Obr.
-\ref{fig:w_baseline}. Nevznikají však pouze pohybem pacienta ale i například
-manipulací měřicími kabely, špatným kontaktem elektrod nebo vlivem dýchání
-pacienta \cite{Goldberger2017}. V lepších případech stačí ke korekci driftu
-filtry typu horní propusti, avšak někdy je potřeba využít například vlnkových
-transformací nebo adaptivní filtrace, obzvláště v situacích fyzického pohybu
-nebo špatného kontaktu elektrod \cite{Kher2019}.
-
 \begin{figure}[h]
 	\begin{subfigure}[b]{0.5\linewidth}
 		\centering
@@ -683,6 +674,15 @@ nebo špatného kontaktu elektrod \cite{Kher2019}.
 	\caption{Běžné EKG artefakty \cite{Mauvila2004}}
 	\label{fig:common_artifacts}
 \end{figure}
+
+Pohybové artefakty se primárně na EKG signálu projevují kolísáním elektrické
+izolinie (drift) od její nulové hodnoty jako je tomu na Obr.
+\ref{fig:w_baseline}. Nevznikají však pouze pohybem pacienta ale i například
+manipulací měřicími kabely, špatným kontaktem elektrod nebo vlivem dýchání
+pacienta \cite{Goldberger2017}. V lepších případech stačí ke korekci driftu
+filtry typu horní propusti, avšak někdy je potřeba využít například vlnkových
+transformací nebo adaptivní filtrace, obzvláště v situacích fyzického pohybu
+nebo špatného kontaktu elektrod \cite{Kher2019}.
 
 Svalové artefakty neboli myopotenciály jsou dalším častým typem rušení
 vysokofrekvenčního charakteru, které ovlivňuje EKG signál. Svým způsobem patří
@@ -779,11 +779,11 @@ pohyblivého okna pří kterém jsou rozhodovacím pravidlem vybrány pouze R vl
 překračující prahovou hodnotu. Vybrané R vlny představují referenční body
 detekovaných QRS komplexů \cite{Pan1985,Alvarez2013}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[node distance=2.5cm,thick,scale=0.85, every node/.style={scale=0.85}]
 		\node (start) [startstop] {Vstupní EKG signál};
-		\node (pro1) [process, below of=start] {Pásmová propust};
+		\node (pro1) [process, below of=start, yshift=1cm] {Pásmová propust};
 		\node (pro2) [process, right of=pro1, xshift=2cm] {Derivační filtr};
 		\node (pro3) [process, right of=pro2, xshift=2cm] {Umocnění signálu};
 		\node (pro4) [process, right of=pro3, xshift=2cm] {Integrační filtr};
@@ -834,11 +834,9 @@ stahy srdce. Časové variace neboli lišící se délky jednotlivých R-R inter
 obecně označují jako variabilita srdečního rytmu.
 \cite{Pumprla2014,Rajendra2007}.
 
-Jak již vyplývá z předešlého odstavce, variabilita srdeční frekvence je časová
-variace mezi jednotilvými stahy srdce, která se v rámci naměřeného EKG záznamu
-musí vypočítat, stejně jako parametry z ní vycházející. Výpočet a smysl
-specifických parametrů už spadá pod jednotlivé metody hodnocení HRV v
-následující kapitole. K tomu aby bylo možné HRV kvantitativně hodnotit je
+Z HRV vycházejí i další parametry, které se využívají k jejímu hodnocení.
+Výpočet a smysl specifických parametrů už spadá pod jednotlivé metody hodnocení
+HRV v následující kapitole. K tomu aby bylo možné HRV kvantitativně hodnotit je
 potřeba z EKG signálu extrahovat R vlny, jejichž časová diference je právě
 hledanou variabilitou. Artefakty EKG mohou v případě HRV analýzy hrát stěžejní
 roli pokud došlo k zániku nebo významnému zkreslení některých R vln. Nejčastěji
@@ -936,7 +934,7 @@ porovnávat či jakkoliv hodnotit srdeční aktivitu, musí být záznam srdečn
 aktivity patřičně zpracován. Model NVI je nad rámec této práce a detailněji je
 rozebrán v \cite{Smith2017}.
 
-\subsubsection{Aplikace HRV v diagnostice a terapii}
+\subsubsection{HRV v diagnostice a terapii}
 Dříve panovalo obecné přesvědčení že variace v srdečním rytmu jsou patologický
 úkaz a nebylo jim věnováno žádné zvláštní pozornosti. Falešná domněnka o HRV
 byla poprvé vyvrácena v roce 1978, klinickou studií \cite{Wolf1978}, která
