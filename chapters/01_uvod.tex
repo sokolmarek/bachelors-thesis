@@ -1,11 +1,11 @@
-Záznam srdeční aktivity neboli elektrokardiogram (EKG), na kterém vidíme časový
-průběh změn elektrického potenciálu srdce, hraje velmi důležitou roli v
+Záznam srdeční aktivity neboli elektrokardiogram (EKG), na kterém je vidět
+časový průběh změn elektrického potenciálu srdce, hraje velmi důležitou roli v
 kardiologické diagnostice. Uchovává v sobě komponenty jak v časové, tak i ve
-frekvenční doméně, díky kterým jsme schopni provádět EKG analýzu, a to i za
-jinými účely než jen z hlediska kardiologie. Abychom ale mohli tuto analýzu
-provést či extrahovat potřebné komponenty, musíme signál patřičně zpracovat,
-jelikož jeho surová podoba může být zkreslená a často obsahuje mnohočetné
-nežádoucí artefakty.
+frekvenční doméně, díky kterým lze realizovat EKG analýzu, a to i za jinými
+účely než jen z hlediska kardiologie. Aby bylo možné analýzu provést či
+extrahovat potřebné komponenty, musí se signál patřičně zpracovat, jelikož jeho
+surová podoba může být zkreslená a často obsahuje mnohočetné nežádoucí
+artefakty.
 
 Důležitými východisky, od kterých se odvíjí následně zvolená metodika při
 zpracování signálu a tím pádem i samotný výstup, jsou zejména kvalita a
@@ -32,15 +32,15 @@ použití mohlo vést k vágním výsledkům.
 
 Po správném zpracování EKG signálu je možné začít s jeho analýzou. Její
 interpretace umožňuje detekovat potencionální srdeční vady či jiné srdeční
-stavy. Dále se může pracovat s extrahovanými komponenty, s jejichž pomocí
-lze například určit variabilitu srdečního rytmu (HRV, Heart rate variability).
-Tato specifická metrika a analýza jejích parametrů má pro nás mnoho dalších
+stavy. Dále se může pracovat s extrahovanými komponenty, s jejichž pomocí lze
+například určit variabilitu srdečního rytmu (HRV, Heart rate variability). Tato
+specifická metrika a analýza jejích parametrů má pro nás mnoho dalších
 klinických významů a umožňuje využití nejen v rámci kardiologie ale také
 neurologie a psychofyziologie.
 
 Tato práce se zaměřuje na problematiku týkající se zpracování a analýzy EKG
 signálu, a to nejen v rámci naměřených signálů (offline) ale také při měření v
-reálném čase (online). Vybranou dílčí oblastí analýzy je především detekce a
-hodnocení kognitivní zátěže z HRV společně se statistickými parametry,
-vypočtenými v časové oblasti, které jsou založené na intervalech beat-to-beat
-(N-N).
+reálném čase (online). Vybranou dílčí oblastí analýzy je především hodnocení
+kognitivní zátěže pomocí HRV a Poincarého grafu s jeho parametry, vypočtenými v
+časové oblasti, které jsou založené na intervalech mezi jednotlivými údery
+srdce.
