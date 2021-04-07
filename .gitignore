@@ -1,6 +1,6 @@
 .vscode
 
-assets/psd*
+assets/psd/
 *.docx
 slides.pdf
 thesis.pdf
