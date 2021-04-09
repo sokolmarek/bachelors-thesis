@@ -273,7 +273,7 @@ diference prvního řádu dle následujícího vztahu \cite{Wang2017}:
 
 kde $n \geq 5$, $d[n]$ reprezentuje vzorek diferencovaného signálu a $f[n]$
 hodnotu původního vzorku. Diferenciace zároveň potlačuje vlivy P a T vln.
-Výstupem diferenciace je bipolární signál, který je umocněn. QRS regiony jsou
+Výstupem diference je bipolární signál, který je umocněn. QRS regiony jsou
 následně jednotlivě sloučeny a zvýrazněny využitím zpětné kumulace
 \cite{Wang2017}:
 \begin{equation}
@@ -301,40 +301,51 @@ jednotlivé kroky předzpracování signálu na Obr. \ref{fig:preprocessing_step
 
 \subsubsection{Detekce komponentů}
 \label{section:components_detection}
-Vzhledem k charakteru analýzy EKG záznamů v rámci této práce jsou předmětem
-detekce pozitivní kmity signálu neboli R vlny. Za účelem detekce R vln byl
-implementován a modifikován algoritmus podle \cite{Nabian2018}, inspirovaný
-Pan-Tompkinsovou metodou QRS detekce \cite{Pan1985} (viz kapitola
-\ref{section:components_detection_theory}). Algoritmus vychází z následujících
-kroků \cite{Nabian2018}:
+Detekce komponentů tvoří nezbytnou část od které se odvíjí hodnocení EKG
+záznamu. Cílem detekce je spolehlivě identifikovat a lokalizovat specifické
+komponenty, nejčastěji QRS komplexy, které jsou předmět analýzy EKG záznamu.
+Díky detekovaným komponentům lze signál segmentovat a hodnotit, využitím
+detekovaných veličin. V první řadě se nejčastěji volí detekce R vln na základě
+jejich vysoké amplitudy.
+
+Za účelem detekce R vln byl implementován a modifikován algoritmus podle
+\cite{Nabian2018}, inspirovaný Pan-Tompkinsovou metodou QRS detekce
+\cite{Pan1985} (viz kapitola \ref{section:components_detection_theory}).
+Algoritmus vychází z následujících kroků \cite{Nabian2018}:
 
 \begin{enumerate}
     \item Iterativní hledání globálních maximálních amplitud s použitím
           plovoucího okna $W$ o délce 400~\si\ms~(0,4~\si\s):
           \begin{gather}
               R_i = max(W_i^{L,R}) \nonumber \\
-              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\} \nonumber \\
-              L = R = \frac{0.4}{2} Fs
+              L = R = \frac{0.4}{2} Fs, ~L,R \in \mathbb{Z^+} \nonumber \\
+              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, ~\forall i \in \{1+L,...,N-R\}
           \end{gather}
-          kde $Fs$ je vzorkovací frekvence, $R_i$ potenciální R vlna, $x_i$
-          střed okna a $L$ spolu s $R$ posun od středu plovoucího okna. Nalezená
-          maxima nacházející se uprostřed plovoucího okna jsou označeny jako
-          potenciální R vlny.
+          kde $N$ je počet detekovaných R vln, $Fs$ vzorkovací frekvence, $R_i$
+          potenciální R vlna, $x_i$ střed okna a $L$ spolu s $R$ posun od středu
+          plovoucího okna. Nalezená maxima nacházející se uprostřed plovoucího
+          okna jsou označeny jako potenciální R vlny.
     \item Eliminace všech R vln nižších než než prahová hodnota $Th_{Amp}$, která je v
           každé iteraci rovna 75 \% z průměru amplitůd posledních 8 detekovaných
           R vln. Iniciálně je prahová hodnota $Th_{Amp}$ nastavena jako:
           \begin{gather}
-              N = 2~Fs \nonumber \\
-              Th_{Amp} = \frac{1}{3} max(\{x_1,x_2,x_3,...,x_N\})
+              n = 2~Fs, ~n \in \mathbb{Z^+} \nonumber \\
+              Th_{Amp} = \frac{1}{3} max(\{x_1,x_2,x_3,...,x_n\})
           \end{gather}
     \item Výpočet R-R intervalů ($RR_i$) diferencí detekovaných R vln ($R_i$):
           \begin{equation}
-              RR_i = R_{i+1} - R_i
+              RR_i = R_{i} - R_{i-1}, ~\forall i \in \{2,...,N\}
           \end{equation}
-          a následná iterativní kontrola vypočítaných R-R intervalů. Intervaly
-          delší než prahová hodnota $Th_{RR}$ indikují chybějící R vlnu, která je
-          doplněna jako maximální amplituda mezi sousedními R vlny v délce
-          plovoucího okna. Prahová hodnota $Th_{RR}$ je počátečně nastavena jako:
+          Následně je provedena iterativní kontrola vypočítaných R-R intervalů.
+          Intervaly delší než prahová hodnota $Th_{RR}$ indikují chybějící R
+          vlnu, která je doplněna jako maximální amplituda v rozmezí délky
+          plovoucího okna následovně:
+          \begin{gather}
+              n = \frac{0.4}{2} Fs, ~n \in \mathbb{Z^+} \nonumber \\
+              R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), ~\forall i \in \{1,...,N\}
+          \end{gather}
+          kde $R_m$ je doplněná R vlna. Prahová hodnota $Th_{RR}$ je počátečně
+          nastavena jako:
           \begin{equation}
               Th_{RR} = 1.66~RR_1
           \end{equation}
@@ -344,12 +355,13 @@ Délka plovoucího okna se řídí fyziologickým limitem hodnoty srdečního ry
 případech jako jsou například supraventrikulární tachykardie (SVT) nebo flutter
 síní, kde dosahuje srdeční frekvence přibližně 300 úderů za minutu (5 úderů za
 sekundu) \cite{Haberl2012,Goldberger2017}. Dva sousední QRS komplexy se tedy
-nemůžou vyskytnout blíže než 200~\si\ms. Další zbylé komponenty (P, Q, S, T) lze
-detekovat využitím fyziologických časových hodnot těchto komponentů a R vln jako
-referenčních bodů k nalezení jejich pozic \cite{Nabian2018}. Na Obr.
-\ref{fig:detection} lze vidět zeleně vyznačený adaptivní práh, který se mění podle
-2. kroku výše a doplněnou R vlnu, která nebyla detekovaná v 1. kroku ale až ve
-3. a následně přidána.
+nemůžou vyskytnout blíže než 200~\si\ms.
+
+Další vlny EKG signálu (P, Q, S, T) je možné lokalizovat vztažením
+fyziologických časových hodnot těchto komponentů k nalezeným R vlnám
+\cite{Nabian2018}. Na Obr. \ref{fig:detection} lze vidět zeleně vyznačený
+adaptivní práh, který se mění podle 2. kroku výše a doplněnou R vlnu, která
+nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
 
 \begin{figure}[h]
     \begin{center}
@@ -359,11 +371,13 @@ referenčních bodů k nalezení jejich pozic \cite{Nabian2018}. Na Obr.
     \end{center}
 \end{figure}
 
-Aby bylo možné detekované vlny vizualizovat na původním signálu jako je tomu na
-Obr. \ref{fig:detection}, byla zavedena metoda relokalizace, která upraví pozice
-detekovaných R vln tak, aby souhlasily v původním EKG záznamu. Postup metody se
-řídí diagramem na Obr. \ref{fig:fixpeaks}, kde $X$ reprezentuje pole hodnot EKG
-signálu.
+Aby bylo možné detekované vlny zobrazit v původním signálu jako je tomu na Obr.
+\ref{fig:detection}, byla zavedena metoda relokalizace, která upraví pozice
+detekovaných R vln tak, aby souhlasily v původním EKG záznamu. Díky tomu lze
+vizuálně ověřit spolehlivost algoritmu nebo evaluovat detekci v pochybných
+oblastech, které jsou více zatížené nežádoucími vlivy. Postup metody se řídí
+diagramem na Obr. \ref{fig:fixpeaks} níže, kde $X$ reprezentuje množinu hodnot
+EKG signálu.
 
 \begin{figure}[h]
     \begin{center}
@@ -373,15 +387,72 @@ signálu.
     \end{center}
 \end{figure}
 
-\subsubsection{Zpracování komponentů}
+\subsubsection{Zpracování detekovaných komponentů}
 \label{section:components_processing}
+V případě analýzy variability srdečního rytmu (viz kapitola \ref{section:hrv})
+je nutné tuto veličinu vypočítat z detekovaných komponentů. Diferencí mezi
+sousedícími R vlny v čase jsou vypočítány R-R intervaly neboli časová
+variabilita mezi jednotlivými údery srdce. Stejně jako EKG záznam, tak i R-R
+intervaly jsou zatížené artefakty a mohou představovat abnormální hodnoty.
+Zdrojem artefaktů jsou nejčastěji falešně nebo nesprávně detekované či chybějící
+R vlny a ektopický rytmus. Vizuálně lze artefakty identifikovat jako velké náhle
+změny či kolísání v grafu jako je tomu na Obr. \ref{fig:hrv_artifacts} níže.
+Podmínkou HRV analýzy je tedy použití N-N intervalů (normal-to-normal), které
+představují korigované R-R intervaly. Korekcí je myšleno potlačení nežádoucích
+artefaktů.
 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/hrv_artifacts}
+        \caption{HRV zatížené artefakty}
+        \label{fig:hrv_artifacts}
+    \end{center}
+\end{figure}
+
+K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementována
+automatická metoda pro detekci a korekci artefaktů HRV podle
+\cite{Lipponen2019}. Metoda je založená na adaptivním prahování s využitím dvou
+pohyblivých prahových hodnot.
+
+V prvním kroku je vypočtena časová diference všech detekovaných R-R intervalů
+$dRRs$, která slouží k rozlišení ektopických a špatně detekovaných R vln od
+normálního sinusového rytmu \cite{Lipponen2019}:
+
+\begin{gather}
+    dRRs_1 = 0 \nonumber \\
+    dRRs_j = RR_j - RR_{j-1}, ~\forall j \in \{2,...,N\} 
+\end{gather}
+
+kde $N$ je počet R-R intervalů. Pro detekci abnormálních intervalů je nastaven
+první práh $Th1$, který se adaptuje statistickým odhadem z časově proměnného
+rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produktem
+faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
+následovně \cite{Lipponen2019}:
+
+\begin{equation}
+    Th1 = \alpha~QD[|dRRs_{j-45},...,dRRs_{j+45}|], ~\forall j \in \{1,...,N\}
+\end{equation}
+
+kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
+5,2. Časová série $dRRs$ je následně normalizována prahovými hodnotami
+\cite{Lipponen2019}:
+
+\begin{equation}
+    dRR_j = \frac{dRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
+\end{equation}
+
+Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
+jednotlivě chybějících srdečních stahů porovnáním $|dRR|>1$. Pro zbylé případy
+falešné detekce R vln nebo jiných chyb, které nelze detekovat použitím $dRR$, je
+definována série $mRRs$ jako rozdíl jednotlivých RR intervalů a mediánu 11
+okolních hodnot:
 
 \subsubsection{Analýza zpracovaného záznamu}
-\label{section:analyze}
+\label{section:analysis}
 
 \subsection{Online zpracování EKG záznamu}
 \label{section:online_processing}
+\subsubsection{Aplikace}
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}

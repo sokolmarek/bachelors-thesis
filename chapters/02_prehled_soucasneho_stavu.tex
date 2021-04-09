@@ -97,48 +97,7 @@ diastole neboli plnící nízkotlaké fází, se srdce krví plní. Síně i kom
 podléhají oběma těmto fázím a jsou koordinovány otvíráním a zavíráním
 atrioventrikulárních a semilunárních chlopní. Zároveň je regulována i čerpací
 funkce srdce, tak aby v každém momentu byly splněny nároky tkání na okysličenou
-krev \cite{OpenStax}. Detailněji jsou jednotlivé fáze srdečního cyklu popsány
-níže.
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.9\textwidth]{../assets/anatomy/cardiac_cycle}
-		\caption{Schéma srdečního cyklu (Upraveno a převzato z
-			\cite{OpenStax})}
-		\label{fig:cardiac_cycle}
-	\end{center}
-\end{figure}
-
-\paragraph*{\textit{Plnící fáze (atriální diastola)}\\} Síně a komory jsou
-relaxované. Komory srdce se pod nízkým tlakem (0--10 \si\mmHg) plní
-neokysličenou krví přicházející ze systémového oběhu. Krev proudí do levé síně z
-venae cave inferior et superior a sinus coronarius. Do lévé síně přichází krev z
-plicních žil. Otevřenou trikuspidalní a mitrální chlopní proudí krev dál ze síní
-právě do komor. Komory se naplní krví přibližně do 70--80 \% jejich kapacity
-\cite{OpenStax}.
-
-\paragraph*{\textit{Izovolumická fáze (atriální systola)}\\} Síně podléhají
-kontrakci a zvyšuje se v nich tlak. Díky tomu je do komor otevřenými
-atrioventrikulárními chlopněmi dopraveno zbylých 20--30 \% krve. Kontrakce síní
-je podmíněna depolarizací, kterou na EKG reprezentuje P vlna a trvá přibližně
-100 \si\ms. Konec fáze je doprovázen otevřením semilunárních chlopní
-\cite{OpenStax}.
-
-\paragraph*{\textit{Ejekční fáze (ventrikulární systola)}\\} Tlak v komorách
-roste následkem jejich kontrakce, dokud není dostatečně velký, aby došlo k
-otevření semilunárních chlopní. Krev je pak vypuzena z komor do tepen, přičemž v
-komorách vždy zůstává konečný systolický objem (end systolic volume, ESV) krve,
-který činí přibližně 50--60 \si\ms. Ventrikulární systola je podmíněna
-depolarizací komor, která je na EKG záznamu reprezentovaná jako QRS komplex.
-Tato fáze trvá přibližně 270 \si\ms \cite{OpenStax}.
-
-\paragraph*{\textit{Fáze izovolumické relaxace (ventrikulární diastola)}\\}
-Ventrikulární relaxace je doprovázená repolarizací komor a na EKG reprezentovaná
-T vlnou. Trvá přibližně 430 \si\ms. Komory přecházejí do stavu relaxace a tlak v
-nich klesá až dojde ke zavření semilunárních chlopní. Tlak v komorách poté klesá
-dále, než klesne pod hodnotu tlaku v síních. Krev začíná proudit ze síní do
-komor, což má za následek otevření trikuspidalní a mitrální chlopně. Obě komory
-přecházejí do diastoly \cite{OpenStax}.
+krev \cite{OpenStax}.
 
 \subsubsection{Převodní systém srdeční}
 \label{section:pss}
@@ -450,7 +409,7 @@ potlačit vliv nežádoucích interferencí.
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{../assets/figures/ecg_spectrum}
-		\caption{Spektrum EKG komponentů a artefaktů [zdroj: autor]}
+		\caption{Spektrum EKG komponentů a artefaktů}
 		\label{fig:ecg_spectrum}
 	\end{center}
 \end{figure}
@@ -602,7 +561,7 @@ kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{../assets/figures/filters_comparison}
-		\caption{Rozdíl amplitudové a fázové frekvenční charakteristiky FIR a IIR filtru [zdroj: autor]}
+		\caption{Rozdíl amplitudové a fázové frekvenční charakteristiky FIR a IIR filtru}
 		\label{fig:filters_comparison}
 	\end{center}
 \end{figure}
@@ -627,6 +586,7 @@ komponentů potřebných k analýze. Na extrahované komponenty se následně ap
 další postupy hodnotící fyziologické jevy, mezi které nejčastěji patří HRV.
 
 \subsubsection{Nežádoucí elementy EKG signálu}
+\label{section:artifacts_theory}
 EKG signál často zkreslují mnohočetné okolní a elektrofyziologické vlivy, které
 mohou vést k jeho nesprávné interpretaci. Nejčastější rušivé prvky, které se
 projevují na signálu jsou: síťový brum, myopotenciály, pohybové artefakty nebo
@@ -799,7 +759,7 @@ detekovaných QRS komplexů \cite{Pan1985,Alvarez2013}.
 		\draw [arrow] (pro6) -- (pro7);
 		\draw [arrow] (pro7) -- (stop);
 	\end{tikzpicture}
-	\caption{Pan-Tompkinsův algoritmus [zdroj: autor]}
+	\caption{Pan-Tompkinsův algoritmus}
 	\label{fig:pan_tompkins}
 \end{figure}
 
