@@ -42,7 +42,6 @@ Aplikace \textit{BBPM} je blíže popsaná v kapitole
 Holterův monitor musí být při připojování k bezdrátové sítí v bezprostřední
 blízkosti chytrého zařízení, kterým bude konfigurován. Postup pro připojení
 měřícího zařízení k WLAN sítí je následující:
-
 \begin{enumerate}
     \item Připojení chytrého mobilního zařízení, které bude sloužit ke
           konfiguraci Holterova monitoru, k požadované WLAN sítí na které bude
@@ -133,7 +132,6 @@ neodpovídá \cite{Svoboda1999}. Na Obr. \ref{fig:stroop} lze vidět příklad t
 \label{section:measurement_process}
 Postup záznamu srdeční aktivity u jednotlivých probandů sestává z
 následujících kroků:
-
 \begin{enumerate}
     \item Konfigurace měřícího zařízení podle postupu v sekci
           \ref{section:measurement_device}.
@@ -171,7 +169,6 @@ záznamu vypočítat časový vektor a pracovat tak v časové oblasti.
 V závislosti na studii byly vybrány následující sledované statistické parametry
 Poincarého grafu s vyžitím metody konstrukce elipsy (viz kapitola
 \ref{section:hrv_methods}):
-
 \begin{itemize}
     \item \textbf{SD1}~\textit{(Standard Deviation)} --- směrodatná odchylka R-R
           intervalů hlavní osy elipsy,
@@ -184,7 +181,8 @@ Poincarého grafu s vyžitím metody konstrukce elipsy (viz kapitola
 \label{section:offline_processing}
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
 \ref{fig:diagram_offline_processing} níže a je realizováno v prostředí programu
-MathWorks MATLAB 2021a. Jednotlivé částí zpracování jsou rozebrány v
+\textit{MathWorks MATLAB 2021a} \cite{MATLAB} s pomocí \textit{Signal Processing
+    Toolboxu} \text{} \cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
 následujících kapitolách.
 
 \begin{figure}[H]
@@ -207,22 +205,21 @@ následujících kapitolách.
 
 \subsubsection{Předzpracování signálu}
 \label{section:preprocessing}
-První částí, která je nezbytná pro jakoukoliv další práci s biosignálem, je jeho
-filtrace. Před navržením samotného filtru byl proveden rozbor EKG záznamu pomocí
-FFT. EKG signál byl tak převeden z časové domény do frekvenční funkcí
-\texttt{fft(X)} \cite{matlabFFT}. Z teorie je známo v jakých frekvencích se
-vyskytuje užitečný EKG signál nebo jeho komponenty a v jakých nežádoucí vlivy
-(viz kapitola \ref{section:ecg_processing_theory}). Tyto znalosti byly při
-návrhu filtru a posuzování spektra EKG signálu využity. Pro zlepšení představy o
-potenciálních artefaktech a užitečných frekvencích byla provedena FFT analýza i
-na několika samotných PQRST segmentech. Na Obr. \ref{fig:spectral_analysis} lze
-vidět FFT analýzu EKG signálu a jednoho PQRST segmentu. Z examinace pouhé
-vizuální stránky signálu plyne několik východisek pro tvorbu filtru. Jsou zde
-pohybové artefakty společně s kolísáním nulové izolinie. Ve frekvenčním spektru
-a v částech signálu se dále objevuje nepatrný širokopásmový šum, způsobený
-myopotenciály. Ve frekvenčním spektru lze vidět tyto nežádoucí složky přibližně
-mezi frekvencemi od 0 do 5--10~\si\Hz.
-
+Nezbytný krok pro jakoukoliv další práci s biosignálem, je jeho filtrace. Před
+navržením samotného filtru byl proveden rozbor EKG záznamu pomocí FFT. EKG
+signál byl tak převeden z časové domény do frekvenční funkcí \texttt{fft(X)}
+\cite{matlabFFT}. Z teorie je známo v jakých frekvencích se vyskytuje užitečný
+EKG signál nebo jeho komponenty a v jakých nežádoucí vlivy (viz kapitola
+\ref{section:ecg_processing_theory}). Tyto znalosti byly při návrhu filtru a
+posuzování spektra EKG signálu využity. Pro zlepšení představy o potenciálních
+artefaktech a užitečných frekvencích byla provedena FFT analýza i na několika
+samotných PQRST segmentech. Na Obr. \ref{fig:spectral_analysis} lze vidět FFT
+analýzu EKG signálu a jednoho PQRST segmentu. Z examinace pouhé vizuální stránky
+signálu plyne několik východisek pro tvorbu filtru. Jsou zde pohybové artefakty
+společně s kolísáním nulové izolinie. Ve frekvenčním spektru a v částech signálu
+se dále objevuje nepatrný širokopásmový šum, způsobený myopotenciály. Ve
+frekvenčním spektru lze vidět tyto nežádoucí složky přibližně mezi frekvencemi
+od 0 do 5--10~\si\Hz.
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{../assets/figures/spectral_analysis}
@@ -235,7 +232,6 @@ Na základě FFT analýzy byl pro potlačení nežádoucích prvků zvolen digit
 filtr FIR typu pásmová propust s propustnými frekvencemi v rozmezí
 7.5--35~\si\Hz. Filtr byl navržen metodou Kaiserova okna \cite{Chavan2006},
 které je definované jako \cite{Oppenheim1999}:
-
 \begin{equation}
     \label{eq:kaiser1}
     w[n] =
@@ -244,13 +240,11 @@ které je definované jako \cite{Oppenheim1999}:
         0,                                                           & \text{jinak}
     \end{cases}
 \end{equation}
-
 kde $M$ je počet vzorků, $\alpha=M/2$ a $I_0(\cdot)$ reprezentuje 0. řád
 modifikované Besselovy funkce prvního druhu \cite{BesselFcn}. Jelikož je potřeba
 dosáhnout specifického útlumu $A$ (viz kapitola
 \ref{section:ecg_processing_theory}), definoval Kaiser parametr $\beta$
 následovně \cite{Oppenheim1999}:
-
 \begin{equation}
     \beta =
     \begin{cases}
@@ -265,12 +259,10 @@ Druhou části předzpracování tvoří filtrace zvýrazňující QRS komplexy,
 R vlny. Použitá metoda pro zvýraznění vychází z vlastností derivace a vyšších
 amplitud R vln. Filtrovaný signál je nejdříve diferencován použitím pěti-bodové
 diference prvního řádu dle následujícího vztahu \cite{Wang2017}:
-
 \begin{equation}
     \label{eq:differentiation}
     d[n] = \frac{1}{8}(2f[n] + f[n-1] - f[n-3] - 2f[n-4])
 \end{equation}
-
 kde $n \geq 5$, $d[n]$ reprezentuje vzorek diferencovaného signálu a $f[n]$
 hodnotu původního vzorku. Diferenciace zároveň potlačuje vlivy P a T vln.
 Výstupem diference je bipolární signál, který je umocněn. QRS regiony jsou
@@ -283,7 +275,6 @@ následně jednotlivě sloučeny a zvýrazněny využitím zpětné kumulace
 s pevným oknem $(Ww)$ v rozsahu nejdelšího normálního trvání jednoho QRS
 komplexu (0,12 s) \cite{Wang2017}. Ke kumulaci je využívána funkce
 \texttt{cumsum(A)} \cite{matlabCUMSUM}.
-
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{../assets/figures/preprocessing_steps}
@@ -292,8 +283,8 @@ komplexu (0,12 s) \cite{Wang2017}. Ke kumulaci je využívána funkce
     \end{center}
 \end{figure}
 
-Poslední krok předzpracování je vyhlazení vzniklých vrcholů konvolucí, funkcí
-\texttt{conv(u,v)} \cite{matlabCONV}. Konvoluční kernel je tvořen podílem
+Poslední krok předzpracování je vyhlazení vzniklých vrcholů konvolucí použitím
+funkce \texttt{conv(u,v)} \cite{matlabCONV}. Konvoluční kernel je tvořen podílem
 jednotkového vektoru o délce 60 vzorků a délkou vektoru. Délka 60 vzorků je
 stejně jako u zpětné kumulace doba trvání QRS komplexu, převedena z času na
 počet vzorků pomocí vzorkovací frekvence (500~\si\Hz). Vizuálně lze vidět
@@ -312,13 +303,12 @@ Za účelem detekce R vln byl implementován a modifikován algoritmus podle
 \cite{Nabian2018}, inspirovaný Pan-Tompkinsovou metodou QRS detekce
 \cite{Pan1985} (viz kapitola \ref{section:components_detection_theory}).
 Algoritmus vychází z následujících kroků \cite{Nabian2018}:
-
 \begin{enumerate}
     \item Iterativní hledání globálních maximálních amplitud s použitím
           plovoucího okna $W$ o délce 400~\si\ms~(0,4~\si\s):
           \begin{gather}
               R_i = max(W_i^{L,R}) \nonumber \\
-              L = R = \frac{0.4}{2} Fs, ~L,R \in \mathbb{Z^+} \nonumber \\
+              L = R = \frac{0.4~Fs}{2}, ~L,R \in \mathbb{Z^+} \nonumber \\
               W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, ~\forall i \in \{1+L,...,N-R\}
           \end{gather}
           kde $N$ je počet detekovaných R vln, $Fs$ vzorkovací frekvence, $R_i$
@@ -341,7 +331,7 @@ Algoritmus vychází z následujících kroků \cite{Nabian2018}:
           vlnu, která je doplněna jako maximální amplituda v rozmezí délky
           plovoucího okna následovně:
           \begin{gather}
-              n = \frac{0.4}{2} Fs, ~n \in \mathbb{Z^+} \nonumber \\
+              n = \frac{0.4~Fs}{2}, ~n \in \mathbb{Z^+} \nonumber \\
               R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), ~\forall i \in \{1,...,N\}
           \end{gather}
           kde $R_m$ je doplněná R vlna. Prahová hodnota $Th_{RR}$ je počátečně
@@ -395,11 +385,11 @@ sousedícími R vlny v čase jsou vypočítány R-R intervaly neboli časová
 variabilita mezi jednotlivými údery srdce. Stejně jako EKG záznam, tak i R-R
 intervaly jsou zatížené artefakty a mohou představovat abnormální hodnoty.
 Zdrojem artefaktů jsou nejčastěji falešně nebo nesprávně detekované či chybějící
-R vlny a ektopický rytmus. Vizuálně lze artefakty identifikovat jako velké náhle
-změny či kolísání v grafu jako je tomu na Obr. \ref{fig:hrv_artifacts} níže.
-Podmínkou HRV analýzy je tedy použití N-N intervalů (normal-to-normal), které
-představují korigované R-R intervaly. Korekcí je myšleno potlačení nežádoucích
-artefaktů.
+R vlny a ektopický rytmus, který vytváří sekvence dlouhých a krátkých srdečních
+period. Vizuálně lze artefakty identifikovat jako velké náhle změny či kolísání
+v grafu jako je tomu na Obr. \ref{fig:hrv_artifacts} níže. Podmínkou HRV analýzy
+je tedy použití N-N intervalů (normal-to-normal), které představují korigované
+R-R intervaly. Korekcí je myšleno potlačení nežádoucích artefaktů.
 
 \begin{figure}[h]
     \begin{center}
@@ -412,47 +402,211 @@ artefaktů.
 K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementována
 automatická metoda pro detekci a korekci artefaktů HRV podle
 \cite{Lipponen2019}. Metoda je založená na adaptivním prahování s využitím dvou
-pohyblivých prahových hodnot.
-
-V prvním kroku je vypočtena časová diference všech detekovaných R-R intervalů
-$dRRs$, která slouží k rozlišení ektopických a špatně detekovaných R vln od
-normálního sinusového rytmu \cite{Lipponen2019}:
-
+pohyblivých prahových hodnot. V prvním kroku je vypočtena časová diference všech
+detekovaných R-R intervalů $dRRs$, která slouží k rozlišení ektopických a
+nesprávně detekovaných R vln od normálního sinusového rytmu \cite{Lipponen2019}:
 \begin{gather}
     dRRs_1 = 0 \nonumber \\
-    dRRs_j = RR_j - RR_{j-1}, ~\forall j \in \{2,...,N\} 
+    dRRs_j = RR_j - RR_{j-1}, ~\forall j \in \{2,...,N\}
 \end{gather}
-
 kde $N$ je počet R-R intervalů. Pro detekci abnormálních intervalů je nastaven
 první práh $Th1$, který se adaptuje statistickým odhadem z časově proměnného
 rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produktem
 faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
 následovně \cite{Lipponen2019}:
-
 \begin{equation}
-    Th1 = \alpha~QD[|dRRs_{j-45},...,dRRs_{j+45}|], ~\forall j \in \{1,...,N\}
+    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
 \end{equation}
-
 kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
 5,2. Časová série $dRRs$ je následně normalizována prahovými hodnotami
 \cite{Lipponen2019}:
-
 \begin{equation}
     dRR_j = \frac{dRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
 \end{equation}
 
 Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
-jednotlivě chybějících srdečních stahů porovnáním $|dRR|>1$. Pro zbylé případy
-falešné detekce R vln nebo jiných chyb, které nelze detekovat použitím $dRR$, je
-definována série $mRRs$ jako rozdíl jednotlivých RR intervalů a mediánu 11
-okolních hodnot:
+jednotlivě chybějících srdečních period porovnáním $|dRR|>1$. Pro zbylé případy
+falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat použitím
+$dRR$, je definována série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
+mediánu 11 okolních hodnot \cite{Lipponen2019}:
+\begin{equation}
+    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), ~\forall j \in \{1,...,N\}
+\end{equation}
+
+Vzhledem k tomu že při srdeční frekvenci 60 bpm se $mRRs$ pohybuje okolo
+--0,5~\si\s~v rámci falešně pozitivní detekce srdečního cyklu a při detekci
+vynechaného cyklu se blíží k 1~\si\s, tak nelze použít jednotný práh. Aby bylo
+možné použít stejný práh pro všechny případy identifikace artefaktu jako v
+předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující podmínkou
+\cite{Lipponen2019}:
+\begin{equation}
+    mRRs_j =
+    \begin{cases}
+        2~mRRs_j, ~\forall mRRs_j < 0 \\
+        mRRs_j, ~\forall mRRs_j \geq 0
+    \end{cases}
+    , ~\forall j \in \{1,...,N\}
+\end{equation}
+
+Při stejné srdeční frekvence (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
+0~\si\s~u normálního sinusového rytmu, 1~\si\s~ u vynechaných cyklů a k
+--1~\si\s~ u nadbytečně detekovaných srdečních period. Stejně jako pro předchozí
+sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh $Th2$
+\cite{Lipponen2019}:
+\begin{equation}
+    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
+\end{equation}
+a hodnoty $mRRs$ jsou následně normalizovány \cite{Lipponen2019}:
+\begin{equation}
+    dRR_j = \frac{mRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
+\end{equation}
+
+Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-R
+intervalů pochází z normálního rozdělení, který ve většině případech není
+splněn, a proto dochází k chybným identifikacím artefaktů. K zamezení těchto
+chyb je metoda doplněna klasifikačním rozhodovacím algoritmem, který se řídí dle
+diagramu \cite{Lipponen2019}:
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/rr_decision}
+        \caption{Rozhodovací algoritmus \cite{Lipponen2019}}
+        \label{fig:rr_decision}
+    \end{center}
+\end{figure}
+Veličiny $c_1$ a $c_2$ jsou globálně nastavené konstanty podle
+\cite{Lipponen2019}. Hodnoty $S11$ a $S12$ jsou definované v následujícím
+odstavci.
+
+Ektopické rytmy se v sérii hodnot $dRR$ projevují jako sekvence záporné, kladné
+a záporné hodnoty (NPN, negative positive negative) nebo kladné, záporné a
+kladné (PNP, positive negative positive). Pomocí těchto vzorů je rozlišen
+ektopický rytmus od vynechaných či nadbytečných srdečních cyklů nebo náhlých
+změn srdeční frekvence. Pro účely vizuálního hodnocení detekce ektopických
+srdečních stahů je vytvořen dvoudimenzionální prostor $S1$ \cite{Lipponen2019}:
+\begin{gather}
+    \label{eq:subspace1}
+    S11_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
+    S12_j =
+    \begin{cases}
+        max(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j > 0, ~\forall j \in \{2,...,N\} \\
+        min(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j < 0, ~\forall j \in \{2,...,N\}
+    \end{cases}
+\end{gather}
+ve kterém se hodnoty $S11$ a $-S12$ zvětšují v rámci determinace NPN vzorem a
+zmenšují u PNP případů. Na Obr. \ref{fig:rr_process} lze vidět vizualizované
+prostory $S1$ a $S2$ s vyznačenými hranicemi, vymezující detekované artefakty
+podle \ref{eq:subspace1} a \ref{eq:subspace2}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/rr_process}
+        \caption{Vizualizace detekovaných artefaktů}
+        \label{fig:rr_process}
+    \end{center}
+\end{figure}
+
+Dlouhé srdeční cykly včetně případů nedetekovaných R vln se projevují v $dRR$
+sérii sekvencí PN, pomalé cykly NP a nadbytečné periody jako NNP nebo NPP. K
+zobrazení těchto artefaktů a jejich detekčních hranic slouží 2D prostor $S2$
+definovaný \cite{Lipponen2019}:
+\begin{gather}
+    \label{eq:subspace2}
+    S21_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
+    S22_j =
+    \begin{cases}
+        min(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j \geq 0, ~\forall j \in \{2,...,N\} \\
+        max(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j < 0, ~\forall j \in \{2,...,N\}
+    \end{cases}
+\end{gather}
+
+Posledním krokem je korekce detekovaných artefaktů, která se řídí jejich typem a
+následný přepočet nové série R-R intervalů. Úprava je realizována pro každý typ
+artefaktu následujícím způsobem \cite{Lipponen2019}:
+\begin{itemize}
+    \item \textbf{Falešně pozitivní srdeční periody} --- odstranění
+          nadbytečných, nesprávně detekovaných R vln, které jsou začátkem falešné
+          periody.
+    \item \textbf{Vynechané srdeční periody} --- přidání nových R vln, které
+          rovnoměrně rozdělí korespondující R-R interval.
+    \item \textbf{Dlouhé a krátké srdeční periody} --- interpolace a přidání
+          nových R-R intervalů.
+    \item \textbf{Ektopický rytmus} --- nahrazení ektopických period interpolovanými R-R intervaly.
+\end{itemize}
 
 \subsubsection{Analýza zpracovaného záznamu}
 \label{section:analysis}
+Pro analýzu EKG záznamů, konkrétně hodnocení HRV, byla zvolena nelineární
+geometrická metoda Poincarého grafu s konstrukcí elipsy (viz kapitola
+\ref{section:hrv_methods}). Jedná se o bodový graf, kde každý bod tvoří R-R
+interval vynesený proti následujícímu R-R intervalu. Prvním krokem k sestrojení
+grafu je tedy vytvoření časových vektorů $\overrightarrow{RR_i}$ a
+$\overrightarrow{RR_{i+1}}$ následovně \cite{Mazhar2007}:
+\begin{gather}
+    \overrightarrow{RR_i} = \{RR_1, RR_2,...,RR_{N}\} \\
+    \overrightarrow{RR_{i+1}} = \{RR_2, RR_3,...,RR_{N-1}\}
+\end{gather}
+kde $N$ je celkový počet R-R intervalů. Dalším krokem je výpočet kvantitativních
+parametrů Poincarého grafu $SD1$ a $SD2$, které zároveň slouží ke konstrukci
+elipsy. Směrodatné odchylky $SD1$ a $SD2$ jsou vypočteny jako \cite{Mazhar2007}:
+\begin{equation}
+    SD1 = \sqrt{var(x1)}
+    \quad \textrm{a} \quad
+    SD2 = \sqrt{var(x2)}
+\end{equation}
+kde $x_1$ a $x_2$ neboli hlavní a vedlejší osa elipsy jsou rovny \cite{Mazhar2007}:
+\begin{equation}
+    x_1 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
+    \quad \textrm{a} \quad
+    x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
+\end{equation}
+
+Elipsa je konstruována využitím jejího vyjádření parametrickými rovnicemi:
+\begin{gather}
+    \label{eq:ellipse_parametric}
+    x = a \cos \theta \nonumber \\
+    y = b \sin \theta
+\end{gather}
+kde $\theta \in \langle 0, 2\pi \rangle$, $a$ je šířka elipsy a $b$ je její
+výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Jelikož
+hlavní osa elipsy leží v kartézském souřadném systému na přímce dané předpisem
+$y=x$, elipsa je natočena o 45\degree~($\frac{\pi}{4}$), a proto je nutné
+realizovat rotaci elipsy \cite{Mazhar2007}:
+
+\begin{equation}
+    \begin{bmatrix}
+        X \\
+        Y
+    \end{bmatrix}
+    =
+    \overline{RR} +
+    \begin{bmatrix}
+        \cos \frac{\pi}{4} & -\sin \frac{\pi}{4} \\
+        \sin \frac{\pi}{4} & -\cos \frac{\pi}{4}
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+        x \\
+        y
+    \end{bmatrix}
+\end{equation}
+
+kde $X$ a $Y$ jsou výsledné body po rotaci o 45\degree. $\overline{RR}$ je
+vypočítaný průměr z R-R intervalů a je středem elipsy, do kterého je třeba
+elipsu posunout přičtením této hodnoty k oběma souřadnicím. Proměnné $x$ a $y$
+jsou předešle vypočítané souřadnice podle \ref{eq:ellipse_parametric}.  
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{../assets/figures/my_poincare}
+        \caption{Realizace Poincarého grafu s elipsou}
+        \label{fig:my_poincare}
+    \end{center}
+\end{figure}
 
 \subsection{Online zpracování EKG záznamu}
 \label{section:online_processing}
-\subsubsection{Aplikace}
+\subsubsection{Aplikace pro hodnocení a sběr dat}
+\subsubsection{PySide framework}
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}
