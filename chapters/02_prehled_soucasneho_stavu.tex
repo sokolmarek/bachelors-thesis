@@ -210,7 +210,7 @@ síní a komor. Kontrakce komor (ventrikulární depolarizace) jsou na EKG křiv
 charakteristické vznikem QRS komplexu, který za fyziologických podmínek a
 normálního sinusového rytmu sestává ze tří vln (viz Obr.
 \ref{fig:cardiac_cycle_ecg} a \ref{fig:pss}):
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item \textbf{Q vlna} --- počáteční negativní kmit komplexu
 	\item \textbf{R vlna} --- pozitivní kmit komplexu
 	\item \textbf{S vlna} --- negativní kmit komplexu následující po R vlně
@@ -468,10 +468,10 @@ filtru se používají toleranční diagramy \cite{Prchal2000,Lyons1997}.
 	\end{minipage}
 \end{figure}
 
-V tolerančním diagramu na Obr. \ref{fig:tolerance_diagram} jsou znázorněny
-další parametry, na které je také třeba dbát při návrhu filtru. Oscilacím,
-viditelným v propustném a nepropustném pásmu, se přezdívá vlněni. Parametr
-\textdelta \textsubscript{1} (passband ripple), vyjadřuje variaci amplitudy v
+V tolerančním diagramu na Obr. \ref{fig:tolerance_diagram} jsou znázorněny další
+parametry, na které je také třeba dbát při návrhu filtru. Oscilacím, viditelným
+v propustném a nepropustném pásmu, se přezdívá vlněni. Parametr \textdelta
+\textsubscript{1} (passband ripple), vyjadřuje variaci (zvlnění) amplitudy v
 propustném pásmu navrženého filtru a je roven maximální odchylce o jednotkové
 velikosti. Parametr \textdelta \textsubscript{2} (stopband attenuation) je
 velikost odezvy útlumu, která vyjadřuje maximální ztrátu signálu v nepropustném
@@ -517,7 +517,7 @@ odezvy $h_n$ vycházejí z Fourierovy řady. Díky tomu lze filtry tohoto typu
 poměrně snadno navrhnout \cite{Jan2002}. Další vlastnosti FIR filtrů, které
 mohou sloužit jako rozhodovací kritérium při návrhu filtru jsou
 \cite{Prchal2000}:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item Absolutní stabilita,
 	\item Nerekurzivní struktura,
 	\item Jednoduchá implementace,
@@ -560,7 +560,7 @@ kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
 (póly). $\Phi_i$ a $\Psi_i$ jsou úhly náležitých spojnic
 \cite{Prchal2000,Jan2002}. Níže jsou další vybrané vlastnosti IIR filtrů
 \cite{Jan2002}:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item Rekurzivní struktura,
 	\item Nízka latence zpracování,
 	\item Nelineární fázová charakteristika,
@@ -716,7 +716,7 @@ filtry a matematické operace zvýrazňující QRS komplexy spolu s rozhodovací
 pravidly. Rozhodovací pravidla si lze představit jako podmínky, jejichž splněním
 je definován nalezený komponent. Z hlediska principu předzpracování se často
 používají například algoritmy založené na \cite{Kohler2002,Vaneghi2012}:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item \textit{digitální filtraci} \cite{Sornmo1982,Kesel1997481},
 	\item \textit{diferenciaci} \cite{Tompkins1983,Okada1979},
 	\item \textit{vlnkové transformaci} \cite{Yao2020,Ndiaye2020},
@@ -831,6 +831,14 @@ vypořádat s interferencemi způsobené ektopickým rytmem \cite{Hsu2012}. Dal�
 populární geometrickou nelineární metodou je analýza Poincarého grafu, na kterém
 je každý R-R interval vynesen proti nadcházejícímu R-R intervalu. 
 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{../assets/figures/wiki_poincare}
+		\caption{Poincarého graf \cite{wikiPoincare}}
+		\label{fig:wiki_poincare}
+	\end{center}
+\end{figure}
+
 Poincarého graf (plot) lze interpretovat jako kartezský souřadnicový systém
 tvořící mapu bodů, kde každý bod je definován dvojící $RR_i$ (osa x) a
 $RR_{i+1}$ (osa y) \cite{Hsu2012,Hejjel2001}. Narozdíl od předešlých metod se
@@ -839,14 +847,6 @@ bodů, tak i kvantitativně, výpočtem SD indexů grafu, které poskytují podo
 informace jako LF a HF složky spektrálního výkonu nebo statistické parametry
 SDNN a RMSSD. Z grafu tak lze získat souhrné i detailní informace o dynamickém
 chování srdečního rytmu \cite{Hsu2012,Kubickova2016}. 
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.5\textwidth]{../assets/figures/wiki_poincare}
-		\caption{Poincarého graf \cite{wikiPoincare}}
-		\label{fig:wiki_poincare}
-	\end{center}
-\end{figure}
 
 Jak již bylo zmíněno, kvalitativní analýza se orientuje rozložením bodů na
 Poincarého grafu a vypovídá o variabilitě. Čím menší je plocha vzoru bodů, tím
@@ -927,8 +927,8 @@ Ačkoli hodnocení HRV našlo pochopitelně největší praktické uplatnění v
 kardiologie, existují další obory, do kterých vnesla tato biometrika v
 posledních letech mnoho nových poznatků. Jedním z takových oborů je psychologie
 a kognitivní psychologie v rámci neuropsychofyziologických vlivů, které jsou
-důsledkem změn a procesů probíhajících v ANS \cite{Bernardi2009}. Blíže je
-kognitivní teorie popsána v \cite{Forte2019,Plass2010}. Studie v rámci
+důsledkem změn a procesů probíhajících v ANS \cite{Bernardi2009}. Tak byla
+zformulovaná kognitivní teorie v \cite{Forte2019,Plass2010}. Studie v rámci
 kognitivní psychologie
 \cite{Bernardi2009,Solhjoo2019,Salahuddin2007,Ishaque2020} potvrzují, že různé
 druhy kognitivní zátěže ovliňují kardiovaskulární systém, primárně HRV, a to i z
