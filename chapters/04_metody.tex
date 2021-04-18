@@ -399,7 +399,7 @@ sousedícími R vlny v čase jsou vypočítány R-R intervaly neboli časová
 variabilita mezi jednotlivými údery srdce. Stejně jako EKG záznam, tak i R-R
 intervaly jsou zatížené artefakty a mohou představovat abnormální hodnoty.
 Zdrojem artefaktů jsou nejčastěji falešně nebo nesprávně detekované či chybějící
-R vlny a ektopický rytmus, který společně s nesprávně detekovanými R vlny
+R vlny a ektopický rytmus, který společně s invalidně detekovanými R vlny
 vytváří sekvence dlouhých a krátkých srdečních period. Vizuálně lze artefakty
 identifikovat jako velké náhle změny či kolísání v grafu jako je tomu na Obr.
 \ref{fig:hrv_artifacts} níže. Podmínkou HRV analýzy je tedy použití N-N
@@ -588,7 +588,6 @@ výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Jeliko
 hlavní osa elipsy leží v kartézském souřadném systému na přímce dané předpisem
 $y=x$, elipsa je natočena o 45\degree~($\frac{\pi}{4}$), a proto je nutné
 realizovat rotaci elipsy \cite{Mazhar2007}:
-
 \begin{equation}
     \begin{bmatrix}
         X \\
@@ -606,7 +605,6 @@ realizovat rotaci elipsy \cite{Mazhar2007}:
         y
     \end{bmatrix}
 \end{equation}
-
 kde $X$ a $Y$ jsou výsledné body po rotaci o 45\degree. $\overline{RR}$ je
 vypočítaný průměr z R-R intervalů a je středem elipsy, do kterého je třeba
 elipsu posunout přičtením této hodnoty k oběma souřadnicím. Proměnné $x$ a $y$
@@ -632,14 +630,14 @@ hodnocení duševního stavu osob ve virtuální realitě. Detailněji je progra
 popsán v následujících kapitolách.
 
 \subsubsection{Aplikace pro hodnocení a sběr dat}
-Program byl vytvořen pomocí skriptovacího programovacího jazyka Python
-\cite{python} s využitím frameworku PySide2 (viz sekce \ref{section:pyside}).
-Hlavním účelem programu je online zpracovaní a vizualizace dat z měřícího
-zařízení, aby bylo možné sledovat a hodnotit elektrickou srdeční aktivitu měřené
-osoby v reálném čase. Aplikací lze data i zaznamenávat a vzápětí uložit ve
-formátu CSV. K zajištěni minimální latence mezi vizualizací zpracovaných data a
-přijatými aktuálními daty probíhá zpracování signálu, jeho analýza a záznam
-paralelně (tzv. multithreading).
+Program byl vytvořen pomocí skriptovacího programovacího jazyka \textit{Python}
+\cite{python} s využitím frameworku \textit{PySide2} (viz sekce
+\ref{section:pyside}). Hlavním účelem programu je online zpracovaní a
+vizualizace dat z měřícího zařízení, aby bylo možné sledovat a hodnotit
+elektrickou srdeční aktivitu měřené osoby v reálném čase. Aplikací lze data i
+zaznamenávat a vzápětí uložit ve formátu CSV. K zajištěni minimální latence mezi
+vizualizací zpracovaných dat a přijatými aktuálními daty, probíhá zpracování
+signálu, jeho analýza a záznam paralelně (tzv. multithreading).
 
 \subsubsection{Struktura aplikace}
 Aplikaci lze rozdělit na dvě základní rozhraní, frontend a backend. Frontendová
@@ -662,11 +660,11 @@ procesů spojených se zpracováním EKG signálu (viz sekce
 \label{section:pyside}
 \textit{PySide} představuje vazbu (binding) skriptovacího jazyka \textit{Python}
 na sadu GUI nástrojů populární knihovny \textit{Qt} \cite{Qt}. Díky tomu je
-možné využívat aplikační rozhraní (API) knihovny \textit{Qt} v prostředí Python.
-\textit{Qt} není pouze knihovna ale celý nativní multiplatformní framework pro
-vytváření softwaru s GUI, napsaný v programovacím jazyce \textit{C++}. V
-aplikaci \textit{BBPM} byla použita knihovna \textit{PySide2}, která představuje
-port pro \textit{Qt5}.
+možné využívat aplikační rozhraní (API) knihovny \textit{Qt} v prostředí
+\textit{Python}. \textit{Qt} není pouze knihovna ale celý nativní
+multiplatformní framework pro vytváření softwaru s GUI, napsaný v programovacím
+jazyce \textit{C++}. V aplikaci \textit{BBPM} byla použita knihovna
+\textit{PySide2}, která představuje port pro \textit{Qt5}.
 
 \subsubsection{Uživatelské rozhraní}
 \label{section:gui}
@@ -693,11 +691,10 @@ následně exportovat v podobě \textit{Python} kódu.
 Pro potřeby aplikace byly vytvořeny dvě okna --- hlavní okno a okno nastavení.
 Hlavní okno (viz Obr. \ref{fig:app_main_window}) se skládá z postranního
 vysouvacího menu, které se nachází na levé straně okna a panelu, ve kterém se
-zobrazuje karta podle zvolené položky v menu.
-
-Vysouvací menu obsahuje čtyři tlačítka, přičemž první tlačítko, které se nachází
-v levém horním rohu hlavního okna, iniciuje vysunutí a zasunutí menu. Jednotlivé
-funkce ostatních tlačítek jsou:
+zobrazuje karta podle zvolené položky v menu. Vysouvací menu obsahuje čtyři
+tlačítka, přičemž první tlačítko, které se nachází v levém horním rohu hlavního
+okna, iniciuje vysunutí a zasunutí menu. Jednotlivé funkce ostatních tlačítek
+jsou:
 \begin{itemize}[noitemsep]
     \item \textbf{Dasborad} --- zobrazení hlavní karty vizualizující výstup
     \item \textbf{Record} --- zapnutí nahrávání EKG záznamu
@@ -733,7 +730,25 @@ asociace (AHA).
     \end{center}
 \end{figure}
 
-Poslední informační subpanel (Events) 
+Poslední informační subpanel (Events) má uplatnění během měření a hodnocení osob
+ve VR v rámci výzkumu \textit{Virtuální město – herní systém pro kognitivní
+trénink ve virtuálním prostředí}, zmíněného v úvodu kapitoly
+\ref{section:online_processing}. V této práci nemá využití, a proto není dále
+blíže popsán, včetně jeho nastavení.
+
+Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
+\begin{itemize}
+    \item \textbf{General} (Obr. \ref{fig:settings_general}) --- slouží pro
+    nastavení připojovacích údajů k měřícímu zařízení. Tlačítkem \textbf{Test
+    connection} lze zkontrolovat připojení.
+    \item \textbf{Graph} (Obr. \ref{fig:settings_graph}) --- slouží k nastavení
+    grafu, konkrétně jeho vykreslovacích vlastností. Lze zde nastavit barva a
+    tloušťka křivky nebo schovat osy a grid.
+    \item \textbf{Recording} (Obr. \ref{fig:settings_recording}) --- slouží k
+    nastavení ID a jména měřené osoby, které se po nahrávání uloží společně s
+    naměřenými daty. 
+    \item \textbf{Info} --- obsahuje informace o verzi aplikace a copyright.
+\end{itemize}
 
 \begin{figure}[h]
     \centering
@@ -761,11 +776,54 @@ Poslední informační subpanel (Events)
 \label{fig:settings_cards}
 \end{figure}
 
-
 \subsubsection{Zpracování dat}
 \label{section:online_data_process}
+Pro zpracování dat jsou využívané integrované funkce prostředí \textit{Python} a
+knihovny \textit{SciPy} \cite{2020SciPy-NMeth}. Před zpracováním EKG signálu
+jsou přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v
+každý jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti
+2048 hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté
+bloky na sebe nenavazují ale překrývají se (viz Obr. \ref{fig:bisection}). 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{../assets/figures/bisection}
+        \caption{Bisekce překrývajících se dat}
+        \label{fig:bisection}
+    \end{center}
+\end{figure}
+Kontinuita dat je zajištěna použitím algoritmu bisekce, realizovaného funkcí
+\texttt{bisect(a,x)} \cite{bisectRight}, který najde index prvního navazujícího
+prvku v závislosti na poslední hodnotě časového vektoru minulého bloku dat.
+Překrývající data před tímto indexem jsou odstraněna a podle takto upraveného
+časového vektoru je následně upraven i vektor s EKG daty. 
 
-\subsubsection{Vizualizace}
+Upravené bloky EKG dat jsou předzpracovány filtrem Savitzky–Golay (SGF)
+\cite{Schafer2011} použitím funkce
+\texttt{savgol{\_}filter(x,window{\_}length,polyorder)} \cite{savgol}. Filtr
+Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který se
+nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
+Princip filtru vychází z filtrace signálu klouzavým průměrem, kde je každá
+hodnota signálu nahrazena průměrem zvoleného počtu okolních hodnot. V případě
+filtru SGF jsou hodnoty v plovoucím okně nejprve proloženy polynomem určitého
+řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v daném bodě
+je vypočtena jako \cite{wikiSGF}:
+\begin{equation}
+    y_j = \sum_{i=\frac{1-m}{2}}^{\frac{m-1}{2}} = c_j y_{j+i}, \quad \frac{m-1}{2} \leq j \leq n - \frac{m-1}{2}
+\end{equation}
+kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $m$ je délka
+plovoucího okna a $n$ délka signálu. V aplikaci byla zvolena délka okna 151
+vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze vidět
+na Obr. \ref{fig:sgf_filter} níže.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
+        \caption{Savitzky–Golay filtrace}
+        \label{fig:sgf_filter}
+    \end{center}
+\end{figure}
+
+\subsubsection{Vizualizace EKG}
 \label{section:visual}
 
 \subsection{Statistické metody}
