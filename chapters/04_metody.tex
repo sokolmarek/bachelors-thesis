@@ -779,11 +779,11 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 \subsubsection{Zpracování dat}
 \label{section:online_data_process}
 Pro zpracování dat jsou využívané integrované funkce prostředí \textit{Python} a
-knihovny \textit{SciPy} \cite{2020SciPy-NMeth}. Před zpracováním EKG signálu
-jsou přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v
-každý jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti
-2048 hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté
-bloky na sebe nenavazují ale překrývají se (viz Obr. \ref{fig:bisection}). 
+knihovny \textit{SciPy} \cite{SciPy2020}. Před zpracováním EKG signálu jsou
+přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý
+jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048
+hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky
+na sebe nenavazují ale překrývají se (viz Obr. \ref{fig:bisection}). 
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{../assets/figures/bisection}
@@ -799,19 +799,17 @@ Překrývající data před tímto indexem jsou odstraněna a podle takto uprave
 
 Upravené bloky EKG dat jsou předzpracovány filtrem Savitzky–Golay (SGF)
 \cite{Schafer2011} použitím funkce
-\texttt{savgol{\_}filter(x,window{\_}length,polyorder)} \cite{savgol}. Filtr
+\texttt{savgol{\_}filter(x,win{\_}length,order)} \cite{scipySavgol}. Filtr
 Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který se
 nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
-Princip filtru vychází z filtrace signálu klouzavým průměrem, kde je každá
-hodnota signálu nahrazena průměrem zvoleného počtu okolních hodnot. V případě
-filtru SGF jsou hodnoty v plovoucím okně nejprve proloženy polynomem určitého
-řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v daném bodě
-je vypočtena jako \cite{wikiSGF}:
+Princip filtru SGF vychází z proložení hodnot v plovoucím okně polynomem
+určitého řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v
+daném bodě je vypočtena jako \cite{wikiSGF}:
 \begin{equation}
-    y_j = \sum_{i=\frac{1-m}{2}}^{\frac{m-1}{2}} = c_j y_{j+i}, \quad \frac{m-1}{2} \leq j \leq n - \frac{m-1}{2}
+    y_j = \sum_{i=\frac{1-M}{2}}^{\frac{M-1}{2}} = c_j y_{j+i}, \quad \frac{M-1}{2} \leq j \leq N - \frac{M-1}{2}
 \end{equation}
-kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $m$ je délka
-plovoucího okna a $n$ délka signálu. V aplikaci byla zvolena délka okna 151
+kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $M$ je délka
+plovoucího okna a $N$ délka signálu. V aplikaci byla zvolena délka okna 151
 vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze vidět
 na Obr. \ref{fig:sgf_filter} níže.
 
@@ -823,8 +821,52 @@ na Obr. \ref{fig:sgf_filter} níže.
     \end{center}
 \end{figure}
 
+Po filtraci jsou data přidána do cyklické fronty \cite{circlebuffer}, kde
+probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používaná
+funkce \texttt{find{\_}peaks(x,h,d)} \cite{scipyFindpeaks}, která hledá lokální
+maxima signálu v závislosti na zadané prahové amplitudě a minimální vzdáleností
+mezi sousedními R vlny. Prahová hodnota amplitudy byla zvolena 0,2~\si\mV~a
+minimální vzdálenost 0,4~\si\s~ (200 vzorků). 
+
+Zpracování komponentů (R vln) se odvíjí od zobrazených parametrů na hlavním
+panelu aplikace (viz Obr. \ref{fig:app_main_window}). Z detekovaných vln se
+počítá aktuální srdeční frekvence z diference posledních dvou detekovaných R vln
+následovně:
+\begin{equation}
+    \label{eq:calc_hr}
+    HR = \frac{60}{RR}
+\end{equation}
+kde $HR$ je hodnota srdeční frekvence a $RR$ aktuálně vypočítaná srdeční
+perioda. Na panelu je z vypočítané hodnoty zobrazena celá část čísla. Dalším
+parametrem je průměrná hodnota srdeční frekvence, která se počítá podle vztahu
+\ref{eq:calc_hr} výše. Namísto $RR$ je ale dosazena průměrná hodnota všech R-R
+intervalů za posledních 6 sekund, která je posledním počítaným parametrem podle:
+\begin{equation}
+    \overline{RR} = \frac{1}{N} \sum_{i=1}^N RR_i
+\end{equation}
+kde $\overline{RR}$ je vypočítaný průměr R-R intervalů a $N$ je počet R-R
+intervalů. Hodnoty se následně zobrazují na panelu jako je tomu na Obr.
+\ref{fig:app_info_subpanels}. 
+
 \subsubsection{Vizualizace EKG}
 \label{section:visual}
+Pro vykreslování dat je použita knihovna \textit{PyQtGraph} \cite{PyQtGraph},
+která je plně kompatibilní s frameworkem \textit{PySide2} (viz sekce
+\ref{section:pyside}). Hlavním komponentem této knihovny je graf, kterému lze
+funkcí \texttt{setData(x,y)} \cite{curveItem} předat hodnoty pro osu X a Y. Po
+předání jsou hodnoty vykresleny a graf je aktualizován. Předávání hodnot je
+zacykleno, a tak dochází 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{../assets/bbpm/r_detection}
+        \caption{Vizualizace EKG křivky s detekcí R vln v aplikaci}
+        \label{fig:app_ecg_visual}
+    \end{center}
+\end{figure}
+\noindent k neustálému vykreslování nových EKG dat. Zároveň jsou využity hodnoty
+detekovaných R vln pro vykreslování markerů v podobě modrých šipek, které tyto
+vlny označují. Vizualizace dat na hlavním panelu je vidět na Obr.
+\ref{fig:app_ecg_visual}.
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}
