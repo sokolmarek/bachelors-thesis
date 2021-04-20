@@ -13,9 +13,9 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 % arara: xelatex: { shell : yes }
-% arara: biber
-% arara: xelatex: { shell : yes }
-% arara: xelatex: { shell : yes }
+%% arara: biber
+%% arara: xelatex: { shell : yes }
+%% arara: xelatex: { shell : yes }
 
 \documentclass[a4paper,12pt]{article}   % Definice - velikost dokumentu, základní velikost písma, typ
 \usepackage[a4paper, top=2.5cm, left=3.5cm, right=2.5cm, bottom=2.5cm]{geometry}		% nastavení okrajů
@@ -78,6 +78,7 @@
 % \usepackage[titletoc,title]{appendix}     % automatické vytvoření příloh
 
 %% Přidání speciálních příkazů 
+\newcommand{\TextUnderscore}{\rule{.4em}{.4pt}}
 \newcommand{\at}{\makeatletter @\makeatother}           % Vytiskne zavináč - \at
 \newcommand{\degree}[1][]{\ensuremath{{#1}^\circ}}      % Vytiskne stupeň - \degree
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	% zarovnání v tabulce, vycentrování, potřebuje \usepackage{array}
