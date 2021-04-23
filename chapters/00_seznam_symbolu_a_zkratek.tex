@@ -6,21 +6,65 @@
 	\begin{center}
 		\begin{tabular}{p{2.5cm}p{2.5cm}p{9.25cm}}
 			\noalign{\hrule height 2pt}
-			Symbol  & Jednotka & Význam                            \\
+			Symbol                 & Jednotka    & Význam                            \\
 			\noalign{\hrule height 2pt}
-			$d[n]$  & mV       & Diferencovaný signál              \\
-			$f[n]$  & mV       & Původní signál                    \\
-			$n$     & –        & Iterátor                          \\
-			$Ww$    & s        & Délka pevného okna (Window width) \\
-			$Bc[n]$ & mV       & Zpětně kumulovaný signál          \\
-			$N$     & –        & Počet vzorků                      \\
-			$RR$    & s        & Délka R-R intervalu               \\
+			$|H_i(\widetilde{w})|$ & - &Magnituda                                     \\
+			% $\delta_1$             &     &                                            \\
+			% $\delta_2$             &     &                                            \\
+			% $\omega_d$             &     &                                            \\
+			% $\omega_h$             &     &                                            \\
+			% $y_n$                  &     &                                            \\
+			% $H(z)$                 &     &                                            \\
+			% $h_n$                  &     &                                            \\
+			% $G(w)$                 &     &                                            \\
+			% $L_i$                  &     &                                            \\
+			% $Ki$                   &     &                                            \\
+			% $A$                    &     &                                            \\
+			% $p_i$ & & \\
+			% $n_i$ & & \\
+			% $\Phi_i$ & & \\
+			% $\Psi_i$ & & \\
+			% $w[n]$ & & \\
+			% $I_0$ & & \\
+			% $\Beta$ & & \\
+			% $\alfa$ & & \\
+			% $d[n]$                 & mV          & Diferencovaný signál              \\
+			% $f[n]$                 & mV          & Původní signál                    \\
+			% $n$                    & –           & Iterátor                          \\
+			% $Ww$                   & s           & Délka pevného okna (Window width) \\
+			% $Bc[n]$                & mV          & Zpětně kumulovaný signál          \\
+			% $N$                    & –           & Počet vzorků                      \\
+			% $RR$                   & s           & Délka R-R intervalu               \\
+			% $R_i$ & & \\
+			% $Th_amp$ & & \\
+			% $R_m$ & & \\
+			% $Th_RR$ & & \\
+			% $dRRs$ & & \\
+			% $Th1$ & & \\
+			% $dRR$ & & \\
+			% $mRRs$ & & \\
+			% $Th2$ & & \\
+			% $mRR$ & & \\
+			% $S11$ & & \\
+			% $S12$ & & \\
+			% $S21$ & & \\
+			% $S22$ & & \\
+			% $\overrightarrow{RR}$ & & \\
+			% $x1$ & & \\
+			% $x2$ & & \\
+			% $a$ & & \\
+			% $b$ & & \\
+			% $x$ & & \\
+			% $y$ & & \\
+			% $X$ & & \\
+			% $Y$ & & \\
+			% $\overline{RR}$ & & \\
 			\noalign{\hrule height 2pt}
 		\end{tabular}
 	\end{center}
 \end{table}
 
-\clearpage 
+\clearpage
 
 \subsection*{Seznam zkratek}
 \begin{table}[h]
@@ -37,8 +81,8 @@
 			PSS     & Převodní systém srdeční (Cardiac conduction system)                                                                                                           \\
 			SA      & Sinoatriální uzel (Sinoatrial node)                                                                                                                           \\
 			AV      & Atrioventrikulární uzel (Atrioventricular node)                                                                                                               \\
-			NVI     & Neuroviscerální integrace (Neurovisceral integration) 																										\\
-			EMG		& Elektromyografie                                                                                                       										\\
+			NVI     & Neuroviscerální integrace (Neurovisceral integration)                                                                                                         \\
+			EMG     & Elektromyografie                                                                                                                                              \\
 			VLF     & Velmi nízké frekvence (Very frequency)                                                                                                                        \\
 			LF      & Nízké frekvence (Low frequency)                                                                                                                               \\
 			HF      & Vysoké frekvence (High frequency)                                                                                                                             \\
@@ -50,12 +94,12 @@
 			SGF     & Savitzky-Golay filtr                                                                                                                                          \\
 			HR      & Srdeční rytmus (Heart rate)                                                                                                                                   \\
 			PNS     & Parasympatický nervový systém (Parasympathetic nervous system)                                                                                                \\
-			RMSSD   & Odmocnina průměru umocněných rozdílů po sobě jdoucích NN intervalů (Root mean square of the successive differences)                                           \\
-			NN50    & Počet dvojic po sobě jdoucích NN intervalů lišících se o více než 50 ms (The number of pairs of successive NN (R-R) intervals that differ by more than 50 ms) \\
+			RMSSD   & Odmocnina průměru umocněných rozdílů po sobě jdoucích N-N intervalů (Root mean square of the successive differences)                                           \\
+			NN50    & Počet dvojic po sobě jdoucích N-N intervalů lišících se o více než 50 ms (The number of pairs of successive NN (R-R) intervals that differ by more than 50 ms) \\
 			pNN50   & Hodnota parametru NN50 v poměru s celkovým počtem NN intervalů (The proportion of NN50 divided by the total number of NN (R-R) intervals)                     \\
-			SDNN    & Standardní odchylka všech NN intervalů (Standard deviation of the NN/RR intervals)                                                                            \\
-			FIR     & Filtr s konečnou impulzní odezvou (Finite impulse response)                                                                                                                             \\
-			IIR     & Filtr s nekonečnou impulzní odezvou (Infinite impulse response)                                                                                                                             \\
+			SDNN    & Standardní odchylka všech N-N intervalů (Standard deviation of the N-N intervals)                                                                            \\
+			FIR     & Filtr s konečnou impulzní odezvou (Finite impulse response)                                                                                                   \\
+			IIR     & Filtr s nekonečnou impulzní odezvou (Infinite impulse response)                                                                                               \\
 			DICOM   & Standardní medicínský formát (Digital Imaging and Communications in Medicine)                                                                                 \\                                                                                                                              \\
 			\noalign{\hrule height 2pt}
 		\end{tabular}
