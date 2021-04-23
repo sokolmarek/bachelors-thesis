@@ -159,9 +159,9 @@ mít informovaný souhlas měřených probandů a souhlasné stanovisko etické 
 %//TODO: add reference
 \subsubsection{Stanovisko etické komise}
 Sběr dat proběhl v rámci výzkumu \textit{Zpátky za volant --- Diagnostický a
-rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
+    rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
 komisí FBMI ČVUT. Stanovisko etické komise je přiloženo v \ref{} společně s
-informovaným souhlasem. 
+informovaným souhlasem.
 
 \subsubsection{Kontrolní skupina probandů}
 \label{section:probands}
@@ -263,7 +263,7 @@ k úpravě zvlnění propustného a závěrného pásma následovně \cite{Oppen
     \begin{cases}
         0.1102(A-8.7),                    & A > 50            \\
         0.5842(A-21)^0.4 + 0.07886(A-21), & 21 \leq A \leq 50 \\
-        0.0,        & A < 21.
+        0.0,                              & A < 21.
     \end{cases}
 \end{equation}
 
@@ -622,7 +622,7 @@ jsou předešle vypočítané souřadnice podle \ref{eq:ellipse_parametric}.
 \label{section:online_processing}
 Pro zpracování EKG signálu v reálném čase bylo naprogramováno multiplatformní
 řešení s grafickým učitelským rozhraním (GUI) pojmenované \textit{BBPM ---
-Better bpm}. Zpracování signálu se se řídí stejným diagramem jako v kapitole
+    Better bpm}. Zpracování signálu se se řídí stejným diagramem jako v kapitole
 \ref{section:offline_processing} na Obr. \ref{fig:diagram_offline_processing}.
 Motivací pro vznik aplikace je spolupráce s Mgr. et Mgr. Ivetou Fajnerovou,
 Ph.D. z Národního ústavu duševního zdraví (NÚDZ). Aplikace je využívána pro
@@ -646,7 +646,7 @@ kapitoly \ref{section:gui} a \ref{section:visual}). V backendu probíhá v
 jednotlivých vláknech (threadech) akvizice a záznam dat včetně výpočetních
 procesů spojených se zpracováním EKG signálu (viz sekce
 \ref{section:online_data_process}). Strukturu aplikace lze vidět na Obr.
-\ref{fig:app_structure} níže. 
+\ref{fig:app_structure} níže.
 
 \begin{figure}[h]
     \begin{center}
@@ -722,6 +722,22 @@ rozmezí (zelená) nebo je zvýšená, snížená (oranžová) či abnormální 
 Rozmezí hodnot bylo zvoleno na základě stanoviska Americké kardiologické
 asociace (AHA).
 
+\begin{table}[h]
+    \label{tab:tabulka}
+    \catcode`\-=12
+    \begin{center}
+        \caption[Stanovisko rozmezí hodnot srdeční frekvence podle AHA}
+        \vspace{1ex}
+        \begin{tabular}{lc}
+            \noalign{\hrule height 2pt}
+            Fáze            & Root Radical-7 \\ \hline
+            Bradykardie     & < 60           \\
+            Normální rytmus & 60--100        \\
+            Tachykardie     & > 100          \\ \noalign{\hrule height 2pt}
+        \end{tabular}
+    \end{center}
+\end{table}
+
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.45\textwidth]{../assets/bbpm/app_info_subpanels}
@@ -732,21 +748,21 @@ asociace (AHA).
 
 Poslední informační subpanel (Events) má uplatnění během měření a hodnocení osob
 ve VR v rámci výzkumu \textit{Virtuální město – herní systém pro kognitivní
-trénink ve virtuálním prostředí}, zmíněného v úvodu kapitoly
+    trénink ve virtuálním prostředí}, zmíněného v úvodu kapitoly
 \ref{section:online_processing}. V této práci nemá využití, a proto není dále
 blíže popsán, včetně jeho nastavení.
 
 Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 \begin{itemize}
     \item \textbf{General} (Obr. \ref{fig:settings_general}) --- slouží pro
-    nastavení připojovacích údajů k měřícímu zařízení. Tlačítkem \textbf{Test
-    connection} lze zkontrolovat připojení.
+          nastavení připojovacích údajů k měřícímu zařízení. Tlačítkem \textbf{Test
+              connection} lze zkontrolovat připojení.
     \item \textbf{Graph} (Obr. \ref{fig:settings_graph}) --- slouží k nastavení
-    grafu, konkrétně jeho vykreslovacích vlastností. Lze zde nastavit barva a
-    tloušťka křivky nebo schovat osy a grid.
+          grafu, konkrétně jeho vykreslovacích vlastností. Lze zde nastavit barva a
+          tloušťka křivky nebo schovat osy a grid.
     \item \textbf{Recording} (Obr. \ref{fig:settings_recording}) --- slouží k
-    nastavení ID a jména měřené osoby, které se po nahrávání uloží společně s
-    naměřenými daty. 
+          nastavení ID a jména měřené osoby, které se po nahrávání uloží společně s
+          naměřenými daty.
     \item \textbf{Info} --- obsahuje informace o verzi aplikace a copyright.
 \end{itemize}
 
@@ -773,7 +789,7 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
         \label{fig:settings_recording}
     \end{subfigure}
     \caption{Jednotlivé záložky v nastavení}
-\label{fig:settings_cards}
+    \label{fig:settings_cards}
 \end{figure}
 
 \subsubsection{Zpracování dat}
@@ -783,7 +799,7 @@ knihovny \textit{SciPy} \cite{SciPy2020}. Před zpracováním EKG signálu jsou
 přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý
 jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048
 hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky
-na sebe nenavazují ale překrývají se (viz Obr. \ref{fig:bisection}). 
+na sebe nenavazují ale překrývají se (viz Obr. \ref{fig:bisection}).
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{../assets/figures/bisection}
@@ -795,7 +811,7 @@ Kontinuita dat je zajištěna použitím algoritmu bisekce, realizovaného funkc
 \texttt{bisect(a,x)} \cite{bisectRight}, který najde index prvního navazujícího
 prvku v závislosti na poslední hodnotě časového vektoru minulého bloku dat.
 Překrývající data před tímto indexem jsou odstraněna a podle takto upraveného
-časového vektoru je následně upraven i vektor s EKG daty. 
+časového vektoru je následně upraven i vektor s EKG daty.
 
 Upravené bloky EKG dat jsou předzpracovány filtrem Savitzky–Golay (SGF)
 \cite{Schafer2011} použitím funkce
@@ -826,7 +842,7 @@ probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je po
 funkce \texttt{find{\_}peaks(x,h,d)} \cite{scipyFindpeaks}, která hledá lokální
 maxima signálu v závislosti na zadané prahové amplitudě a minimální vzdáleností
 mezi sousedními R vlny. Prahová hodnota amplitudy byla zvolena 0,2~\si\mV~a
-minimální vzdálenost 0,4~\si\s~ (200 vzorků). 
+minimální vzdálenost 0,4~\si\s~ (200 vzorků).
 
 Zpracování komponentů (R vln) se odvíjí od zobrazených parametrů na hlavním
 panelu aplikace (viz Obr. \ref{fig:app_main_window}). Z detekovaných vln se
@@ -846,7 +862,7 @@ intervalů za posledních 6 sekund, která je posledním počítaným parametrem
 \end{equation}
 kde $\overline{RR}$ je vypočítaný průměr R-R intervalů a $N$ je počet R-R
 intervalů. Hodnoty se následně zobrazují na panelu jako je tomu na Obr.
-\ref{fig:app_info_subpanels}. 
+\ref{fig:app_info_subpanels}.
 
 \subsubsection{Vizualizace EKG}
 \label{section:visual}
@@ -855,7 +871,7 @@ která je plně kompatibilní s frameworkem \textit{PySide2} (viz sekce
 \ref{section:pyside}). Hlavním komponentem této knihovny je graf, kterému lze
 funkcí \texttt{setData(x,y)} \cite{curveItem} předat hodnoty pro osu X a Y. Po
 předání jsou hodnoty vykresleny a graf je aktualizován. Předávání hodnot je
-zacykleno, a tak dochází 
+zacykleno, a tak dochází
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{../assets/bbpm/r_detection}
@@ -876,21 +892,21 @@ které prověřují platnost nulové hypotézy $H_0$. Nulová hypotéza předsta
 většině případů tvrzení, že rozdíl mezi testovanými daty není statisticky
 významný. Proti $H_0$ se zavadí alternativní hypotéza $H_A$, která nulovou
 hypotézu vyvrací. K určení platnosti mezi testovanou nebo alternativní hypotézou
-slouží statistické testování, které probíhá následovně: 
+slouží statistické testování, které probíhá následovně:
 \begin{itemize}
     \item Definice nulové hypotézy $H_0$ s předpokladem, že platí.
     \item Stanovení náhodného pokusu, kterým bude ověřena hypotéza a náhodné
-    veličiny, která bude výsledkem pokusu.
+          veličiny, která bude výsledkem pokusu.
     \item Zvolení hladiny významnosti \textalpha, která vyjadřuje
-    pravděpodobnost neoprávněného zamítnutí nulové hypotézy $H_0$, i když platí.
-    V bakalářské práci je zvolena hladina významnosti \textalpha~=~0,05 (5 \%).
+          pravděpodobnost neoprávněného zamítnutí nulové hypotézy $H_0$, i když platí.
+          V bakalářské práci je zvolena hladina významnosti \textalpha~=~0,05 (5 \%).
     \item Zamítnutí nulové hypotézy $H_0$ v případě, že hodnota náhodné veličiny
-    spadá do kritického oboru, jelikož nastal jev, který by byl velmi
-    nepravděpodobný za platnosti hypotézy $H_0$. 
+          spadá do kritického oboru, jelikož nastal jev, který by byl velmi
+          nepravděpodobný za platnosti hypotézy $H_0$.
     \item Vyhodnocení statistického testu na základě rozhodnutí o platnosti
-    nulové hypotézy $H_0$: přijetí hypotézy $H_0$ (zamítnutí alternativní
-    hypotézy $H_A$) nebo zamítnutí hypotézy $H_0$ (přijetí alternativní hypotézy
-    $H_A$).
+          nulové hypotézy $H_0$: přijetí hypotézy $H_0$ (zamítnutí alternativní
+          hypotézy $H_A$) nebo zamítnutí hypotézy $H_0$ (přijetí alternativní hypotézy
+          $H_A$).
 \end{itemize}
 
 Pro testování normality náhodné veličiny byl zvolen Anderson-Darlingův test
@@ -899,9 +915,9 @@ pochází z populace s normálním rozdělením. Test byl proveden použitím fu
 \texttt{adtest(x)} \cite{matlabADTEST}.
 
 \subsubsection{Parametrické testy}
- Parametrické varianty testů mohou být uplatněny pouze v případě splnění
- podmínky normality dat.
+Parametrické varianty testů mohou být uplatněny pouze v případě splnění
+podmínky normality dat.
 
- V práci byl použit párový t-test \cite{Henry2005}, který testuje rozdíl
- středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru. Test byl
- realizován použitím funkce \texttt{ttest(x)} \cite{matlabTTEST}. 
+V práci byl použit párový t-test \cite{Henry2005}, který testuje rozdíl
+středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru. Test byl
+realizován použitím funkce \texttt{ttest(x)} \cite{matlabTTEST}.
