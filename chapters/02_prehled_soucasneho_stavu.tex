@@ -385,7 +385,7 @@ svody, jako například etážové, ortogonální nebo jícnové svody. Graficky
 zaznamenává na milimetrový papír nebo je vidět na obrazovce v digitalizované
 podobě. Délka záznamu se obvykle liší v závislosti na prováděné diagnostice či
 terapii. K záznamu se používají různé typy EKG přístrojů, které často snímají
-více biologických veličin, něž pouze elektrickou aktivitu srdce. Mezi přístroje,
+více biologických veličin, než pouze elektrickou aktivitu srdce. Mezi přístroje,
 které se k měření využívají, se řadí například pacientské monitory vitálních
 funkcí nebo v případě mobilnějšího řešení Holterův monitor (Holter). Holterovo
 monitorování se nejčastěji uplatňuje u dlouhodobého kontinuálního záznamu
@@ -398,14 +398,14 @@ jeho jednoduchou přenosnost \cite{Surawicz2008}.
 \label{section:ecg_processing_theory}
 Monitorování či analýza EKG tvoří nepostradatelnou část v mnoha diagnostických a
 terapeutických případech. Díky mobilním implementacím, pomocí kterých lze
-sledovat tuto biologickou aktivitu skrze chytrá zařízení je to v současnosti
+sledovat tuto biologickou aktivitu skrze chytrá zařízení, je to v současnosti
 trend. Než se ale na výstupu, například v podobě displeje, objeví EKG křivka či
-jiné vypočtené parametry, tak se signál musí předzpracovat, jinak by tyto
+jiné vypočtené parametry, musí se signál musí předzpracovat, jinak by tyto
 parametry byly v praxi zavádějící.
 
 Biologické signály se zpravidla předzpracovávají použitím filtrů. Filtrace
-signálu mění tvar a spektrum původního sígnálu, čímž dochází ke zvýraznění nebo
-potlačení specifických složkek signálu. V případě EKG signálu se jedná o složky
+signálu mění tvar a spektrum původního signálu, čímž dochází ke zvýraznění nebo
+potlačení specifických složek signálu. V případě EKG signálu se jedná o složky
 v jeho frekvenční doméně, reprezentované harmonickými komponenty, které popisují
 relace mezi amplitudou a časem. Tyto vztahy se mění filtrací \cite{Jan2002}. Na
 základě původu a povahy signálu se filtry dělí na analogové, diskrétní a
@@ -415,7 +415,7 @@ které se skládají z rezistorů (R), cívek (L) a kondenzátorů (C). Dále se
 dělí na pasivní a aktivní, které využívají zesilovače. Diskrétní a digitální
 filtry představují spíše algoritmy než obvody \cite{Prchal2000}. Jelikož je v
 této práci především použita lineární digitální filtrace, bude nadále detailněji
-rozebrána oblast diskrétních lineárních časově invariantních systémů (DLI), a to
+rozebrána oblast diskrétních lineárních časově invariantních systémů (LTI), a to
 konkrétně lineární časově invariantní filtry \cite{Jan2002}.
 
 Před samotnou filtrací se obvykle provádí spektrální analýza signálu neboli
@@ -426,7 +426,7 @@ rozsahu komponentů EKG signálu a šumu je navržen filtr, který má za úkol
 potlačit vliv nežádoucích interferencí. Příklad obecného spektra EKG signálu a
 jeho jednotlivých složek lze vidět na Obr. \ref{fig:ecg_spectrum}. Na obrázku je
 znázorněn QRS region ve frekvenčním rozsahu 10--15~\si\Hz, avšak se nejedná o
-pevně daný rozsah. V literaturách se uvádějí různé rozsahy a primárně záleží na
+pevně daný rozsah. V literatuře se uvádějí různé rozsahy a primárně záleží na
 EKG signálu samotném.
 
 \begin{figure}[h]
@@ -487,7 +487,7 @@ impulzní odezvou (FIR) a nekonečnou impulzní odezvou (IIR) \cite{Skop1994}.
 
 Použití filtrů s konečnou impulzní odezvou má výhodné uplatnění především tehdy,
 když je potřeba lineární fázové charakteristiky. Lineární fáze způsobuje
-ekvivalentní fázovy posun všech frekvencí v čase, tudíž je zachované stejné
+ekvivalentní fázový posun všech frekvencí v čase, tudíž je zachované stejné
 zpoždění signálu na výstupu ve srovnání se vstupním signálem. FIR filtry se dají
 navrhnout s přesně lineární fázovou charakteristikou, pokud je jejich impulzní
 odezva symetrická nebo asymetrická \cite{Prchal2000}. Matematická definice
@@ -495,17 +495,17 @@ filtru vychází z principu superpozice DLI systémů a je definována jako kone
 diskrétní konvoluce \cite{Jan2002}:
 \begin{equation}
 	\label{eq:conv_fir}
-	y_n = \sum_{k=1}^{N-1} k_{n-k} h_k
+	y_n = \sum_{k=1}^{N-1} x_{n-k} h_k
 \end{equation}
 kde $N$ je řád filtru, $x$ vstupní signál a $h$ je vektor obsahující koeficienty
 impulzní odezvy filtru pro které platí $n \in \langle 0,N-1 \rangle$
-\cite{Jan2002}. Stabilita filtrů vychází ze z-transformace impulzní odezvy:
+\cite{Jan2002}. Stabilita filtrů vychází ze z-transformace impulzní odezvy \cite{Jan2002}:
 \begin{equation}
 	\label{eq:transfer_fir}
-	H(z) = \sum_{n=0}^{N-1} h_n z_{-n}
+	H(z) = \sum_{n=0}^{N-1} h_n z^{-n}
 \end{equation}
 která je po transformaci ve své rovině dána jen nulovými body \cite{Jan2002}.
-Frekvenční charakteristika filtrů:
+Frekvenční charakteristika filtrů \cite{Jan2002}:
 \begin{equation}
 	\label{eq:freq_fir}
 	G(\omega) = H(e^{j \omega T}) = \sum_{n=0}^{N-1} h_n e^{-j \omega T}
@@ -515,7 +515,7 @@ frekvenční charakteristika $G(\widetilde\omega)$ spojená s impulzní odezvou
 $h(n)$ Fourierovou transformací \cite{Prchal2000}, tak koeficienty impulzní
 odezvy $h_n$ vycházejí z Fourierovy řady. Díky tomu lze filtry tohoto typu
 poměrně snadno navrhnout \cite{Jan2002}. Další vlastnosti FIR filtrů, které
-mohou sloužit jako rozhodovací kritérium při návrhu filtru jsou
+mohou sloužit jako rozhodovací kritérium při návrhu filtru, jsou
 \cite{Prchal2000}:
 \begin{itemize}[noitemsep]
 	\item Absolutní stabilita,
@@ -546,15 +546,15 @@ je řád a $K_i$ jsou koeficienty rekurzivní části filtru. Obecně platí $r 
 	\label{eq:transfer_iir}
 	H(z) = \frac{\sum_{i=0}^{r} L_i z^{m-i}}{\sum_{i=0}^{m} K_i z^{m-i}} = A \frac{\prod_{i=1}^{r} (z-n_i)}{\prod_{i=1}^{m} (z-p_i)}
 \end{equation}
-je v z-rovině vyjádřená podílem polynomů, kde $Li$ $Ki$ jsou systémové
+je v z-rovině vyjádřená podílem polynomů, kde $Li$ a $Ki$ jsou systémové
 konstanty. Často se lze setkat s následným součinovým vyjádřením, které filtr
 popisuje pomocí konfigurace pólů $p_i$, nulových bodů $n_i$ a zesílení $A$
 \cite{Jan2002,Prchal2000}. Vyjádření frekvenční charakteristiky je v případě IIR
-filtrů složitější a obvykle se používa k popisu spíše vztah pro amplitudovou a
-fázovou charakteristiku:
+filtrů složitější a obvykle se používá k popisu spíše vztah pro amplitudovou a
+fázovou charakteristiku \cite{Jan2002}:
 \begin{equation}
 	\label{eq:ampphase_iir}
-	|G(\omega)| = A \frac{\prod_{i=1}^{r} d_i}{\prod_{i=1}^{m} l_i} ~a~ arg(G(\omega)) = (m-r)\omega T + \sum_{i=1}^{r} \Phi_i - \sum_{i=1}^{m} \Psi_i
+	|G(\omega)| = A \frac{\prod_{i=1}^{r} d_i}{\prod_{i=1}^{m} l_i} ~\text{~a~}~ arg(G(\omega)) = (m-r)\omega T + \sum_{i=1}^{r} \Phi_i - \sum_{i=1}^{m} \Psi_i
 \end{equation}
 kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
 (póly). $\Phi_i$ a $\Psi_i$ jsou úhly náležitých spojnic
@@ -562,7 +562,7 @@ kde $d_i$ spolu s $l_i$ jsou vzdálenosti mezi bodem $e^{j\omega T}$ a nulami
 \cite{Jan2002}:
 \begin{itemize}[noitemsep]
 	\item Rekurzivní struktura,
-	\item Nízka latence zpracování,
+	\item Nízká latence zpracování,
 	\item Nelineární fázová charakteristika,
 	\item Menší stabilita.
 \end{itemize}
@@ -601,9 +601,9 @@ mohou vést k jeho nesprávné interpretaci. Nejčastější rušivé prvky, kte
 projevují na signálu jsou: síťový brum, myopotenciály, pohybové artefakty nebo
 špatné umístění elektrod. \cite{Surawicz2008}.
 
-Sítový brum neboli elektrická interference generovaná střídavým proudem ze
-zásuvky, je jedním z nejběžnějších artefaktů projevujících se u biologických
-signálu. Příčinou jeho vzniku může být špatné uzemnění či chod zařízení nebo
+Sítový brum neboli elektrická interference generovaná střídavým proudem z
+rozvodné sítě, je jedním z nejběžnějších artefaktů projevujících se u biologických
+signálu. Příčinou jeho vzniku může být špatná funkce zařízení nebo
 vliv elektromagnetického rušení okolní techniky v blízkosti měřícího přístroje.
 Na Obr. \ref{fig:ac_Interference} je vidět vliv střídavého proudu o frekvenci 50
 \si\Hz~na EKG signál \cite{Goldberger2017}. Nejčastěji se k eliminaci
@@ -653,7 +653,7 @@ nebo špatného kontaktu elektrod \cite{Kher2019}.
 Svalové artefakty neboli myopotenciály jsou dalším častým typem rušení
 vysokofrekvenčního charakteru, které ovlivňuje EKG signál. Svým způsobem patří
 tento typ rušení z části mezi předešlé pohybové artefakty, jelikož mohou vznikat
-pohybem pacienta. Tento pohyb může být nedobrovolný například u osob trpících
+pohybem pacienta. Tento pohyb může být mimovolný například u osob trpících
 Parkinsonovou chorobou, kterou obvykle doprovází svalový třes (tremor) nebo
 pulzace arteriální tepny pod elektrodou \cite{Surawicz2008}. Vlivem pohybů
 kosterního svalstva vzniká svalová elektrická aktivita (EMG), která náhodně
@@ -667,7 +667,7 @@ filtr \cite{Schafer2011}.
 V neposlední řadě, spíše než rušení, je častou chybou při záznamu EKG špatné
 umístění nebo prohození elektrod. Proto je nutné pamatovat si význam barev
 elektrod. Každá barva označuje specifické místo na těle, kam má být elektroda
-připevněna. Pokud dojde k prohození, dochází k měření jiného chybného
+připevněna. Pokud dojde k prohození, dochází k měření jiného obvykle neočekávaného
 potenciálu. Na Obr. \ref{fig:rev_electrodes} je vidět situace, kdy došlo k
 záměně bíle a červené elektrody. Výsledkem je inverze všech vln EKG křivky (P,
 Q, R, S, T) \cite{Goldberger2017,Surawicz2008}.
@@ -675,8 +675,8 @@ Q, R, S, T) \cite{Goldberger2017,Surawicz2008}.
 \subsubsection{Detekce EKG komponentů}
 \label{section:components_detection_theory}
 Detekce, segmentace a extrakce EKG komponentů, nejčastěji QRS komplexu, je v
-posledním století velmí žhavé téma, které těží z rozvoje výpočetní techniky.
-Největší zlom nastal při vzniku neuronovýh sítí a příchodu umělé inteligence,
+posledním století velmi studované téma, které těží z rozvoje výpočetní techniky.
+Velkým zlomem byl vznik neuronových sítí a příchod umělé inteligence,
 která přinesla v této oblasti nespočet nových řešení, primárně v automatizované
 detekci a klasifikaci kardiovaskulárních onemocnění \cite{Kashou2020}. I
 přestože softwarové implementace detektorů čim dál častějí nahrazují hardwarová
@@ -730,18 +730,18 @@ Většina nově vzniklých metod často čerpá a kombinuje poznatky z těch, kt
 postupem času staly konvenčními. Nejznámějším případem takové metody, kterou lze
 nazývat konvenční, je Pan-Tompkinsův algoritmus \cite{Pan1985}.
 
-QRS detekční aloritmus, který navrhl a realizoval Pan-Tompkins v roce 1985, je
+QRS detekční algoritmus, který navrhl a realizoval Pan-Tompkins v roce 1985, je
 doposud jedním z nejpopulárnějších algoritmů v oblasti zpracování EKG signálu.
-Navržen byl primárně pro aplikace v reálném čase. Algortimus má dvě hlavní
+Navržen byl primárně pro aplikace v reálném čase. Algoritmus má dvě hlavní
 části, předzpracování signálu a rozhodovací část. Část předzpracování používá 3
 typy filtrů --- pásmová propust, derivační filtr, integrační filtr --- k
-potlační šumu a artefaktů signálu \cite{Alvarez2013}. Derivační filtr potlačuje
+potlačení šumu a artefaktů signálu \cite{Alvarez2013}. Derivační filtr potlačuje
 vlivy P a T vln. Integrační filtr, se aplikuje v podobě pohyblivého okna pro
 vyhlazení signálu \cite{Pan1985}. Rozhodovací část neboli část zpracování, se
-věnuje detekci QRS komplexů. Pro zvýšení spolehlivosti algoritmu probíha detekce
+věnuje detekci QRS komplexů. Pro zvýšení spolehlivosti algoritmu probíhá detekce
 zároveň na derivovaném a na vyhlazeném signálu. Prvotním krokem je nalezení
 lokálních maxim v podobě R vln. Následně se aplikuje adaptivní prahování formou
-pohyblivého okna pří kterém jsou rozhodovacím pravidlem vybrány pouze R vlny
+pohyblivého okna, pří kterém jsou rozhodovacím pravidlem vybrány pouze R vlny
 překračující prahovou hodnotu. Vybrané R vlny představují referenční body
 detekovaných QRS komplexů \cite{Pan1985,Alvarez2013}.
 
@@ -776,7 +776,7 @@ povahou dat a způsobem zpracování. Způsobem zpracování se rozumí, zdali d
 probíhá na již naměřených datech --- offline --- nebo v reálném čase --- online.
 Povaha dat je dána způsobem měření. Záznamy srdeční aktivity naměřené
 intrakardiálně nejsou zatížené artefakty tolik jako záznamy pořízené
-Holterovským monitorováním. Z toho vyplivá i komplexita detektoru, jelikož EKG
+Holterovským monitorováním. Z toho vyplývá i komplexita detektoru, jelikož EKG
 záznamy zatížené mnohočetnými artefakty vyžadují mnohem sofistikovanější
 detekční algoritmy. Další populární QRS detektory a jejich srovnání je rozebráno
 v \cite{Kohler2002,Canento2012,Vaneghi2012,Alvarez2013,Karpagachelvi2010}.
@@ -784,7 +784,7 @@ v \cite{Kohler2002,Canento2012,Vaneghi2012,Alvarez2013,Karpagachelvi2010}.
 \subsection{Variabilita srdeční frekvence}
 \label{section:hrv}
 Jednou z nejčastěji sledovaných elektrofyziologických veličin je srdeční rytmus.
-Je to veličina, měnící se s každým dalším úderem srdce, ovlivňována aktivitou
+Je to veličina měnící se s každým dalším úderem srdce, ovlivňována aktivitou
 ANS. Jelikož srdeční rytmus vychází normálně ze sinoatriálního uzlu, jedná se o
 sinusový rytmus závislý na tonu sympatiku a parasympatiku. Proto se mezi
 faktory ovlivňující srdeční rytmus řadí vnější a vnitřní vlivy jako vznik
