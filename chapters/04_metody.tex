@@ -1,6 +1,6 @@
 V této kapitole jsou popsány metody použité v bakalářské práci. V podkapitole
 \ref{section:measurement} je rozebrán postup měření EKG záznamů a použité
-zařízení. V kapitole \ref{section:study} je charakterizována kontrolní skupina
+zařízení. V kapitole \ref{section:study} je charakterizovaná kontrolní skupina
 probandů a sledované veličiny. V kapitolách \ref{section:offline_processing} a
 \ref{section:online_processing} je řešena metodologie online a offline
 zpracování a hodnocení EKG signálu. Kapitola \ref{section:statistical_methods}
@@ -12,15 +12,15 @@ pojednává o statistickém zpracování výsledků.
 Pro účely zpracování a analýzy EKG signálu, které jsou náplní této bakalářské
 práce, bylo provedeno pilotní měření krátkodobých záznamů srdeční aktivity na 5
 probandech. Postup měření je specifikován v kapitole
-\ref{section:measurement_methodology}. Měřící zařízení je popsáno v následující
+\ref{section:measurement_methodology}. Měřící zařízení je popsané v následující
 kapitole.
 
 \subsubsection{Měřící zařízení}
 \label{section:measurement_device}
 Zařízení použité k měření srdeční aktivity byl Holterův monitor (viz Obr.
 \ref{fig:device}), zajištěný vědeckým týmem Biomechaniky a asistivních
-technologií. Skládá se ze dvou komponent: samotné zařízení a 3-svodový EKG
-kabel s 3.5~\si\mm~jack konektorem. Vzorkovací frekvence zařízení je 500 \si\Hz.
+technologií. Skládá se ze dvou komponent: samotné zařízení a 3-svodový EKG kabel
+s 3.5~\si\mm~jack konektorem. Vzorkovací frekvence zařízení je 500 \si\Hz.
 
 Přenos dat ze zařízení probíhá bezdrátově na lokální sítí (WLAN), ke které je
 třeba zařízení připojit pomocí volně dostupné mobilní aplikace \textit{ESPTouch:
@@ -60,7 +60,7 @@ měřícího zařízení k WLAN sítí je následující:
 
 Pokud se měřící zařízení připojilo úspěšně k vybrané WLAN sítí, objeví se
 notifikace jako na Obr. \ref{fig:app_screen2} a zároveň je navázané spojení
-indikováno rozsvícenou LED kontrolkou na předním panelu Holteru u položky
+indikované rozsvícenou LED kontrolkou na předním panelu Holteru u položky
 \textbf{WI-FI CONNECTED}. Při nezdařeném pokusu připojení je nutné opakovat
 kroky od bodu 2 nebo případně zkontrolovat stav baterie Holteru.
 
@@ -96,7 +96,7 @@ měřením vystaven fyzické ani psychické zátěži. Během měření v první
 úseku je subjekt po celou dobu v klidu. V druhém 5 minutovém úseku je subjekt
 vystaven situaci stimulující kognitivní zátěž v podobě Stroopova testu. Stroopův
 test je realizován formou videozáznamu a blíže je popsán v následující kapitole.
-Postup měření je rozebrán v sekci \ref{section:measurement_process}.
+Postup měření je rozebrán v sekci~\ref{section:measurement_process}.
 
 \begin{figure}[h]
     \begin{center}
@@ -111,8 +111,8 @@ Postup měření je rozebrán v sekci \ref{section:measurement_process}.
 Stroopův test se řadí mezi psychologické testy osobnosti a byl primárně navržený
 pro testování percepční zátěže. Postupem času se možnosti jeho využití
 rozšiřovaly \cite{Svoboda1999}. Dnes je Stroopův test jeden z nejběžnějších
-neuropsychologických testů používaný k hodnocení  a stimulaci kognitivní zátěže
-\cite{Scarpina2017}.
+neuropsychologických testů používaný k hodnocení  a stimulaci kognitivní
+zátěže~\cite{Scarpina2017}.
 
 \begin{figure}[h]
     \begin{center}
@@ -158,15 +158,15 @@ mít informovaný souhlas měřených probandů a souhlasné stanovisko etické 
 
 %//TODO: add reference
 \subsubsection{Stanovisko etické komise}
-Sběr dat proběhl v rámci výzkumu \textit{Zpátky za volant --- Diagnostický a
-    rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
+Sběr dat proběhl v rámci výzkumu \textit{Zpátky za volant -- Diagnostický a
+rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
 komisí FBMI ČVUT. Stanovisko etické komise je přiloženo v \ref{} společně s
 informovaným souhlasem.
 
 \subsubsection{Kontrolní skupina probandů}
 \label{section:probands}
 Za účelem otestovaní navrženého řešení (viz kapitola 3) byla naměřena a
-zaznamenána srdeční aktivita podle postupu \ref{section:measurement_process} u
+zaznamenaná srdeční aktivita podle postupu \ref{section:measurement_process} u
 kontrolní skupiny 5 probandů ve věkovém rozmezí 21--23 let bez diagnostikovaných
 kardiovaskulárních onemocnění.
 
@@ -182,17 +182,17 @@ V závislosti na studii byly vybrány následující sledované statistické par
 Poincarého grafu s vyžitím metody konstrukce elipsy (viz kapitola
 \ref{section:hrv_methods}):
 \begin{itemize}[noitemsep]
-    \item \textbf{SD1}~\textit{(Standard Deviation)} --- směrodatná odchylka R-R
+    \item \textbf{SD1}~\textit{(Standard Deviation)} -- směrodatná odchylka R-R
           intervalů hlavní osy elipsy,
-    \item \textbf{SD2}~\textit{(Standard Deviation)} --- směrodatná odchylka R-R
+    \item \textbf{SD2}~\textit{(Standard Deviation)} -- směrodatná odchylka R-R
           intervalů vedlejší osy elipsy,
-    \item \textbf{SD1/SD2}~\textit{(Standard Deviation ratio)} --- poměr směrodatných odchylek SD1 a SD2.
+    \item \textbf{SD1/SD2}~\textit{(Standard Deviation ratio)} -- poměr směrodatných odchylek SD1 a SD2.
 \end{itemize}
 
 \subsection{Offline zpracování EKG záznamu}
 \label{section:offline_processing}
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
-\ref{fig:diagram_offline_processing} níže a je realizováno v prostředí programu
+\ref{fig:diagram_offline_processing} níže a je realizované v prostředí programu
 \textit{MathWorks MATLAB 2021a} \cite{MATLAB} s pomocí \textit{Signal Processing
     Toolboxu} \text{} \cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
 následujících kapitolách.
@@ -218,7 +218,7 @@ následujících kapitolách.
 \subsubsection{Předzpracování signálu}
 \label{section:preprocessing}
 Nezbytný krok pro jakoukoliv další práci s biosignálem, je jeho filtrace. Před
-navržením samotného filtru byl proveden rozbor EKG záznamu pomocí FFT. EKG
+navržením samotného filtru byl proveden rozbor EKG záznamů pomocí FFT. EKG
 signál je tak převeden z časové domény do frekvenční funkcí \texttt{fft(X)}
 \cite{matlabFFT}. Z teorie je známo v jakých frekvencích se vyskytuje užitečný
 EKG signál nebo jeho komponenty a v jakých nežádoucí vlivy (viz kapitola
@@ -286,7 +286,7 @@ následně jednotlivě sloučeny a zvýrazněny využitím zpětné kumulace
     Bc(n) = \sum_{i=n}^{n+Ww-1} |d(i)|
 \end{equation}
 s pevným oknem $(Ww)$ v rozsahu nejdelšího normálního trvání jednoho QRS
-komplexu (0,12 s) \cite{Wang2017}. Ke kumulaci je využívána funkce
+komplexu (0,12 s) \cite{Wang2017}. Ke kumulaci je využívaná funkce
 \texttt{cumsum(A)} \cite{matlabCUMSUM}.
 
 \begin{figure}[h!]
@@ -302,7 +302,7 @@ funkce \texttt{conv(u,v)} \cite{matlabCONV}. Konvoluční kernel je tvořen pod�
 jednotkového vektoru o délce 60 vzorků a délkou vektoru. Délka 60 vzorků je
 stejně jako u zpětné kumulace doba trvání QRS komplexu, převedena z času na
 počet vzorků pomocí vzorkovací frekvence (500~\si\Hz). Vizuálně lze vidět
-jednotlivé kroky předzpracování signálu na Obr. \ref{fig:preprocessing_steps}.
+jednotlivé kroky předzpracování signálu na Obr.~\ref{fig:preprocessing_steps}.
 
 \subsubsection{Detekce komponentů}
 \label{section:components_detection}
@@ -414,7 +414,7 @@ Korekcí je myšleno potlačení nežádoucích artefaktů.
     \end{center}
 \end{figure}
 
-K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementována
+K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementovaná
 automatická metoda pro detekci a korekci artefaktů HRV podle
 \cite{Lipponen2019}. Metoda je založená na adaptivním prahování s využitím dvou
 pohyblivých prahových hodnot. V prvním kroku je vypočtena časová diference všech
@@ -433,7 +433,7 @@ následovně \cite{Lipponen2019}:
     Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
 \end{equation}
 kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
-5,2. Časová série $dRRs$ je následně normalizována prahovými hodnotami
+5,2. Časová série $dRRs$ je následně normalizovaná prahovými hodnotami
 \cite{Lipponen2019}:
 \begin{equation}
     dRR_j = \frac{dRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
@@ -442,7 +442,7 @@ kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně
 Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
 jednotlivě chybějících srdečních period porovnáním $|dRR|>1$. Pro zbylé případy
 falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat použitím
-$dRR$, je definována série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
+$dRR$, je definovaná série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
 mediánu 11 okolních hodnot \cite{Lipponen2019}:
 \begin{equation}
     mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), ~\forall j \in \{1,...,N\}
@@ -537,17 +537,17 @@ definovaný \cite{Lipponen2019}:
 \end{gather}
 
 Posledním krokem je korekce detekovaných artefaktů, která se řídí jejich typem a
-následný přepočet nové série korigovaných R-R intervalů. Úprava je realizována
+následný přepočet nové série korigovaných R-R intervalů. Úprava je realizovaná
 pro každý typ artefaktu následujícím způsobem \cite{Lipponen2019}:
 \begin{itemize}
-    \item \textbf{Falešně pozitivní srdeční periody} --- odstranění
+    \item \textbf{Falešně pozitivní srdeční periody} -- odstranění
           nadbytečných, nesprávně detekovaných R vln, které jsou začátkem falešné
           periody.
-    \item \textbf{Vynechané srdeční periody} --- přidání nových R vln, které
+    \item \textbf{Vynechané srdeční periody} -- přidání nových R vln, které
           rovnoměrně rozdělí korespondující R-R interval.
-    \item \textbf{Dlouhé a krátké srdeční periody} --- interpolace a přidání
+    \item \textbf{Dlouhé a krátké srdeční periody} -- interpolace a přidání
           nových R-R intervalů.
-    \item \textbf{Ektopický rytmus} --- nahrazení ektopických period interpolovanými R-R intervaly.
+    \item \textbf{Ektopický rytmus} -- nahrazení ektopických period interpolovanými R-R intervaly.
 \end{itemize}
 
 \subsubsection{Analýza zpracovaného záznamu}
@@ -577,7 +577,7 @@ kde $x_1$ a $x_2$ neboli hlavní a vedlejší osa elipsy jsou rovny \cite{Mazhar
     x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
 \end{equation}
 
-Elipsa je konstruována využitím jejího vyjádření parametrickými rovnicemi:
+Elipsa je konstruovaná využitím jejího vyjádření parametrickými rovnicemi:
 \begin{gather}
     \label{eq:ellipse_parametric}
     x = a \cos \theta \nonumber \\
@@ -608,7 +608,7 @@ realizovat rotaci elipsy \cite{Mazhar2007}:
 kde $X$ a $Y$ jsou výsledné body po rotaci o 45\degree. $\overline{RR}$ je
 vypočítaný průměr z R-R intervalů a je středem elipsy, do kterého je třeba
 elipsu posunout přičtením této hodnoty k oběma souřadnicím. Proměnné $x$ a $y$
-jsou předešle vypočítané souřadnice podle \ref{eq:ellipse_parametric}.
+jsou předešle vypočítané souřadnice podle~\ref{eq:ellipse_parametric}.
 
 \begin{figure}[h]
     \begin{center}
@@ -620,12 +620,12 @@ jsou předešle vypočítané souřadnice podle \ref{eq:ellipse_parametric}.
 
 \subsection{Online zpracování EKG záznamu}
 \label{section:online_processing}
-Pro zpracování EKG signálu v reálném čase bylo naprogramováno multiplatformní
-řešení s grafickým učitelským rozhraním (GUI) pojmenované \textit{BBPM ---
-    Better bpm}. Zpracování signálu se se řídí stejným diagramem jako v kapitole
+Pro zpracování EKG signálu v reálném čase bylo naprogramované multiplatformní
+řešení s grafickým učitelským rozhraním (GUI) pojmenované \textit{BBPM -- Better
+bpm}. Zpracování signálu se se řídí stejným diagramem jako v kapitole
 \ref{section:offline_processing} na Obr. \ref{fig:diagram_offline_processing}.
 Motivací pro vznik aplikace je spolupráce s Mgr. et Mgr. Ivetou Fajnerovou,
-Ph.D. z Národního ústavu duševního zdraví (NÚDZ). Aplikace je využívána pro
+Ph.D. z Národního ústavu duševního zdraví (NÚDZ). Aplikace je využívaná pro
 hodnocení duševního stavu osob ve virtuální realitě. Detailněji je program
 popsán v následujících kapitolách.
 
@@ -674,7 +674,7 @@ nástroj \textit{Qt Designer} \cite{QtDesigner}, který je součástí knihovny
 \textit{PySide2} a lze vidět na Obr. \ref{fig:qt_designer}. Nástroj funguje na
 principu \textit{WYSIWYG} editorů a umožňuje tak rychlou a intuitivní tvorbu
 uživatelského rozhraní. V prostředí nástroje je vidět živý náhled aplikace v
-podobě uživatelského okna (\ref{fig:qt_designer}---\textbf{3}), které je hlavním
+podobě uživatelského okna (\ref{fig:qt_designer}--\textbf{3}), které je hlavním
 komponentem. Do hlavního okna lze z panelu č. \textbf{1} přesouvat interaktivní
 uživatelské prvky. Jednotlivé parametry prvků společně s hlavním oknem (např.
 výška a šířka) lze upravovat v panelu č. \textbf{2}. Vytvořené GUI je možné
@@ -688,17 +688,18 @@ následně exportovat v podobě \textit{Python} kódu.
     \end{center}
 \end{figure}
 
-Pro potřeby aplikace byly vytvořeny dvě okna --- hlavní okno a okno nastavení.
+Pro potřeby aplikace byly vytvořeny dvě okna -- hlavní okno a okno nastavení.
 Hlavní okno (viz Obr. \ref{fig:app_main_window}) se skládá z postranního
-vysouvacího menu, které se nachází na levé straně okna a panelu, ve kterém se
+vysouvacího menu (\ref{fig:app_main_window}-\textbf{1}), které se nachází na
+levé straně okna a panelu (\ref{fig:app_main_window}-\textbf{2}), ve kterém se
 zobrazuje karta podle zvolené položky v menu. Vysouvací menu obsahuje čtyři
 tlačítka, přičemž první tlačítko, které se nachází v levém horním rohu hlavního
 okna, iniciuje vysunutí a zasunutí menu. Jednotlivé funkce ostatních tlačítek
 jsou:
 \begin{itemize}[noitemsep]
-    \item \textbf{Dashboard} --- zobrazení hlavní karty vizualizující výstup
-    \item \textbf{Record} --- zapnutí nahrávání EKG záznamu
-    \item \textbf{Settings} --- vyvolání dialogového okna s nastavením
+    \item \textbf{Dashboard} -- zobrazení hlavní karty vizualizující výstup
+    \item \textbf{Record} -- zapnutí nahrávání EKG záznamu
+    \item \textbf{Settings} -- vyvolání dialogového okna s nastavením
 \end{itemize}
 Postranní menu je modulární, což umožňuje snadné přidání nových položek a k nim
 přidružených karet v pravém panelu. Modularita některých funkcí aplikace tak
@@ -713,27 +714,31 @@ zajišťuje snadnou rozšířitelnost v budoucnu.
 \end{figure}
 
 Karta \textbf{Dashboard} se skládá ze dvou částí. Dolní část karty je tvořena
-grafem pro zobrazení EKG křivky, který je detailněji popsán v sekci
-\ref{section:visual}. Horní část obsahuje čtyři informační subpanely. První tři
-zobrazují aktuální srdeční frekvenci, průměrnou srdeční frekvenci a průměrnou
-délku R-R intervalů za posledních 6 sekund. První subpanel zobrazující srdeční
-frekvenci, zároveň barevně indikuje, zda je její hodnota ve fyziologickém
-rozmezí (zelená) nebo je zvýšená, snížená (oranžová) či abnormální (červená).
-Rozmezí hodnot bylo zvoleno na základě stanoviska Americké kardiologické
-asociace (AHA).
+grafem pro zobrazení EKG křivky (\ref{fig:app_main_window}-\textbf{4}), který je
+detailněji popsán v sekci \ref{section:visual}. Horní část
+(\ref{fig:app_main_window}-\textbf{3}) obsahuje čtyři informační subpanely.
+První tři zobrazují aktuální srdeční frekvenci, průměrnou srdeční frekvenci a
+průměrnou délku R-R intervalů za posledních 6 sekund. První subpanel zobrazující
+srdeční frekvenci, zároveň barevně indikuje, zda je její hodnota ve
+fyziologickém rozmezí (zelená) nebo je zvýšená, snížená (oranžová) či abnormální
+(červená). Rozmezí hodnot bylo zvoleno na základě stanoviska Americké
+kardiologické asociace (AHA).
 
 \begin{table}[h]
-    \label{tab:tabulka}
+    \captionsetup{font=small,skip=0.5pt}
+    \label{tab:aha_table}
     \catcode`\-=12
     \begin{center}
-        \caption[Stanovisko rozmezí hodnot srdeční frekvence podle AHA}
+        \caption{Stanovené hodnoty srdeční frekvence podle AHA}
         \vspace{1ex}
-        \begin{tabular}{lc}
+        \setlength{\tabcolsep}{20pt}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{lcc}
             \noalign{\hrule height 2pt}
-            Fáze            & Root Radical-7 \\ \hline
-            Bradykardie     & < 60           \\
-            Normální rytmus & 60--100        \\
-            Tachykardie     & > 100          \\ \noalign{\hrule height 2pt}
+            \textbf{Srdeční rytmus} &  & \textbf{hodnota (bpm)} \\ \hline
+            Bradykardie             &  & < 60                   \\
+            Normální                &  & 60--100                \\
+            Tachykardie             &  & > 100                  \\ \noalign{\hrule height 2pt}
         \end{tabular}
     \end{center}
 \end{table}
@@ -748,22 +753,22 @@ asociace (AHA).
 
 Poslední informační subpanel (Events) má uplatnění během měření a hodnocení osob
 ve VR v rámci výzkumu \textit{Virtuální město – herní systém pro kognitivní
-    trénink ve virtuálním prostředí}, zmíněného v úvodu kapitoly
+trénink ve virtuálním prostředí}, zmíněného v úvodu kapitoly
 \ref{section:online_processing}. V této práci nemá využití, a proto není dále
 blíže popsán, včetně jeho nastavení.
 
 Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 \begin{itemize}
-    \item \textbf{General} (Obr. \ref{fig:settings_general}) --- slouží pro
+    \item \textbf{General} (Obr. \ref{fig:settings_general}) -- slouží pro
           nastavení připojovacích údajů k měřícímu zařízení. Tlačítkem \textbf{Test
               connection} lze zkontrolovat připojení.
-    \item \textbf{Graph} (Obr. \ref{fig:settings_graph}) --- slouží k nastavení
+    \item \textbf{Graph} (Obr. \ref{fig:settings_graph}) -- slouží k nastavení
           grafu, konkrétně jeho vykreslovacích vlastností. Lze zde nastavit barva a
           tloušťka křivky nebo schovat osy a grid.
-    \item \textbf{Recording} (Obr. \ref{fig:settings_recording}) --- slouží k
+    \item \textbf{Recording} (Obr. \ref{fig:settings_recording}) -- slouží k
           nastavení ID a jména měřené osoby, které se po nahrávání uloží společně s
           naměřenými daty.
-    \item \textbf{Info} --- obsahuje informace o verzi aplikace a copyright.
+    \item \textbf{Info} -- obsahuje informace o verzi aplikace a copyright.
 \end{itemize}
 
 \begin{figure}[h]
@@ -815,9 +820,16 @@ Překrývající data před tímto indexem jsou odstraněna a podle takto uprave
 
 Upravené bloky EKG dat jsou předzpracovány filtrem Savitzky–Golay (SGF)
 \cite{Schafer2011} použitím funkce
-\texttt{savgol{\_}filter(x,win{\_}length,order)} \cite{scipySavgol}. Filtr
-Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který se
-nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
+\texttt{savgol{\_}filter(x,win{\_}length,order)} \cite{scipySavgol}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
+        \caption{Savitzky–Golay filtrace}
+        \label{fig:sgf_filter}
+    \end{center}
+\end{figure}
+Filtr Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který
+se nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
 Princip filtru SGF vychází z proložení hodnot v plovoucím okně polynomem
 určitého řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v
 daném bodě je vypočtena jako \cite{wikiSGF}:
@@ -827,17 +839,9 @@ daném bodě je vypočtena jako \cite{wikiSGF}:
 kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $M$ je délka
 plovoucího okna a $N$ délka signálu. V aplikaci byla zvolena délka okna 151
 vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze vidět
-na Obr. \ref{fig:sgf_filter} níže.
+na Obr.~\ref{fig:sgf_filter}.
 
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
-        \caption{Savitzky–Golay filtrace}
-        \label{fig:sgf_filter}
-    \end{center}
-\end{figure}
-
-Po filtraci jsou data přidána do cyklické fronty \cite{circlebuffer}, kde
+Po filtraci jsou data přidaná do cyklické fronty \cite{circlebuffer}, kde
 probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používaná
 funkce \texttt{find{\_}peaks(x,h,d)} \cite{scipyFindpeaks}, která hledá lokální
 maxima signálu v závislosti na zadané prahové amplitudě a minimální vzdáleností
@@ -861,8 +865,8 @@ intervalů za posledních 6 sekund, která je posledním počítaným parametrem
     \overline{RR} = \frac{1}{N} \sum_{i=1}^N RR_i
 \end{equation}
 kde $\overline{RR}$ je vypočítaný průměr R-R intervalů a $N$ je počet R-R
-intervalů. Hodnoty se následně zobrazují na panelu jako je tomu na Obr.
-\ref{fig:app_info_subpanels}.
+intervalů. Hodnoty se následně zobrazují na panelu jako je tomu na
+Obr.~\ref{fig:app_info_subpanels}.
 
 \subsubsection{Vizualizace EKG}
 \label{section:visual}
@@ -881,8 +885,8 @@ zacykleno, a tak dochází
 \end{figure}
 \noindent k neustálému vykreslování nových EKG dat. Zároveň jsou využity hodnoty
 detekovaných R vln pro vykreslování markerů v podobě modrých šipek, které tyto
-vlny označují. Vizualizace dat na hlavním panelu je vidět na Obr.
-\ref{fig:app_ecg_visual}.
+vlny označují. Vizualizace dat na hlavním panelu je vidět na
+Obr.~\ref{fig:app_ecg_visual}.
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}
@@ -909,15 +913,17 @@ slouží statistické testování, které probíhá následovně:
           $H_A$).
 \end{itemize}
 
-Pro testování normality náhodné veličiny byl zvolen Anderson-Darlingův test
-\cite{Nelson1998}. Nulová hypotéza testu $H_0$ tvrdí, že testovaný vzorek dat
+Pro testování normality náhodné veličiny byl zvolen Shapirův-Wilkův test
+\cite{wikiSHAPIROWILK} na základě porovnání síly testů pro malé vzorky podle
+\cite{Razali2011}. Nulová hypotéza testu $H_0$ tvrdí, že testovaný vzorek dat
 pochází z populace s normálním rozdělením. Test byl proveden použitím funkce
-\texttt{adtest(x)} \cite{matlabADTEST}.
+\texttt{swtest(x)}~\cite{matlabSWTEST}.
 
 \subsubsection{Parametrické testy}
+\label{section:parametric_tests}
 Parametrické varianty testů mohou být uplatněny pouze v případě splnění
 podmínky normality dat.
 
 V práci byl použit párový t-test \cite{Henry2005}, který testuje rozdíl
 středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru. Test byl
-realizován použitím funkce \texttt{ttest(x)} \cite{matlabTTEST}.
+realizován použitím funkce \texttt{ttest(x)}~\cite{matlabTTEST}.
