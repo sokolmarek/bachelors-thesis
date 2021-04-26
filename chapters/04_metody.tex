@@ -241,8 +241,8 @@ od 0 do 5--10~\si\Hz.
     \end{center}
 \end{figure}
 
-Na základě FFT analýzy byl pro potlačení nežádoucích prvků zvolen digitální
-filtr FIR typu pásmová propust s propustnými frekvencemi v rozmezí
+Po FFT analýze byl pro potlačení nežádoucích prvků použit pro každý EKG záznam
+digitální filtr FIR typu pásmová propust s propustnými frekvencemi v rozmezí
 7,5--35~\si\Hz. Filtr byl navržen metodou Kaiserova okna \cite{Chavan2006},
 které je definované \cite{Oppenheim1999}:
 \begin{equation}
@@ -309,8 +309,8 @@ jednotlivé kroky předzpracování signálu na Obr.~\ref{fig:preprocessing_step
 Detekce komponentů tvoří nezbytnou část od které se odvíjí hodnocení EKG
 záznamu. Cílem detekce je spolehlivě identifikovat a lokalizovat specifické
 komponenty, nejčastěji QRS komplexy, které jsou předmět analýzy EKG záznamu.
-Díky detekovaným komponentům lze signál segmentovat a hodnotit, využitím
-detekovaných veličin. V první řadě se nejčastěji volí detekce R vln na základě
+Díky detekovaným komponentům lze signál využitím detekovaných veličin
+segmentovat a hodnotit. V první řadě se nejčastěji volí detekce R vln na základě
 jejich vysoké amplitudy.
 
 Za účelem detekce R vln byl implementován a modifikován algoritmus podle
@@ -419,7 +419,7 @@ automatická metoda pro detekci a korekci artefaktů HRV podle
 \cite{Lipponen2019}. Metoda je založená na adaptivním prahování s využitím dvou
 pohyblivých prahových hodnot. V prvním kroku je vypočtena časová diference všech
 detekovaných R-R intervalů $dRRs$, která slouží k rozlišení ektopických a
-nesprávně detekovaných R vln od normálního sinusového rytmu \cite{Lipponen2019}:
+nesprávně detekovaných R vln od normálního sinusového rytmu~\cite{Lipponen2019}:
 \begin{gather}
     dRRs_1 = 0 \nonumber \\
     dRRs_j = RR_j - RR_{j-1}, ~\forall j \in \{2,...,N\}
@@ -428,7 +428,7 @@ kde $N$ je počet R-R intervalů. Pro detekci abnormálních intervalů je nasta
 první práh $Th1$, který se adaptuje statistickým odhadem z časově proměnného
 rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produktem
 faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
-následovně \cite{Lipponen2019}:
+následovně~\cite{Lipponen2019}:
 \begin{equation}
     Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
 \end{equation}
@@ -443,7 +443,7 @@ Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých n
 jednotlivě chybějících srdečních period porovnáním $|dRR|>1$. Pro zbylé případy
 falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat použitím
 $dRR$, je definovaná série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
-mediánu 11 okolních hodnot \cite{Lipponen2019}:
+mediánu 11 okolních hodnot~\cite{Lipponen2019}:
 \begin{equation}
     mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), ~\forall j \in \{1,...,N\}
 \end{equation}
@@ -452,8 +452,8 @@ Vzhledem k tomu že při srdeční frekvenci 60 bpm se $mRRs$ pohybuje okolo
 --0,5~\si\s~v rámci falešně pozitivní detekce srdečního cyklu a při detekci
 vynechaného cyklu se blíží k 1~\si\s, tak nelze použít jednotný práh. Aby bylo
 možné použít stejný práh pro všechny případy identifikace artefaktu jako v
-předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující podmínkou
-\cite{Lipponen2019}:
+předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující
+podmínkou~\cite{Lipponen2019}:
 \begin{equation}
     mRRs_j =
     \begin{cases}
@@ -466,8 +466,8 @@ předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující podmínk
 Při stejné srdeční frekvence (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
 0~\si\s~u normálního sinusového rytmu, 1~\si\s~ u vynechaných cyklů a k
 --1~\si\s~ u nadbytečně detekovaných srdečních period. Stejně jako pro předchozí
-sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh $Th2$
-\cite{Lipponen2019}:
+sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh
+$Th2$~\cite{Lipponen2019}:
 \begin{equation}
     Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
 \end{equation}
@@ -480,7 +480,7 @@ Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-
 intervalů pochází z normálního rozdělení, který ve většině případech není
 splněn, a proto dochází k chybným identifikacím artefaktů. K zamezení těchto
 chyb je metoda doplněna klasifikačním rozhodovacím algoritmem, který se řídí dle
-diagramu \cite{Lipponen2019}:
+diagramu~\cite{Lipponen2019}:
 
 \begin{figure}[h]
     \begin{center}
@@ -499,7 +499,7 @@ a záporné hodnoty (NPN, negative positive negative) nebo kladné, záporné a
 kladné (PNP, positive negative positive). Pomocí těchto vzorů je rozlišen
 ektopický rytmus od vynechaných či nadbytečných srdečních cyklů nebo náhlých
 změn srdeční frekvence. Pro účely vizuálního hodnocení detekce ektopických
-srdečních stahů je vytvořen dvoudimenzionální prostor $S1$ \cite{Lipponen2019}:
+srdečních stahů je vytvořen dvoudimenzionální prostor $S1$~\cite{Lipponen2019}:
 \begin{gather}
     S11_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
     S12_j =
@@ -512,7 +512,7 @@ srdečních stahů je vytvořen dvoudimenzionální prostor $S1$ \cite{Lipponen2
 ve kterém se hodnoty $S11$ a $-S12$ zvětšují v rámci determinace NPN vzorem a
 zmenšují u PNP případů. Na Obr. \ref{fig:rr_process} lze vidět vizualizované
 prostory $S1$ a $S2$ s vyznačenými hranicemi, vymezující detekované artefakty
-podle \eqref{eq:subspace1} a \eqref{eq:subspace2}.
+podle \eqref{eq:subspace1} a~\eqref{eq:subspace2}.
 
 \begin{figure}[h]
     \begin{center}
@@ -525,7 +525,7 @@ podle \eqref{eq:subspace1} a \eqref{eq:subspace2}.
 Dlouhé srdeční cykly včetně případů nedetekovaných R vln se projevují v $dRR$
 sérii sekvencí PN, pomalé cykly NP a nadbytečné periody jako NNP nebo NPP. K
 zobrazení těchto artefaktů a jejich detekčních hranic slouží 2D prostor $S2$
-definovaný \cite{Lipponen2019}:
+definovaný~\cite{Lipponen2019}:
 \begin{gather}
     S21_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
     S22_j =
@@ -538,7 +538,7 @@ definovaný \cite{Lipponen2019}:
 
 Posledním krokem je korekce detekovaných artefaktů, která se řídí jejich typem a
 následný přepočet nové série korigovaných R-R intervalů. Úprava je realizovaná
-pro každý typ artefaktu následujícím způsobem \cite{Lipponen2019}:
+pro každý typ artefaktu následujícím způsobem~\cite{Lipponen2019}:
 \begin{itemize}
     \item \textbf{Falešně pozitivní srdeční periody} -- odstranění
           nadbytečných, nesprávně detekovaných R vln, které jsou začátkem falešné
@@ -557,7 +557,7 @@ geometrická metoda Poincarého grafu s konstrukcí elipsy (viz kapitola
 \ref{section:hrv_methods}). Jedná se o bodový graf, kde každý bod tvoří R-R
 interval vynesený proti následujícímu R-R intervalu. Prvním krokem k sestrojení
 grafu je vytvoření časových vektorů $\overrightarrow{RR_i}$ a
-$\overrightarrow{RR_{i+1}}$ následovně \cite{Mazhar2007}:
+$\overrightarrow{RR_{i+1}}$ následovně~\cite{Mazhar2007}:
 \begin{gather}
     \overrightarrow{RR_i} = \{RR_1, RR_2,...,RR_{N}\} \\
     \overrightarrow{RR_{i+1}} = \{RR_2, RR_3,...,RR_{N-1}\}
@@ -570,7 +570,8 @@ elipsy. Směrodatné odchylky $SD1$ a $SD2$ jsou vypočteny jako \cite{Mazhar200
     \quad \textrm{a} \quad
     SD2 = \sqrt{var(x2)}
 \end{equation}
-kde $x_1$ a $x_2$ neboli hlavní a vedlejší osa elipsy jsou rovny \cite{Mazhar2007}:
+kde $x_1$ a $x_2$ neboli hlavní a vedlejší osa elipsy jsou
+rovny~\cite{Mazhar2007}:
 \begin{equation}
     x_1 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
     \quad \textrm{a} \quad
@@ -587,7 +588,7 @@ kde $\theta \in \langle 0, 2\pi \rangle$, $a$ je šířka elipsy a $b$ je její
 výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Jelikož
 hlavní osa elipsy leží v kartézském souřadném systému na přímce dané předpisem
 $y=x$, elipsa je natočena o 45\degree~($\frac{\pi}{4}$), a proto je nutné
-realizovat rotaci elipsy \cite{Mazhar2007}:
+realizovat rotaci elipsy~\cite{Mazhar2007}:
 \begin{equation}
     \begin{bmatrix}
         X \\
@@ -697,9 +698,9 @@ tlačítka, přičemž první tlačítko, které se nachází v levém horním r
 okna, iniciuje vysunutí a zasunutí menu. Jednotlivé funkce ostatních tlačítek
 jsou:
 \begin{itemize}[noitemsep]
-    \item \textbf{Dashboard} -- zobrazení hlavní karty vizualizující výstup
-    \item \textbf{Record} -- zapnutí nahrávání EKG záznamu
-    \item \textbf{Settings} -- vyvolání dialogového okna s nastavením
+    \item \textbf{Dashboard} -- zobrazení hlavní karty vizualizující výstup,
+    \item \textbf{Record} -- zapnutí nahrávání EKG záznamu,
+    \item \textbf{Settings} -- vyvolání dialogového okna s nastavením.
 \end{itemize}
 Postranní menu je modulární, což umožňuje snadné přidání nových položek a k nim
 přidružených karet v pravém panelu. Modularita některých funkcí aplikace tak
