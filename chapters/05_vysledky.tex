@@ -84,44 +84,11 @@ prezentovány výsledky jednotlivých fází zpracování realizovaného offline
 pro hodnocení EKG.
 
 \subsubsection{Detekované R vlny}
-Následující tabulka \ref{tab:detected_components} uvádí výstup fáze detekce
-komponentů (viz kapitola \ref{section:components_detection}) společně s
-následujícími vypočítanými parametry: průměrná hodnota R-R intervalů (mRR),
+Následující tabulka \ref{tab:detected_components} uvádí výstup fáze zpracování detekovaných komponentů společně s
+následujícími vypočítanými parametry: průměrná hodnota korigovaných (normálních, N-N) R-R intervalů (mNN),
 průměrná hodnota srdeční frekvence (mHR), směrodatná odchylka R-R intervalů
-(SDRR) a směrodatná odchylka srdeční frekvence (SDHR).
-
-\begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
-	\catcode`\-=12
-	\begin{center}
-		\caption{\label{tab:detected_components} Detekované R vlny s vypočtenými parametry časové série R-R intervalů z klidové částí měření (N) a při Stroopově testu (S)}
-		\vspace{1ex}
-		\setlength{\tabcolsep}{13pt}
-		\renewcommand{\arraystretch}{1.3}
-		\begin{tabular}{llccccc}
-			\noalign{\hrule height 2pt}
-			                    &   &                      & \multicolumn{4}{c}{\textbf{Vypočítané parametry}}                                                 \\	\cline{4-7}
-			                    &   &                      & \textbf{mRR}                                      & \textbf{mHR}  & \textbf{SDRR} & \textbf{SDHR} \\
-			                    &   & \textbf{Počet R vln} & \small{(ms)}                                      & \small{(bpm)} & \small{(ms)}  & \small{(bpm)} \\	\noalign{\hrule height 2pt}
-			\textbf{1. proband} & N & 369                  & 957                                               & 64            & 137           & 9             \\
-			                    & S & 429                  & 1041                                              & 58            & 118           & 8             \\	\noalign{\hrule}
-			\textbf{2. proband} & N & 374                  & 1055                                              & 57            & 101           & 6             \\
-			                    & S & 270                  & 982                                               & 62            & 85            & 6             \\	\noalign{\hrule}
-			\textbf{3. proband} & N & 535                  & 635                                               & 95            & 52            & 7             \\
-			                    & S & 542                  & 586                                               & 103           & 52            & 9             \\	\noalign{\hrule}
-			\textbf{4. proband} & N & 537                  & 650                                               & 93            & 58            & 8             \\
-			                    & S & 605                  & 538                                               & 113           & 52            & 10            \\	\noalign{\hrule}
-			\textbf{5. proband} & N & 447                  & 920                                               & 67            & 133           & 9             \\
-			                    & S & 321                  & 897                                               & 68            & 92            & 7             \\ \noalign{\hrule height 2pt}
-		\end{tabular}
-	\end{center}
-\end{table}
-
-Další tabulka \ref{tab:corrected_components} uvádí stejné parametry jako
-předešla tabulka ale hodnoty parametrů vychází z korigovaných R vln. Z
-korigovaných veličin vychází následná HRV analýza. Hodnoty z předešlé tabulky
-\ref{tab:detected_components} slouží pro srovnání hodnot před a po korekci
-časové série R-R intervalů. Detekované artefakty uvádí tabulka
+(SDNN) a směrodatná odchylka srdeční frekvence (SDHR). Hodnoty parametrů vychází z R vln, který byly korigovány algoritmem popsaným v sekci \ref{section:measurement_process}. Z
+korigovaných veličin vychází následná HRV analýza. Detekované artefakty uvádí tabulka
 \ref{tab:detected_artifacts} v následující sekci.
 
 \begin{table}[H]
