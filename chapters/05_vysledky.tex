@@ -1,17 +1,17 @@
 Kapitola výsledky je rozdělena na čtyři části. První dvě kapitoly prezentují
 realizované softwarové řešení pro online a offline hodnocení srdeční aktivity.
-Následně sekce \ref{sections:results_probands} uvádí výsledky analýzy
+Následně sekce~\ref{sections:results_probands} uvádí výsledky analýzy
 zpracovaných záznamů a statistického testování normality sledovaných veličin
-(viz kapitola \ref{section:selected_stats_vals}). Sekce
-\ref{sections:results_analysis} popisuje výsledky statistického ověření metody
-Poincarého grafu v rámci hodnocení HRV u zpracovaných EKG záznamů.
+(viz kapitola~\ref{section:selected_stats_vals}).
+Sekce~\ref{sections:results_analysis} popisuje výsledky statistického ověření
+metody Poincarého grafu v rámci hodnocení HRV u zpracovaných EKG záznamů.
 
 \subsection{Softwarové řešení pro offline hodnocení EKG}
 \label{sections:results_online}
 Výstup jednotlivých fází zpracování EKG záznamů (viz kapitola
 \ref{section:offline_processing}) byl sjednocen do jednoho hlavního okna pomocí
 integrovaného \textit{App Designeru} \cite{matlabAPPDESIGNER} v programovém
-prostředí \textit{Matlab}. Výsledkem je spustitelná interaktivní aplikace. Po
+prostředí \textit{MATLAB}. Výsledkem je spustitelná interaktivní aplikace. Po
 spuštění aplikace lze v menu pomocí tlačítka \textbf{Load signal} nahrát EKG
 signál ve formátu CSV nebo MAT. Po výběru EKG signálu je uživatel tázán aby
 zadal vzorkovací frekvenci signálu. EKG signál je následně adaptivně zpracován.
@@ -22,12 +22,11 @@ zadal vzorkovací frekvenci signálu. EKG signál je následně adaptivně zprac
 		\label{fig:results_matlab_tab4}
 	\end{center}
 \end{figure}
-Na Obr. \ref{fig:results_matlab_tab4} lze vidět otevřenou kartu \textbf{HRV
-	analysis}, která vizualizuje výstup HRV analýzy vycházející ze všech předešlých
-fází zpracování. Všechny karty aplikace jsou uvedené v příloze B na Obr. \ref{},
-\ref{}, \ref{} a \ref{}. Jednotlivé karty jsou mezi sebou propojené. Pokud
-například uživatel v jedné kartě posune signál na určitý čas, tak se tato změna
-aplikuje na signály ostatních karet.
+Na Obr.~\ref{fig:results_matlab_tab4} lze vidět otevřenou kartu \textbf{HRV
+analysis}, která vizualizuje výstup HRV analýzy vycházející ze všech předešlých
+fází zpracování. Všechny karty aplikace jsou uvedené v Příloze B. Jednotlivé
+karty jsou mezi sebou propojené. Pokud například uživatel v jedné kartě posune
+signál na určitý čas, tak se tato změna aplikuje na signály ostatních karet.
 
 % \begin{figure}[h]
 % 	\begin{center}
@@ -57,10 +56,12 @@ aplikuje na signály ostatních karet.
 \subsection{Softwarové řešení pro online hodnocení EKG}
 \label{sections:result_offline}
 Pro účely online analýzy EKG a sběr dat byla naprogramovaná aplikace jménem
-\textit{BBPM} v prostředí \textit{Python}. Aplikaci lze vidět na Obr.
-\ref{fig:results_bbpm} níže. Realizované řešení bylo použito pro pilotní měření
-a záznam surových EKG signálů u kontrolní skupiny probandů (viz kapitola
-\ref{section:probands}). Aplikace je detailněji popsaná v
+\textit{BBPM} v prostředí \textit{Python}. Prostředí \textit{Python} bylo
+zvoleno na základě jeho open-source licence, která jej umožňuje zdarma používat
+a volně nebo i komerčně distribuovat vyvinutá řešení. Aplikaci lze vidět na
+Obr.~\ref{fig:results_bbpm}. Realizované řešení bylo použito pro pilotní měření
+a záznam surových EKG signálů u kontrolní skupiny probandů (viz
+kapitola~\ref{section:probands}). Aplikace je detailněji popsaná v
 kapitole~\ref{section:online_processing}.
 
 \begin{figure}[H]
@@ -75,23 +76,25 @@ kapitole~\ref{section:online_processing}.
 
 \subsection{Kontrolní skupina}
 \label{sections:results_probands}
-V rámci kontrolní skupiny (viz sekce \ref{section:probands}) bylo dle postupu v
-kapitole \ref{section:measurement_methodology} naměřeno 5 EKG záznamů aplikací
+V rámci kontrolní skupiny (viz sekce~\ref{section:probands}) bylo dle postupu v
+kapitole~\ref{section:measurement_methodology} naměřeno 5 EKG záznamů aplikací
 \textit{BBPM} (\ref{section:online_processing}). Záznamy byly následně
-zpracované realizovaným SW řešením popsaným v sekci
-\ref{section:offline_processing}. V následujících podkapitolách jsou
+zpracované realizovaným SW řešením popsaným v
+sekci~\ref{section:offline_processing}. V následujících podkapitolách jsou
 prezentovány výsledky jednotlivých fází zpracování realizovaného offline řešení
 pro hodnocení EKG.
 
 \subsubsection{Detekované R vlny}
-Následující tabulka \ref{tab:detected_components} uvádí výstup fáze zpracování detekovaných komponentů společně s
-následujícími vypočítanými parametry: průměrná hodnota korigovaných (normálních, N-N) R-R intervalů (mNN),
-průměrná hodnota srdeční frekvence (mHR), směrodatná odchylka R-R intervalů
-(SDNN) a směrodatná odchylka srdeční frekvence (SDHR). Hodnoty parametrů vychází z R vln, který byly korigovány algoritmem popsaným v sekci \ref{section:measurement_process}. Z
-korigovaných veličin vychází následná HRV analýza. Detekované artefakty uvádí tabulka
-\ref{tab:detected_artifacts} v následující sekci.
+Následující tabulka \ref{tab:detected_artifacts} uvádí výstup fáze zpracování
+detekovaných komponentů společně s vypočítanými parametry: průměrná hodnota
+korigovaných (normálních, N-N) R-R intervalů (mNN), průměrná hodnota srdeční
+frekvence (mHR), směrodatná odchylka R-R intervalů (SDNN) a směrodatná odchylka
+srdeční frekvence (SDHR). Hodnoty parametrů vychází z R vln, který byly
+korigovány algoritmem popsaným v sekci~\ref{section:measurement_process}. Z
+korigovaných veličin vychází následná HRV analýza. Detekované artefakty uvádí
+tabulka~\ref{tab:detected_artifacts} v následující sekci.
 
-\begin{table}[H]
+\begin{table}[h]
 	\captionsetup{font=small,skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
@@ -122,8 +125,8 @@ korigovaných veličin vychází následná HRV analýza. Detekované artefakty 
 Včetně korigovaných R vln jsou výstupními parametry fáze zpracování detekovaných
 komponentů také detekované artefakty v rámci R-R intervalů. Počty detekovaných
 artefaktů za celý 10 minutový EKG záznam jsou pro každého probanda vyneseny v
-tabulce \ref{tab:detected_artifacts} níže. Detekce artefaktů, společně se
-způsoby korekce jejich jednotlivých typů, je popsaná v
+tabulce~\ref{tab:detected_artifacts}. Detekce artefaktů, společně se způsoby
+korekce jejich jednotlivých typů, je popsaná v
 sekci~\ref{section:components_processing}.
 
 \begin{table}[h]
@@ -147,17 +150,15 @@ sekci~\ref{section:components_processing}.
 	\end{center}
 \end{table}
 
-\clearpage
-
 \subsection{Analýza EKG záznamu pomocí Poicarého grafu}
 \label{sections:results_analysis}
 Pro kvantitativní hodnocení srdeční aktivity pomocí Poincarého grafu počítá
-realizovaná \textit{Matlab} aplikace v rámci HRV analýzy pro každý zpracovaný
-EKG záznam veličiny SD1, SD2 a jejich poměr SD1/SD2. Následující tabulka
-\ref{tab:poincare_parameters} uvádí vypočítané sledované veličiny ze dvou úseků
-EKG záznamů každého probanda. Během prvního úseku byli probandi měřeni vklidu
-(sitauce N) a v druhém úseku podstoupili Stroopův test (situace S), který
-stimuluje kognitivní zátěž. Metodika měření je detailněji popsaná v
+realizovaná \textit{MATLAB} aplikace v rámci HRV analýzy pro každý zpracovaný
+EKG záznam veličiny SD1, SD2 a jejich poměr SD1/SD2. Následující
+tabulka~\ref{tab:poincare_parameters} uvádí vypočítané sledované veličiny ze
+dvou úseků EKG záznamů každého probanda. Během prvního úseku byli probandi
+měřeni vklidu (sitauce N) a v druhém úseku podstoupili Stroopův test (situace
+S), který stimuluje kognitivní zátěž. Metodika měření je detailněji popsaná v
 sekci~\ref{section:measurement_methodology}.
 
 \begin{table}[h]
@@ -187,8 +188,8 @@ sekci~\ref{section:measurement_methodology}.
 \end{table}
 
 Zá účelem srovnání shod sledovaných veličin mezi situacemi N a S byla nejdříve
-vyšetřena normalita dat pomocí Shapirova-Wilkova testu normality (viz sekce
-\ref{section:statistical_methods}). Výsledky jsou vyneseny v
+vyšetřena normalita dat pomocí Shapirova-Wilkova testu normality (viz
+sekce~\ref{section:statistical_methods}). Výsledky jsou vyneseny v
 tabulce~\ref{tab:normality_tests}.
 
 \begin{table}[h]
@@ -212,12 +213,12 @@ tabulce~\ref{tab:normality_tests}.
 
 V případě všech sledovaných veličin -- SD1, SD2 a SD1/SD2 -- u obou situací N
 a S nebyla použitím Shapirova-Wilkova testu na hladině významnosti 5 \%
-vyvrácena nulová hypotéza. Lze tedy předpokládat že vzorky pocházejí ze
+vyvrácena nulová hypotéza. Lze tedy předpokládat, že vzorky pocházejí ze
 základních souborů s normálním rozdělením.
 
 Vzhledem k splnění předpokladů normality bylo u jednotlivých sledovaných veličin
 realizované srovnání mezi případy N a S parametrickým párovým t-testem (viz
-sekce \ref{section:parametric_tests}). Výsledky jsou zaneseny v
+sekce~\ref{section:parametric_tests}). Výsledky jsou zaneseny v
 tabulce~\ref{tab:t_tests}.
 
 \begin{table}[h]
@@ -240,8 +241,11 @@ tabulce~\ref{tab:t_tests}.
 
 Pro lepší přehled a srovnání sledovaných veličin byla vytvořena grafická
 reprezentace vypočítaných parametrů SD1, SD2 a SD1/SD2. Veličiny zanesené v
-grafech \ref{fig:results_sd1}, \ref{fig:results_sd2} a \ref{fig:results_sd1sd2}
-odpovídají výsledkům vyneseným v tabulce~\ref{tab:poincare_parameters}. 
+grafech~\ref{fig:results_sd1}, \ref{fig:results_sd2} a \ref{fig:results_sd1sd2}
+odpovídají výsledkům vyneseným v tabulce~\ref{tab:poincare_parameters}. Dále
+jsou pro každého probanda v Příloze C uvedeny jednotlivé výsledné Poincarého
+grafy, na kterých lze porovnat rozdíly rozložení R-R intervalů mezi situací N a
+S. 
 
 \begin{figure}[H]
 	\centering
