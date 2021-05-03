@@ -272,7 +272,7 @@ prefrontální kůře modulovat HRV (\ref{section:hrv}). Detailně tyto vztahy
 popisuje model Neuroviscerální integrace (NVI)~\cite{Smith2017}.
 
 Vliv parasympatiku je realizovaný uvolňováním mediátoru -- acetylcholinu -- z
-koncových postgangliových vláken. Odpověď probíha v srdeční tkání díky
+koncových postgangliových vláken. Odpověď probíhá v srdeční tkání díky
 muskarinovým cholingerním receptorům. Stimulací těchto receptorů se zpomaluje
 proces spontánní diastolické depolarizace. Následkem je nižší srdeční frekvence
 (negativní chronotropie) v SA uzlu a zpomalení síňokomorového převodu vzruchů v
@@ -289,7 +289,7 @@ frekvence~\cite{Kittnar2020}.
 
 \paragraph*{\textit{Humorální regulace srdečního rytmu}\\} Regulace na této
 úrovni vzniká vlivem hormonů, a to především působením katecholaminů --
-adrenalin a noradrenalin --, produkovaných dření nadledvin nebo adrenergními
+adrenalin a noradrenalin -- produkovaných dření nadledvin nebo adrenergními
 neurony sympatiku. Mají okamžitý nástup účinků, které jsou podobné vlivům
 vzniklých stimulací sympatiku. Mezi další hormony ovlivňující srdeční frekvenci
 patří také například hormony štítné žlázy, tyroxin a
@@ -322,7 +322,7 @@ EKG křivce~\cite{Surawicz2008,Kittnar2020}.
 Tkáně v lidském těle, díky jejich elektrickým vlastnostem plní při styku s
 elektrickým polem úlohu vodiče, což umožňuje naměřit napětí mezi různými místy
 na povrchu těla. K snímaní napětí na rozhraní kůže se používají elektrody.
-Měření se liší počtem použitých svodů a jjich lokaelizací na lidském těle.
+Měření se liší počtem použitých svodů a jejich lokalizací na lidském těle.
 Elektrokardiografie se kategorizuje z hlediska počtu, zapojení a umístění svodů
 do těchto základních skupin:~\cite{Haberl2012,Kittnar2020}:
 \begin{enumerate}
@@ -330,7 +330,7 @@ do těchto základních skupin:~\cite{Haberl2012,Kittnar2020}:
 	      vytváří tzv. teoretický Einthovenovův rovnoramenný trojúhelník, jehož
 	      přibližným středem je srdce. Elektrody se v tomto případě většinou
 	      nachází na horních končetinách a levé dolní končetině, přičemž dvě z
-	      nich jsou elektrody aktivní. Měřenou amplitudu udává rozdíl potenciálu
+	      nich jsou aktivní. Měřenou amplitudu udává rozdíl potenciálu
 	      aktivních elektrod. Tyto svody jsou často nazývané
 	      standardními~\cite{Kittnar2020}.
 	      \begin{figure}[h]
@@ -343,10 +343,10 @@ do těchto základních skupin:~\cite{Haberl2012,Kittnar2020}:
 	\item \textbf{Goldbergerovy unipolární končetinové svody (aVR, aVL, aVF)} --
 	      původně tvořily spoje aktivních elektrod s Wilsonovou virtuální
 	      svorkou. K Wilsonově svorce byly připojeny všechny končetinové svody
-	      přes vysoký odpor ke zajištění nulového potenciálu na této svorce.
-	      Pozdějí byl tento způsob upraven Goldbergerem, který touto modifikací
+	      přes vysoký odpor k zajištění nulového potenciálu na této svorce.
+	      Později byl tento způsob upraven Goldbergerem, který touto modifikací
 	      zesílil amplitudu svodů na záznamu. Zesílení vzniká odpojením aktivní
-	      elektrody od Wilsonovy svorky, čimž je následně měřen potenciál pouze
+	      elektrody od Wilsonovy svorky, čímž je následně měřen potenciál pouze
 	      mezi odpojenou elektrodou a zbylými elektrodami~\cite{Kittnar2020}.
 	      \begin{figure}[H]
 		      \begin{center}
@@ -395,11 +395,11 @@ díky čemuž je jednoduše přenositelná~\cite{Surawicz2008}.
 \label{section:ecg_processing_theory}
 Monitorování či analýza EKG tvoří nepostradatelnou část v mnoha diagnostických a
 terapeutických případech. Než se ale na výstupu, například v podobě displeje,
-objeví EKG křivka či jiné vypočtené parametry, musí se signál musí
+objeví EKG křivka či jiné vypočtené parametry, musí se signál
 předzpracovat, jinak by tyto parametry byly v praxi zavádějící.
 
 Biologické signály se zpravidla předzpracovávají použitím filtrů. Filtrace
-signálu mění tvar a spektrum původního signálu, čímž dochází ke zvýraznění nebo
+signálu mění tvar a spektrum původního signálu, čímž dochází k zvýraznění nebo
 potlačení specifických složek signálu. V případě EKG signálu se jedná o složky v
 jeho frekvenční doméně, reprezentované harmonickými komponenty, které popisují
 relace mezi amplitudou a časem~\cite{Jan2002}. Na základě původu a povahy
@@ -414,7 +414,7 @@ diskrétních lineárních časově invariantních systémů (LTI), a to konkré
 lineární časově invariantní filtry~\cite{Jan2002}.
 
 Před samotnou filtrací se obvykle provádí spektrální analýza signálu neboli
-převod signálu z časové domény do frekvenční pomocí Fourierovy transformace
+převod signálu z časové domény do frekvenční pomocí rychlé Fourierovy transformace
 (FFT), což poskytuje informace o jeho frekvenčním složení~\cite{Prchal2000}.
 Díky získané frekvenční charakteristice a znalosti užitečného frekvenčního
 rozsahu komponentů EKG signálu a šumu je navržen filtr, který má za úkol
@@ -465,7 +465,7 @@ tolerancí filtru se používají toleranční diagramy~\cite{Prchal2000,Lyons19
 
 V tolerančním diagramu na Obr.~\ref{fig:tolerance_diagram} jsou znázorněny další
 parametry, na které je také třeba dbát při návrhu filtru. Oscilacím, viditelným
-v propustném a nepropustném pásmu, se přezdívá vlněni. Parametr \textdelta
+v propustném a nepropustném pásmu, se přezdívá vlnění. Parametr \textdelta
 \textsubscript{1} (passband ripple), vyjadřuje variaci (zvlnění) amplitudy v
 propustném pásmu navrženého filtru a je roven maximální odchylce o jednotkové
 velikosti. Parametr \textdelta \textsubscript{2} (stopband attenuation) je
@@ -483,7 +483,7 @@ impulzní odezvou (FIR) a nekonečnou impulzní odezvou (IIR)~\cite{Skop1994}.
 Použití filtrů s konečnou impulzní odezvou má výhodné uplatnění především tehdy,
 když je potřeba lineární fázové charakteristiky. Lineární fáze způsobuje
 ekvivalentní fázový posun všech frekvencí v čase, tudíž je zachované stejné
-zpoždění signálu na výstupu ve srovnání se vstupním signálem. FIR filtry se dají
+zpoždění signálu na výstupu ve srovnání s vstupním signálem. FIR filtry se dají
 navrhnout s přesně lineární fázovou charakteristikou, pokud je jejich impulzní
 odezva symetrická nebo asymetrická~\cite{Prchal2000}. Matematická definice
 filtru vychází z principu superpozice LTI systémů a je definována jako konečná
@@ -492,8 +492,8 @@ diskrétní konvoluce~\cite{Jan2002}:
 	\label{eq:conv_fir}
 	y_n = \sum_{k=1}^{N-1} x_{n-k} h_k
 \end{equation}
-kde $N$ je řád filtru, $x$ vstupní signál a $h$ je vektor obsahující koeficienty
-impulzní odezvy filtru pro které platí $n \in \langle 0,N-1
+kde $N$ je řád filtru, $x$ vstupní signál a $h$ je vektor systémových koeficientů
+impulzní odezvy filtru pro které platí $h = [h_n],~n \in \langle 0,N-1
 \rangle$~\cite{Jan2002}. Stabilita filtrů vychází ze z-transformace impulzní
 odezvy~\cite{Jan2002}:
 \begin{equation}
@@ -507,7 +507,7 @@ Frekvenční charakteristika filtrů~\cite{Jan2002}:
 	G(\omega) = H(e^{j \omega T}) = \sum_{n=0}^{N-1} h_n e^{-j \omega T}
 \end{equation}
 je spojitá periodická funkce s periodou $2\pi/T$~\cite{Jan2002}. Jelikož je
-frekvenční charakteristika $G(\widetilde\omega)$ spojená s impulzní odezvou
+frekvenční charakteristika $G(\omega)$ spojená s impulzní odezvou
 $h(n)$ Fourierovou transformací~\cite{Prchal2000}, tak koeficienty impulzní
 odezvy $h_n$ vycházejí z Fourierovy řady. Díky tomu lze filtry tohoto typu
 poměrně snadno navrhnout~\cite{Jan2002}. Další vlastnosti FIR filtrů, které
@@ -534,7 +534,7 @@ optimalizační úlohu. Matematicky jsou IIR filtry definované rekurzivními
 diferenčními rovnicemi~\cite{Jan2002}:
 \begin{equation}
 	\label{eq:conv_iir}
-	y_n = \sum_{i=0}^{r} L_i x_{n-1} - \sum_{i=1}^{m} K_i y_{n-1}
+	y_n = \sum_{i=0}^{r} L_i x_{n-i} - \sum_{i=1}^{m} K_i y_{n-i}
 \end{equation}
 kde $r$ spolu s $L_i$ je řád a koeficienty nerekurzivní části filtru. Naopak $m$
 je řád a $K_i$ jsou koeficienty rekurzivní části filtru. Obecně platí $r \leq
@@ -578,7 +578,7 @@ znázorněny tyto charakteristiky pro FIR filtr 15. řádu a Čebyševův filtr 
 typu I. Filtry byly navrženy jako dolní propust s mezní frekvencí 25~\si\Hz. I
 přes značný grafický rozdíl impulsních charakteristik je útlumová úroveň filtrů
 velmi podobná, avšak výpočetně IIR filtru stačilo 6 koeficientů oproti FIR
-filtru, který jich vyžadoval 15. Hlavní rozdíl vyplívá především z fázové
+filtru, který jich vyžadoval 15. Hlavní rozdíl vyplývá především z fázové
 charakteristiky, kde se v propustném pásmu, a hlavně kolem mezní frekvence
 projevuje nelineární fázový charakter IIR filtru.
 
@@ -600,8 +600,8 @@ projevují na signálu jsou: síťový brum, myopotenciály, pohybové artefakty
 špatné umístění elektrod~\cite{Surawicz2008}.
 
 Sítový brum neboli elektrická interference generovaná střídavým proudem z
-rozvodné sítě, je jedním z nejběžnějších artefaktů projevujících se u
-biologických signálu. Příčinou jeho vzniku může být špatná funkce zařízení nebo
+rozvodné sítě, je jedním z nejběžnějších artefaktů projevujících se v
+biologických signálech. Příčinou jeho vzniku může být špatná funkce zařízení nebo
 vliv elektromagnetického rušení okolní techniky v blízkosti měřícího přístroje.
 Na Obr.~\ref{fig:ac_Interference} je vidět vliv střídavého proudu o frekvenci
 50~\si\Hz~na EKG signál~\cite{Goldberger2017}. Nejčastěji se k eliminaci
@@ -639,12 +639,12 @@ nepropouští specifikované frekvence signálu~\cite{Kher2019}.
 	\label{fig:common_artifacts}
 \end{figure}
 
-Pohybové artefakty se primárně na EKG signálu projevují kolísáním elektrické
+Primárně se pohybové artefakty na EKG signálu projevují kolísáním elektrické
 izolinie (drift) od její nulové hodnoty jako je tomu na
-Obr.~\ref{fig:w_baseline}. Nevznikají však pouze pohybem pacienta ale i
+Obr.~\ref{fig:w_baseline}. Nevznikají pouze pohybem pacienta, ale i
 například manipulací měřicími kabely, špatným kontaktem elektrod nebo vlivem
 dýchání pacienta~\cite{Goldberger2017}. V lepších případech stačí ke korekci
-driftu filtry typu horní propusti, avšak někdy je potřeba využít například
+driftu filtry typu horní propusti. Někdy je potřeba využít například
 vlnkových transformací nebo adaptivní filtrace, obzvláště v situacích fyzického
 pohybu nebo špatného kontaktu elektrod~\cite{Kher2019}.
 
@@ -658,12 +658,12 @@ kosterního svalstva vzniká svalová elektrická aktivita (EMG), která náhodn
 interferuje s EKG signálem. Na Obr.~\ref{fig:muscle_tremor} je vidět tato
 interference v podobě překrytí QRS komplexu
 myopotenciálem~\cite{Goldberger2017}. K potlačení myopotenciálu se často
-využivájí vyhlazovací filtry nebo například filtry typu dolní propust s
+využívají vyhlazovací filtry nebo například filtry typu dolní propust s
 Gaussovou impulsní odezvou~\cite{Kher2019}. Populárním vyhlazovacím digitálním
 filtrem je Savitzky–Golay filtr~\cite{Schafer2011}.
 
 V neposlední řadě, spíše než rušení, je častou chybou při záznamu EKG špatné
-umístění nebo prohození elektrod. Proto je nutné pamatovat si význam barev
+umístění nebo prohození elektrod. Proto je nutné si pamatovat význam barev
 elektrod. Každá barva označuje specifické místo na těle, kam má být elektroda
 připevněna. Pokud dojde k prohození, dochází k měření jiného obvykle
 neočekávaného potenciálu. Na Obr.~\ref{fig:rev_electrodes} je vidět situace, kdy
@@ -677,8 +677,8 @@ posledním století velmi studované téma, které těží z rozvoje výpočetn�
 Velkým zlomem byl vznik neuronových sítí a příchod umělé inteligence, která
 přinesla v této oblasti nespočet nových řešení, primárně v automatizované
 detekci a klasifikaci kardiovaskulárních onemocnění~\cite{Kashou2020}. I
-přestože softwarové implementace detektorů čim dál častějí nahrazují hardwarová
-řešení, tak po hardwarové stránce dochází v rozvojí hlavně v mobilních
+přesto, že softwarové implementace detektorů čim dál častěji nahrazují hardwarová
+řešení, tak po hardwarové stránce dochází k rozvoji hlavně v mobilních
 zařízeních~\cite{Kohler2002}.
 
 \begin{figure}[h]
@@ -815,14 +815,14 @@ Hodnocení variability srdečního rytmu neboli zkoumání variace mezi jednotli
 srdečními stahy nachází dnes velké uplatnění v diagnostice, například v rámci
 rychlého neinvazivního zhodnocení kardiovaskulární autonomní regulace.
 Nejčastější a základní neinvazivní metody hodnocení HRV mohou být sjednoceny do
-časové a frekvenční oblasti ale existují i další geomterické a nelineární
+časové a frekvenční oblasti, ale existují i další geometrické a nelineární
 postupy. Nejzákladnější běžná metoda je spektrální analýza variability srdečního
 rytmu, která umožňuje zaznamenat a deklarovat vlivy kardiálního autonomního
 nervového systému~\cite{Pumprla2014}. Často se lze setkat, primárně u hodnocení
 dlouhodobých EKG záznamů, se statistickou analýzou, která využívá parametry
 vypočítané z HRV v časové doméně. Hodnoty jednotlivých parametrů následně slouží
 jako indikátory změn pro různé oblasti kardiovaskulárního systému a
-ANS~\cite{Malik1996}. Časové a frekvenční metody mají však své technické omezení
+ANS~\cite{Malik1996}. Časové a frekvenční metody mají však své technické omezení, 
 jako například předpoklad linearity dat a v některých případech se neumějí
 vypořádat s interferencemi způsobené ektopickým rytmem~\cite{Hsu2012}. Další
 populární geometrickou nelineární metodou je analýza Poincarého grafu, na kterém
@@ -836,13 +836,13 @@ je každý R-R interval vynesen proti nadcházejícímu R-R intervalu.
 	\end{center}
 \end{figure}
 
-Poincarého graf (plot) lze interpretovat jako kartezský souřadnicový systém
-tvořící mapu bodů, kde každý bod je definován dvojící $RR_i$ (osa x) a
-$RR_{i+1}$ (osa y)~\cite{Hsu2012,Hejjel2001}. Narozdíl od předešlých metod se
+Poincarého graf (plot) lze interpretovat jako kartézský souřadnicový systém
+tvořící mapu bodů, kde každý bod je definován dvojicí $RR_i$ (osa x) a
+$RR_{i+1}$ (osa y)~\cite{Hsu2012,Hejjel2001}. Na rozdíl od předešlých metod se
 Poincarého graf vyhodnocuje jak kvalitativně, pomocí tvaru (vzoru) vzniklého z
 bodů, tak i kvantitativně, výpočtem SD indexů grafu, které poskytují podobné
 informace jako LF a HF složky spektrálního výkonu nebo statistické parametry
-SDNN a RMSSD. Z grafu tak lze získat souhrné i detailní informace o dynamickém
+SDNN a RMSSD. Z grafu tak lze získat souhrnné i detailní informace o dynamickém
 chování srdečního rytmu~\cite{Hsu2012,Kubickova2016}. 
 
 Jak již bylo zmíněno, kvalitativní analýza se orientuje rozložením bodů na
@@ -858,8 +858,8 @@ poruchách srdečního rytmu~\cite{Habib2013}. Vizuální charakteristiky Poinca
 grafu se dají vyjádřit i kvantitativně. Nejpopulárnější technikou
 kvantitativního hodnocení Poincarého grafu je konstrukce elipsy podle vzoru
 bodů. Z hlavní a vedlejší osy elipsy lze vypočítat indexy SD1 a SD2. Tvarové
-vlasnosti elipsy jsou v souladu se zmíněnými vlasnosti tvaru shluku bodů výše.
-SD indexy jsou směrodátné odchylky okamžité variability ve směru
+vlasnosti elipsy jsou v souladu se zmíněnými vlastnosti tvaru shluku bodů výše.
+SD indexy jsou směrodatné odchylky okamžité variability ve směru
 osy~\cite{Habib2013,Mazhar2007}.
 
 Všechny metody jsou pak v praxi využitelné pro včasné odhalení
@@ -902,12 +902,12 @@ Dříve panovalo obecné přesvědčení že variace v srdečním rytmu jsou pat
 byla poprvé vyvrácena v roce 1978, klinickou studií~\cite{Wolf1978}, která
 potvrzuje korelaci snížené HRV s úmrtností a arytmickými komplikacemi během
 postinfarktového období. Od té doby se studie na téma nepravidelností sinusového
-rytmu začaly rozvíjet a hromadit. V současnosti je HRV klinicky významnou a
+rytmu začaly rozvíjet. V současnosti je HRV klinicky významnou a
 velmi využívanou biometrikou napříč obory. Na Obr.~\ref{fig:hrv_infarct} lze
 vidět vývoj HRV během 24h Holterovského monitorování dvou pacientů (D, S) v
 postinfarktovém období, konkrétně 7. den po infarktu myokardu. U pacienta $D$
 lze pozorovat nekomplikovaný postinfarktový průběh v podobě konstantního vývoje
-R-R intervalů. Pacient $S$ umřel 27. den pod infarktu~\cite{Malik1990}. Další
+R-R intervalů. Pacient $S$ umřel 27. den po infarktu~\cite{Malik1990}. Další
 rizikové faktory korelující s HRV parametry lze najít v
 tabulce~\ref{tab:hrv_factors}.
 
