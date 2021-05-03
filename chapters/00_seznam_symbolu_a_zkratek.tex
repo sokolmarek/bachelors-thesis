@@ -1,61 +1,53 @@
 \subsection*{Seznam symbolů}
 
-\begin{table}[h]
+\begin{table}[H]
 	\label{tab:symboly}
 	\catcode`\-=12          % Tento řádek je tam kvůli použití cline pro czech babel. Jinak to bere pomlčku jako znak a nevnímá ji jako rozsah. 
 	\begin{center}
 		\begin{tabular}{p{2.5cm}p{2.5cm}p{9.25cm}}
 			\noalign{\hrule height 2pt}
-			Symbol                 & Jednotka & Význam    \\
+			Symbol                      & Jednotka & Význam                                         \\
 			\noalign{\hrule height 2pt}
-			$|H_i(\widetilde{w})|$ & -        & Magnituda \\
-			% $\delta_1$             &     &                                            \\
-			% $\delta_2$             &     &                                            \\
-			% $\omega_d$             &     &                                            \\
-			% $\omega_h$             &     &                                            \\
-			% $y_n$                  &     &                                            \\
-			% $H(z)$                 &     &                                            \\
-			% $h_n$                  &     &                                            \\
-			% $G(w)$                 &     &                                            \\
-			% $L_i$                  &     &                                            \\
-			% $Ki$                   &     &                                            \\
-			% $A$                    &     &                                            \\
-			% $p_i$ & & \\
-			% $n_i$ & & \\
-			% $\Phi_i$ & & \\
-			% $\Psi_i$ & & \\
-			% $w[n]$ & & \\
-			% $I_0$ & & \\
-			% $\Beta$ & & \\
-			% $\alfa$ & & \\
-			% $d[n]$                 & mV          & Diferencovaný signál              \\
-			% $f[n]$                 & mV          & Původní signál                    \\
-			% $Ww$                   & s           & Délka pevného okna (Window width) \\
-			% $Bc[n]$                & mV          & Zpětně kumulovaný signál          \\
-			% $RR$                   & s           & Délka R-R intervalu               \\
-			% $\overrightarrow{RR}$ & & \\
-			% $Th_amp$ & & \\
-			% $R_m$ & & \\
-			% $Th_RR$ & & \\
-			% $dRRs$ & & \\
-			% $Th1$ & & \\
-			% $dRR$ & & \\
-			% $mRRs$ & & \\
-			% $Th2$ & & \\
-			% $mRR$ & & \\
-			% $S11$ & & \\
-			% $S12$ & & \\
-			% $S21$ & & \\
-			% $S22$ & & \\
-			% $x1$ & & \\
-			% $x2$ & & \\
-			% $a$ & & \\
-			% $b$ & & \\
-			% $x$ & & \\
-			% $y$ & & \\
-			% $X$ & & \\
-			% $Y$ & & \\
-			% $\overline{RR}$ & & \\
+			$A$                         & dB       & Zesílení                                       \\
+			$a$                         & ms       & Šířka elispy                                   \\
+			$\alpha$                    & -        & Škálovací faktor                               \\
+			$b$                         & ms       & Výška elipsy                                   \\
+			$Bc[n]$                     & mV       & Zpětně kumulovaný signál                       \\
+			$\beta$                     & -        & Parametr Kaiserova okna                        \\
+			$c_j$                       & -        & Koeficienty polynomiální regrese               \\
+			$dRR$                       & -        & Normalizovaná časová série R-R intervalů       \\
+			$dRRs$                      & s        & Časová série R-R intervalů                     \\
+			$Fs$                        & Hz       & Vzorkovací frekvence                           \\
+			$mRR$                       & -        & Normalizovaná časová série R-R intervalů       \\
+			$mRRs$                      & s        & Časová série R-R intervalů                     \\
+			$R$                         & s        & Časová hodnota vybrané R vlny                  \\
+			$R_m$                       & ms       & Časová hodnota doplněné R vlny                 \\
+			$R_{max}$                   & mV       & Amplituda vybrané R vlny                       \\
+			$RR$                        & ms       & Časová série R-R intervalů                     \\
+			$\overline{RR}$             & ms       & Průměrná hodnota R-R intervalů                 \\
+			$\overrightarrow{RR_{i+1}}$ & s        & Časový vektor R-R intervalů pro osu Y          \\
+			$\overrightarrow{RR_i}$     & s        & Časový vektor R-R intervalů pro osu X          \\
+			$S11$                       & -        & Hodnoty subprostoru S1 pro osu X               \\
+			$S12$                       & -        & Hodnoty subprostoru S1 pro osu Y               \\
+			$S21$                       & -        & Hodnoty subprostoru S2 pro osu X               \\
+			$S22$                       & -        & Hodnoty subprostoru S2 pro osu Y               \\
+			$SD1$                       & ms       & Směrodatná odchylka hodnot hlavní osy elipsy   \\
+			$SD2$                       & ms       & Směrodatná odchylka hodnot vedlejší osy elipsy \\
+			$Th_{amp}$                  & mV       & Prahová amplituda                              \\
+			$Th_{RR}$                   & ms       & Prahová délka R-R intervalu                    \\
+			$Th1$                       & s        & Normalizační práh pro sérii $dRRs$             \\
+			$Th2$                       & s        & Normalizační práh pro sérii $mRRs$             \\
+			$w[n]$                      & -        & Koeficienty Kaiserova okna                     \\
+			$W_i^{L,R}$                 & ms       & Plovoucí okno                                  \\
+			$X$                         & ms       & Souřadnice elipsy pro osu X po rotaci          \\
+			$x$                         & ms       & Souřadnice elipsy pro osu X                    \\
+			$x[n]$                      & mV       & Originální signál                              \\
+			$x1$                        & ms       & Hlavní osa elipsy                              \\
+			$x2$                        & ms       & Vedlejší osa elipsy                            \\
+			$Y$                         & ms       & Souřadnice elipsy pro osu Y po rotaci          \\
+			$y$                         & ms       & Souřadnice elipsy pro osu Y                    \\
+			$y[n]$                      & mV       & Hodnoty diferencovaného signálu                \\
+			$y_j$                       & mV       & Hodnoty signálu po SGF filtraci                \\
 			\noalign{\hrule height 2pt}
 		\end{tabular}
 	\end{center}
@@ -72,7 +64,6 @@
 			\noalign{\hrule height 2pt}
 			Zkratka & Význam                                                                                                               \\
 			\noalign{\hrule height 2pt}
-			AHA     & Americká kardiologická asociace  (American Heart Association)                                                        \\
 			AI      & Umělá inteligence (Artificial intelligence)                                                                          \\
 			ANS     & Autonomní nervová soustava (Autonomic nervous system)                                                                \\
 			AP      & Akční potenciál (Action potential)                                                                                   \\
@@ -91,7 +82,6 @@
 			IIR     & Filtr s nekonečnou impulzní odezvou (Infinite impulse response)                                                      \\
 			LF      & Nízké frekvence (Low frequency)                                                                                      \\
 			LTI     & Lineární časově invariantní systém (Linear time-invariant system)                                                    \\
-			NÚDZ    & Národní ústav duševního zdraví                                                                                       \\
 			NVI     & Neuroviscerální integrace (Neurovisceral integration)                                                                \\
 			PP      & Pásmová propust                                                                                                      \\
 			PSS     & Převodní systém srdeční                                                                                              \\
