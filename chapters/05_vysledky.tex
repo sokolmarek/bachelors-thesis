@@ -23,7 +23,7 @@ zadal vzorkovací frekvenci signálu. EKG signál je následně adaptivně zprac
 	\end{center}
 \end{figure}
 Na Obr.~\ref{fig:results_matlab_tab4} lze vidět otevřenou kartu \textbf{HRV
-analysis}, která vizualizuje výstup HRV analýzy vycházející ze všech předešlých
+	analysis}, která vizualizuje výstup HRV analýzy vycházející ze všech předešlých
 fází zpracování. Všechny karty aplikace jsou uvedené v Příloze B. Jednotlivé
 karty jsou mezi sebou propojené. Pokud například uživatel v jedné kartě posune
 signál na určitý čas, tak se tato změna aplikuje na signály ostatních karet.
@@ -92,10 +92,10 @@ frekvence (mHR), směrodatná odchylka R-R intervalů (SDNN) a směrodatná odch
 srdeční frekvence (SDHR). Hodnoty parametrů vychází z R vln, který byly
 korigovány algoritmem popsaným v sekci~\ref{section:measurement_process}. Z
 korigovaných veličin vychází následná HRV analýza. Detekované artefakty uvádí
-tabulka~\ref{tab:detected_artifacts} v následující sekci.
+Tab.~\ref{tab:detected_artifacts} v následující sekci.
 
 \begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
 		\caption{\label{tab:corrected_components} Korigované R vlny s vypočítanými parametry časové série R-R intervalů z klidové částí měření (N) a při Stroopově testu (S)}
@@ -125,12 +125,12 @@ tabulka~\ref{tab:detected_artifacts} v následující sekci.
 Včetně korigovaných R vln jsou výstupními parametry fáze zpracování detekovaných
 komponentů také detekované artefakty v rámci R-R intervalů. Počty detekovaných
 artefaktů za celý 10 minutový EKG záznam jsou pro každého probanda vyneseny v
-tabulce~\ref{tab:detected_artifacts}. Detekce artefaktů, společně se způsoby
+Tab.~\ref{tab:detected_artifacts}. Detekce artefaktů, společně se způsoby
 korekce jejich jednotlivých typů, je popsaná v
 sekci~\ref{section:components_processing}.
 
 \begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
 		\caption{\label{tab:detected_artifacts} Detekované artefakty v časové sérii R-R intervalů}
@@ -154,15 +154,15 @@ sekci~\ref{section:components_processing}.
 \label{sections:results_analysis}
 Pro kvantitativní hodnocení srdeční aktivity pomocí Poincarého grafu počítá
 realizovaná \textit{MATLAB} aplikace v rámci HRV analýzy pro každý zpracovaný
-EKG záznam veličiny SD1, SD2 a jejich poměr SD1/SD2. Následující
-tabulka~\ref{tab:poincare_parameters} uvádí vypočítané sledované veličiny ze
-dvou úseků EKG záznamů každého probanda. Během prvního úseku byli probandi
-měřeni vklidu (sitauce N) a v druhém úseku podstoupili Stroopův test (situace
-S), který stimuluje kognitivní zátěž. Metodika měření je detailněji popsaná v
+EKG záznam veličiny SD1, SD2 a jejich poměr SD1/SD2. Vypočítané sledované
+veličiny ze dvou úseků EKG záznamů každého probanda uvádí
+Tab.~\ref{tab:poincare_parameters}. Během prvního úseku byli probandi měřeni
+vklidu (sitauce N) a v druhém úseku podstoupili Stroopův test (situace S), který
+stimuluje kognitivní zátěž. Metodika měření je detailněji popsaná v
 sekci~\ref{section:measurement_methodology}.
 
 \begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
 		\caption{\label{tab:poincare_parameters} Vypočítané sledované veličiny z klidové částí měření (N) a při Stroopově testu (S)}
@@ -181,7 +181,7 @@ sekci~\ref{section:measurement_methodology}.
 			                    &  & S & 20.94                                                & 70.35        & 0.30             \\	\noalign{\hrule}
 			\textbf{4. proband} &  & N & 18.93                                                & 77.53        & 0.24             \\
 			                    &  & S & 13.69                                                & 65.63        & 0.21             \\	\noalign{\hrule}
-			\textbf{5. proband} &  & N & 92.95                                                & 178.90       & 0.52             \\
+			\textbf{5. proband} &  & N & 80.70                                                & 174.04       & 0.46             \\
 			                    &  & S & 57.21                                                & 115.77       & 0.49             \\	\noalign{\hrule height 2pt}
 		\end{tabular}
 	\end{center}
@@ -190,10 +190,10 @@ sekci~\ref{section:measurement_methodology}.
 Zá účelem srovnání shod sledovaných veličin mezi situacemi N a S byla nejdříve
 vyšetřena normalita dat pomocí Shapirova-Wilkova testu normality (viz
 sekce~\ref{section:statistical_methods}). Výsledky jsou vyneseny v
-tabulce~\ref{tab:normality_tests}.
+Tab.~\ref{tab:normality_tests}.
 
 \begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
 		\caption{\label{tab:normality_tests} Výsledky testů normálního rozdělení sledovaných veličin ($n=5$)}
@@ -219,33 +219,32 @@ základních souborů s normálním rozdělením.
 Vzhledem k splnění předpokladů normality bylo u jednotlivých sledovaných veličin
 realizované srovnání mezi případy N a S parametrickým párovým t-testem (viz
 sekce~\ref{section:parametric_tests}). Výsledky jsou zaneseny v
-tabulce~\ref{tab:t_tests}.
+Tab.~\ref{tab:t_tests}.
 
 \begin{table}[h]
-	\captionsetup{font=small,skip=0.5pt}
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\begin{center}
 		\caption{\label{tab:t_tests} Výsledky parametrických testů shody sledovaných veličin mezi klidovou částí měření (N) a při Stroopově testu (S) ($n=5$)}
 		\vspace{1ex}
-		\setlength{\tabcolsep}{20pt}
+		\setlength{\tabcolsep}{23pt}
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabular}{lccc}
 			\noalign{\hrule height 2pt}
 			                 &  & \textbf{p hodnota} & \textbf{Nulová hypotéza vyvrácena} \\	\noalign{\hrule}
-			\textbf{SD1}     &  & 0.0355             & Ano                                \\
-			\textbf{SD2}     &  & 0.1038             & Ne                                 \\
-			\textbf{SD1/SD2} &  & 0.1150             & Ne                                 \\	\noalign{\hrule height 2pt}
+			\textbf{SD1}     &  & 0.0132             & Ano                                \\
+			\textbf{SD2}     &  & 0.0967             & Ne                                 \\
+			\textbf{SD1/SD2} &  & 0.2363             & Ne                                 \\	\noalign{\hrule height 2pt}
 		\end{tabular}
 	\end{center}
 \end{table}
 
 Pro lepší přehled a srovnání sledovaných veličin byla vytvořena grafická
-reprezentace vypočítaných parametrů SD1, SD2 a SD1/SD2. Veličiny zanesené v
-grafech~\ref{fig:results_sd1}, \ref{fig:results_sd2} a \ref{fig:results_sd1sd2}
-odpovídají výsledkům vyneseným v tabulce~\ref{tab:poincare_parameters}. Dále
-jsou pro každého probanda v Příloze C uvedeny jednotlivé výsledné Poincarého
-grafy, na kterých lze porovnat rozdíly rozložení R-R intervalů mezi situací N a
-S. 
+reprezentace vypočítaných parametrů SD1, SD2 a SD1/SD2. Veličiny vyznačené na
+Obr.~\ref{fig:results_sd_vals} odpovídají výsledkům vyneseným v
+Tab.~\ref{tab:poincare_parameters}. Dále jsou pro každého probanda v Příloze C
+uvedeny jednotlivé výsledné Poincarého grafy, na kterých lze porovnat rozdíly
+rozložení R-R intervalů mezi situacemi N a S.
 
 \begin{figure}[H]
 	\centering
