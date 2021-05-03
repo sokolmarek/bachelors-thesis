@@ -1,6 +1,6 @@
 V této kapitole jsou popsány metody použité v bakalářské práci. V
 podkapitole~\ref{section:measurement} je rozebrán postup měření EKG záznamů a
-použité zařízení. V kapitole~\ref{section:study} je charakterizovaná kontrolní
+použité zařízení. V kapitole~\ref{section:study} je charakterizována kontrolní
 skupina probandů a sledované veličiny. V
 kapitolách~\ref{section:offline_processing} a~\ref{section:online_processing} je
 řešena metodologie online a offline zpracování a hodnocení EKG signálu.
@@ -30,7 +30,7 @@ vestavěným systémům (embedded systémy) jednoduché připojení k Wi-Fi sít
 chytrých mobilních zařízení~\cite{esptouch}. K záznamu dat byla použita
 aplikace, naprogramovaná v rámci této práce, jménem \textit{BBPM (Better bpm)},
 která se zařízením komunikuje přes protokol \textit{Modbus}~\cite{modbus}.
-Aplikace \textit{BBPM} je detailněji popsaná v
+Aplikace \textit{BBPM} je detailněji popsána v
 kapitole~\ref{section:offline_processing}.
 
 \begin{figure}[H]
@@ -167,7 +167,7 @@ informovaným souhlasem.
 \subsubsection{Kontrolní skupina probandů}
 \label{section:probands}
 Za účelem otestovaní navrženého řešení (viz kapitola 3) byla naměřena a
-zaznamenaná srdeční aktivita podle postupu~\ref{section:measurement_process} u
+zaznamenána srdeční aktivita podle postupu~\ref{section:measurement_process} u
 kontrolní skupiny 5 probandů ve věkovém rozmezí 21--23 let bez diagnostikovaných
 kardiovaskulárních onemocnění.
 
@@ -193,7 +193,7 @@ kapitola~\ref{section:hrv_methods}):
 \subsection{Offline zpracování EKG záznamu}
 \label{section:offline_processing}
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
-\ref{fig:diagram_offline_processing} a je realizované v prostředí programu
+\ref{fig:diagram_offline_processing} a je realizováno v prostředí programu
 \textit{MathWorks MATLAB 2021a}~\cite{MATLAB} s pomocí \textit{Signal Processing
     Toolboxu}~\cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
 následujících kapitolách.
@@ -288,7 +288,7 @@ kumulace~\cite{Wang2017}:
     Bc(n) = \sum_{i=n}^{n+Ww-1} |y(i)|
 \end{equation}
 s pevným oknem $(Ww)$ v rozsahu nejdelšího normálního trvání jednoho QRS
-komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívaná funkce
+komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívána funkce
 \texttt{cumsum(A)}~\cite{matlabCUMSUM}.
 
 \begin{figure}[h!]
@@ -416,7 +416,7 @@ Korekcí je myšleno potlačení nežádoucích artefaktů.
     \end{center}
 \end{figure}
 
-K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementovaná
+K zajištění spolehlivé HRV analýzy a minimalizaci chyb byla implementována
 automatická metoda pro detekci a korekci artefaktů HRV
 podle~\cite{Lipponen2019}. Metoda je založená na adaptivním prahování s využitím
 dvou pohyblivých prahových hodnot. V prvním kroku je vypočtena časová diference
@@ -435,7 +435,7 @@ následovně~\cite{Lipponen2019}:
     Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{1,...,N\}
 \end{equation}
 kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
-5,2. Časová série $dRRs$ je následně normalizovaná prahovými
+5,2. Časová série $dRRs$ je následně normalizována prahovými
 hodnotami~\cite{Lipponen2019}:
 \begin{equation}
     dRR_j = \frac{dRRs_j}{Th1_j}, \quad \forall j \in \{1,...,N\}
@@ -444,7 +444,7 @@ hodnotami~\cite{Lipponen2019}:
 Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
 jednotlivě chybějících srdečních period porovnáním $|dRR|>1$. Pro zbylé případy
 falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat použitím
-$dRR$, je definovaná série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
+$dRR$, je definována série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
 mediánu 11 okolních hodnot~\cite{Lipponen2019}:
 \begin{equation}
     mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{1,...,N\}
@@ -542,7 +542,7 @@ definovaný~\cite{Lipponen2019}:
 \end{gather}
 
 Posledním krokem je korekce detekovaných artefaktů, která se řídí jejich typem a
-následný přepočet nové série korigovaných R-R intervalů. Úprava je realizovaná
+následný přepočet nové série korigovaných R-R intervalů. Úprava je realizována
 pro každý typ artefaktu následujícím způsobem~\cite{Lipponen2019}:
 \begin{itemize}
     \item \textbf{Falešně pozitivní srdeční periody} -- odstranění
@@ -582,7 +582,7 @@ rovny~\cite{Mazhar2007}:
     x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
 \end{equation}
 
-\noindent Elipsa je konstruovaná využitím jejího vyjádření parametrickými
+\noindent Elipsa je konstruována využitím jejího vyjádření parametrickými
 rovnicemi:
 \begin{gather}
     \label{eq:ellipse_parametric}
@@ -635,7 +635,7 @@ Pro zpracování EKG signálu v reálném čase bylo naprogramované multiplatfo
 kapitole~\ref{section:offline_processing} na
 Obr.~\ref{fig:diagram_offline_processing}. Motivací pro vznik aplikace je
 spolupráce s Mgr. et Mgr. Ivetou Fajnerovou, Ph.D. z Národního ústavu duševního
-zdraví (NÚDZ). Aplikace je využívaná pro hodnocení duševního stavu osob ve
+zdraví (NÚDZ). Aplikace je využívána pro hodnocení duševního stavu osob ve
 virtuální realitě. Detailněji je program popsán v následujících kapitolách.
 
 \subsubsection{Aplikace pro hodnocení a sběr dat}
@@ -843,8 +843,8 @@ na Obr.~\ref{fig:sgf_filter}.
     \end{center}
 \end{figure}
 
-Po filtraci jsou data přidaná do cyklické fronty~\cite{circlebuffer}, kde
-probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používaná
+Po filtraci jsou data přidána do cyklické fronty~\cite{circlebuffer}, kde
+probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používána
 funkce \texttt{find{\_}peaks(x,h,d)}~\cite{scipyFindpeaks}. Funkcí probíhá
 hledání lokálních maxim signálu v závislosti na zadané prahové amplitudě a
 minimální vzdáleností mezi sousedními R vlny. Prahová hodnota amplitudy byla
@@ -858,7 +858,7 @@ následovně:
     \label{eq:calc_hr}
     HR = \frac{60}{RR}
 \end{equation}
-kde $HR$ je hodnota srdeční frekvence a $RR$ aktuálně vypočítaná srdeční
+kde $HR$ je hodnota srdeční frekvence a $RR$ aktuálně vypočtená srdeční
 perioda. Na panelu je z vypočítané hodnoty zobrazena celá část čísla. Dalším
 parametrem je průměrná hodnota srdeční frekvence, která se počítá podle
 vztahu~\ref{eq:calc_hr} výše. Namísto $RR$ je ale dosazena průměrná hodnota
@@ -893,7 +893,7 @@ Obr.~\ref{fig:app_ecg_visual}.
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}
-Pro zpracování výsledků byly v práci použity statistické testy, realizované
+Pro zpracování výsledků byly v práci použity statistické testy, realizovány
 funkcemi v prostředí programu \textit{MathWorks MATLAB 2021a}~\cite{MATLAB},
 které prověřují platnost nulové hypotézy $H_0$. Nulová hypotéza představuje ve
 většině případů tvrzení, že rozdíl mezi testovanými daty není statisticky
