@@ -1,7 +1,107 @@
-V této části shrňte získané výsledky (hlavní zjištění práce) a následně tyto výsledky interpretujte s ohledem na cíle práce. 
-Lze též získané výsledky a výstupy konfrontovat s výsledky a výstupy jiných autorů, výrobky jiných společností apod. 
-Nezbytné je správné uvádění zdrojů (citace prací, které jsou zde porovnávány a diskutovány). 
-Diskutují se rovněž limitace práce. 
-Nakonec lze nastínit další směřování práce do budoucna, opatrně spekulovat o klinickém významu práce apod.
+Jedním z hlavních výsledků práce je realizace \textit{MATLAB} SW řešení pro
+offline hodnocení srdeční aktivity pomocí Poincarého grafu. Graficky lze
+vytvořenou aplikaci vidět v Příloze~B. Pro zajištění adaptivního zpracování EKG
+záznamu a minimální chybovosti v rámci HRV analýzy byl vytvořen algoritmus,
+který se skládá z následujících částí: předzpracování, detekce komponentů,
+zpracování komponentů, vizualizace.
 
-Struktura a obsah této části je detailně probírána a procvičována v příslušných seminářích na oboru BMT. 
+V částí předzpracování prochází EKG záznam digitální filtrací. Filtrace je
+uskutečněna pomocí integrovaných funkcí prostředí \textit{MATLAB}. Filtry se
+navrhují automaticky v závislosti na charakteru signálu s konstantní hodnotou
+útlumu nepropustného pásma 60~\si\dB. V každém případě je navržen filtr
+nejmenšího řádu typu pásmová propust, jehož impulsní charakteristika se
+zjednodušeně orientuje délkou signálu. Principiálně se počítá nejmenší řád FIR
+filtru potřebný pro splnění jeho zadaných specifikací. FIR filtr je navržen a
+uplatněn, pokud je vypočítaný řád alespoň dvakrát menší než délka signálu. V
+případě nesplnění podmínky je stejný postup aplikován pro IIR verzi filtru, kde
+musí být vypočítaný řád alespoň třikrát menší než délka signálu. Pokud není
+vyhověno ani jedné podmínce je navržen IIR filtr s řádem odpovídajícím třetině
+délky signálu. Fázové zpoždění filtrů je kompenzováno automaticky. Pro všechny
+EKG signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
+rozmezím dolního tolerančního pásma 6,32--7,50~\si\Hz, horního tolerančního
+pásma 35,00--68,75~\si\Hz~a zvlněním 0,1~\si\dB~v propustném pásmu. Pro návrh
+FIR filtru je využívaná metoda Kasierova okna (viz
+sekce~\ref{section:online_processing}), která je mezi dalšími metody oken pro
+filtraci EKG signálu nejefektivnější. Metody byly již porovnané v
+\cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v poddání
+realizovaného řešení umožňuje ve srovnání s jinými open-source \textit{MATLAB}
+aplikacemi -- například~\cite{ecgkit,Sedghamiz2018} -- širší a spolehlivější
+možnosti filtrace EKG záznamů různorodého charakteru. Hlavním důvodem je, že
+většina aplikací využívá pouze jeden specifický filtr s pevně nastavenými
+parametry, které nelze měnit ani uživatelsky. Nejčastěji se lze setkat s FIR
+filtry navržené metodou nejmenších čtverců nebo metodou okna a IIR Butterworthy
+filtry typu pásmová propust. V těchto případech tak vzniká předpoklad, který
+vymezuje použití aplikace pro určitou kategorii EKG signálů. Teoretickým
+příkladem může být Pan-Tompkinsův algoritmus (viz
+sekce~\ref{section:components_detection_theory}), který u filtrace využívá nízké
+mezní frekvence pásmové propusti (5--15~\si\Hz) a primárně předpokládá EKG s
+normálním sinusovým rytmem. Při použití EKG záznamů s výskytem arytmií, které se
+zpravidla filtrují s vyšší horní mezní frekvencí, je efektivita algoritmu
+nižší~\cite{Fariha2020}. Stejná situace nastává také v případě záznamů, které
+jsou velmi zatížené pohybovými artefakty. Vzhledem ke komplexnosti řešení je
+toto snížení v případě Pan-Tompkinsovy metody oproti jednodušším metodám poměrně
+zanedbatelné a lehce kompenzovatelné. U jednodušších metod by však nebylo možné
+takto zpracovaný záznam použit k analýze. Proto pro zajištění vysoké
+spolehlivosti analýzy EKG záznamů je několik kroků předzpracování a povaha
+detekce komponentů navrženého řešení inspirovaná Pan-Tompkinsovou metodou.
+Výsledek jednotlivých kroků zpracování EKG lze vidět na
+Obr.~\ref{fig:preprocessing_steps}. Zároveň je v navržené aplikaci uživateli
+umožněno měnit mezní frekvence pásmové propusti, což společně s adaptivní
+metodou návrhu filtrů rozšiřuje využití realizovaného řešení. 
+
+Detekce komponentů využívá podobně jako Pan-Tompkinsův QRS detektor dva
+adaptivní prahy. První práh vychází z amplitud R vln a druhý z délky R-R
+intervalů. Detekční algoritmus (viz kapitola~\ref{section:components_detection})
+není v tomto případě příliš sofistikovaný a počítá především s kvalitně
+zpracovaným a vyhlazeným EKG záznamem. To je v rámci realizovaného řešení
+zajištěno rozšířením předzpracování o zpětnou kumulaci umocněného signálu a
+následné vyhlazení konvolucí. Výsledkem je signál v podobě špičatých vrcholů s
+kladnou amplitudou, které lze vizuálně přirovnat ke Gaussově funkci s velmi
+nízkou hodnotou parametru~\textsigma. Pro porovnání a ověření spolehlivosti
+detekce byl implementován Pan-Tompkinsův QRS detektor~\cite{Pan1985} a jeho
+modifikovaná Hamiltonova verze~\cite{Hamilton1987}. Ve všech případech použití
+byl výsledek detekce u EKG záznamů sledovaných osob stejný. Je třeba podotknout
+že pilotní měření záznamu bylo uskutečněno za laboratorních podmínek a tomu
+odpovídala i relativně dobrá kvalita signálů. Detekce by tedy mohla být pochybná
+v případě EKG záznamů zatížených mnohočetnými artefakty nebo projevy
+kardiovaskulárních onemocnění. Vzniká tak zde prostor na zlepšení v komplexnosti
+a rozsahu použití detekčního algoritmu pro případné budoucí využití. Zásadní
+problém použitého detekčního algoritmu může nastat například v situaci
+abnormální amplitudy R vlny, která bude z časového hlediska normální. Jelikož se
+první práh adaptuje průměrováním předešlých amplitud R vln, abnormálně vysoká či
+nízká amplituda by mohla práh posunout natolik, že by detekce následujících
+normálních R vln byla zanedbaná. Řešením by mohla být identifikace a eliminace
+odlehlých hodnot (outliers) amplitud v cyklické frontě, ze které se průměrem
+počítá první práh nebo zvolení nekauzálního přístupu prahování v závislosti na
+offline charakteru zpracování. 
+
+Výsledkem části detekce komponentů je časová série R vln, která je vzápětí
+zpracovaná a korigovaná. Korigované výsledky jsou uvedeny v
+Tab.~\ref{tab:corrected_components}. Detekované artefakty každého záznamu lze
+vidět v Tab.~\ref{tab:detected_artifacts}. Pro zpracování detekovaných
+komponentů byla použita metoda, navržená firmou Kubios, která se specializuje na
+zpracování a analýzu variability srdečního rytmu. Jedná se o sofistikovaný
+algoritmus (viz sekce \ref{section:components_processing}), který byl
+implementován za účelem maximalizace spolehlivosti hodnocení srdeční aktivity
+pomocí Poincarého grafu. V současnosti jsou softwarové řešení firmy Kubios
+pravděpodobně nejpopulárnější a nejrozšířenější ve vědeckém výzkumu a i v
+klinické praxi. Kubios poskytuje včetně komerčních softwarových řešení i volně
+dostupnou aplikaci jménem \textit{Kubios HRV Standard}, kterou lze využít zdarma
+pro osobní použití. Mezi funkcemi aplikace je i nelineární HRV analýza
+Poincarého grafem. Srovnáním výstupních reportů analýzy aplikace \textit{Kubios
+HRV Standard} a výsledků podle Tab.~\ref{tab:corrected_components} byla ověřena
+účinnost a správná funkcionalita implementovaného algoritmu spolu s vypočítanými
+indexy Poincarého grafu. Jednotlivé reporty jsou součástí obsahu přiloženého
+datového nosiče. Komplexní zpracování detekovaných komponentů zároveň do jisté
+míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem. 
+
+
+
+
+
+
+
+
+
+
+
