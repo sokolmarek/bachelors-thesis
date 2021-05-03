@@ -17,10 +17,15 @@
 %% arara: xelatex: { shell : yes }
 %% arara: xelatex: { shell : yes }
 
-\documentclass[a4paper,12pt]{article}   % Definice - velikost dokumentu, základní velikost písma, typ
+\documentclass[a4paper,12pt,czech]{article}   % Definice - velikost dokumentu, základní velikost písma, typ
 \usepackage[a4paper, top=2.5cm, left=3.5cm, right=2.5cm, bottom=2.5cm]{geometry}		% nastavení okrajů
-
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont[Scale=0.9]{Courier New}
+\usepackage[czech]{babel}
 %% Přidání balíčků podporujících různé funkcionality - ZÁKLADNÍ
+\usepackage{xevlna}						%
 \usepackage{amsmath,float}				% balíček pro matiku
 \usepackage[dvipsnames]{xcolor}
 \usepackage{color}
@@ -30,9 +35,7 @@
 
 \usepackage{float}						% plovoucí prostředí
 %\usepackage[utf8]{inputenc}			% kódování (v tomto případě useless protože používáme unicode engine)
-\usepackage[czech]{babel}				% čeština
 \usepackage{enumitem}      			    % seznamy 
-\usepackage{xevlna}						%
 \usepackage{subcaption}					%
 \usepackage{pdfpages}					%
 \usepackage{amsfonts}      				% množiny Z,R,N dvojitě
@@ -60,22 +63,19 @@
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
 % Následující balíčky řeší citace v dokumentu. 
-\usepackage{csquotes}   
-\usepackage{expl3}                    
+\usepackage{csquotes}
+\usepackage{expl3}
 \usepackage[style=iso-numeric]{biblatex}
-\addbibresource{biblio.bib}             % zdrojový soubor s citacemi
+\addbibresource{biblio.bib}
 
-\usepackage{siunitx}					%
+\usepackage{siunitx}
 %% Přidání balíčků podporujících různé funkcionality - VOLITELNÉ, DOPLŇKOVÉ
 % Existuje celá řada dalších
 %\usepackage[]{algorithm2e}				    % balíček pro pseudokód
 %\usepackage{ifthen}                        % pro algoritmy if else
 %\usepackage{paralist}                      % Rozšířená možnost pro seznamy. Větší škála a možnosti jak seznamy dělat automaticky. 
 %\usepackage{courier}
-\usepackage{fontspec}                       % nastavení specifických fontů
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
-\setmonofont[Scale=0.9]{Courier New}
+
 %\usepackage{icomma}      				    % není mezera za desetinnou čárkou
 % \usepackage[titletoc,title]{appendix}     % automatické vytvoření příloh
 
@@ -85,6 +85,12 @@
 \newcommand{\degree}[1][]{\ensuremath{{#1}^\circ}}      % Vytiskne stupeň - \degree
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	% zarovnání v tabulce, vycentrování, potřebuje \usepackage{array}
 \addto\captionsczech{\renewcommand{\figurename}{Obr.}}		%
+\addto\captionsczech{\renewcommand{\tablename}{Tab.}}		%
+
+\captionsetup {
+	font = small,
+	labelfont = bf
+}
 
 % Zalamování slov na konci věty - napodobení justify jako MS-Word
 %\tolerance=1
@@ -121,7 +127,7 @@
 
 % // TODO: Turn on referencing
 % \usepackage{hyperref}%
-   
+
 %% Deklarace názvů - přepsat dle autora
 \newcommand{\autor}{Marek Sokol}
 \newcommand{\vedouci}{Mgr. Ksenia Sedova, Ph.D.}
