@@ -81,9 +81,9 @@ pericardialis)~\cite{Weinhaus2005,Dylevsky2013}.
 Obecně se srdeční svalovina skládá z příčně pruhované srdeční tkáně, avšak k
 zajištění srdeční činnosti obsahuje kromě svalových buněk schopných kontrakce
 (pracovní myokard) také specializované kardiomyocyty, tvořící převodní systém
-srdeční (PSS). Tento systém, společně ve spojení s autonomním nervovým systémem
-(ANS), tvoří pro tuto práci zásadní část, a proto je podrobněji probrán v
-samostatné kapitole~\cite{Memorix2017,Dylevsky2013}.
+srdeční (PSS)~\cite{Memorix2017,Dylevsky2013}. Tento systém, společně ve spojení
+s autonomním nervovým systémem (ANS), tvoří pro tuto práci zásadní část, a proto
+je podrobněji probrán v samostatné kapitole.
 
 \subsubsection{Srdeční cyklus}
 \label{section:cardiac_cycle}
@@ -586,11 +586,11 @@ Včetně lineárních metod filtrace se v praxi často užívají i další meto
 předzpracování mezi které se řadí například nelineární a adaptivní
 filtrace~\cite{Sornmo1982,Pan1985}, vlnkové
 transformace~\cite{Yao2020,Ndiaye2020}, korelační analýza, kumulační metody nebo
-se využívá neuronových sítí~\cite{Kiranyaz2016,Zhai2018}~\cite{Jan2002}. Po
-filtraci signálu a potlačení nežádoucích rušivých složek přichází na řadu jeho
-segmentace a extrakce komponentů potřebných k analýze. Na extrahované komponenty
-se následně aplikují další postupy hodnotící fyziologické jevy, mezi které
-nejčastěji patří HRV.
+neuronové sítě~\cite{Kiranyaz2016,Zhai2018}~\cite{Jan2002}. Po filtraci signálu
+a potlačení nežádoucích rušivých složek přichází na řadu jeho segmentace a
+extrakce komponentů potřebných k analýze. Na extrahované komponenty se následně
+aplikují další postupy hodnotící fyziologické jevy, mezi které nejčastěji patří
+HRV.
 
 \subsubsection{Nežádoucí elementy EKG signálu}
 \label{section:artifacts_theory}
@@ -716,7 +716,7 @@ je definován nalezený komponent. Z hlediska principu předzpracování se čas
 používají například algoritmy založené na~\cite{Kohler2002,Vaneghi2012}:
 \begin{itemize}[noitemsep]
 	\item \textit{digitální filtraci}~\cite{Sornmo1982,Kesel1997481},
-	\item \textit{diferenciaci}~\cite{Tompkins1983,Okada1979},
+	\item \textit{diferenciaci}~\cite{Tompkins1983,Hamilton1987},
 	\item \textit{vlnkové transformaci}~\cite{Yao2020,Ndiaye2020},
 	\item \textit{počítání průchodů nulou}~\cite{Kohler2003,Turnip2018},
 	\item \textit{Hilbertově transformaci}~\cite{Valluraiah2015, Ouali2020},
@@ -942,12 +942,12 @@ léčiva~\cite{Pumprla2014}.
 
 %//TODO: Add acronyms to acronyms table ICHS, SDNN, SDNNi, RMSSD, SD1, SD2, SD1/SD2
 \begin{table}[h]
+	\captionsetup{skip=0.5pt}
 	\catcode`\-=12
 	\scriptsize
 	\begin{center}
 		\caption[HRV a rizikové faktory]{Vybrané vztahy mezi HRV parametry a
-			rizikovými faktory (Upraveno a převzato
-			z~\cite{Pumprla2014,Thayer2009})}
+			rizikovými faktory \\ (Upraveno a převzato z \cite{Pumprla2014,Thayer2009})}
 		\label{tab:hrv_factors}
 		\vspace{1ex}
 		\begin{tabular}{|p{1.3cm}|p{1.7cm}|p{4.5cm}|p{5.5cm}|}
