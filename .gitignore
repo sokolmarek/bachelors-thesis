@@ -2,6 +2,7 @@
 
 assets/psd/
 *.docx
+*.pptx
 slides.pdf
 thesis.pdf
 
