@@ -1,7 +1,10 @@
 .vscode
 
 assets/psd/
+assets/misc/
+assets/m_files/
 *.docx
+*.4og
 *.pptx
 slides.pdf
 thesis.pdf
