@@ -3,7 +3,8 @@ offline hodnocení srdeční aktivity pomocí Poincarého grafu. Graficky lze
 vytvořenou aplikaci vidět v Příloze~B. Pro zajištění adaptivního zpracování EKG
 záznamu a minimální chybovosti v rámci HRV analýzy byl vytvořen algoritmus,
 který se skládá z následujících částí: předzpracování, detekce komponentů,
-zpracování komponentů, vizualizace.
+zpracování komponentů, vizualizace. Jednotlivě vizualizované části lze vidět v
+Příloze B.
 
 V částí předzpracování prochází EKG záznam digitální filtrací. Filtrace je
 uskutečněna pomocí integrovaných funkcí prostředí \textit{MATLAB}. Filtry se
@@ -16,8 +17,8 @@ uplatněn, pokud je vypočítaný řád alespoň dvakrát menší než délka si
 případě nesplnění podmínky je stejný postup aplikován pro IIR verzi filtru, kde
 musí být vypočítaný řád alespoň třikrát menší než délka signálu. Pokud není
 vyhověno ani jedné podmínce je navržen IIR filtr s řádem odpovídajícím třetině
-délky signálu. Fázové zpoždění filtrů je kompenzováno automaticky. Pro všechny
-EKG signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
+délky signálu. Fázové zpoždění filtrů se kompenzuje automaticky. Pro všechny EKG
+signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
 rozmezím dolního tolerančního pásma 6,32--7,50~\si\Hz, horního tolerančního
 pásma 35,00--68,75~\si\Hz~a zvlněním 0,1~\si\dB~v propustném pásmu. Pro návrh
 FIR filtru je využívaná metoda Kasierova okna (viz
@@ -25,20 +26,21 @@ sekce~\ref{section:online_processing}), která je mezi dalšími metody oken pro
 filtraci EKG signálu nejefektivnější. Metody byly již porovnané v
 \cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v poddání
 realizovaného řešení umožňuje ve srovnání s jinými open-source \textit{MATLAB}
-aplikacemi -- například~\cite{ecgkit,Sedghamiz2018} -- širší a spolehlivější
-možnosti filtrace EKG záznamů různorodého charakteru. Hlavním důvodem je, že
-většina aplikací využívá pouze jeden specifický filtr s pevně nastavenými
-parametry, které nelze měnit ani uživatelsky. Nejčastěji se lze setkat s FIR
-filtry navržené metodou nejmenších čtverců nebo metodou okna a IIR Butterworthy
-filtry typu pásmová propust. V těchto případech tak vzniká předpoklad, který
-vymezuje použití aplikace pro určitou kategorii EKG signálů. Teoretickým
-příkladem může být Pan-Tompkinsův algoritmus (viz
+aplikacemi -- například~\cite{ecgkit}~a~\cite{Sedghamiz2018} -- širší a
+spolehlivější možnosti filtrace EKG záznamů různorodého charakteru. Hlavním
+důvodem je, že většina aplikací využívá pouze jeden specifický filtr s pevně
+nastavenými parametry, které nelze měnit ani uživatelsky. Nejčastěji se lze
+setkat s FIR filtry navržené metodou nejmenších čtverců nebo metodou okna a IIR
+Butterworthy filtry typu pásmová propust. V těchto případech tak vzniká
+předpoklad, který vymezuje použití aplikace pro určitou kategorii EKG signálů.
+Teoretickým příkladem může být Pan-Tompkinsův algoritmus (viz
 sekce~\ref{section:components_detection_theory}), který u filtrace využívá nízké
 mezní frekvence pásmové propusti (5--15~\si\Hz) a primárně předpokládá EKG s
 normálním sinusovým rytmem. Při použití EKG záznamů s výskytem arytmií, které se
 zpravidla filtrují s vyšší horní mezní frekvencí, je efektivita algoritmu
 nižší~\cite{Fariha2020}. Stejná situace nastává také v případě záznamů, které
-jsou velmi zatížené pohybovými artefakty. Vzhledem ke komplexnosti řešení je
+jsou velmi zatížené svalovými artefakty (viz
+kapitola~\ref{section:artifacts_theory}). Vzhledem ke komplexnosti řešení je
 toto snížení v případě Pan-Tompkinsovy metody oproti jednodušším metodám poměrně
 zanedbatelné a lehce kompenzovatelné. U jednodušších metod by však nebylo možné
 takto zpracovaný záznam použit k analýze. Proto pro zajištění vysoké
@@ -81,19 +83,74 @@ Tab.~\ref{tab:corrected_components}. Detekované artefakty každého záznamu lz
 vidět v Tab.~\ref{tab:detected_artifacts}. Pro zpracování detekovaných
 komponentů byla použita metoda, navržená firmou Kubios, která se specializuje na
 zpracování a analýzu variability srdečního rytmu. Jedná se o sofistikovaný
-algoritmus (viz sekce \ref{section:components_processing}), který byl
+algoritmus (viz sekce~\ref{section:components_processing}), který byl
 implementován za účelem maximalizace spolehlivosti hodnocení srdeční aktivity
 pomocí Poincarého grafu. V současnosti jsou softwarové řešení firmy Kubios
-pravděpodobně nejpopulárnější a nejrozšířenější ve vědeckém výzkumu a i v
-klinické praxi. Kubios poskytuje včetně komerčních softwarových řešení i volně
-dostupnou aplikaci jménem \textit{Kubios HRV Standard}, kterou lze využít zdarma
-pro osobní použití. Mezi funkcemi aplikace je i nelineární HRV analýza
-Poincarého grafem. Srovnáním výstupních reportů analýzy aplikace \textit{Kubios
-HRV Standard} a výsledků podle Tab.~\ref{tab:corrected_components} byla ověřena
+pravděpodobně nejpopulárnější a nejrozšířenější ve vědeckém výzkumu, a i v
+klinické praxi. Kubios poskytuje včetně komerčních softwarových řešení i
+aplikaci jménem \textit{Kubios HRV Standard}, kterou lze využít zdarma pro
+osobní použití. Mezi funkcemi aplikace je i nelineární HRV analýza Poincarého
+grafem. Srovnáním výstupních reportů analýzy aplikace \textit{Kubios HRV
+Standard} a výsledků podle Tab.~\ref{tab:corrected_components} byla ověřena
 účinnost a správná funkcionalita implementovaného algoritmu spolu s vypočítanými
 indexy Poincarého grafu. Jednotlivé reporty jsou součástí obsahu přiloženého
 datového nosiče. Komplexní zpracování detekovaných komponentů zároveň do jisté
-míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem.
+míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem. 
+
+Jiné, volně dostupné \textit{MATLAB} aplikace, určené pro analýzu HRV --
+například \cite{Ramshur2010} nebo~\cite{Kardia2010} -- poskytují rozmanitější
+možnosti analýzy, a to jak ve frekvenční, tak časové doméně. Jejich
+předpokládaným vstupem je ale už zpracovaná, ideálně i korigovaná, časová řada
+R-R intervalů. Tyto řešení samy o sobě nejsou schopné zpracovat EKG záznam a
+nevyužívají ani velmi komplexních metod pro korekci artefaktů R-R intervalů.
+Zpracování v rámci těchto aplikací se obvykle týká především odstranění trendu
+vstupních dat k zajištění stacionarity signálu pro potřeby spektrální a
+fluktuační HRV analýzy. Rozšířením možností analýzy realizovaného řešení by tedy
+bylo možné získat nadhled nad drtivou většinou open-source \textit{MATLAB}
+aplikací či pouhých skriptů. To vyplývá i z faktu, že mnoho současných řešení
+jsou zastaralá a nové nepřibývají. Jedním z důvodu může být prudce vzrůstající
+popularita prostředí \textit{Python}, které v mnoha případech čím dál častěji
+nahrazuje \textit{MATLAB} realizace. 
+
+Dalším výsledkem práce je naprogramované SW řešení s GUI pro online hodnocení
+srdeční aktivity v prostředí \textit{Python}. Aplikaci \textit{BBPM} lze vidět
+na Obr.~\ref{fig:results_bbpm}. Popis programu je uveden v
+kapitole~\ref{section:online_data_process}. Filtrace signálu a detekce
+komponentů (viz sekce~\ref{section:online_processing}) zde nejsou zdaleka tak
+propracované jako v předešlém \textit{MATLAB} řešení. Vzhledem k budoucímu
+používaní aplikace je tedy žádoucí, minimálně v těchto dvou ohledech, aplikaci
+vylepšit. Během zpracovávání dat v reálném čase se výsledek filtrace SGF jeví po
+vizuální stránce uspokojivě, avšak zvolená metoda filtrace může vést v mnoha
+případech k závažné chybě. Filtr SGF využívá centrované plovoucí okno, a počítá
+tak s okolními hodnotami. Délka okna je staticky nastavený parametr v závislosti
+na datech přijatých z použitého měřícího zařízení (viz
+kapitola~\ref{section:measurement_device}). Aplikace ze zařízení přijímá datové
+bloky o velikosti 2048 vzorků. Pokud by byla nyní aplikace použita s jiným
+zařízením, které posílá hodnoty po jednom vzorku nebo po blocích menších než
+nastavená délka okna, filtrace by nefungovala. Nabízí se tak implementace
+variabilnějšího řešení v podobě rekurzivní filtrace. Filtry IIR jsou běžně
+využívané k filtraci signálu v reálném čase už jen díky jejich nízké výpočetní
+náročností. Pro srovnání s FIR filtrací využívanou v \textit{MATLAB} řešení byl
+navržen Eliptický IIR filtr se stejnými parametry, který byl ve filtraci každého
+naměřeného signálu průměrně~8,5x rychlejší. Detekce komponentů je realizovaná
+pouze hledáním lokálních maxim signálu, které mají charakteristiky R vln --
+amplitudu a prominenci. Aplikaci \textit{BBPM} tak v budoucím vývoji
+pravděpodobně nemine zavedení robustního QRS detektoru. Tím může být některá
+modifikace (již zmíněného) Pan-Tompkinsonova QRS detektoru, který byl primárně
+navržen pro uplatnění v reálném čase. Pro účely této práce byla aplikace
+\textit{BBPM} použita pro sběr surových dat. Naměřená data jsou součástí obsahu
+přiloženého datového nosiče. 
+
+Pro ověření naprogramovaných řešení bylo realizováno měření EKG záznamů na
+kontrolní skupině 5 osob (viz sekce \ref{section:probands}). Měření probíhalo
+dle postupu uvedeného v sekci \ref{section:measurement_methodology}. 
+
+
+
+
+
+
+
 
 
 
