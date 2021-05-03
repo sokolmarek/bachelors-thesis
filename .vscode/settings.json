@@ -32,5 +32,6 @@
         "sympatikus"
     ],
     "todo-tree.tree.showCountsInTree": false,
-    "todo-tree.tree.disableCompactFolders": true
+    "todo-tree.tree.disableCompactFolders": true,
+    "cSpell.enabled": true
 }
