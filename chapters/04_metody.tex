@@ -25,7 +25,7 @@ s 3.5~\si\mm~jack konektorem. Vzorkovací frekvence zařízení je 500~\si\Hz.
 
 Přenos dat ze zařízení probíhá bezdrátově na lokální sítí (WLAN), ke které je
 třeba zařízení připojit pomocí volně dostupné mobilní aplikace \textit{ESPTouch:
-SmartConfig} podle postupu níže. \textit{ESP-TOUCH} je protokol, umožňující
+    SmartConfig} podle postupu níže. \textit{ESP-TOUCH} je protokol, umožňující
 vestavěným systémům (embedded systémy) jednoduché připojení k Wi-Fi sítím pomocí
 chytrých mobilních zařízení~\cite{esptouch}. K záznamu dat byla použita
 aplikace, naprogramovaná v rámci této práce, jménem \textit{BBPM (Better bpm)},
@@ -138,7 +138,7 @@ následujících kroků:
 \begin{enumerate}
     \item Konfigurace měřícího zařízení podle postupu v sekci~\ref{section:measurement_device}.
     \item Nalepení elektrod na měřeného probanda podle
-    Obr.~\ref{fig:device_usage} a připojení příslušných EKG kabelů k elektrodám.
+          Obr.~\ref{fig:device_usage} a připojení příslušných EKG kabelů k elektrodám.
     \item Zapnutí aplikace \textit{BBPM}. Počítač na kterém běží aplikace musí
           být připojený ke stejné sítí jako měřící zařízení.
     \item Nastavení aplikace stiskem tlačítka \textbf{Settings} a vyplněním IP
@@ -160,7 +160,7 @@ mít informovaný souhlas měřených probandů a souhlasné stanovisko etické 
 %//TODO: add reference
 \subsubsection{Stanovisko etické komise}
 Sběr dat proběhl v rámci výzkumu \textit{Zpátky za volant -- Diagnostický a
-rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
+    rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
 komisí FBMI ČVUT. Stanovisko etické komise je uvedeno v Příloze A společně s
 informovaným souhlasem.
 
@@ -195,7 +195,7 @@ kapitola~\ref{section:hrv_methods}):
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
 \ref{fig:diagram_offline_processing} a je realizované v prostředí programu
 \textit{MathWorks MATLAB 2021a}~\cite{MATLAB} s pomocí \textit{Signal Processing
-Toolboxu}~\cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
+    Toolboxu}~\cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
 následujících kapitolách.
 
 \begin{figure}[H]
@@ -250,8 +250,8 @@ které je definované~\cite{Oppenheim1999}:
     \label{eq:kaiser1}
     w[n] =
     \begin{cases}
-        \frac{I_0[\beta(1-[(n-\alpha/\alpha]^2)^{1/2}]}{I_0(\beta)}, & 0 \leq n \leq M, \\
-        0,                                                           & \text{jinak}
+        \frac{I_0[\beta(1-[(n-\alpha/\alpha]^2)^{1/2}]}{I_0(\beta)}, & 0 \leq n \leq M \\
+        0,                                                           & \text{jinak}.
     \end{cases}
 \end{equation}
 kde $w$ označuje vypočítané koeficienty, $M$ je počet vzorků, $\alpha=M/2$ a
@@ -272,20 +272,20 @@ následovně~\cite{Oppenheim1999}:
 Filtr byl realizován funkcí \texttt{bandpass(x,fpass,fs)}~\cite{matlabBANDPASS}.
 Druhou části předzpracování tvoří filtrace zvýrazňující QRS komplexy, konkrétně
 R vlny. Použitá metoda pro zvýraznění vychází z vlastností derivace a vyšších
-amplitud R vln. Filtrovaný signál je nejdříve diferencován použitím pěti-bodové
-diference prvního řádu dle následujícího vztahu~\cite{Wang2017}:
+amplitud R vln. Filtrovaný signál je diferencován použitím pěti-bodové diference
+prvního řádu dle následujícího vztahu:
 \begin{equation}
     \label{eq:differentiation}
-    d[n] = \frac{1}{8}(2f[n] + f[n-1] - f[n-3] - 2f[n-4])
+    y[n] = \frac{1}{8}(2x[n] + x[n-1] - x[n-3] - 2x[n-4])
 \end{equation}
-kde $n \geq 5$, $d[n]$ reprezentuje vzorek diferencovaného signálu a $f[n]$
+kde $n \geq 5$, $y[n]$ reprezentuje vzorek diferencovaného signálu a $x[n]$
 hodnotu původního vzorku. Diferenciace zároveň potlačuje vlivy P a T vln.
 Výstupem diference je bipolární signál, který je umocněn. QRS regiony jsou
 následně jednotlivě sloučeny a zvýrazněny využitím zpětné
 kumulace~\cite{Wang2017}:
 \begin{equation}
     \label{eq:backward_cumulation}
-    Bc(n) = \sum_{i=n}^{n+Ww-1} |d(i)|
+    Bc(n) = \sum_{i=n}^{n+Ww-1} |y(i)|
 \end{equation}
 s pevným oknem $(Ww)$ v rozsahu nejdelšího normálního trvání jednoho QRS
 komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívaná funkce
@@ -318,14 +318,14 @@ jejich vysoké amplitudy.
 Za účelem detekce R vln byl implementován a modifikován algoritmus
 podle~\cite{Nabian2018}, inspirovaný Pan-Tompkinsovou metodou QRS
 detekce~\cite{Pan1985} (viz kapitola~\ref{section:components_detection_theory}).
-Algoritmus vychází z následujících kroků~\cite{Nabian2018}:
+Algoritmus vychází z následujících kroků:
 \begin{enumerate}
     \item Iterativní hledání globálních maximálních amplitud s použitím
           plovoucího okna $W$ o délce 400~\si\ms~(0,4~\si\s):
           \begin{gather}
-              R_i = max(W_i^{L,R}) \nonumber \\
-              L = R = \frac{0.4~Fs}{2}, ~L,R \in \mathbb{Z^+} \nonumber \\
-              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, ~\forall i \in \{1+L,...,N-R\}
+              R_max = max(W_i^{L,R}) \nonumber \\
+              L = R = \frac{0.4~Fs}{2}, \quad L,R \in \mathbb{Z^+} \nonumber \\
+              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, \quad \forall i \in \{1+L,...,N-R\}
           \end{gather}
           kde $N$ je počet detekovaných R vln, $Fs$ vzorkovací frekvence, $R_i$
           potenciální R vlna, $x_i$ střed okna a $L$ spolu s $R$ posun od středu
@@ -335,20 +335,20 @@ Algoritmus vychází z následujících kroků~\cite{Nabian2018}:
           každé iteraci rovna 75 \% z průměru amplitůd posledních 8 detekovaných
           R vln. Iniciálně je prahová hodnota $Th_{Amp}$ nastavena jako:
           \begin{gather}
-              n = 2~Fs, ~n \in \mathbb{Z^+} \nonumber \\
+              n = 2~Fs, \quad n \in \mathbb{Z^+} \nonumber \\
               Th_{Amp} = \frac{1}{3} max(\{x_1,x_2,x_3,...,x_n\})
           \end{gather}
     \item Výpočet R-R intervalů ($RR_i$) diferencí detekovaných R vln ($R_i$):
           \begin{equation}
-              RR_i = R_{i} - R_{i-1}, ~\forall i \in \{2,...,N\}
+              RR_i = R_{i} - R_{i-1}, \quad \forall i \in \{2,...,N\}
           \end{equation}
           Následně je provedena iterativní kontrola vypočítaných R-R intervalů.
           Intervaly delší než prahová hodnota $Th_{RR}$ indikují chybějící R
           vlnu, která je doplněna jako maximální amplituda v rozmezí délky
           plovoucího okna následovně:
           \begin{gather}
-              n = \frac{0.4~Fs}{2}, ~n \in \mathbb{Z^+} \nonumber \\
-              R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), ~\forall i \in \{1,...,N\}
+              n = \frac{0.4~Fs}{2}, \quad n \in \mathbb{Z^+} \nonumber \\
+              R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), \quad \forall i \in \{1,...,N\}
           \end{gather}
           kde $R_m$ je doplněná R vlna. Prahová hodnota $Th_{RR}$ je počátečně
           nastavena jako:
@@ -424,7 +424,7 @@ všech detekovaných R-R intervalů $dRRs$, která slouží k rozlišení ektopi
 nesprávně detekovaných R vln od normálního sinusového rytmu~\cite{Lipponen2019}:
 \begin{gather}
     dRRs_1 = 0 \nonumber \\
-    dRRs_j = RR_j - RR_{j-1}, ~\forall j \in \{2,...,N\}
+    dRRs_j = RR_j - RR_{j-1}, \quad \forall j \in \{2,...,N\}
 \end{gather}
 kde $N$ je počet R-R intervalů. Pro detekci abnormálních intervalů je nastaven
 první práh $Th1$, který se adaptuje statistickým odhadem z časově proměnného
@@ -432,13 +432,13 @@ rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produ
 faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
 následovně~\cite{Lipponen2019}:
 \begin{equation}
-    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
+    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{1,...,N\}
 \end{equation}
 kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
 5,2. Časová série $dRRs$ je následně normalizovaná prahovými
 hodnotami~\cite{Lipponen2019}:
 \begin{equation}
-    dRR_j = \frac{dRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
+    dRR_j = \frac{dRRs_j}{Th1_j}, \quad \forall j \in \{1,...,N\}
 \end{equation}
 
 Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
@@ -447,7 +447,7 @@ falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat pou
 $dRR$, je definovaná série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
 mediánu 11 okolních hodnot~\cite{Lipponen2019}:
 \begin{equation}
-    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), ~\forall j \in \{1,...,N\}
+    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{1,...,N\}
 \end{equation}
 
 Vzhledem k tomu že při srdeční frekvenci 60 bpm se $mRRs$ pohybuje okolo
@@ -459,10 +459,10 @@ podmínkou~\cite{Lipponen2019}:
 \begin{equation}
     mRRs_j =
     \begin{cases}
-        2~mRRs_j, ~\forall mRRs_j < 0 \\
-        mRRs_j, ~\forall mRRs_j \geq 0
+        2~mRRs_j, & \forall mRRs_j < 0    \\
+        mRRs_j,   & \forall mRRs_j \geq 0
     \end{cases}
-    , ~\forall j \in \{1,...,N\}
+    , \quad \forall j \in \{1,...,N\}
 \end{equation}
 
 Při stejné srdeční frekvence (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
@@ -471,11 +471,11 @@ Při stejné srdeční frekvence (60 bpm) se hodnoty $mRRs$ po úpravě blíží
 sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh
 $Th2$~\cite{Lipponen2019}:
 \begin{equation}
-    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), ~\forall j \in \{1,...,N\}
+    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{1,...,N\}
 \end{equation}
 a hodnoty $mRRs$ jsou následně normalizovány~\cite{Lipponen2019}:
 \begin{equation}
-    mRR_j = \frac{mRRs_j}{Th1_j}, ~\forall j \in \{1,...,N\}
+    mRR_j = \frac{mRRs_j}{Th1_j}, \quad \forall j \in \{1,...,N\}
 \end{equation}
 
 Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-R
@@ -504,12 +504,13 @@ změn srdeční frekvence. Pro účely vizuálního hodnocení detekce ektopick�
 srdečních stahů je vytvořen dvoudimenzionální prostor $S1$
 následovně~\cite{Lipponen2019}:
 \begin{gather}
-    S11_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
+    S11_j = dRR_j, \quad \forall j \in \{1,...,N\} \nonumber \\
     S12_j =
     \begin{cases}
-        max(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j > 0, ~\forall j \in \{2,...,N\} \\
-        min(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j < 0, ~\forall j \in \{2,...,N\}
+        max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j > 0 \\
+        min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
+    , \quad \forall j \in \{2,...,N\}
     \label{eq:subspace1}
 \end{gather}
 ve kterém se hodnoty $S11$ a $-S12$ zvětšují v rámci determinace NPN vzorem a
@@ -530,12 +531,13 @@ sérii sekvencí PN, pomalé cykly NP a nadbytečné periody jako NNP nebo NPP. 
 zobrazení těchto artefaktů a jejich detekčních hranic slouží 2D prostor $S2$
 definovaný~\cite{Lipponen2019}:
 \begin{gather}
-    S21_j = dRR_j, ~\forall j \in \{1,...,N\} \nonumber \\
+    S21_j = dRR_j, \quad \forall j \in \{1,...,N\} \nonumber \\
     S22_j =
     \begin{cases}
-        min(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j \geq 0, ~\forall j \in \{2,...,N\} \\
-        max(\{dRR_{j-1}, dRR_{j+1}\}), dRR_j < 0, ~\forall j \in \{2,...,N\}
+        min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j \geq 0 \\
+        max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
+    , \quad \forall j \in \{2,...,N\}
     \label{eq:subspace2}
 \end{gather}
 
@@ -559,8 +561,7 @@ Pro analýzu EKG záznamů, konkrétně hodnocení HRV, byla zvolena nelineárn�
 geometrická metoda Poincarého grafu s konstrukcí elipsy (viz
 kapitola~\ref{section:hrv_methods}). Jedná se o bodový graf, kde každý bod tvoří
 R-R interval vynesený proti následujícímu R-R intervalu. Prvním krokem k
-sestrojení grafu je vytvoření časových vektorů $\overrightarrow{RR_i}$ a
-$\overrightarrow{RR_{i+1}}$ následovně~\cite{Mazhar2007}:
+sestrojení grafu je vytvoření časových vektorů následovně~\cite{Mazhar2007}:
 \begin{gather}
     \overrightarrow{RR_i} = \{RR_1, RR_2,...,RR_{N}\} \\
     \overrightarrow{RR_{i+1}} = \{RR_2, RR_3,...,RR_{N-1}\}
@@ -581,17 +582,19 @@ rovny~\cite{Mazhar2007}:
     x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
 \end{equation}
 
-Elipsa je konstruovaná využitím jejího vyjádření parametrickými rovnicemi:
+\noindent Elipsa je konstruovaná využitím jejího vyjádření parametrickými
+rovnicemi:
 \begin{gather}
     \label{eq:ellipse_parametric}
     x = a \cos \theta \nonumber \\
     y = b \sin \theta
 \end{gather}
 kde $\theta \in \langle 0, 2\pi \rangle$, $a$ je šířka elipsy a $b$ je její
-výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Jelikož
-hlavní osa elipsy leží v kartézském souřadném systému na přímce dané předpisem
-$y=x$, elipsa je natočena o 45\degree~($\frac{\pi}{4}$), a proto je nutné
-realizovat rotaci elipsy~\cite{Mazhar2007}:
+výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Hlavní osa
+elipsy leží v případě Poincarého grafu na přímce dané předpisem $y=x$ a elipsa
+je tak natočena o 45\degree~($\frac{\pi}{4}$). Vypočítané body z parametrického
+vyjádření elipsy~(\ref{eq:ellipse_parametric}) je tedy nutné
+rotovat následovně:
 \begin{equation}
     \begin{bmatrix}
         X \\
@@ -628,7 +631,7 @@ jsou předešle vypočítané souřadnice podle~\ref{eq:ellipse_parametric}.
 \label{section:online_processing}
 Pro zpracování EKG signálu v reálném čase bylo naprogramované multiplatformní
 řešení s grafickým učitelským rozhraním (GUI) pojmenované \textit{BBPM -- Better
-bpm}. Zpracování signálu se se řídí stejným diagramem jako v
+    bpm}. Zpracování signálu se se řídí stejným diagramem jako v
 kapitole~\ref{section:offline_processing} na
 Obr.~\ref{fig:diagram_offline_processing}. Motivací pro vznik aplikace je
 spolupráce s Mgr. et Mgr. Ivetou Fajnerovou, Ph.D. z Národního ústavu duševního
@@ -688,7 +691,7 @@ následně exportovat v podobě \textit{Python} kódu.
 
 \begin{figure}[h]
     \begin{center}
-        \textcolor{black}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1\textwidth]{../assets/bbpm/qt_designer}}}
+        \includegraphics[width=1\textwidth]{../assets/bbpm/qt_designer}
         \caption{Prostředí \textit{Qt Designeru}}
         \label{fig:qt_designer}
     \end{center}
@@ -713,19 +716,19 @@ zajišťuje snadnou rozšířitelnost v budoucnu.
 
 \begin{figure}[h]
     \begin{center}
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1\textwidth]{../assets/bbpm/main_window}}}
-        \caption{Hlavní okno aplikace}
+        \includegraphics[width=1\textwidth]{../assets/bbpm/main_window}
+        \caption{Struktura hlavního okna aplikace}
         \label{fig:app_main_window}
     \end{center}
 \end{figure}
 
-Karta \textbf{Dashboard} se skládá ze dvou částí. Dolní část karty je tvořena
-grafem pro zobrazení EKG křivky~(\ref{fig:app_main_window}-\textbf{4}), který je
-detailněji popsán v sekci~\ref{section:visual}. Horní
-část~(\ref{fig:app_main_window}-\textbf{3}) obsahuje čtyři informační subpanely.
-První tři zobrazují aktuální srdeční frekvenci, průměrnou srdeční frekvenci a
-průměrnou délku R-R intervalů za posledních 6 sekund. První subpanel zobrazující
-srdeční frekvenci, zároveň barevně indikuje, zda je její hodnota ve
+Karta \textbf{Dashboard} se skládá ze dvou segmentů. Dolní segment karty je
+tvořen grafem pro zobrazení EKG křivky~(\ref{fig:app_main_window}-\textbf{4}),
+který je detailněji popsán v sekci~\ref{section:visual}. Horní
+segment~(\ref{fig:app_main_window}-\textbf{3}) obsahuje čtyři informační
+subpanely. První tři zobrazují aktuální srdeční frekvenci, průměrnou srdeční
+frekvenci a průměrnou délku R-R intervalů za posledních 6 sekund. První subpanel
+zobrazující srdeční frekvenci, zároveň barevně indikuje, zda je její hodnota ve
 fyziologickém rozmezí (zelená) nebo je zvýšená, snížená (oranžová) či abnormální
 (červená). Rozmezí hodnot bylo zvoleno na základě stanoviska Americké
 kardiologické asociace (AHA).
@@ -749,19 +752,11 @@ kardiologické asociace (AHA).
     \end{center}
 \end{table}
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.45\textwidth]{../assets/bbpm/app_info_subpanels}
-        \caption{Ukázka informačních subpanelů při měření}
-        \label{fig:app_info_subpanels}
-    \end{center}
-\end{figure}
-
 Poslední informační subpanel (Events) má uplatnění během měření a hodnocení osob
 ve VR v rámci výzkumu \textit{Virtuální město – herní systém pro kognitivní
-trénink ve virtuálním prostředí}, zmíněného v úvodu
+    trénink ve virtuálním prostředí}, zmíněného v úvodu
 kapitoly~\ref{section:online_processing}. V této práci nemá využití, a proto
-není dále blíže popsán, včetně jeho nastavení.
+není dále blíže popsán.
 
 Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 \begin{itemize}
@@ -799,7 +794,7 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
         \caption{záložka Recording}
         \label{fig:settings_recording}
     \end{subfigure}
-    \caption{Jednotlivé záložky v nastavení}
+    \caption{Jednotlivé záložky v okně Nastavení}
     \label{fig:settings_cards}
 \end{figure}
 
@@ -824,18 +819,11 @@ prvku v závislosti na poslední hodnotě časového vektoru minulého bloku dat
 Překrývající data před tímto indexem jsou odstraněna a podle takto upraveného
 časového vektoru je následně upraven i vektor s EKG daty.
 
-Upravené bloky EKG dat jsou předzpracovány filtrem Savitzky–Golay (SGF)
-\cite{Schafer2011} použitím funkce
-\texttt{savgol{\_}filter(x,win{\_}length,order)}~\cite{scipySavgol}.
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
-        \caption{Savitzky–Golay filtrace}
-        \label{fig:sgf_filter}
-    \end{center}
-\end{figure}
-Filtr Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který
-se nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
+Upravené bloky EKG dat jsou předzpracovány filtrem
+Savitzky–Golay~(SGF)~\cite{Schafer2011} použitím funkce
+\texttt{savgol{\_}filter(x,win{\_}length,order)}~\cite{scipySavgol}. Filtr
+Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který se
+nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
 Princip filtru SGF vychází z proložení hodnot v plovoucím okně polynomem
 určitého řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v
 daném bodě je vypočtena jako~\cite{wikiSGF}:
@@ -846,6 +834,14 @@ kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $M$ je délka
 plovoucího okna a $N$ délka signálu. V aplikaci byla zvolena délka okna 151
 vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze vidět
 na Obr.~\ref{fig:sgf_filter}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
+        \caption{Savitzky–Golay filtrace}
+        \label{fig:sgf_filter}
+    \end{center}
+\end{figure}
 
 Po filtraci jsou data přidaná do cyklické fronty~\cite{circlebuffer}, kde
 probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používaná
@@ -928,9 +924,7 @@ dat pochází z populace s normálním rozdělením. Test byl proveden použití
 
 \subsubsection{Parametrické testy}
 \label{section:parametric_tests}
-Parametrické varianty testů mohou být uplatněny pouze v případě splnění
-podmínky normality dat.
-
-V práci byl použit párový t-test~\cite{Henry2005}, který testuje rozdíl
-středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru. Test byl
-realizován funkcí \texttt{ttest(x)}~\cite{matlabTTEST}.
+Parametrické varianty testů mohou být uplatněny pouze v případě splnění podmínky
+normality dat. V práci byl použit párový t-test~\cite{Henry2005}, který testuje
+rozdíl středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru.
+Test byl realizován použitím funkce \texttt{ttest(x)}~\cite{matlabTTEST}.
