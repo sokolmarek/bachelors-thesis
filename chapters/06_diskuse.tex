@@ -1,4 +1,4 @@
-Jedním z hlavních výsledků práce je realizace \textit{MATLAB} SW řešení pro
+Jedním z hlavních výsledků práce je realizace MATLAB SW řešení pro
 offline hodnocení srdeční aktivity pomocí Poincarého grafu. Graficky lze
 vytvořenou aplikaci vidět v Příloze~B. Pro zajištění adaptivního zpracování EKG
 záznamu a minimální chybovosti v rámci HRV analýzy byl vytvořen algoritmus,
@@ -7,7 +7,7 @@ zpracování komponentů, vizualizace. Jednotlivě vizualizované části lze vi
 Příloze B.
 
 V částí předzpracování prochází EKG záznam digitální filtrací. Filtrace je
-uskutečněna pomocí integrovaných funkcí prostředí \textit{MATLAB}. Filtry se
+uskutečněna pomocí integrovaných funkcí prostředí MATLAB. Filtry se
 navrhují automaticky v závislosti na charakteru signálu s konstantní hodnotou
 útlumu nepropustného pásma 60~\si\dB. V každém případě je navržen filtr
 nejmenšího řádu typu pásmová propust, jehož impulsní charakteristika se
@@ -25,7 +25,7 @@ FIR filtru je využívaná metoda Kasierova okna (viz
 sekce~\ref{section:online_processing}), která je mezi dalšími metody oken pro
 filtraci EKG signálu nejefektivnější. Metody byly již porovnané v
 \cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v poddání
-realizovaného řešení umožňuje ve srovnání s jinými open-source \textit{MATLAB}
+realizovaného řešení umožňuje ve srovnání s jinými open-source MATLAB
 aplikacemi -- například~\cite{ecgkit}~a~\cite{Sedghamiz2018} -- širší a
 spolehlivější možnosti filtrace EKG záznamů různorodého charakteru. Hlavním
 důvodem je, že většina aplikací využívá pouze jeden specifický filtr s pevně
@@ -97,7 +97,7 @@ indexy Poincarého grafu. Jednotlivé reporty jsou součástí obsahu přiložen
 datového nosiče. Komplexní zpracování detekovaných komponentů zároveň do jisté
 míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem.
 
-Jiné, volně dostupné \textit{MATLAB} aplikace, určené pro analýzu HRV --
+Jiné, volně dostupné MATLAB aplikace, určené pro analýzu HRV --
 například~\cite{Ramshur2010} nebo~\cite{Kardia2010} -- poskytují rozmanitější
 možnosti analýzy, a to jak ve frekvenční, tak časové doméně. Jejich
 předpokládaným vstupem je ale už zpracovaná, ideálně i korigovaná, časová řada
@@ -106,18 +106,18 @@ nevyužívají ani velmi komplexních metod pro korekci artefaktů R-R interval�
 Zpracování v rámci těchto aplikací se obvykle týká především odstranění trendu
 vstupních dat k zajištění stacionarity signálu pro potřeby spektrální a
 fluktuační HRV analýzy. Rozšířením možností analýzy realizovaného řešení by tedy
-bylo možné získat nadhled nad drtivou většinou open-source \textit{MATLAB}
-aplikací či pouhých skriptů. To vyplývá i z faktu, že mnoho současných řešení
-jsou zastaralá a nové nepřibývají. Jedním z důvodu může být prudce vzrůstající
-popularita prostředí \textit{Python}, které v mnoha případech čím dál častěji
-nahrazuje \textit{MATLAB} realizace.
+bylo možné získat nadhled nad drtivou většinou open-source MATLAB
+aplikací či pouhých skriptů. To vyplývá i z faktu, že mnoho současných řešení je
+zastaralých a nové nepřibývají. Jedním z důvodu může být prudce vzrůstající
+popularita prostředí Python, které v mnoha případech čím dál častěji
+nahrazuje MATLAB realizace.
 
 Dalším výsledkem práce je naprogramované SW řešení s GUI pro online hodnocení
-srdeční aktivity v prostředí \textit{Python}. Aplikaci \textit{BBPM} lze vidět
+srdeční aktivity v prostředí Python. Aplikaci \textit{BBPM} lze vidět
 na Obr.~\ref{fig:results_bbpm}. Popis programu je uveden v
 kapitole~\ref{section:online_data_process}. Filtrace signálu a detekce
 komponentů (viz sekce~\ref{section:online_processing}) zde nejsou zdaleka tak
-propracované jako v předešlém \textit{MATLAB} řešení. Vzhledem k budoucímu
+propracované jako v předešlém MATLAB řešení. Vzhledem k budoucímu
 používaní aplikace je tedy žádoucí, minimálně v těchto dvou ohledech, aplikaci
 vylepšit. Během zpracovávání dat v reálném čase se výsledek filtrace SGF jeví po
 vizuální stránce uspokojivě, avšak zvolená metoda filtrace může vést v mnoha
@@ -130,7 +130,7 @@ s jiným zařízením, které posílá hodnoty po jednom vzorku nebo po blocích
 než nastavená délka okna. Nabízí se tak implementace variabilnějšího řešení v
 podobě rekurzivní IIR filtrace. Filtry IIR jsou běžně využívané k filtraci
 signálu v reálném čase už jen díky jejich nízké výpočetní náročností. Pro
-srovnání s FIR filtrací využívanou v \textit{MATLAB} řešení byl navržen
+srovnání s FIR filtrací využívanou v MATLAB řešení byl navržen
 Eliptický IIR filtr se stejnými parametry, který byl ve filtraci každého
 naměřeného signálu průměrně~8,5x rychlejší. Detekce komponentů je realizovaná
 pouze hledáním lokálních maxim signálu, které mají charakteristiky R vln --
@@ -145,7 +145,7 @@ Pro ověření naprogramovaných řešení bylo realizováno měření EKG zázn
 kontrolní skupině 5 osob (viz sekce~\ref{section:probands}). Měření probíhalo
 dle postupu uvedeného v sekci~\ref{section:measurement_methodology}. Záznamy
 byly naměřeny aplikací \textit{BBPM}. Každý EKG záznam byl zpracován
-realizovaným \textit{MATLAB} řešením a vyhodnocen použitím nelineární
+realizovaným MATLAB řešením a vyhodnocen použitím nelineární
 geometrické metody, Poincarého grafu (viz kapitola~\ref{section:hrv_methods}). V
 rámci všech probandů byly vypočítány průměrné hodnoty korigovaných R-R intervalů
 a srdeční frekvence spolu s jejich směrodatnými odchylkami
