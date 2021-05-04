@@ -35,7 +35,7 @@ kapitole~\ref{section:offline_processing}.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{../assets/device/holter1}
+        \includegraphics[width=0.9\textwidth]{device/holter1}
         \caption{Měřící zařízení s příslušenstvím}
         \label{fig:device}
     \end{center}
@@ -69,14 +69,14 @@ kroky od bodu 2 nebo případně zkontrolovat stav baterie Holteru.
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=2pt\fboxsep=0pt\fbox{\includegraphics[width=0.8\linewidth]{../assets/device/app_screen1}}}
+        \textcolor{cyan}{\fboxrule=2pt\fboxsep=0pt\fbox{\includegraphics[width=0.8\linewidth]{device/app_screen1}}}
         \caption{Úvodní obrazovka aplikace}
         \label{fig:app_screen1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=2pt\fboxsep=0pt\fbox{\includegraphics[width=0.8\linewidth]{../assets/device/app_screen2}}}
+        \textcolor{cyan}{\fboxrule=2pt\fboxsep=0pt\fbox{\includegraphics[width=0.8\linewidth]{device/app_screen2}}}
         \caption{Notifikace úspěšného připojení}
         \label{fig:app_screen2}
     \end{subfigure}
@@ -102,7 +102,7 @@ sekci~\ref{section:measurement_process}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{../assets/device/holter2}
+        \includegraphics[width=0.7\textwidth]{device/holter2}
         \caption{Měření srdeční aktivity}
         \label{fig:device_usage}
     \end{center}
@@ -118,7 +118,7 @@ zátěže~\cite{Scarpina2017}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/stroop}
+        \includegraphics[width=1\textwidth]{figures/stroop}
         \caption{Příklad Stroopova testu~\cite{stroopWiki}}
         \label{fig:stroop}
     \end{center}
@@ -236,7 +236,7 @@ mezi frekvencemi od 0 do 5--10~\si\Hz.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/spectral_analysis}
+        \includegraphics[width=1\textwidth]{figures/spectral_analysis}
         \caption{FFT analýza EKG signálu a QRS komplexu}
         \label{fig:spectral_analysis}
     \end{center}
@@ -293,7 +293,7 @@ komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívána funkce
 
 \begin{figure}[h!]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/preprocessing_steps}
+        \includegraphics[width=1\textwidth]{figures/preprocessing_steps}
         \caption{Jednotlivé kroky předzpracování EKG signálu}
         \label{fig:preprocessing_steps}
     \end{center}
@@ -371,7 +371,7 @@ nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/detection}
+        \includegraphics[width=1\textwidth]{figures/detection}
         \caption{Detekce R vln}
         \label{fig:detection}
     \end{center}
@@ -387,7 +387,7 @@ signálu.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{../assets/diagrams/fixpeaks}
+        \includegraphics[width=0.8\textwidth]{diagrams/fixpeaks}
         \caption{Relokalizace nalezených R vln}
         \label{fig:fixpeaks}
     \end{center}
@@ -410,7 +410,7 @@ Korekcí je myšleno potlačení nežádoucích artefaktů.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/hrv_artifacts}
+        \includegraphics[width=1\textwidth]{figures/hrv_artifacts}
         \caption{HRV zatížené artefakty}
         \label{fig:hrv_artifacts}
     \end{center}
@@ -486,7 +486,7 @@ diagramu~\cite{Lipponen2019}:
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/diagrams/rr_decision}
+        \includegraphics[width=1\textwidth]{diagrams/rr_decision}
         \caption{Rozhodovací algoritmus~\cite{Lipponen2019}}
         \label{fig:rr_decision}
     \end{center}
@@ -520,7 +520,7 @@ podle~\eqref{eq:subspace1} a~\eqref{eq:subspace2}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/rr_process}
+        \includegraphics[width=1\textwidth]{figures/rr_process}
         \caption{Vizualizace detekovaných artefaktů}
         \label{fig:rr_process}
     \end{center}
@@ -621,7 +621,7 @@ jsou předešle vypočítané souřadnice podle~\ref{eq:ellipse_parametric}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.65\textwidth]{../assets/figures/my_poincare}
+        \includegraphics[width=0.65\textwidth]{figures/my_poincare}
         \caption{Realizace Poincarého grafu s elipsou}
         \label{fig:my_poincare}
     \end{center}
@@ -640,7 +640,7 @@ virtuální realitě. Detailněji je program popsán v následujících kapitol�
 
 \subsubsection{Aplikace pro hodnocení a sběr dat}
 Program byl vytvořen pomocí skriptovacího programovacího jazyka
-\textit{Python}~\cite{python} s využitím frameworku \textit{PySide2} (viz
+Python~\cite{python} s využitím frameworku \textit{PySide2} (viz
 sekce~\ref{section:pyside}). Hlavním účelem programu je online zpracovaní a
 vizualizace dat z měřícího zařízení, aby bylo možné sledovat a hodnotit
 elektrickou srdeční aktivitu měřené osoby v reálném čase. Aplikací lze data i
@@ -659,7 +659,7 @@ Obr.~\ref{fig:app_structure}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{../assets/diagrams/app_structure}
+        \includegraphics[width=0.9\textwidth]{diagrams/app_structure}
         \caption{Struktura aplikace \textit{BBPM}}
         \label{fig:app_structure}
     \end{center}
@@ -667,10 +667,10 @@ Obr.~\ref{fig:app_structure}.
 
 \subsubsection{PySide framework}
 \label{section:pyside}
-\textit{PySide} představuje vazbu (binding) skriptovacího jazyka \textit{Python}
+\textit{PySide} představuje vazbu (binding) skriptovacího jazyka Python
 na sadu GUI nástrojů populární knihovny \textit{Qt} \cite{Qt}. Díky tomu je
 možné využívat aplikační rozhraní (API) knihovny \textit{Qt} v prostředí
-\textit{Python}. \textit{Qt} není pouze knihovna ale celý nativní
+Python. \textit{Qt} není pouze knihovna ale celý nativní
 multiplatformní framework pro vytváření softwaru s GUI, napsaný v programovacím
 jazyce \textit{C++}. V aplikaci \textit{BBPM} byla použita knihovna
 \textit{PySide2}, která představuje port pro \textit{Qt5}.
@@ -687,11 +687,11 @@ podobě uživatelského okna~(\ref{fig:qt_designer}--\textbf{3}), které je hlav
 komponentem. Do hlavního okna lze z panelu č.~\textbf{1} přesouvat interaktivní
 uživatelské prvky. Jednotlivé parametry prvků společně s hlavním oknem (např.
 výška a šířka) lze upravovat v panelu č.~\textbf{2}. Vytvořené GUI je možné
-následně exportovat v podobě \textit{Python} kódu.
+následně exportovat v podobě Python kódu.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/bbpm/qt_designer}
+        \includegraphics[width=1\textwidth]{bbpm/qt_designer}
         \caption{Prostředí \textit{Qt Designeru}}
         \label{fig:qt_designer}
     \end{center}
@@ -716,7 +716,7 @@ zajišťuje snadnou rozšířitelnost v budoucnu.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/bbpm/main_window}
+        \includegraphics[width=1\textwidth]{bbpm/main_window}
         \caption{Struktura hlavního okna aplikace}
         \label{fig:app_main_window}
     \end{center}
@@ -776,21 +776,21 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{../assets/bbpm/settings_general}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_general}}}
         \caption{záložka General}
         \label{fig:settings_general}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{../assets/bbpm/settings_graph}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_graph}}}
         \caption{záložka Graph}
         \label{fig:settings_graph}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{../assets/bbpm/settings_recording}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_recording}}}
         \caption{záložka Recording}
         \label{fig:settings_recording}
     \end{subfigure}
@@ -800,7 +800,7 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 
 \subsubsection{Zpracování dat}
 \label{section:online_data_process}
-Pro zpracování dat jsou využívané integrované funkce prostředí \textit{Python} a
+Pro zpracování dat jsou využívané integrované funkce prostředí Python a
 knihovny \textit{SciPy}~\cite{SciPy2020}. Před zpracováním EKG signálu jsou
 přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý
 jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048
@@ -808,7 +808,7 @@ hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté 
 na sebe nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{../assets/figures/bisection}
+        \includegraphics[width=0.9\textwidth]{figures/bisection}
         \caption{Bisekce překrývajících se dat}
         \label{fig:bisection}
     \end{center}
@@ -837,7 +837,7 @@ na Obr.~\ref{fig:sgf_filter}.
 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=1\textwidth]{../assets/figures/sgf_filter}
+        \includegraphics[width=1\textwidth]{figures/sgf_filter}
         \caption{Savitzky–Golay filtrace}
         \label{fig:sgf_filter}
     \end{center}
@@ -881,7 +881,7 @@ Po předání jsou hodnoty vykresleny a graf je aktualizován. Předávání hod
 zacykleno, a tak dochází
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{../assets/bbpm/r_detection}
+        \includegraphics[width=0.75\textwidth]{bbpm/r_detection}
         \caption{Vizualizace EKG křivky s detekcí R vln v aplikaci}
         \label{fig:app_ecg_visual}
     \end{center}
