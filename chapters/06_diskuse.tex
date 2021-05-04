@@ -49,7 +49,7 @@ detekce komponentů navrženého řešení inspirovaná Pan-Tompkinsovou metodou
 Výsledek jednotlivých kroků zpracování EKG lze vidět na
 Obr.~\ref{fig:preprocessing_steps}. Zároveň je v navržené aplikaci uživateli
 umožněno měnit mezní frekvence pásmové propusti, což společně s adaptivní
-metodou návrhu filtrů rozšiřuje využití realizovaného řešení. 
+metodou návrhu filtrů rozšiřuje využití realizovaného řešení.
 
 Detekce komponentů využívá podobně jako Pan-Tompkinsův QRS detektor dva
 adaptivní prahy. První práh vychází z amplitud R vln a druhý z délky R-R
@@ -75,7 +75,7 @@ nízká amplituda by mohla práh posunout natolik, že by detekce následující
 normálních R vln byla zanedbaná. Řešením by mohla být identifikace a eliminace
 odlehlých hodnot (outliers) amplitud v cyklické frontě, ze které se průměrem
 počítá první práh nebo zvolení nekauzálního přístupu prahování v závislosti na
-offline charakteru zpracování. 
+offline charakteru zpracování.
 
 Výsledkem části detekce komponentů je časová série R vln, která je vzápětí
 zpracovaná a korigovaná. Korigované výsledky jsou uvedeny v
@@ -91,14 +91,14 @@ klinické praxi. Kubios poskytuje včetně komerčních softwarových řešení 
 aplikaci jménem \textit{Kubios HRV Standard}, kterou lze využít zdarma pro
 osobní použití. Mezi funkcemi aplikace je i nelineární HRV analýza Poincarého
 grafem. Srovnáním výstupních reportů analýzy aplikace \textit{Kubios HRV
-Standard} a výsledků podle Tab.~\ref{tab:corrected_components} byla ověřena
+    Standard} a výsledků podle Tab.~\ref{tab:corrected_components} byla ověřena
 účinnost a správná funkcionalita implementovaného algoritmu spolu s vypočítanými
 indexy Poincarého grafu. Jednotlivé reporty jsou součástí obsahu přiloženého
 datového nosiče. Komplexní zpracování detekovaných komponentů zároveň do jisté
-míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem. 
+míry kompenzuje potenciální chyby zapříčiněné detekčním algoritmem.
 
 Jiné, volně dostupné \textit{MATLAB} aplikace, určené pro analýzu HRV --
-například \cite{Ramshur2010} nebo~\cite{Kardia2010} -- poskytují rozmanitější
+například~\cite{Ramshur2010} nebo~\cite{Kardia2010} -- poskytují rozmanitější
 možnosti analýzy, a to jak ve frekvenční, tak časové doméně. Jejich
 předpokládaným vstupem je ale už zpracovaná, ideálně i korigovaná, časová řada
 R-R intervalů. Tyto řešení samy o sobě nejsou schopné zpracovat EKG záznam a
@@ -110,7 +110,7 @@ bylo možné získat nadhled nad drtivou většinou open-source \textit{MATLAB}
 aplikací či pouhých skriptů. To vyplývá i z faktu, že mnoho současných řešení
 jsou zastaralá a nové nepřibývají. Jedním z důvodu může být prudce vzrůstající
 popularita prostředí \textit{Python}, které v mnoha případech čím dál častěji
-nahrazuje \textit{MATLAB} realizace. 
+nahrazuje \textit{MATLAB} realizace.
 
 Dalším výsledkem práce je naprogramované SW řešení s GUI pro online hodnocení
 srdeční aktivity v prostředí \textit{Python}. Aplikaci \textit{BBPM} lze vidět
@@ -125,13 +125,13 @@ případech k závažné chybě. Filtr SGF využívá centrované plovoucí okno
 tak s okolními hodnotami. Délka okna je staticky nastavený parametr v závislosti
 na datech přijatých z použitého měřícího zařízení (viz
 kapitola~\ref{section:measurement_device}). Aplikace ze zařízení přijímá datové
-bloky o velikosti 2048 vzorků. Pokud by byla nyní aplikace použita s jiným
-zařízením, které posílá hodnoty po jednom vzorku nebo po blocích menších než
-nastavená délka okna, filtrace by nefungovala. Nabízí se tak implementace
-variabilnějšího řešení v podobě rekurzivní filtrace. Filtry IIR jsou běžně
-využívané k filtraci signálu v reálném čase už jen díky jejich nízké výpočetní
-náročností. Pro srovnání s FIR filtrací využívanou v \textit{MATLAB} řešení byl
-navržen Eliptický IIR filtr se stejnými parametry, který byl ve filtraci každého
+bloky o velikosti 2048 vzorků. Filtrace by nyní nefungovala při použití aplikace
+s jiným zařízením, které posílá hodnoty po jednom vzorku nebo po blocích menších
+než nastavená délka okna. Nabízí se tak implementace variabilnějšího řešení v
+podobě rekurzivní IIR filtrace. Filtry IIR jsou běžně využívané k filtraci
+signálu v reálném čase už jen díky jejich nízké výpočetní náročností. Pro
+srovnání s FIR filtrací využívanou v \textit{MATLAB} řešení byl navržen
+Eliptický IIR filtr se stejnými parametry, který byl ve filtraci každého
 naměřeného signálu průměrně~8,5x rychlejší. Detekce komponentů je realizovaná
 pouze hledáním lokálních maxim signálu, které mají charakteristiky R vln --
 amplitudu a prominenci. Aplikaci \textit{BBPM} tak v budoucím vývoji
@@ -139,11 +139,46 @@ pravděpodobně nemine zavedení robustního QRS detektoru. Tím může být ně
 modifikace (již zmíněného) Pan-Tompkinsonova QRS detektoru, který byl primárně
 navržen pro uplatnění v reálném čase. Pro účely této práce byla aplikace
 \textit{BBPM} použita pro sběr surových dat. Naměřená data jsou součástí obsahu
-přiloženého datového nosiče. 
+přiloženého datového nosiče.
 
 Pro ověření naprogramovaných řešení bylo realizováno měření EKG záznamů na
-kontrolní skupině 5 osob (viz sekce \ref{section:probands}). Měření probíhalo
-dle postupu uvedeného v sekci \ref{section:measurement_methodology}. 
+kontrolní skupině 5 osob (viz sekce~\ref{section:probands}). Měření probíhalo
+dle postupu uvedeného v sekci~\ref{section:measurement_methodology}. Záznamy
+byly naměřeny aplikací \textit{BBPM}. Každý EKG záznam byl zpracován
+realizovaným \textit{MATLAB} řešením a vyhodnocen použitím nelineární
+geometrické metody, Poincarého grafu (viz kapitola~\ref{section:hrv_methods}). V
+rámci všech probandů byly vypočítány průměrné hodnoty korigovaných R-R intervalů
+a srdeční frekvence spolu s jejich směrodatnými odchylkami
+(Tab.~\ref{tab:corrected_components}). Dále byly určeny indexy Poincarého grafu
+SD1, SD2 a jejich poměr SD1/SD2 (Tab.~\ref{tab:poincare_parameters}). Všechny hodnoty byly
+zároveň zvláště vypočítány pro klidový úsek (N) EKG záznamu a pro úsek, kde byl
+proband vystaven kognitivní zátěží (S) pomocí Stroopova testu (viz
+sekce~\ref{section:stroop_test}). Dále proběhlo statistické zpracování výsledků
+dle kapitoly \ref{section:statistical_methods}. Ve všech případech souborů
+indexů Poincarého grafu byl splněn předpoklad normality dat
+(Tab.~\ref{tab:normality_tests}). Následně bylo realizováno srovnání sledovaných
+veličin mezi úseky N a S. Statisticky významný rozdíl byl pozorován (viz
+Tab.~\ref{tab:t_tests}) pouze u veličin SD1 ($p=$0,0132). Grafické srovnání
+výsledků sledovaných veličin lze vidět na Obr.~\ref{fig:results_sd_vals}.
+
+Stroopův test (sekce~\ref{section:stroop_test}) se v klinických studiích obvykle
+používá ke stimulaci kognitivní zátěže, která se projevuje změnami v
+parasympatickém (PNS) a sympatickém (SNS) nervovém systému (viz
+kapitola~\ref{fig:hr_regulation})~\cite{Hoshikawa1997}. Důsledkem změn je
+modulace HRV (kapitola~\ref{section:hrv}). Ná základě
+studíí~\cite{Brennan2001,Kamen1996} bylo prokázáno, že lze změny ANS
+kvantitativně hodnotit nelineární metodou Poincarého grafu. K hodnocení slouží
+primárně indexy SD1 a SD2. Parametr SD1 reflektuje aktivitu PNS, tedy krátkodobé
+změny HRV. Na parametru SD2 se projevují dlouhodobé změny HRV, tudíž souvisí s
+aktivitou SNS. Poměr parametrů SD1/SD2 představuje sympatovagální
+rovnováhu~\cite{Hsu2012,Habib2013,Mazhar2007}. V rámci této práce byly použity
+krátkodobé záznamy EKG. Na výsledných datech analýzy Poincarého grafem
+(Tab.~\ref{tab:poincare_parameters}) lze vidět pokles hodnot SD1 v úsecích
+kognitivní zátěže, který byl statistický významný (Tab.~\ref{tab:t_tests}).
+Výsledek je v souladu se
+studiemi~\cite{Sebastiano2019,Brugnera2018,Vazan2017,Melillo2011}.
+
+
 
 
 
