@@ -227,10 +227,10 @@ vyskytuje užitečný EKG signál nebo jeho komponenty a v jakých nežádoucí 
 návrhu filtru a posuzování spektra EKG signálu využity. Pro zlepšení představy o
 potenciálních artefaktech a užitečných frekvencích byla provedena FFT analýza i
 na několika samotných PQRST segmentech. Na Obr.~\ref{fig:spectral_analysis} lze
-vidět FFT analýzu EKG signálu a jednoho PQRST segmentu. Z examinace pouhé
-vizuální stránky signálu plyne několik východisek pro tvorbu filtru. Jsou zde
-pohybové artefakty společně s kolísáním nulové izolinie. Ve frekvenčním spektru
-a v částech signálu se dále objevuje nepatrný širokopásmový šum, způsobený
+vidět FFT analýzu EKG signálu a jednoho PQRST segmentu. Z examinace vizuální
+stránky spektra plyne několik východisek pro tvorbu filtru. Jsou zde pohybové
+artefakty společně s kolísáním nulové izolinie. Ve frekvenčním spektru a v
+částech signálu se dále objevuje nepatrný širokopásmový šum, způsobený
 myopotenciály. Ve frekvenčním spektru lze vidět tyto nežádoucí složky přibližně
 mezi frekvencemi od 0 do 5--10~\si\Hz.
 
@@ -800,12 +800,12 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 
 \subsubsection{Zpracování dat}
 \label{section:online_data_process}
-Pro zpracování dat jsou využívané integrované funkce prostředí Python a
-knihovny \textit{SciPy}~\cite{SciPy2020}. Před zpracováním EKG signálu jsou
-přijatá data nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý
-jeden okamžik blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048
-hodnot. Jeden vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky
-na sebe nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
+Pro zpracování dat jsou využívané funkce prostředí Python a knihovny
+\textit{SciPy}~\cite{SciPy2020}. Před zpracováním EKG signálu jsou přijatá data
+nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý jeden okamžik
+blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048 hodnot. Jeden
+vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky na sebe
+nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{figures/bisection}
@@ -828,7 +828,7 @@ Princip filtru SGF vychází z proložení hodnot v plovoucím okně polynomem
 určitého řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v
 daném bodě je vypočtena jako~\cite{wikiSGF}:
 \begin{equation}
-    y_j = \sum_{i=\frac{1-M}{2}}^{\frac{M-1}{2}} = c_j y_{j+i}, \quad \frac{M-1}{2} \leq j \leq N - \frac{M-1}{2}
+    y_j = \sum_{i=\frac{1-M}{2}}^{\frac{M-1}{2}} c_j y_{j+i}, \quad \frac{M-1}{2} \leq j \leq N - \frac{M-1}{2}
 \end{equation}
 kde $c_j$ jsou vypočítané koeficienty polynomiální regrese, $M$ je délka
 plovoucího okna a $N$ délka signálu. V aplikaci byla zvolena délka okna 151
@@ -868,8 +868,7 @@ parametrem podle:
     \overline{RR} = \frac{1}{N} \sum_{i=1}^N RR_i
 \end{equation}
 kde $\overline{RR}$ je vypočítaný průměr R-R intervalů a $N$ je počet R-R
-intervalů. Hodnoty se následně zobrazují na panelu jako je tomu na
-Obr.~\ref{fig:app_info_subpanels}.
+intervalů. Hodnoty se následně zobrazují na panelu v horním segmentu aplikace.
 
 \subsubsection{Vizualizace EKG}
 \label{section:visual}
@@ -882,7 +881,8 @@ zacykleno, a tak dochází
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{bbpm/r_detection}
-        \caption{Vizualizace EKG křivky s detekcí R vln v aplikaci}
+        \caption{Vizualizace EKG křivky s detekcí R vln na hlavním panelu
+        aplikace \textit{BBPM}}
         \label{fig:app_ecg_visual}
     \end{center}
 \end{figure}
@@ -924,7 +924,7 @@ dat pochází z populace s normálním rozdělením. Test byl proveden použití
 
 \subsubsection{Parametrické testy}
 \label{section:parametric_tests}
-Parametrické varianty testů mohou být uplatněny pouze v případě splnění podmínky
+Parametrické varianty testů mohou být uplatněny pouze v při splnění podmínky
 normality dat. V práci byl použit párový t-test~\cite{Henry2005}, který testuje
 rozdíl středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru.
-Test byl realizován použitím funkce \texttt{ttest(x)}~\cite{matlabTTEST}.
+Test byl realizován funkcí \texttt{ttest(x)}~\cite{matlabTTEST}.
