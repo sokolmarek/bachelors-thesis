@@ -1,10 +1,9 @@
-Jedním z hlavních výsledků práce je realizace MATLAB SW řešení pro
-offline hodnocení srdeční aktivity pomocí Poincarého grafu. Graficky lze
-vytvořenou aplikaci vidět v Příloze~B. Pro zajištění adaptivního zpracování EKG
-záznamu a minimální chybovosti v rámci HRV analýzy byl vytvořen algoritmus,
-který se skládá z následujících částí: předzpracování, detekce komponentů,
-zpracování komponentů, vizualizace. Jednotlivě vizualizované části lze vidět v
-Příloze B.
+Jedním z hlavních výsledků práce je realizace MATLAB SW řešení pro offline
+hodnocení srdeční aktivity pomocí Poincarého grafu. Pro zajištění adaptivního
+zpracování EKG záznamu a minimální chybovosti v rámci HRV analýzy byl vytvořen
+algoritmus, který se skládá z následujících částí: předzpracování, detekce
+komponentů, zpracování komponentů, vizualizace. Jednotlivě vizualizované části
+lze vidět v Příloze B.
 
 V částí předzpracování prochází EKG záznam digitální filtrací. Filtrace je
 uskutečněna pomocí integrovaných funkcí prostředí MATLAB. Filtry se
@@ -31,7 +30,7 @@ spolehlivější možnosti filtrace EKG záznamů různorodého charakteru. Hlav
 důvodem je, že většina aplikací využívá pouze jeden specifický filtr s pevně
 nastavenými parametry, které nelze měnit ani uživatelsky. Nejčastěji se lze
 setkat s FIR filtry navržené metodou nejmenších čtverců nebo metodou okna a IIR
-Butterworthy filtry typu pásmová propust. V těchto případech tak vzniká
+Butterworthovi filtry typu pásmová propust. V těchto případech tak vzniká
 předpoklad, který vymezuje použití aplikace pro určitou kategorii EKG signálů.
 Teoretickým příkladem může být Pan-Tompkinsův algoritmus (viz
 sekce~\ref{section:components_detection_theory}), který u filtrace využívá nízké
@@ -57,25 +56,25 @@ intervalů. Detekční algoritmus (viz kapitola~\ref{section:components_detectio
 není v tomto případě příliš sofistikovaný a počítá především s kvalitně
 zpracovaným a vyhlazeným EKG záznamem. To je v rámci realizovaného řešení
 zajištěno rozšířením předzpracování o zpětnou kumulaci umocněného signálu a
-následné vyhlazení konvolucí. Výsledkem je signál v podobě špičatých vrcholů s
-kladnou amplitudou, které lze vizuálně přirovnat ke Gaussově funkci s velmi
-nízkou hodnotou parametru~\textsigma. Pro porovnání a ověření spolehlivosti
-detekce byl implementován Pan-Tompkinsův QRS detektor~\cite{Pan1985} a jeho
-modifikovaná Hamiltonova verze~\cite{Hamilton1987}. Ve všech případech použití
-byl výsledek detekce u EKG záznamů sledovaných osob stejný. Je třeba podotknout
-že pilotní měření záznamu bylo uskutečněno za laboratorních podmínek a tomu
-odpovídala i relativně dobrá kvalita signálů. Detekce by tedy mohla být pochybná
-v případě EKG záznamů zatížených mnohočetnými artefakty nebo projevy
-kardiovaskulárních onemocnění. Vzniká tak zde prostor na zlepšení v komplexnosti
-a rozsahu použití detekčního algoritmu pro případné budoucí využití. Zásadní
-problém použitého detekčního algoritmu může nastat například v situaci
-abnormální amplitudy R vlny, která bude z časového hlediska normální. Jelikož se
-první práh adaptuje průměrováním předešlých amplitud R vln, abnormálně vysoká či
-nízká amplituda by mohla práh posunout natolik, že by detekce následujících
-normálních R vln byla zanedbaná. Řešením by mohla být identifikace a eliminace
-odlehlých hodnot (outliers) amplitud v cyklické frontě, ze které se průměrem
-počítá první práh nebo zvolení nekauzálního přístupu prahování v závislosti na
-offline charakteru zpracování.
+následné vyhlazení integračním filtrem. Výsledkem je signál v podobě špičatých
+vrcholů s kladnou amplitudou, které lze vizuálně přirovnat ke Gaussově funkci s
+velmi nízkou hodnotou parametru~\textsigma. Pro porovnání a ověření
+spolehlivosti detekce byl implementován Pan-Tompkinsův QRS
+detektor~\cite{Pan1985} a jeho modifikovaná Hamiltonova
+verze~\cite{Hamilton1987}. Ve všech případech použití byl výsledek detekce u EKG
+záznamů sledovaných osob stejný. Je třeba podotknout že pilotní měření záznamu
+bylo uskutečněno za laboratorních podmínek a tomu odpovídala i relativně dobrá
+kvalita signálů. Detekce by tedy mohla být pochybná v případě EKG záznamů
+zatížených mnohočetnými artefakty nebo projevy kardiovaskulárních onemocnění.
+Vzniká tak zde prostor na zlepšení v komplexnosti a rozsahu použití detekčního
+algoritmu pro případné budoucí využití. Zásadní problém použitého detekčního
+algoritmu může nastat například v situaci abnormální amplitudy R vlny, která
+bude z časového hlediska normální. Jelikož se první práh adaptuje průměrováním
+předešlých amplitud R vln, abnormálně vysoká či nízká amplituda by mohla práh
+posunout natolik, že by detekce následujících normálních R vln byla zanedbána.
+Řešením může být identifikace a eliminace odlehlých hodnot (outliers)
+amplitud v cyklické frontě, ze které se průměrem počítá první práh nebo zvolení
+nekauzálního přístupu prahování v závislosti na offline charakteru zpracování.
 
 Výsledkem části detekce komponentů je časová série R vln, která je vzápětí
 zpracovaná a korigovaná. Korigované výsledky jsou uvedeny v
@@ -106,11 +105,10 @@ nevyužívají ani velmi komplexních metod pro korekci artefaktů R-R interval�
 Zpracování v rámci těchto aplikací se obvykle týká především odstranění trendu
 vstupních dat k zajištění stacionarity signálu pro potřeby spektrální a
 fluktuační HRV analýzy. Rozšířením možností analýzy realizovaného řešení by tedy
-bylo možné získat nadhled nad drtivou většinou open-source MATLAB
-aplikací či pouhých skriptů. To vyplývá i z faktu, že mnoho současných řešení je
-zastaralých a nové nepřibývají. Jedním z důvodu může být prudce vzrůstající
-popularita prostředí Python, které v mnoha případech čím dál častěji
-nahrazuje MATLAB realizace.
+bylo možné získat nadhled nad mnoha open-source MATLAB aplikacemi či skripty. To
+vyplývá i z faktu, že většina současných řešení je zastaralá a nové nepřibývají.
+Jedním z důvodu může být prudce vzrůstající popularita prostředí Python, které v
+mnoha případech čím dál častěji nahrazuje MATLAB realizace.
 
 Dalším výsledkem práce je naprogramované SW řešení s GUI pro online hodnocení
 srdeční aktivity v prostředí Python. Aplikaci \textit{BBPM} lze vidět
