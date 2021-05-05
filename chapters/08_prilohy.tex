@@ -1,6 +1,6 @@
 \section*{Příloha A: Ukázka softwarového MATLAB řešení}
 \label{app:pozadavky}
-\addcontentsline{toc}{section}{Příloha A: Požadavky na formátování práce}     % Přidání této kapitoly do obsahu
+\addcontentsline{toc}{section}{Příloha A: Ukázka softwarového MATLAB řešení}
 
 \begin{figure}[H]
     \begin{center}
@@ -40,15 +40,81 @@
 %\label{app:typo}
 %\addcontentsline{toc}{section}{Příloha B: Základní typografické zásady}
 
-\includepdf[pages=1,scale=.9,pagecommand={\section*{Příloha B: Informovaný souhlas a stanovisko etické komise}\addcontentsline{toc}{section}{Příloha B: Základní typografické zásady}\label{pdf:souhlas}},linktodoc=true]{informovany_souhlas}
-\includepdf[pages=2-,scale=.9,pagecommand={},linktodoc=true]{informovany_souhlas}
+\includepdf[pages=1,pagecommand={\section*{Příloha B: Informovaný souhlas a stanovisko etické komise}\addcontentsline{toc}{section}{Příloha B: Informovaný souhlas a stanovisko etické komise}\label{pdf:souhlas}}]{informovany_souhlas}
+\includepdf[pages=2-,pagecommand={}]{informovany_souhlas}
 
 \clearpage
 
 \section*{Příloha C: Výsledné Poicarého grafy}
 \label{app:doporuceni}
-\addcontentsline{toc}{section}{Příloha C: Další doporučení pro přehlednost textu}
+\addcontentsline{toc}{section}{Příloha C: Výsledné Poicarého grafy}
 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/rest_1}
+        \caption{Proband 1 -- V klidu}
+    \end{subfigure}
+    \hspace{12pt}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/stroop_1}
+        \caption{Proband 1 -- Kognitivní zátěž}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/rest_2}
+        \caption{Proband 2 -- V klidu}
+    \end{subfigure}
+    \hspace{12pt}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/stroop_2}
+        \caption{Proband 2 -- Kognitivní zátěž}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/rest_3}
+        \caption{Proband 3 -- V klidu}
+    \end{subfigure}
+    \hspace{12pt}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/stroop_3}
+        \caption{Proband 3 -- Kognitivní zátěž}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]\ContinuedFloat 
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/rest_4}
+        \caption{Proband 4 -- V klidu}
+    \end{subfigure}
+    \hspace{12pt}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/stroop_4}
+        \caption{Proband 4 -- Kognitivní zátěž}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/rest_5}
+        \caption{Proband 5 -- V klidu}
+    \end{subfigure}
+    \hspace{12pt}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figures/pp/stroop_5}
+        \caption{Proband 5 -- Kognitivní zátěž}
+    \end{subfigure}
+    \caption{Výsledné Poincarého grafy pro úseky v klidu a při stimulaci kognitivní zátěže}
+    \label{fig:attachment_poincares_plots}
+\end{figure}
 
 \clearpage
 
