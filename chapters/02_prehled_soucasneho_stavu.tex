@@ -254,7 +254,7 @@ srdeční frekvenci a její variabilitu~\cite{Dylevsky2013,Trojan2002}.
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{anatomy/hr_regulation}
-		\caption{Autonomní invervace kardioexcitačních a kardioinhibičních
+		\caption{Autonomní inervace kardioexcitačních a kardioinhibičních
 			oblastí nacházejících se v prodloužené míše a jejich vliv na
 			normální sinusový rytmus (Upraveno a převzato z~\cite{OpenStax})}
 		\label{fig:hr_regulation}
@@ -733,15 +733,8 @@ Navržen byl primárně pro aplikace v reálném čase. Algoritmus má dvě hlav
 typy filtrů -- pásmová propust, derivační filtr, integrační filtr -- k potlačení
 šumu a artefaktů signálu~\cite{Alvarez2013}. Derivační filtr potlačuje vlivy P a
 T vln. Integrační filtr, se aplikuje v podobě pohyblivého okna pro vyhlazení
-signálu~\cite{Pan1985}. Rozhodovací část neboli část zpracování, se věnuje
-detekci QRS komplexů. Pro zvýšení spolehlivosti algoritmu probíhá detekce
-zároveň na derivovaném a na vyhlazeném signálu. Prvotním krokem je nalezení
-lokálních maxim v podobě R vln. Následně se aplikuje adaptivní prahování formou
-pohyblivého okna, pří kterém jsou rozhodovacím pravidlem vybrané pouze R vlny
-překračující prahovou hodnotu. Vybrané R vlny představují referenční body
-detekovaných QRS komplexů~\cite{Pan1985,Alvarez2013}.
-
-\begin{figure}[H]
+signálu~\cite{Pan1985}.
+\begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[node distance=2.5cm, thick, scale=0.85, every node/.style={scale=0.85}]
 		\node (start) [startstop] {Vstupní EKG signál};
@@ -766,6 +759,13 @@ detekovaných QRS komplexů~\cite{Pan1985,Alvarez2013}.
 	\caption{Pan-Tompkinsův algoritmus}
 	\label{fig:pan_tompkins}
 \end{figure}
+Rozhodovací část neboli část zpracování, se věnuje
+detekci QRS komplexů. Pro zvýšení spolehlivosti algoritmu probíhá detekce
+zároveň na derivovaném a na vyhlazeném signálu. Prvotním krokem je nalezení
+lokálních maxim v podobě R vln. Následně se aplikuje adaptivní prahování formou
+pohyblivého okna, pří kterém jsou rozhodovacím pravidlem vybrané pouze R vlny
+překračující prahovou hodnotu. Vybrané R vlny představují referenční body
+detekovaných QRS komplexů~\cite{Pan1985,Alvarez2013}.
 
 Existuje mnoho dalších QRS detektorů, jejichž řešení se orientuje především
 povahou dat a způsobem zpracování. Způsobem zpracování se rozumí, zdali detekce
@@ -834,7 +834,7 @@ je každý R-R interval vynesen proti nadcházejícímu R-R intervalu.
 	\end{center}
 \end{figure}
 
-Poincarého graf (plot) lze interpretovat jako kartézský souřadnicový systém
+Poincarého graf (plot, mapa) lze interpretovat jako kartézský souřadnicový systém
 tvořící mapu bodů, kde každý bod je definován dvojicí $RR_i$ (osa x) a
 $RR_{i+1}$ (osa y)~\cite{Hsu2012,Hejjel2001}. Na rozdíl od předešlých metod se
 Poincarého graf vyhodnocuje jak kvalitativně, pomocí tvaru (vzoru) vzniklého z
@@ -854,9 +854,9 @@ zatímco pozice dál směrem na opačnou stranu vliv parasympatiku. Pokud se v g
 nachází více shluků lze očekávat arytmie. Asymetrie vzoru bodů může vypovídat o
 poruchách srdečního rytmu~\cite{Habib2013}. Vizuální charakteristiky Poincarého
 grafu se dají vyjádřit i kvantitativně. Nejpopulárnější technikou
-kvantitativního hodnocení Poincarého grafu je konstrukce elipsy podle vzoru
-bodů. Z hlavní a vedlejší osy elipsy lze vypočítat indexy SD1 a SD2. Tvarové
-vlasnosti elipsy jsou v souladu se zmíněnými vlastnosti tvaru shluku bodů výše.
+kvantitativního hodnocení Poincarého mapy je fitování elipsy na 
+body v grafu. Z hlavní a vedlejší osy elipsy lze vypočítat indexy SD1 a SD2. Tvarové
+vlastnosti elipsy jsou v souladu vlastnosti tvaru shluku bodů.
 SD indexy jsou směrodatné odchylky okamžité variability ve směru
 osy~\cite{Habib2013,Mazhar2007}.
 
@@ -870,15 +870,15 @@ nezbytný pečlivý výběr vhodných metod předzpracování signálu.
 \subsubsection{Model neuroviscerální integrace}
 Model neuroviscerální integrace popisuje vztahy v rámci periferní
 psychofyziologie, neurověd a autonomních funkci spjatých s regulací vagálního
-tonu. Tyto znalosti a vztahy jsou kombinované do několika detailně popsaných
+tonu. Znalosti a vztahy těchto oborů jsou kombinované do několika detailně popsaných
 teoretických vrstev, dohromady tvořících jediný framework sloužící také jako
 prediktivní model, který pak usnadňuje vyhodnotit souvislosti a důsledky
 zásadních fyziologických změn srdeční aktivity či veličin s ní
 spojených~\cite{Smith2017}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=1\textwidth]{diagrams/nvi}
+		\includegraphics[width=0.9\textwidth]{diagrams/nvi}
 		\caption{Zjednodušený model neuroviscerální integrace (Upraveno a převzato z~\cite{NVI20017})}
 		\label{fig:nvi_model}
 	\end{center}
@@ -931,7 +931,7 @@ primárně HRV, a to i z hlediska dlouhodobých korelací se statistickými HRV
 parametry. Proto je možné v tabulce~\ref{tab:hrv_factors} vidět faktor typu
 pracovního stresu, který se řadí mezi specifický druh kognitivní zátěže.
 
-Prognostický význám má HRV i v řadě dalších klinických a intenzivistických oborů
+Prognostický význam má HRV i v řadě dalších klinických a intenzivistických oborů
 mezi které například patří diabetologie, renologie a neurologie. S využitím HRV
 se lze dále setkat na jednotkách intenzivní péče, kde monitorování této metriky
 slouží k predikci potenciálních pooperačních komplikací. Své uplatnění našla i
