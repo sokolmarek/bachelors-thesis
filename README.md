@@ -38,7 +38,7 @@ I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová,
 
 ### Prerequisites
 
-## Contributors
+### Contributors
 * Marek Sokol - *Author*
 * Ing. et Ing. Jan Hejda, Ph.D. - *Supervisor*
 * Mgr. Ksenia Sedova, Ph.D. - *Supervisor*
