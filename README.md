@@ -1,6 +1,6 @@
 # Heart activity record processing and analysis
 
-[![License: CC BY 4.0](https://img.shields.io/github/license/sokolmarek/bachelors-thesis.svg)](http://creativecommons.org/licenses/by/4.0/)
+[![License: MIT](https://img.shields.io/badge/license-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0)
 
 This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. Unfortunately, the whole work is written in the Czech language. I may translate it into English in the future.
 
