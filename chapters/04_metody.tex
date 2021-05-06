@@ -361,35 +361,31 @@ síní, kde dosahuje srdeční frekvence přibližně 300 úderů za minutu (5 �
 sekundu)~\cite{Haberl2012,Goldberger2017}. Dva sousední QRS komplexy se tedy
 nemůžou vyskytnout blíže než 200~\si\ms.
 
-Další vlny EKG signálu (P, Q, S, T) je možné lokalizovat vztažením
-fyziologických časových hodnot těchto komponentů k nalezeným R
-vlnám~\cite{Nabian2018}. Na Obr.~\ref{fig:detection} lze vidět zeleně vyznačený
-adaptivní práh, který se mění podle 2. kroku výše a doplněnou R vlnu, která
-nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
-
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{figures/detection}
-        \caption{Detekce R vln}
+        \caption{Vizualizace detekovaných R vln}
         \label{fig:detection}
     \end{center}
 \end{figure}
 
-Aby bylo možné detekované vlny zobrazit v původním signálu jako je tomu na
-Obr.~\ref{fig:detection}, byla zavedena metoda relokalizace, která upraví pozice
+Na Obr.~\ref{fig:detection} lze vidět zeleně vyznačený
+adaptivní práh, který se mění podle 2. kroku výše a doplněnou R vlnu, která
+nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{diagrams/fixpeaks}
+        \caption{Algoritmus relokalizace detekovaných R vln}
+        \label{fig:fixpeaks}
+    \end{center}
+\end{figure}
+Pro zobrazení detekovaných vln v původním signálu (viz. Obr.~\ref{fig:detection})
+byla zavedena metoda relokalizace, která upraví pozice
 detekovaných R vln tak, aby souhlasily v původním EKG záznamu. Díky tomu lze
 vizuálně ověřit spolehlivost algoritmu nebo evaluovat detekci v pochybných
 oblastech, které jsou více zatížené nežádoucími vlivy. Postup metody se řídí
 diagramem na Obr.~\ref{fig:fixpeaks}, kde $X$ reprezentuje množinu hodnot EKG
 signálu.
-
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{diagrams/fixpeaks}
-        \caption{Relokalizace nalezených R vln}
-        \label{fig:fixpeaks}
-    \end{center}
-\end{figure}
 
 \subsubsection{Zpracování detekovaných komponentů}
 \label{section:components_processing}
@@ -409,7 +405,7 @@ Korekcí je myšleno potlačení nežádoucích artefaktů.
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{figures/hrv_artifacts}
-        \caption{HRV zatížené artefakty}
+        \caption{HRV signál zatížený artefakty}
         \label{fig:hrv_artifacts}
     \end{center}
 \end{figure}
@@ -480,12 +476,12 @@ Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-
 intervalů pochází z normálního rozdělení, který ve většině případech není
 splněn, a proto dochází k chybným identifikacím artefaktů. K zamezení těchto
 chyb je metoda doplněna klasifikačním rozhodovacím algoritmem, který se řídí dle
-diagramu~\cite{Lipponen2019}:
+diagramu na Obr.~\ref{fig:rr_decision}.
 
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{diagrams/rr_decision}
-        \caption{Rozhodovací algoritmus~\cite{Lipponen2019}}
+        \caption{Rozhodovací algoritmus pro klasifikaci artefaktů časové řady R-R intervalů~\cite{Lipponen2019}}
         \label{fig:rr_decision}
     \end{center}
 \end{figure}
@@ -613,17 +609,8 @@ rotovat následovně:
 kde $X$ a $Y$ jsou výsledné body po rotaci o 45\degree. $\overline{RR}$ je
 vypočítaný průměr z R-R intervalů a je středem elipsy, do kterého je třeba
 elipsu posunout přičtením této hodnoty k oběma souřadnicím. Proměnné $x$ a $y$
-jsou předešle vypočítané souřadnice podle~\ref{eq:ellipse_parametric}.
-
-\bigskip
-
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.65\textwidth]{figures/my_poincare}
-        \caption{Realizace Poincarého grafu s elipsou}
-        \label{fig:my_poincare}
-    \end{center}
-\end{figure}
+jsou předešle vypočítané souřadnice podle~\ref{eq:ellipse_parametric}. 
+Realizované Poincarého grafy lze vidět v Příloze C (Obr.~\ref{fig:attachment_poincares_plots}).
 
 \subsection{Online zpracování EKG záznamu}
 \label{section:online_processing}
@@ -694,6 +681,8 @@ následně exportovat v podobě Python kódu.
         \label{fig:qt_designer}
     \end{center}
 \end{figure}
+
+\clearpage
 
 Pro potřeby aplikace byly vytvořeny dvě okna -- hlavní okno a okno nastavení.
 Hlavní okno (viz Obr.~\ref{fig:app_main_window}) se skládá z postranního
@@ -833,6 +822,13 @@ plovoucího okna a $N$ délka signálu. V aplikaci byla zvolena délka okna 151
 vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze vidět
 na Obr.~\ref{fig:sgf_filter}.
 
+Po filtraci jsou data přidána do cyklické fronty~\cite{circlebuffer}, kde
+probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používána
+funkce \texttt{find{\_}peaks(x,h,d)}~\cite{scipyFindpeaks}. Funkcí probíhá
+hledání lokálních maxim signálu v závislosti na zadané prahové amplitudě a
+minimální vzdáleností mezi sousedními R vlny. Prahová hodnota amplitudy byla
+zvolena 0,2~\si\mV~a minimální vzdálenost 0,4~\si\s~(200 vzorků).
+
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=1\textwidth]{figures/sgf_filter}
@@ -840,13 +836,6 @@ na Obr.~\ref{fig:sgf_filter}.
         \label{fig:sgf_filter}
     \end{center}
 \end{figure}
-
-Po filtraci jsou data přidána do cyklické fronty~\cite{circlebuffer}, kde
-probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používána
-funkce \texttt{find{\_}peaks(x,h,d)}~\cite{scipyFindpeaks}. Funkcí probíhá
-hledání lokálních maxim signálu v závislosti na zadané prahové amplitudě a
-minimální vzdáleností mezi sousedními R vlny. Prahová hodnota amplitudy byla
-zvolena 0,2~\si\mV~a minimální vzdálenost 0,4~\si\s~(200 vzorků).
 
 Zpracování komponentů (R vln) se odvíjí od zobrazených parametrů na hlavním
 panelu aplikace (viz Obr. \ref{fig:app_main_window}). Z detekovaných vln se
