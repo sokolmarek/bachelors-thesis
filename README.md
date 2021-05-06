@@ -2,7 +2,7 @@
 
 [![License: CC BY 4.0](https://img.shields.io/github/license/sokolmarek/bachelors-thesis.svg)](http://creativecommons.org/licenses/by/4.0/)
 
-This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. 
+This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. Unfortunately, the whole work is written in the Czech language. I may translate it into English in the future.
 
 ### [Click here to read the thesis.](http://mareksokol.cz)
 <sup>*[Click here for revised edition on CTU DSpace.](https://dspace.cvut.cz/)*</sup>
