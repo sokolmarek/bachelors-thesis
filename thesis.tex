@@ -29,7 +29,7 @@
 \usepackage{color}
 \usepackage{footnote}					% poznámka pod čarou
 \usepackage{url}						% url odkazy
-\DeclareUrlCommand\url{\urlstyle{same}} % nastavení URL odkazů pro podle normy ČSN ISO 690
+\urlstyle{same}
 
 \usepackage{float}						% plovoucí prostředí
 \usepackage{enumitem}      			    % seznamy 
@@ -62,7 +62,7 @@
 % Následující balíčky řeší citace v dokumentu. 
 \usepackage{csquotes}
 \usepackage{expl3}
-\usepackage[backend=biber,style=iso-numeric,citestyle=numeric-comp]{biblatex}
+\usepackage[backend=biber,style=iso-numeric,citestyle=numeric-comp,sorting=nty]{biblatex}
 \addbibresource{biblio.bib}
 
 \usepackage{siunitx}
