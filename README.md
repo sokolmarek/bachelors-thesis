@@ -33,7 +33,7 @@ I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová,
 ## Work results
 ### MATLAB software
 
-### Python software (BBPM)
+### Python software (*BBPM*)
 
 ## Compiling the document
 
