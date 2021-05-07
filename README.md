@@ -1,4 +1,4 @@
-# Heart activity record processing and analysis
+# *Heart activity record processing and analysis*
 
 [![License: MIT](https://img.shields.io/badge/license-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0)
 
