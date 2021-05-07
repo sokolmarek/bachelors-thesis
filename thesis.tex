@@ -42,6 +42,8 @@
 \usepackage{setspace}					%
 \usepackage[justification=centering]{caption}
 \usepackage{makecell}
+\usepackage{siunitx}
+\usepackage{hyperref}
 \usepackage{multicol}					% tabulka, slučování sloupců
 \usepackage{multirow}                   % tabulka, slučování řádků
 \usepackage{fancyhdr}					% záhlaví a zápatí stránky
@@ -62,23 +64,13 @@
 % Následující balíčky řeší citace v dokumentu. 
 \usepackage{csquotes}
 \usepackage{expl3}
-\usepackage[backend=biber,style=iso-numeric,citestyle=numeric-comp,sorting=nty]{biblatex}
+\usepackage[backend=biber,style=iso-numeric,citestyle=numeric-comp]{biblatex}
 \addbibresource{biblio.bib}
-
-\usepackage{siunitx}
-%% Přidání balíčků podporujících různé funkcionality - VOLITELNÉ, DOPLŇKOVÉ
-% Existuje celá řada dalších
-%\usepackage[]{algorithm2e}				    % balíček pro pseudokód
-%\usepackage{ifthen}                        % pro algoritmy if else
-%\usepackage{paralist}                      % Rozšířená možnost pro seznamy. Větší škála a možnosti jak seznamy dělat automaticky. 
 
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 \setmonofont[Scale=0.95]{Courier New}
-
-%\usepackage{icomma}      				    % není mezera za desetinnou čárkou
-% \usepackage[titletoc,title]{appendix}     % automatické vytvoření příloh
 
 %% Přidání speciálních příkazů 
 \newcommand{\TextUnderscore}{\rule{.4em}{.4pt}}
@@ -93,12 +85,6 @@
 	labelfont = bf
 }
 
-% Zalamování slov na konci věty - napodobení justify jako MS-Word
-%\tolerance=1
-%\emergencystretch=\maxdimen
-%\hyphenpenalty=10000
-%\hbadness=10000
-%\sloppy
 
 %% Ostatní definice a nastavení
 \clubpenalty 10000		% penalizace sirotků, sirotek: poslední řádek odstavce je na nové stránce
@@ -117,16 +103,6 @@
 
 \usepackage{tocloft}                    % Nastaví tučné zvýraznění sekcí v obsahu
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}   % přidá vodící linku do obsahu u sekcí
-
-%% Ostatní neimplementované, pouze návod jak případně doplnit
-% Vytvořit seznam použitých algoritmů a přejmenování názvu objektu na Algoritmus.
-%\usepackage{listings}
-%\usepackage[algosection,vlined,linesnumbered]{algorithm2e}
-%\SetAlgorithmName{Algoritmus}{algorithm}{Seznam algoritmů}
-%\SetKwInput{KwIn}{Vstup}%
-%\SetKwInput{KwOut}{Výstup}%
-
-\usepackage{hyperref}
 
 %% Deklarace názvů - přepsat dle autora
 \newcommand{\autor}{Marek Sokol}
@@ -207,7 +183,7 @@ Prohlašuji, že jsem bakalářskou práci s názvem \uv{\nazev} vypracoval/a sa
 % Mé poděkováni patři též XXXXXXXX za spolupráci při získávání údajů pro výzkumnou část práce.
 Rád bych poděkoval vedoucí své bakalářské práce, Mgr. Ksenii Sedové, Ph.D. za
 odborné vedení práce, za pomoc, vstřícnost a rady při zpracování této práce.
-Dále bych rád poděkoval panu Ing et Ing. Janu Hejdovi, Ph.D. za všestrannou
+Dále bych rád poděkoval panu Ing. et Ing. Janu Hejdovi, Ph.D. za všestrannou
 pomoc, množství cenných a inspirativních rad, podnětů, doporučení a čas, který
 mi věnoval při řešení dané problematiky. V neposlední řadě děkuji své rodině a
 všem přátelům, kteří mě při vytváření této práce podpořili.
