@@ -123,19 +123,24 @@
 \addcontentsline{toc}{section}{Příloha D: Obsah přiloženého CD/DVD}
 
 \begin{figure}[h]
-    \dirtree{%
-        .1 src.
-        .2 filters.m\DTcomment{Navržené digitální filtry}.
-        .2 QRSDetectors\DTcomment{MATLAB implementace QRS detektorů}.
-        .3 pan\_tompkins.m.
-        .3 hamilton\_tompkins.m.
-        .3 nabian.m.
-        .2 ECGDataAnalyzer.mlapp\DTcomment{Navržená MATLAB aplikace}.
-        .2 BBPM\DTcomment{Zdrojový kód Python aplikace \textit{BBPM}}.
-        .2 thesis\DTcomment{Zdrojový kód bakalářské práce ve formátu \LaTeX{}}.
-        .1 text\DTcomment{Thesis text}.
-        .2 assignment.pdf\DTcomment{Zadání bakalářské práce v PDF formátu}.
-        .2 17PBBBP\_483417\_Marek\_Sokol.pdf\DTcomment{Bakalářská práce v PDF formátu}.
-    }
+    \begin{minipage}{0.95\textwidth}
+        \dirtree{%
+            .1 /.
+            .2 src.
+            .3 BBPM\DTcomment{Zdrojový kód Python aplikace \textit{BBPM}}.
+            .3 reports\DTcomment{Reporty z aplikace \textit{Kubios HRV Standard}}.
+            .3 thesis\DTcomment{Zdrojový kód bakalářské práce ve formátu \LaTeX{}}.
+            .3 QRSDetectors\DTcomment{MATLAB implementace QRS detektorů}.
+            .4 pan\_tompkins.m.
+            .4 hamilton\_tompkins.m.
+            .4 nabian.m.
+            .3 data.mat\DTcomment{Naměřená a zpracovaná data}.
+            .3 ECGDataAnalyzer.mlapp\DTcomment{Navržená MATLAB aplikace}.
+            .3 filters.m\DTcomment{Navržené digitální filtry}.
+            .2 text.
+            .3 assignment.pdf\DTcomment{Zadání bakalářské práce v PDF}.
+            .3 17PBBBP\_483417\_Marek\_Sokol.pdf\DTcomment{Bakalářská práce v PDF}.
+        }
+    \end{minipage}
 \end{figure}
 
