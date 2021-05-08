@@ -15,15 +15,15 @@ pro online hodnocení srdeční aktivity. Pro aplikaci bylo vytvořeno graficky
 uživatelské rozhraní, které uživateli umožňuje jednoduché interaktivní ovládání
 aplikace. Software je založený na zpracování EKG signálu v reálném čase, který
 je přijímán z měřícího zařízení přes bezdrátovou lokální síť. Zároveň v reálném
-čase probíhá detekce komponentů, ze kterých jsou vypočteny vybrané parametry.
-Aplikace poskytuje živou vizualizaci určených parametrů a zpracovaného EKG
-signálu na jejím hlavním panelu. Byla přidána i funkcionalita pro sběr surových
-nebo zpracovaných dat.
+čase probíhá detekce komponentů, ze kterých jsou vypočteny vybrané parametry 
+z časové oblasti. Aplikace poskytuje živou vizualizaci určených parametrů a 
+zpracovaného EKG signálu na jejím hlavním panelu. Byla přidána i funkcionalita 
+pro sběr surových nebo zpracovaných dat.
 
 Pomocí navržené Python GUI aplikace bylo provedeno pilotní měření surových EKG
-záznamů na kontrolní skupině pěti probandů. Použitím realizovaného MATLAB řešení
-byly záznamy zpracovány a analyzovány. Jednalo se o krátkodobé záznamy. Na
-základě výsledků analýzy byly určeny sledované veličiny a vyšetřeny rozdíly mezi
+záznamů na kontrolní skupině 5 probandů. Použitím realizovaného MATLAB řešení
+byly záznamy zpracovány a analyzovány. Jednalo se o krátkodobé 10 minutové záznamy.
+Na základě výsledků analýzy byly určeny sledované veličiny a vyšetřeny rozdíly mezi
 úseky EKG záznamů, kdy byl proband v klidu nebo vystaven kognitivní zátěží. 
 
 Bylo realizováno ověření navržených řešení statistickým zpracováním vyšetřených
@@ -34,4 +34,21 @@ spojena s aktivitou prefrontálního kortexu, který lze stimulovat kognitivní
 zátěží. Ke stimulaci kognitivní zátěže byl u kontrolní skupiny využit Stroopův
 test. Zjištěné výsledky potvrzují spolehlivost analýzy realizovaného řešení a
 možnost využití Poicarého grafu jako kvantitativního ukazatele změn v ANS. 
+
+\subsection{Budoucí práce}
+V rámci projektu \textit{Virtuální město} (viz sekce~\ref{section:online_processing}) 
+bude aplikce \textit{BBPM} nadále vyvíjena. Pro zvýšeni uživatelské přívětivosti budou 
+některé funkce aplikace automatizovány. Například automatické vyhledávání a připojení 
+měřícího zařízení na lokální bezdrátové sítí. Aplikace bude rovněž rozšířena o lokální
+měření přes sériové porty, aby bylo možné používat k měření i zařízení, která nejsou
+bezdrátové. Předpokladem je i rozšíření sledovaných veličin během hodnocení v reálném 
+čase a potenciální implementace offline analýzy záznamů v časové nebo frekvenční oblasti. 
+
+Vzhledem k čerstvému vydání nové verze frameworku \textit{PySide6}, který je využíván v rámci 
+aplikace \textit{BBPM} (viz sekce~\ref{section:pyside}), dojde pravděpodobně k přechodu na 
+tuto novější verzi. Na základě tohoto přechodu bude pozměněn i životní cyklus aplikace.
+
+Dále se plánuje rozšíření dosavadně používaných formátů ukládaných dat (CSV) o formát 
+DICOM (Digital Imaging and Communications in Medicine). Formát DICOM je standardní 
+formát pro zobrazování, distribuci a uchovávání medicínských dat. 
 
