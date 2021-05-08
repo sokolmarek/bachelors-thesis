@@ -20,10 +20,10 @@ délky signálu. Fázové zpoždění filtrů se kompenzuje automaticky. Pro vš
 signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
 rozmezím dolního tolerančního pásma 6,32--7,50~\si\Hz, horního tolerančního
 pásma 35,00--68,75~\si\Hz~a zvlněním 0,1~\si\dB~v propustném pásmu. Pro návrh
-FIR filtru je využívaná metoda Kasierova okna (viz
-sekce~\ref{section:online_processing}), která je mezi dalšími metody oken pro
+FIR filtru je využívaná metoda Kaiserova okna (viz
+sekce~\ref{section:online_processing}), která je mezi dalšími metodami oken pro
 filtraci EKG signálu nejefektivnější. Metody byly již porovnané v
-\cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v poddání
+\cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v podání
 realizovaného řešení umožňuje ve srovnání s jinými open-source MATLAB
 aplikacemi -- například~\cite{ecgkit}~a~\cite{Sedghamiz2018} -- širší a
 spolehlivější možnosti filtrace EKG záznamů různorodého charakteru. Hlavním
@@ -149,7 +149,7 @@ rámci všech probandů byly vypočítány průměrné hodnoty korigovaných R-R
 a srdeční frekvence spolu s jejich směrodatnými odchylkami
 (Tab.~\ref{tab:corrected_components}). Dále byly určeny indexy Poincarého grafu
 SD1, SD2 a jejich poměr SD1/SD2 (Tab.~\ref{tab:poincare_parameters}). Všechny hodnoty byly
-zároveň zvláště vypočítány pro klidový úsek (N) EKG záznamu a pro úsek, kde byl
+zároveň zvlášť vypočítány pro klidový úsek (N) EKG záznamu a pro úsek, kde byl
 proband vystaven kognitivní zátěží (S) pomocí Stroopova testu (viz
 sekce~\ref{section:stroop_test}). Dále proběhlo statistické zpracování výsledků
 dle kapitoly \ref{section:statistical_methods}. Ve všech případech souborů

@@ -24,7 +24,7 @@ s 3.5~\si\mm~jack konektorem. Vzorkovací frekvence zařízení je 500~\si\Hz.
 
 Přenos dat ze zařízení probíhá bezdrátově na lokální sítí (WLAN), ke které je
 třeba zařízení připojit pomocí volně dostupné mobilní aplikace \textit{ESPTouch:
-    SmartConfig} podle postupu níže. \textit{ESP-TOUCH} je protokol, umožňující
+SmartConfig}~\cite{ESPAPP} podle postupu níže. \textit{ESP-TOUCH} je protokol, umožňující
 vestavěným systémům (embedded systémy) jednoduché připojení k Wi-Fi sítím pomocí
 chytrých mobilních zařízení~\cite{esptouch}. K záznamu dat byla použita
 aplikace, naprogramovaná v rámci této práce, jménem \textit{BBPM (Better bpm)},
@@ -55,14 +55,14 @@ měřícího zařízení k WLAN sítí je následující:
     \item Vyplnění hesla v kolonce \textbf{Password} náležícího zvolené WLAN
           sítí. Ostatní parametry jsou ponechány ve výchozím stavu.
     \item Stisk tlačítka \textbf{Confirm} v dolní části aplikace pro zahájení
-          konfigurace a připojení Holteru k vybrané sítí.
+          konfigurace a připojení Holterova monitoru k vybrané sítí.
 \end{enumerate}
 
 Pokud se měřící zařízení připojilo úspěšně k vybrané WLAN sítí, objeví se
 notifikace jako na Obr. \ref{fig:app_screen2} a zároveň je navázané spojení
-indikované rozsvícenou LED kontrolkou na předním panelu Holteru u položky
+indikované rozsvícenou LED kontrolkou na předním panelu Holterova monitoru u položky
 \textbf{WI-FI CONNECTED}. Při nezdařeném pokusu připojení je nutné opakovat
-kroky od bodu 2 nebo případně zkontrolovat stav baterie Holteru.
+kroky od bodu 2 nebo případně zkontrolovat stav baterie Holterova monitoru.
 
 \begin{figure}[h]
     \centering
@@ -80,14 +80,14 @@ kroky od bodu 2 nebo případně zkontrolovat stav baterie Holteru.
         \label{fig:app_screen2}
     \end{subfigure}
     \caption{Konfigurace měřícího zařízení v aplikaci \textit{ESPTouch:
-            SmartConfig}}
+            SmartConfig}~\cite{ESPAPP}}
     \label{fig:esptouch_app}
 \end{figure}
 
 \subsubsection{Metodika měření}
 \label{section:measurement_methodology}
 Metodika měření spočívá v krátkodobém záznamu srdeční aktivity ve dvou odlišných
-situacích. Před měřením je na subjekt připojeno měřicí zařízení, popsané v
+situacích. Před měřením je na subjekt připojeno měřící zařízení, popsané v
 sekci~\ref{section:measurement_device}, pomocí adhezivních EKG elektrod (viz
 Obr.~\ref{fig:device_usage}). Jedná se o bipolární hrudní 3-svodové zapojení
 elektrod (viz kapitola~\ref{section:electrocardiography}). Měření každého
@@ -109,7 +109,7 @@ sekci~\ref{section:measurement_process}.
 
 \subsubsection{Stroopův test}
 \label{section:stroop_test}
-Stroopův test se řadí mezi psychologické testy osobnosti a byl primárně navržený
+Stroopův test (viz Obr.~\ref{fig:stroop}) se řadí mezi psychologické testy osobnosti a byl primárně navržený
 pro testování percepční zátěže. Postupem času se možnosti jeho využití
 rozšiřovaly~\cite{Svoboda1999}. Dnes je Stroopův test jeden z nejběžnějších
 neuropsychologických testů používaný k hodnocení  a stimulaci kognitivní
@@ -124,11 +124,11 @@ zátěže~\cite{Scarpina2017}.
 \end{figure}
 
 Princip testu spočívá ve třech po sobě následujících krocích. Prvním krokem je
-přečtení řady slov, která jsou napsaná černou barvou a označují několik barev
+přečtení řady slov, která jsou napsána černou barvou a označují několik barev
 (nejčastěji červená, žlutá, zelená a modrá). Dalším krokem je pojmenování každé
 jednotlivé barvy v další řadě tvořené barevnými obdélníky. Posledním krokem je
-přečtení řady slov, která jsou napsaná barevně ale význam slova této barvě
-neodpovídá~\cite{Svoboda1999}. Na Obr.~\ref{fig:stroop} lze vidět příklad testu.
+přečtení řady slov, které jsou napsána barevně, ale význam slova této barvě
+neodpovídá~\cite{Svoboda1999}.
 
 \subsubsection{Postup měření}
 \label{section:measurement_process}
@@ -139,7 +139,7 @@ následujících kroků:
     \item Nalepení elektrod na měřeného probanda podle
           Obr.~\ref{fig:device_usage} a připojení příslušných EKG kabelů k elektrodám.
     \item Zapnutí aplikace \textit{BBPM}. Počítač na kterém běží aplikace musí
-          být připojený ke stejné sítí jako měřící zařízení.
+          být připojený ke stejné síti jako měřící zařízení.
     \item Nastavení aplikace stiskem tlačítka \textbf{Settings} a vyplněním IP
           adresy a portu měřícího zařízení do kolonek \textbf{Host} a \textbf{Port} v
           kartě \textbf{General}.
@@ -160,11 +160,11 @@ mít informovaný souhlas měřených probandů a souhlasné stanovisko etické 
 Sběr dat proběhl v rámci výzkumu \textit{Zpátky za volant -- Diagnostický a
 rehabilitační nástroj pro osoby po poškození mozku}. Výzkum byl schválen etickou
 komisí FBMI ČVUT. Stanovisko etické komise je uvedeno v Příloze
-A společně s informovaným souhlasem.
+A (viz sekce~\ref{pdf:souhlas}) společně s informovaným souhlasem.
 
 \subsubsection{Kontrolní skupina probandů}
 \label{section:probands}
-Za účelem otestovaní navrženého řešení (viz kapitola 3) byla naměřena a
+Za účelem otestovaní navrženého řešení (viz kapitola~\ref{section:thesis_aims}) byla naměřena a
 zaznamenána srdeční aktivita podle postupu~\ref{section:measurement_process} u
 kontrolní skupiny 5 probandů ve věkovém rozmezí 21--23 let bez diagnostikovaných
 kardiovaskulárních onemocnění.
@@ -193,7 +193,7 @@ kapitola~\ref{section:hrv_methods}):
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
 \ref{fig:diagram_offline_processing} a je realizováno v prostředí programu
 \textit{MathWorks MATLAB 2021a}~\cite{MATLAB} s pomocí \textit{Signal Processing
-    Toolboxu}~\cite{matlabSPT}. Jednotlivé částí zpracování jsou rozebrány v
+    Toolboxu}~\cite{matlabSPT}. Jednotlivé části zpracování jsou rozebrány v
 následujících kapitolách.
 
 \begin{figure}[H]
@@ -241,14 +241,14 @@ mezi frekvencemi od 0 do 5--10~\si\Hz.
 \end{figure}
 
 Po FFT analýze byl pro potlačení nežádoucích prvků použit pro každý EKG záznam
-digitální filtr FIR typu pásmová propust s propustnými frekvencemi v rozmezí
+digitální filtr FIR (viz níže) typu pásmová propust s propustnými frekvencemi v rozmezí
 7,5--35~\si\Hz. Filtr byl navržen metodou Kaiserova okna~\cite{Chavan2006},
-které je definované~\cite{Oppenheim1999}:
+které je definováno následovně~\cite{Oppenheim1999}:
 \begin{equation}
     \label{eq:kaiser1}
     w[n] =
     \begin{cases}
-        \frac{I_0[\beta(1-[(n-\alpha/\alpha]^2)^{1/2}]}{I_0(\beta)}, & 0 \leq n \leq M \\
+        \frac{I_0[\beta\sqrt{(1-[(n-\alpha)/\alpha]^2)}]}{I_0(\beta)}, & 0 \leq n \leq M \\
         0,                                                           & \text{jinak}.
     \end{cases}
 \end{equation}
@@ -397,7 +397,7 @@ intervaly jsou zatížené artefakty a mohou představovat abnormální hodnoty.
 Zdrojem artefaktů jsou nejčastěji falešně nebo nesprávně detekované či chybějící
 R vlny a ektopický rytmus, který společně s invalidně detekovanými R vlny
 vytváří sekvence dlouhých a krátkých srdečních period. Vizuálně lze artefakty
-identifikovat jako velké náhle změny či kolísání v grafu jako je tomu na
+identifikovat jako velké náhlé změny či kolísání v grafu jako je tomu na
 Obr.~\ref{fig:hrv_artifacts}. Podmínkou HRV analýzy je tedy použití N-N
 intervalů (normal-to-normal), které představují korigované R-R intervaly.
 Korekcí je myšleno potlačení nežádoucích artefaktů.
@@ -469,7 +469,7 @@ $Th2$~\cite{Lipponen2019}:
 \end{equation}
 a hodnoty $mRRs$ jsou následně normalizovány~\cite{Lipponen2019}:
 \begin{equation}
-    mRR_j = \frac{mRRs_j}{Th1_j}, \quad \forall j \in \{1,...,N\}
+    mRR_j = \frac{mRRs_j}{Th2_j}, \quad \forall j \in \{1,...,N\}
 \end{equation}
 
 Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-R
@@ -521,7 +521,7 @@ podle~\eqref{eq:subspace1} a~\eqref{eq:subspace2}.
 \end{figure}
 
 Dlouhé srdeční cykly včetně případů nedetekovaných R vln se projevují v $dRR$
-sérii sekvencí PN, pomalé cykly NP a nadbytečné periody jako NNP nebo NPP. K
+sérií sekvencí PN, pomalými cykly NP a nadbytečnými periodami jako NNP nebo NPP. K
 zobrazení těchto artefaktů a jejich detekčních hranic slouží 2D prostor $S2$
 definovaný~\cite{Lipponen2019}:
 \begin{gather}
@@ -536,7 +536,7 @@ definovaný~\cite{Lipponen2019}:
 \end{gather}
 
 Posledním krokem je korekce detekovaných artefaktů, která se řídí jejich typem a
-následný přepočet nové série korigovaných R-R intervalů. Úprava je realizována
+přepočet nové série korigovaných R-R intervalů. Úprava je realizována
 pro každý typ artefaktu následujícím způsobem~\cite{Lipponen2019}:
 \begin{itemize}
     \item \textbf{Falešně pozitivní srdeční periody} -- odstranění
@@ -561,19 +561,19 @@ sestrojení grafu je vytvoření časových vektorů následovně~\cite{Mazhar20
     \overrightarrow{RR_{i+1}} = \{RR_2, RR_3,...,RR_{N-1}\}
 \end{gather}
 kde $N$ je celkový počet R-R intervalů. Dalším krokem je výpočet kvantitativních
-parametrů Poincarého grafu $SD1$ a $SD2$, které zároveň slouží ke konstrukci
-elipsy. Směrodatné odchylky $SD1$ a $SD2$ jsou vypočteny jako~\cite{Mazhar2007}:
+parametrů Poincarého grafu SD1 a SD2, které zároveň slouží ke konstrukci
+elipsy. Směrodatné odchylky SD1 a SD2 jsou vypočteny jako~\cite{Mazhar2007}:
 \begin{equation}
-    SD1 = \sqrt{var(x1)}
+    \text{SD1} = \sqrt{var(x1)}
     \quad \textrm{a} \quad
-    SD2 = \sqrt{var(x2)}
+    \text{SD2} = \sqrt{var(x2)}
 \end{equation}
-kde $x_1$ a $x_2$ neboli hlavní a vedlejší osa elipsy jsou
+kde $x_1$ a $x_2$ neboli hlavní a vedlejší osy elipsy jsou
 rovny~\cite{Mazhar2007}:
 \begin{equation}
-    x_1 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
+    x_1 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt{2}}
     \quad \textrm{a} \quad
-    x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt(2)}
+    x_2 = \frac{\overrightarrow{RR_i}-\overrightarrow{RR_{i+1}}}{\sqrt{2}}
 \end{equation}
 
 \noindent Elipsa je konstruována využitím jejího vyjádření parametrickými
@@ -584,7 +584,7 @@ rovnicemi:
     y = b \sin \theta
 \end{gather}
 kde $\theta \in \langle 0, 2\pi \rangle$, $a$ je šířka elipsy a $b$ je její
-výška. Za výšku elipsy je dosazena hodnota $SD1$ a za šířku $SD2$. Hlavní osa
+výška. Za výšku elipsy je dosazena hodnota SD1 a za šířku SD2. Hlavní osa
 elipsy leží v případě Poincarého grafu na přímce dané předpisem $y=x$ a elipsa
 je tak natočena o 45\degree~($\frac{\pi}{4}$). Vypočítané body z parametrického
 vyjádření elipsy~(\ref{eq:ellipse_parametric}) je tedy nutné
@@ -616,7 +616,7 @@ Realizované Poincarého grafy lze vidět v Příloze C (Obr.~\ref{fig:attachmen
 \label{section:online_processing}
 Pro zpracování EKG signálu v reálném čase bylo naprogramované multiplatformní
 řešení s grafickým učitelským rozhraním (GUI) pojmenované \textit{BBPM -- Better
-    bpm}. Zpracování signálu se se řídí stejným diagramem jako v
+bpm}. Zpracování signálu se řídí stejným diagramem jako v
 kapitole~\ref{section:offline_processing} na
 Obr.~\ref{fig:diagram_offline_processing}. Motivací pro vznik aplikace je
 spolupráce s Mgr. et Mgr. Ivetou Fajnerovou, Ph.D. z Národního ústavu duševního
@@ -672,7 +672,8 @@ podobě uživatelského okna~(\ref{fig:qt_designer}--\textbf{3}), které je hlav
 komponentem. Do hlavního okna lze z panelu č.~\textbf{1} přesouvat interaktivní
 uživatelské prvky. Jednotlivé parametry prvků společně s hlavním oknem (např.
 výška a šířka) lze upravovat v panelu č.~\textbf{2}. Vytvořené GUI je možné
-následně exportovat v podobě Python kódu.
+následně exportovat v podobě Python kódu nebo formátu UI kompatibilním s knihovnou 
+\textit{PySide}.
 
 \begin{figure}[h]
     \begin{center}
@@ -684,7 +685,7 @@ následně exportovat v podobě Python kódu.
 
 \clearpage
 
-Pro potřeby aplikace byly vytvořeny dvě okna -- hlavní okno a okno nastavení.
+Pro potřeby aplikace byly vytvořena dvě okna -- hlavní okno a okno nastavení.
 Hlavní okno (viz Obr.~\ref{fig:app_main_window}) se skládá z postranního
 vysouvacího menu~(\ref{fig:app_main_window}-\textbf{1}), které se nachází na
 levé straně okna a panelu~(\ref{fig:app_main_window}-\textbf{2}), ve kterém se
@@ -699,7 +700,7 @@ jsou:
 \end{itemize}
 Postranní menu je modulární, což umožňuje snadné přidání nových položek a k nim
 přidružených karet v pravém panelu. Modularita některých funkcí aplikace tak
-zajišťuje snadnou rozšířitelnost v budoucnu.
+zajišťuje snadnou rozšiřitelnost v budoucnu.
 
 \begin{figure}[h]
     \begin{center}
@@ -740,7 +741,7 @@ kardiologické asociace (AHA).
 \end{table}
 
 Poslední informační subpanel (Events) má uplatnění během měření a hodnocení osob
-ve VR v rámci výzkumu \textit{Virtuální město – herní systém pro kognitivní
+ve VR v rámci výzkumu \textit{Virtuální město –- herní systém pro kognitivní
     trénink ve virtuálním prostředí}, zmíněného v úvodu
 kapitoly~\ref{section:online_processing}. V této práci nemá využití, a proto
 není dále blíže popsán.
@@ -761,23 +762,23 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_general}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1\linewidth]{bbpm/settings_general}}}
         \caption{záložka General}
         \label{fig:settings_general}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
+    \hspace{5pt}
+    \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_graph}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1\linewidth]{bbpm/settings_graph}}}
         \caption{záložka Graph}
         \label{fig:settings_graph}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
+    \hspace{5pt}
+    \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1.1\linewidth]{bbpm/settings_recording}}}
+        \textcolor{cyan}{\fboxrule=0.5pt\fboxsep=0pt\fbox{\includegraphics[width=1\linewidth]{bbpm/settings_recording}}}
         \caption{záložka Recording}
         \label{fig:settings_recording}
     \end{subfigure}
@@ -789,7 +790,7 @@ Okno nastavení obsahuje čtyři záložky (viz Obr. \ref{fig:settings_cards}):
 \label{section:online_data_process}
 Pro zpracování dat jsou využívané funkce prostředí Python a knihovny
 \textit{SciPy}~\cite{SciPy2020}. Před zpracováním EKG signálu jsou přijatá data
-nejdříve upraveny. Aplikace přijímá z měřícího zařízení v každý jeden okamžik
+nejdříve upravena. Aplikace přijímá z měřícího zařízení v každý jeden okamžik
 blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048 hodnot. Jeden
 vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky na sebe
 nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
@@ -826,7 +827,7 @@ Po filtraci jsou data přidána do cyklické fronty~\cite{circlebuffer}, kde
 probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používána
 funkce \texttt{find{\_}peaks(x,h,d)}~\cite{scipyFindpeaks}. Funkcí probíhá
 hledání lokálních maxim signálu v závislosti na zadané prahové amplitudě a
-minimální vzdáleností mezi sousedními R vlny. Prahová hodnota amplitudy byla
+minimální vzdáleností mezi sousedními R vlnami. Prahová hodnota amplitudy byla
 zvolena 0,2~\si\mV~a minimální vzdálenost 0,4~\si\s~(200 vzorků).
 
 \begin{figure}[h]
