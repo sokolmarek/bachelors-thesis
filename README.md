@@ -28,7 +28,7 @@ multiplatform Python GUI application was programmed, extending the output within
 the online measurement and processing of ECG records. 
 
 ## Acknowledgements
-I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová, Ph.D. for help, advice, and professional management of this work. I would also like to thank Mr. Ing. et Ing. Jan Hejda, Ph.D., for all-around help, a lot of valuable and inspiring advice, suggestions, recommendations, and the time he devoted to me in solving the issue. Last but not least, I thank my family and all the friends who supported me in creating this work.
+I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová, Ph.D. for help, advice, and professional management of this work. I would also like to thank Ing. et Ing. Jan Hejda, Ph.D., for all-around help, a lot of valuable and inspiring advice, suggestions, recommendations, and the time he devoted to me in solving the issue. Last but not least, I thank my family and all the friends who supported me in creating this work.
 
 ## Work results
 ### MATLAB software
