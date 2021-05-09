@@ -42,7 +42,7 @@ As part of the bachelor's thesis, a software MATLAB solution for offline process
 Furthermore, a multiplatform application in the Python environment for online assessment of cardiac activity was designed and programmed. A graphical user interface has been created for the application, which allows the user to easily interactively control the application. The software is based on real-time processing of the ECG signal, which is received from the measuring device via a wireless local area network. At the same time, components are detected in real-time. The application provides a live visualization of the specified calculated parameters and the processed ECG signal on its main panel. Functionality for collecting raw or processed data has also been added.
 
 <p align="center">
-![bbpm.svg](https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/bbpm_app.svg?raw=true)
+  <img src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/bbpm_app.svg?raw=true" />
 </p>
 
 ## Compiling the document
