@@ -1,4 +1,4 @@
-<svg id="bbpm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2002" height="1453" viewBox="0 0 2002 1453">
+<svg id="bbpm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="520" viewBox="0 0 2002 1453">
     <style>
       #upper-segment {
         animation: floatAnim 6s ease-in-out infinite;
