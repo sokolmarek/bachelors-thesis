@@ -31,12 +31,9 @@ the online measurement and processing of ECG records.
 I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová, Ph.D. for help, advice, and professional management of this work. I would also like to thank Ing. et Ing. Jan Hejda, Ph.D., for all-around help, a lot of valuable and inspiring advice, suggestions, recommendations, and the time he devoted to me in solving the issue. Last but not least, I thank my family and all the friends who supported me in creating this work.
 
 ## Work results
+<img align="right" src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/edu.gif?raw=true" width="500" />
 ### MATLAB software
 As part of the bachelor's thesis, a software MATLAB solution for offline processing and evaluation of cardiac activity was designed and implemented. The solution is based on a procedure that consists of preprocessing, component detection, component processing, and analysis. In order to detect components, a QRS detector using adaptive thresholding was introduced and modified. A complex algorithm has been implemented for component processing, which detects and corrects artifacts within the detected components. The evaluation of cardiac activity takes place in the time domain and is based on the nonlinear geometric method of the Poincaré graph. The subject of the analysis is heart rate variability (HRV). The implemented solution visualizes the individual parts together with the Poincaré graph and automatically calculates its quantitative parameters using the ellipse fitting method.
-
-<p align="right">
-  <img src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/edu.gif?raw=true" width="500" />
-</p>
 
 ### Python software (*BBPM*)
 Furthermore, a multiplatform application in the Python environment for online assessment of cardiac activity was designed and programmed. A graphical user interface has been created for the application, which allows the user to easily interactively control the application. The software is based on real-time processing of the ECG signal, which is received from the measuring device via a wireless local area network. At the same time, components are detected in real-time. The application provides a live visualization of the specified calculated parameters and the processed ECG signal on its main panel. Functionality for collecting raw or processed data has also been added.
