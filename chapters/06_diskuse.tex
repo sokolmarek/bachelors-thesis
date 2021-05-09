@@ -22,7 +22,7 @@ rozmezím dolního tolerančního pásma 6,32--7,50~\si\Hz, horního tolerančn�
 pásma 35,00--68,75~\si\Hz~a zvlněním 0,1~\si\dB~v propustném pásmu. Pro návrh
 FIR filtru je využívaná metoda Kaiserova okna (viz
 sekce~\ref{section:online_processing}), která je mezi dalšími metodami oken pro
-filtraci EKG signálu nejefektivnější. Metody byly již porovnané v
+filtraci EKG signálu nejefektivnější. Metody byly již porovnány v
 \cite{Kumar2014,Lakhwani2013,Yadav2011}. Adaptivní filtrace v podání
 realizovaného řešení umožňuje ve srovnání s jinými open-source MATLAB
 aplikacemi -- například~\cite{ecgkit}~a~\cite{Sedghamiz2018} -- širší a
@@ -126,7 +126,7 @@ kapitola~\ref{section:measurement_device}). Aplikace ze zařízení přijímá d
 bloky o velikosti 2048 vzorků. Filtrace by nyní nefungovala při použití aplikace
 s jiným zařízením, které posílá hodnoty po jednom vzorku nebo po blocích menších
 než nastavená délka okna. Nabízí se tak implementace variabilnějšího řešení v
-podobě rekurzivní IIR filtrace. Filtry IIR jsou běžně využívané k filtraci
+podobě rekurzivní IIR filtrace. Filtry IIR jsou běžně využívány k filtraci
 signálu v reálném čase už jen díky jejich nízké výpočetní náročností. Pro
 srovnání s FIR filtrací využívanou v MATLAB řešení byl navržen
 Eliptický IIR filtr se stejnými parametry, který byl ve filtraci každého
