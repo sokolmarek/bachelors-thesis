@@ -32,7 +32,7 @@ I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová,
 
 ## Work results
 ### MATLAB software
-![edu.gif](https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/edu.gif?raw=true)
+![edu.gif](https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/edu.gif?raw=true | width=800)
 
 ### Python software (*BBPM*)
 ![bbpm.svg](https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/bbpm_app.svg?raw=true)
