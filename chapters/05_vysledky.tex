@@ -13,7 +13,7 @@ Výstup jednotlivých fází zpracování EKG záznamů (viz kapitola
 integrovaného \textit{App Designeru} \cite{matlabAPPDESIGNER} v programovém
 prostředí MATLAB. Výsledkem je spustitelná interaktivní aplikace. Po
 spuštění aplikace lze v menu pomocí tlačítka \textbf{Load signal} nahrát EKG
-signál ve formátu CSV nebo MAT. Po výběru EKG signálu je uživatel tázán aby
+signál ve formátu CSV nebo MAT. Po výběru EKG signálu je uživatel tázán, aby
 zadal vzorkovací frekvenci signálu. EKG signál je následně adaptivně zpracován.
 \begin{figure}[h]
 	\begin{center}
@@ -110,7 +110,7 @@ sekci~\ref{section:components_processing}.
 	\begin{center}
 		\caption{\label{tab:detected_artifacts} Detekované artefakty v časové sérii R-R intervalů}
 		\vspace{1ex}
-		\setlength{\tabcolsep}{11pt}
+		\setlength{\tabcolsep}{10pt}
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabular}{llcccc}
 			\noalign{\hrule height 2pt}
@@ -125,7 +125,7 @@ sekci~\ref{section:components_processing}.
 	\end{center}
 \end{table}
 
-\subsection{Analýza EKG záznamu pomocí Poicarého grafu}
+\subsection{Analýza EKG záznamu pomocí Poincarého grafu}
 \label{sections:results_analysis}
 Pro kvantitativní hodnocení srdeční aktivity pomocí Poincarého grafu počítá
 realizovaná MATLAB aplikace v rámci HRV analýzy pro každý zpracovaný
@@ -192,7 +192,7 @@ vyvrácena nulová hypotéza. Lze tedy předpokládat, že vzorky pocházejí ze
 základních souborů s normálním rozdělením.
 
 Vzhledem k splnění předpokladů normality bylo u jednotlivých sledovaných veličin
-realizované srovnání mezi případy N a S parametrickým párovým t-testem (viz
+realizované srovnání mezi případy N a S. Pro srovnání byl použit parametrický párový t-test (viz
 sekce~\ref{section:parametric_tests}). Výsledky jsou zaneseny v
 Tab.~\ref{tab:t_tests}.
 
