@@ -4,7 +4,7 @@
 
 This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. Unfortunately, the whole work is written in the Czech language. I may translate it into English in the future.
 
-### [Click here to read the thesis.](http://mareksokol.cz)
+### [Click here to read the thesis.](https://firebasestorage.googleapis.com/v0/b/mareksokol-e3c61.appspot.com/o/bachelors_thesis.pdf?alt=media&token=42bd0d03-d382-4928-b92e-329933564405)
 <sup>*[Click here for revised edition on CTU DSpace.](https://dspace.cvut.cz/)*</sup>
 
 ## Abstract
@@ -32,11 +32,12 @@ I would like to thank the supervisor of my bachelor thesis, Mgr. Ksenia Sedová,
 
 ## Work results
 ### MATLAB software
-As part of the bachelor's thesis, a software MATLAB solution for offline processing and evaluation of cardiac activity was designed and implemented. The solution is based on a procedure that consists of preprocessing, component detection, component processing, and analysis. In order to detect components, a QRS detector using adaptive thresholding was introduced and modified. A complex algorithm has been implemented for component processing, which detects and corrects artifacts within the detected components. The evaluation of cardiac activity takes place in the time domain and is based on the nonlinear geometric method of the Poincaré graph. The subject of the analysis is heart rate variability (HRV). The implemented solution visualizes the individual parts together with the Poincaré graph and automatically calculates its quantitative parameters using the ellipse fitting method.
+As part of the bachelor's thesis, a software MATLAB solution for offline processing and evaluation of cardiac activity was designed and implemented. The solution is based on a procedure that consists of preprocessing, component detection, component processing, and analysis. In order to detect components, a QRS detector using adaptive thresholding was introduced and modified. A complex algorithm has been implemented for component processing, which detects and corrects artifacts within the detected components. The evaluation of cardiac activity takes place in the time domain and is based on the nonlinear geometric method of the Poincaré plot. The subject of the analysis is heart rate variability (HRV). The implemented solution visualizes the individual parts together with the Poincaré plot and automatically calculates its quantitative parameters using the ellipse fitting method.
 
 <p align="center">
   <img src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/edu.gif?raw=true" width="600" />
 </p>
+
 
 ### Python software (*BBPM*)
 Furthermore, a multiplatform application in the Python environment for online assessment of cardiac activity was designed and programmed. A graphical user interface has been created for the application, which allows the user to easily interactively control the application. The software is based on real-time processing of the ECG signal, which is received from the measuring device via a wireless local area network. At the same time, components are detected in real-time. The application provides a live visualization of the specified calculated parameters and the processed ECG signal on its main panel. Functionality for collecting raw or processed data has also been added.
@@ -44,6 +45,7 @@ Furthermore, a multiplatform application in the Python environment for online as
 <p align="center">
   <img src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/bbpm_app.svg?raw=true" />
 </p>
+
 
 ## Compiling the document
 
