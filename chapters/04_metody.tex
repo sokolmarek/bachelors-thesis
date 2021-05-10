@@ -216,10 +216,10 @@ následujících kapitolách.
 
 \subsubsection{Předzpracování signálu}
 \label{section:preprocessing}
-Nezbytný krok pro jakoukoliv další práci s biosignálem, je jeho filtrace. Před
+Nezbytný krok pro jakoukoliv další práci s biosignálem je jeho filtrace. Před
 navržením samotného filtru byl proveden rozbor EKG záznamů pomocí FFT. EKG
 signál je tak převeden z časové domény do frekvenční funkcí
-\texttt{fft(X)}~\cite{matlabFFT}. Z teorie je známo v jakých frekvencích se
+\texttt{fft(X)}~\cite{matlabFFT}. Z teorie je znám, v jakých frekvencích se
 vyskytuje užitečný EKG signál nebo jeho komponenty a v jakých nežádoucí vlivy
 (viz kapitola~\ref{section:ecg_processing_theory}). Tyto znalosti byly při
 návrhu filtru a posuzování spektra EKG signálu využity. Pro zlepšení představy o
@@ -230,7 +230,7 @@ stránky spektra plyne několik východisek pro tvorbu filtru. Jsou zde pohybov�
 artefakty společně s kolísáním nulové izolinie. Ve frekvenčním spektru a v
 částech signálu se dále objevuje nepatrný širokopásmový šum, způsobený
 myopotenciály. Ve frekvenčním spektru lze vidět tyto nežádoucí složky přibližně
-mezi frekvencemi od 0 do 5--10~\si\Hz.
+mezi frekvencemi od 0 do 7,5~\si\Hz.
 
 \begin{figure}[h]
     \begin{center}
@@ -253,7 +253,7 @@ které je definováno následovně~\cite{Oppenheim1999}:
     \end{cases}
 \end{equation}
 kde $w$ označuje vypočítané koeficienty, $M$ je počet vzorků, $\alpha=M/2$ a
-$I_0(\cdot)$ reprezentuje 0. řád modifikované Besselovy funkce prvního
+$I_0(\cdot)$ reprezentuje nultý řád modifikované Besselovy funkce prvního
 druhu~\cite{BesselFcn}. Jelikož je potřeba dosáhnout specifického útlumu $A$
 (viz kapitola~\ref{section:ecg_processing_theory}), definoval Kaiser parametr
 $\beta$ k úpravě zvlnění propustného a závěrného pásma
@@ -261,9 +261,9 @@ následovně~\cite{Oppenheim1999}:
 \begin{equation}
     \beta =
     \begin{cases}
-        0.1102(A-8.7),                    & A > 50            \\
-        0.5842(A-21)^0.4 + 0.07886(A-21), & 21 \leq A \leq 50 \\
-        0.0,                              & A < 21.
+        0,1102(A-8,7),                      & A > 50            \\
+        0,5842(A-21)^{0,4} + 0.07886(A-21), & 21 \leq A \leq 50 \\
+        0,                                  & A < 21.
     \end{cases}
 \end{equation}
 
@@ -285,7 +285,7 @@ kumulace~\cite{Wang2017}:
     \label{eq:backward_cumulation}
     Bc(n) = \sum_{i=n}^{n+Ww-1} |y(i)|
 \end{equation}
-s pevným oknem $(Ww)$ v rozsahu nejdelšího normálního trvání jednoho QRS
+s pevnou délkou okna $Ww$ v rozsahu nejdelšího normálního trvání jednoho QRS
 komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívána funkce
 \texttt{cumsum(A)}~\cite{matlabCUMSUM}.
 
@@ -298,7 +298,7 @@ komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívána funkce
 \end{figure}
 
 Poslední krok předzpracování je vyhlazení vzniklých vrcholů konvolucí použitím
-funkce \texttt{conv(u,v)}~\cite{matlabCONV}. Konvoluční kernel je tvořen podílem
+funkce \texttt{conv(u,v)}~\cite{matlabCONV}. Konvoluční jádro je tvořen podílem
 jednotkového vektoru o délce 60 vzorků a délkou vektoru. Délka 60 vzorků je
 stejně jako u zpětné kumulace doba trvání QRS komplexu, převedena z času na
 počet vzorků pomocí vzorkovací frekvence (500~\si\Hz). Vizuálně lze vidět
@@ -306,9 +306,9 @@ jednotlivé kroky předzpracování signálu na Obr.~\ref{fig:preprocessing_step
 
 \subsubsection{Detekce komponentů}
 \label{section:components_detection}
-Detekce komponentů tvoří nezbytnou část od které se odvíjí hodnocení EKG
+Detekce komponentů tvoří nezbytnou část, od které se odvíjí hodnocení EKG
 záznamu. Cílem detekce je spolehlivě identifikovat a lokalizovat specifické
-komponenty, nejčastěji QRS komplexy, které jsou předmět analýzy EKG záznamu.
+komponenty, nejčastěji QRS komplexy, které jsou předmětem analýzy EKG záznamu.
 Díky detekovaným komponentům lze signál využitím detekovaných veličin
 segmentovat a hodnotit. V první řadě se nejčastěji volí detekce R vln na základě
 jejich vysoké amplitudy.
@@ -356,7 +356,7 @@ Algoritmus vychází z následujících kroků:
 \end{enumerate}
 
 Délka plovoucího okna se řídí fyziologickým limitem hodnoty srdečního rytmu v
-případech jako jsou například supraventrikulární tachykardie (SVT) nebo flutter
+případech, jako jsou například supraventrikulární tachykardie (SVT) nebo flutter
 síní, kde dosahuje srdeční frekvence přibližně 300 úderů za minutu (5 úderů za
 sekundu)~\cite{Haberl2012,Goldberger2017}. Dva sousední QRS komplexy se tedy
 nemůžou vyskytnout blíže než 200~\si\ms.
@@ -382,8 +382,8 @@ nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
 Pro zobrazení detekovaných vln v původním signálu (viz. Obr.~\ref{fig:detection})
 byla zavedena metoda relokalizace, která upraví pozice
 detekovaných R vln tak, aby souhlasily v původním EKG záznamu. Díky tomu lze
-vizuálně ověřit spolehlivost algoritmu nebo evaluovat detekci v pochybných
-oblastech, které jsou více zatížené nežádoucími vlivy. Postup metody se řídí
+vizuálně ověřit spolehlivost algoritmu nebo evaluovat detekci v oblastech s očekávaným
+výskytem artefaktů, které jsou více zatížené nežádoucími vlivy. Postup metody se řídí
 diagramem na Obr.~\ref{fig:fixpeaks}, kde $X$ reprezentuje množinu hodnot EKG
 signálu.
 
@@ -391,13 +391,13 @@ signálu.
 \label{section:components_processing}
 V případě analýzy variability srdečního rytmu (viz kapitola~\ref{section:hrv})
 je nutné tuto veličinu vypočítat z detekovaných komponentů. Diferencí mezi
-sousedícími R vlny v čase jsou vypočítány R-R intervaly neboli časová
+sousedícími R vlnami v čase jsou vypočítány R-R intervaly neboli časová
 variabilita mezi jednotlivými údery srdce. Stejně jako EKG záznam, tak i R-R
 intervaly jsou zatížené artefakty a mohou představovat abnormální hodnoty.
 Zdrojem artefaktů jsou nejčastěji falešně nebo nesprávně detekované či chybějící
 R vlny a ektopický rytmus, který společně s invalidně detekovanými R vlny
 vytváří sekvence dlouhých a krátkých srdečních period. Vizuálně lze artefakty
-identifikovat jako velké náhlé změny či kolísání v grafu jako je tomu na
+identifikovat, jako velké náhlé změny či kolísání v grafu jako je tomu na
 Obr.~\ref{fig:hrv_artifacts}. Podmínkou HRV analýzy je tedy použití N-N
 intervalů (normal-to-normal), které představují korigované R-R intervaly.
 Korekcí je myšleno potlačení nežádoucích artefaktů.
@@ -426,9 +426,9 @@ rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produ
 faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
 následovně~\cite{Lipponen2019}:
 \begin{equation}
-    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{1,...,N\}
+    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{46,...,N-45\}
 \end{equation}
-kde $\alpha$ je bezrozměrný škálovací faktor jehož hodnota byla globálně zvolena
+kde $\alpha$ je bezrozměrný škálovací faktor, jehož hodnota byla empiricky zvolena
 5,2. Časová série $dRRs$ je následně normalizována prahovými
 hodnotami~\cite{Lipponen2019}:
 \begin{equation}
@@ -441,12 +441,12 @@ falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat pou
 $dRR$, je definována série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
 mediánu 11 okolních hodnot~\cite{Lipponen2019}:
 \begin{equation}
-    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{1,...,N\}
+    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{6,...,N-5\}
 \end{equation}
 
-Vzhledem k tomu že při srdeční frekvenci 60 bpm se $mRRs$ pohybuje okolo
---0,5~\si\s~v rámci falešně pozitivní detekce srdečního cyklu a při detekci
-vynechaného cyklu se blíží k 1~\si\s, tak nelze použít jednotný práh. Aby bylo
+Vzhledem k tomu, že při srdeční frekvenci 60 bpm se hodnota $mRRs$ pohybuje okolo
+--0,5~\si\s~v rámci falešně pozitivní detekce srdečního cyklu, a při detekci
+vynechaného cyklu se blíží k 1~\si\s, nelze použít jednotný práh. Aby bylo
 možné použít stejný práh pro všechny případy identifikace artefaktu jako v
 předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující
 podmínkou~\cite{Lipponen2019}:
@@ -459,13 +459,13 @@ podmínkou~\cite{Lipponen2019}:
     , \quad \forall j \in \{1,...,N\}
 \end{equation}
 
-Při stejné srdeční frekvence (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
+Při stejné srdeční frekvenci (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
 0~\si\s~u normálního sinusového rytmu, 1~\si\s~ u vynechaných cyklů a k
 --1~\si\s~ u nadbytečně detekovaných srdečních period. Stejně jako pro předchozí
 sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh
 $Th2$~\cite{Lipponen2019}:
 \begin{equation}
-    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{1,...,N\}
+    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{46,...,N-45\}
 \end{equation}
 a hodnoty $mRRs$ jsou následně normalizovány~\cite{Lipponen2019}:
 \begin{equation}
@@ -479,14 +479,17 @@ chyb je metoda doplněna klasifikačním rozhodovacím algoritmem, který se ř�
 diagramu na Obr.~\ref{fig:rr_decision}.
 
 \begin{figure}[h]
+    \captionsetup{singlelinecheck=false, justification=justified}
     \begin{center}
         \includegraphics[width=1\textwidth]{diagrams/rr_decision}
-        \caption{Rozhodovací algoritmus pro klasifikaci artefaktů časové řady R-R intervalů~\cite{Lipponen2019}}
+        \caption{Diagram zobrazuje rozhodovací část algoritmu pro všechny R-R intervaly takové, že $|dRRs_j| > 1$. 
+        Každý interval může splnit právě jednu podmínku reprezentovanou listy diagramu.
+        Pokud R-R interval nevyhovuje ani jednomu kritériu, je klasifikován jako normální~\cite{Lipponen2019}.}
         \label{fig:rr_decision}
     \end{center}
 \end{figure}
 
-Veličiny $c_1$ a $c_2$ jsou globálně nastavené konstanty
+Veličiny $c_1$ a $c_2$ jsou empiricky nastavené konstanty
 podle~\cite{Lipponen2019}. Hodnoty $S11$ a $S12$ jsou definované v následujícím
 odstavci.
 
@@ -504,7 +507,7 @@ následovně~\cite{Lipponen2019}:
         max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j > 0 \\
         min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
-    , \quad \forall j \in \{2,...,N\}
+    , \quad \forall j \in \{2,...,N-1\}
     \label{eq:subspace1}
 \end{gather}
 ve kterém se hodnoty $S11$ a $-S12$ zvětšují v rámci determinace NPN vzorem a
@@ -531,7 +534,7 @@ definovaný~\cite{Lipponen2019}:
         min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j \geq 0 \\
         max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
-    , \quad \forall j \in \{2,...,N\}
+    , \quad \forall j \in \{2,...,N-1\}
     \label{eq:subspace2}
 \end{gather}
 
@@ -626,8 +629,8 @@ virtuální realitě. Detailněji je program popsán v následujících kapitol�
 \subsubsection{Aplikace pro hodnocení a sběr dat}
 Program byl vytvořen pomocí skriptovacího programovacího jazyka
 Python~\cite{python} s využitím frameworku \textit{PySide2} (viz
-sekce~\ref{section:pyside}). Hlavním účelem programu je online zpracovaní a
-vizualizace dat z měřícího zařízení, aby bylo možné sledovat a hodnotit
+sekce~\ref{section:pyside}). Hlavním účelem programu je online zpracování a
+vizualizace dat z měřicího zařízení, aby bylo možné sledovat a hodnotit
 elektrickou srdeční aktivitu měřené osoby v reálném čase. Aplikací lze data i
 zaznamenávat a vzápětí uložit ve formátu CSV. K zajištěni minimální latence mezi
 vizualizací zpracovaných dat a přijatými aktuálními daty, probíhá zpracování
@@ -655,8 +658,8 @@ Obr.~\ref{fig:app_structure}.
 \textit{PySide} představuje vazbu (binding) skriptovacího jazyka Python
 na sadu GUI nástrojů populární knihovny \textit{Qt} \cite{Qt}. Díky tomu je
 možné využívat aplikační rozhraní (API) knihovny \textit{Qt} v prostředí
-Python. \textit{Qt} není pouze knihovna ale celý nativní
-multiplatformní framework pro vytváření softwaru s GUI, napsaný v programovacím
+Python. \textit{Qt} není pouze knihovna, ale celý nativní
+multiplatformní framework pro vytváření softwaru s GUI, implementovaný v programovacím
 jazyce \textit{C++}. V aplikaci \textit{BBPM} byla použita knihovna
 \textit{PySide2}, která představuje port pro \textit{Qt5}.
 
@@ -792,8 +795,8 @@ Pro zpracování dat jsou využívané funkce prostředí Python a knihovny
 \textit{SciPy}~\cite{SciPy2020}. Před zpracováním EKG signálu jsou přijatá data
 nejdříve upravena. Aplikace přijímá z měřícího zařízení v každý jeden okamžik
 blok synchronizovaných dat v podobě dvou vektorů o velikosti 2048 hodnot. Jeden
-vektor obsahuje EKG data a druhý časové. Jednotlivě přijaté bloky na sebe
-nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
+vektor obsahuje hodnoty EKG signálů a druhý časové značky. 
+
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{figures/bisection}
@@ -801,6 +804,8 @@ nenavazují ale překrývají se (viz Obr.~\ref{fig:bisection}).
         \label{fig:bisection}
     \end{center}
 \end{figure}
+
+Jednotlivě přijaté bloky na sebe nenavazují, ale překrývají se (viz Obr.~\ref{fig:bisection}). 
 Kontinuita dat je zajištěna použitím algoritmu bisekce, realizovaného funkcí
 \texttt{bisect(a,x)}~\cite{bisectRight}, který najde index prvního navazujícího
 prvku v závislosti na poslední hodnotě časového vektoru minulého bloku dat.
@@ -809,9 +814,9 @@ Překrývající data před tímto indexem jsou odstraněna a podle takto uprave
 
 Upravené bloky EKG dat jsou předzpracovány filtrem
 Savitzky–Golay~(SGF)~\cite{Schafer2011} použitím funkce
-\texttt{savgol{\_}filter(x,win{\_}length,order)}~\cite{scipySavgol}. Filtr
-Savitzky–Golay je digitální filtr s konečnou impulzní odezvou (FIR), který se
-nejčastěji používá k vyhlazení signálu a potlačení vysokofrekvenčního obsahu.
+\texttt{savgol{\_}filter(x,win{\_}length,order)}~\cite{scipySavgol}. 
+SGF je digitální filtr s konečnou impulzní odezvou (FIR), který se
+nejčastěji používá k vyhlazení signálu a potlačení jeho vysokofrekvenční složky.
 Princip filtru SGF vychází z proložení hodnot v plovoucím okně polynomem
 určitého řádu využitím metody nejmenších čtverců. Výsledná hodnota signálu v
 daném bodě je vypočtena jako~\cite{wikiSGF}:
@@ -824,7 +829,7 @@ vzorků a polynom 3. řádu. Příklad SGF filtrace se zvolenými parametry lze 
 na Obr.~\ref{fig:sgf_filter}.
 
 Po filtraci jsou data přidána do cyklické fronty~\cite{circlebuffer}, kde
-probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je používána
+probíhá nepřetržitá detekce komponentů, konkrétně R vln. K detekci je použita
 funkce \texttt{find{\_}peaks(x,h,d)}~\cite{scipyFindpeaks}. Funkcí probíhá
 hledání lokálních maxim signálu v závislosti na zadané prahové amplitudě a
 minimální vzdáleností mezi sousedními R vlnami. Prahová hodnota amplitudy byla
@@ -864,8 +869,8 @@ Pro vykreslování dat je použita knihovna \textit{PyQtGraph} \cite{PyQtGraph},
 která je plně kompatibilní s frameworkem \textit{PySide2} (viz
 sekce~\ref{section:pyside}). Hlavním komponentem této knihovny je graf, kterému
 lze funkcí \texttt{setData(x,y)}~\cite{curveItem} předat hodnoty pro osu X a Y.
-Po předání jsou hodnoty vykresleny a graf je aktualizován. Předávání hodnot je
-zacykleno, a tak dochází
+Po předání jsou hodnoty vykresleny a graf je aktualizován. Předávání hodnot se 
+provádí cyklicky, a tak dochází
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{bbpm/r_detection}
@@ -881,7 +886,7 @@ Obr.~\ref{fig:app_ecg_visual}.
 
 \subsection{Statistické metody}
 \label{section:statistical_methods}
-Pro zpracování výsledků byly v práci použity statistické testy, realizovány
+Pro zpracování výsledků byly v práci použity statistické testy realizované
 funkcemi v prostředí programu \textit{MathWorks MATLAB 2021a}~\cite{MATLAB},
 které prověřují platnost nulové hypotézy $H_0$. Nulová hypotéza představuje ve
 většině případů tvrzení, že rozdíl mezi testovanými daty není statisticky
@@ -912,7 +917,7 @@ dat pochází z populace s normálním rozdělením. Test byl proveden použití
 
 \subsubsection{Parametrické testy}
 \label{section:parametric_tests}
-Parametrické varianty testů mohou být uplatněny pouze v při splnění podmínky
+Parametrické varianty testů mohou být uplatněny pouze při splnění podmínky
 normality dat. V práci byl použit párový t-test~\cite{Henry2005}, který testuje
 rozdíl středních hodnot mezi dvojicí veličin dvourozměrného náhodného výběru.
 Test byl realizován funkcí \texttt{ttest(x)}~\cite{matlabTTEST}.
