@@ -46,11 +46,6 @@ Furthermore, a multiplatform application in the Python environment for online as
   <img src="https://github.com/sokolmarek/bachelors-thesis/blob/main/assets/github/bbpm_app.svg?raw=true" />
 </p>
 
-
-## Compiling the document
-
-### Prerequisites
-
 ### Contributors
 * Marek Sokol - *Author*
 * Ing. et Ing. Jan Hejda, Ph.D. - *Supervisor*
