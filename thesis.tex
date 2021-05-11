@@ -44,7 +44,7 @@
 \usepackage{dirtree}
 \usepackage{makecell}
 \usepackage{siunitx}
-\usepackage{hyperref}
+\usepackage[pdfusetitle]{hyperref}
 \usepackage{multicol}					% tabulka, slučování sloupců
 \usepackage{multirow}                   % tabulka, slučování řádků
 \usepackage{fancyhdr}					% záhlaví a zápatí stránky
@@ -72,6 +72,11 @@
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 \setmonofont[Scale=0.95]{Courier New}
+
+\usepackage[linesnumbered,czech,onelanguage]{algorithm2e}
+\SetAlgoCaptionLayout{centerline}
+\SetKwInput{KwVstup}{Vstup}%
+\SetKwInput{KwVystup}{V\'ystup}%
 
 %% Přidání speciálních příkazů 
 \newcommand{\TextUnderscore}{\rule{.4em}{.4pt}}
@@ -163,7 +168,7 @@
 
 % Vloženi kopie zadaní v pdf
 \includepdf[pages=-,scale=.75,trim=1mm 1mm 6mm 1mm, clip]{assignment/assignment_colored}
-
+  
 \null\vfill
 \section*{Prohlášení}
 % \hspace ruší odsazení odstavce - v šabloně u prohlášení odstavce odsazené nejsou. 
@@ -197,7 +202,7 @@ všem přátelům, kteří mě při vytváření této práce podpořili.
 \subsection*{\nazev:}
 \input{chapters/abstract_cz.tex}
 \subsection*{Klíčová slova}
-EKG (Elektrokardiogram), zpracování EKG, detekce EKG komponentů, EKG analýza, HRV analýza, HRV parametry, MATLAB, Python
+EKG (Elektrokardiogram), zpracování EKG, detekce EKG komponentů, EKG analýza, HRV analýza, HRV parametry, MATLAB, Python, Software
 \clearpage
 
 
@@ -206,7 +211,7 @@ EKG (Elektrokardiogram), zpracování EKG, detekce EKG komponentů, EKG analýza
 \subsection*{\nazevENG:}
 \input{chapters/abstract_en.tex}
 \subsection*{Key words}
-ECG (Electrocardiogram), ECG processing, detection of ECG components, ECG analysis, HRV analysis, HRV parameters, MATLAB, Python
+ECG (Electrocardiogram), ECG processing, detection of ECG components, ECG analysis, HRV analysis, HRV parameters, MATLAB, Python, Software
 \clearpage
 
 \pagestyle{plain}	% Číslování stránek začíná odsud

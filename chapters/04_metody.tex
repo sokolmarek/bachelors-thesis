@@ -171,7 +171,7 @@ kardiovaskulárních onemocnění.
 
 \subsubsection{Sledované statistické veličiny}
 \label{section:selected_stats_vals}
-Výstupem aplikace použité k záznamu srdeční aktivity jsou soubory formátu CSV,
+Výstupem aplikace použité k záznamu srdeční aktivity (viz kapitola~\ref{section:online_processing}) jsou soubory formátu CSV,
 kde každý řádek reprezentuje naměřenou výslednou amplitudu elektrické srdeční
 aktivity v daný časový okamžik. Díky znalosti vzorkovací frekvence zařízení lze
 snadno ke každému záznamu vypočítat časový vektor a pracovat tak v časové
@@ -191,9 +191,9 @@ kapitola~\ref{section:hrv_methods}):
 \subsection{Offline zpracování EKG záznamu}
 \label{section:offline_processing}
 Zpracování EKG záznamů se orientuje podle diagramu na Obr.
-\ref{fig:diagram_offline_processing} a je realizováno v prostředí programu
-\textit{MathWorks MATLAB 2021a}~\cite{MATLAB} s pomocí \textit{Signal Processing
-    Toolboxu}~\cite{matlabSPT}. Jednotlivé části zpracování jsou rozebrány v
+\ref{fig:diagram_offline_processing} a je realizováno v prostředí 
+\textit{MathWorks MATLAB 2021a}~\cite{MATLAB} s využitím \textit{Signal Processing
+Toolboxu}~\cite{matlabSPT}. Jednotlivé části zpracování EKG záznamu jsou rozebrány v
 následujících kapitolách.
 
 \begin{figure}[H]
@@ -277,8 +277,8 @@ prvního řádu dle následujícího vztahu:
     y[n] = \frac{1}{8}(2x[n] + x[n-1] - x[n-3] - 2x[n-4])
 \end{equation}
 kde $n \geq 5$, $y[n]$ reprezentuje vzorek diferencovaného signálu a $x[n]$
-hodnotu původního vzorku. Diferenciace zároveň potlačuje vlivy P a T vln.
-Výstupem diference je bipolární signál, který je umocněn. QRS regiony jsou
+hodnotu původního vzorku. Diference zároveň potlačuje vlivy P a T vln.
+Dále je diferencovaný signál umocněn a QRS regiony jsou
 následně jednotlivě sloučeny a zvýrazněny využitím zpětné
 kumulace~\cite{Wang2017}:
 \begin{equation}
@@ -298,8 +298,8 @@ komplexu (0,12~\si\s)~\cite{Wang2017}. Ke kumulaci je využívána funkce
 \end{figure}
 
 Poslední krok předzpracování je vyhlazení vzniklých vrcholů konvolucí použitím
-funkce \texttt{conv(u,v)}~\cite{matlabCONV}. Konvoluční jádro je tvořen podílem
-jednotkového vektoru o délce 60 vzorků a délkou vektoru. Délka 60 vzorků je
+funkce \texttt{conv(u,v)}~\cite{matlabCONV}. Principiálně se jedná o vyhlazení 
+plovoucím průměrem s délkou okna 60 vzorků. Délka 60 vzorků je
 stejně jako u zpětné kumulace doba trvání QRS komplexu, převedena z času na
 počet vzorků pomocí vzorkovací frekvence (500~\si\Hz). Vizuálně lze vidět
 jednotlivé kroky předzpracování signálu na Obr.~\ref{fig:preprocessing_steps}.
@@ -372,13 +372,15 @@ nemůžou vyskytnout blíže než 200~\si\ms.
 Na Obr.~\ref{fig:detection} lze vidět zeleně vyznačený
 adaptivní práh, který se mění podle 2. kroku výše a doplněnou R vlnu, která
 nebyla detekovaná v 1. kroku ale až ve 3. a následně doplněna.
-\begin{figure}[h]
+
+\begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{diagrams/fixpeaks}
+        \includegraphics[width=0.87\textwidth]{diagrams/fixpeaks}
         \caption{Algoritmus relokalizace detekovaných R vln}
         \label{fig:fixpeaks}
     \end{center}
 \end{figure}
+
 Pro zobrazení detekovaných vln v původním signálu (viz. Obr.~\ref{fig:detection})
 byla zavedena metoda relokalizace, která upraví pozice
 detekovaných R vln tak, aby souhlasily v původním EKG záznamu. Díky tomu lze
@@ -444,8 +446,8 @@ mediánu 11 okolních hodnot~\cite{Lipponen2019}:
     mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{6,...,N-5\}
 \end{equation}
 
-Vzhledem k tomu, že při srdeční frekvenci 60 bpm se hodnota $mRRs$ pohybuje okolo
---0,5~\si\s~v rámci falešně pozitivní detekce srdečního cyklu, a při detekci
+Vzhledem k tomu, že při srdeční frekvenci 60 bpm se v rámci falešně pozitivní detekce 
+srdečního cyklu hodnota $mRRs$ pohybuje okolo -0,5~\si\s, a při detekci
 vynechaného cyklu se blíží k 1~\si\s, nelze použít jednotný práh. Aby bylo
 možné použít stejný práh pro všechny případy identifikace artefaktu jako v
 předešlé sérii $dRRs$, jsou hodnoty $mRRs$ upravené následující
@@ -475,29 +477,54 @@ a hodnoty $mRRs$ jsou následně normalizovány~\cite{Lipponen2019}:
 Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-R
 intervalů pochází z normálního rozdělení, který ve většině případech není
 splněn, a proto dochází k chybným identifikacím artefaktů. K zamezení těchto
-chyb je metoda doplněna klasifikačním rozhodovacím algoritmem, který se řídí dle
-diagramu na Obr.~\ref{fig:rr_decision}.
+chyb je metoda doplněna klasifikačním rozhodovacím Algoritmem~\ref{algo:rr_decision}.
 
-\begin{figure}[h]
-    \captionsetup{singlelinecheck=false, justification=justified}
-    \begin{center}
-        \includegraphics[width=1\textwidth]{diagrams/rr_decision}
-        \caption{Diagram zobrazuje rozhodovací část algoritmu pro všechny R-R intervaly takové, že $|dRRs_j| > 1$. 
-        Každý interval může splnit právě jednu podmínku reprezentovanou listy diagramu.
-        Pokud R-R interval nevyhovuje ani jednomu kritériu, je klasifikován jako normální~\cite{Lipponen2019}.}
-        \label{fig:rr_decision}
-    \end{center}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{.9\linewidth}
+        \begin{algorithm}[H]
+            \SetKw{Continue}{continue}
+            \KwVstup{$S11$, $S12$, $dRR$, $mRR$, $RR$, $Th2$, $rr\_len$ -- Počet R-R intervalů}
+            \KwVystup{List detekovaných artefaktů}
+            List $\leftarrow$ \{\}\;
+            \LinesNumbered
+            \For{ $i \in \{1,\ldots,rr\_len-2\}$ }{
+                $eq_1 \leftarrow (S11_i > 1) \land (S12_i < (-c_1 \times S11_i - c_1))$\;
+                $eq_2 \leftarrow (S11_i < -1) \land (S12_i > (-c_1 \times S11_i + c_2))$\;
+                $eq_3 \leftarrow sgn(dRR_i) \times dRR_{i+1} < -1$\;
+                $eq_4 \leftarrow sgn(dRR_i) \times dRR_{i+2} < -2$\;
+                $eq_5 \leftarrow |RR_i/2 - medRR_i| < Th2_i$\;
+                $eq_6 \leftarrow |RR_i + RR_{i+1} - medRR_i| < Th2_i$\;
+        
+                \If{$|dRR_i| > 1$}{
+                        \uIf{ $ eq_1 \land eq_2 $ }{
+                            List.append('Ectopic beat'); \Continue;
+                        }
+                        \uElseIf{$|mRR_i| > 3 \land eq_3 \land eq_4$}{
+                            \lIf{$eq_5$}{List.append('Missed beat'); \Continue}
+                            \lElseIf{$eq_6$}{List.append('Extra beat'); \Continue}
+                            \lElse{List.append('Long/short beat'); \Continue}
+                        }
+                        \Else{
+                            List.append('Normal beat'); \Continue;
+                        }
+                    }
+                }
+            \caption{Detekce a klasifikace artefaktů}
+            \label{algo:rr_decision}
+        \end{algorithm}
+    \end{minipage}
 \end{figure}
 
 Veličiny $c_1$ a $c_2$ jsou empiricky nastavené konstanty
 podle~\cite{Lipponen2019}. Hodnoty $S11$ a $S12$ jsou definované v následujícím
 odstavci.
 
-Ektopické rytmy se v sérii hodnot $dRR$ projevují jako sekvence záporné, kladné
-a záporné hodnoty (NPN, negative positive negative) nebo kladné, záporné a
-kladné (PNP, positive negative positive). Pomocí těchto vzorů je rozlišen
-ektopický rytmus od vynechaných či nadbytečných srdečních cyklů nebo náhlých
-změn srdeční frekvence. Pro účely vizuálního hodnocení detekce ektopických
+Ektopický rytmus se v sérii hodnot $dRR$ projevuje jako sekvence záporné, kladné
+a záporné hodnoty (NPN, N--Negative, P--Positive) nebo kladné, záporné a
+kladné (PNP). Pomocí těchto vzorů je rozlišen ektopický rytmus od vynechaných
+či nadbytečných srdečních cyklů nebo náhlých změn srdeční frekvence. 
+Pro účely vizuálního hodnocení detekce ektopických
 srdečních stahů je vytvořen dvoudimenzionální prostor $S1$
 následovně~\cite{Lipponen2019}:
 \begin{gather}
@@ -627,23 +654,22 @@ zdraví (NÚDZ). Aplikace je využívána pro hodnocení duševního stavu osob 
 virtuální realitě. Detailněji je program popsán v následujících kapitolách.
 
 \subsubsection{Aplikace pro hodnocení a sběr dat}
-Program byl vytvořen pomocí skriptovacího programovacího jazyka
+Program byl vytvořen pomocí skriptovacího jazyka
 Python~\cite{python} s využitím frameworku \textit{PySide2} (viz
 sekce~\ref{section:pyside}). Hlavním účelem programu je online zpracování a
 vizualizace dat z měřicího zařízení, aby bylo možné sledovat a hodnotit
-elektrickou srdeční aktivitu měřené osoby v reálném čase. Aplikací lze data i
+srdeční aktivitu měřené osoby v reálném čase. Aplikací lze data i
 zaznamenávat a vzápětí uložit ve formátu CSV. K zajištěni minimální latence mezi
 vizualizací zpracovaných dat a přijatými aktuálními daty, probíhá zpracování
 signálu, jeho analýza a záznam paralelně (tzv. multithreading).
 
 \subsubsection{Struktura aplikace}
-Aplikaci lze rozdělit na dvě základní rozhraní, frontend a backend. Frontendová
-část poskytuje interaktivní GUI společně s vizualizací zpracovaných dat (viz
-kapitoly~\ref{section:gui}~a~\ref{section:visual}). V backendu probíhá v
+Aplikaci lze rozdělit na dvě základní rozhraní, frontend a backend. Frontend
+poskytuje interaktivní GUI společně s vizualizací zpracovaných dat (viz
+kapitoly~\ref{section:gui}~a~\ref{section:visual}). V backend části probíhá v
 jednotlivých vláknech (threadech) akvizice a záznam dat včetně výpočetních
-procesů spojených se zpracováním EKG signálu (viz
-sekce~\ref{section:online_data_process}). Strukturu aplikace lze vidět na
-Obr.~\ref{fig:app_structure}.
+procesů spojených se zpracováním EKG signálu (sekce~\ref{section:online_data_process}). 
+Strukturu aplikace lze vidět na Obr.~\ref{fig:app_structure}.
 
 \begin{figure}[h]
     \begin{center}
@@ -667,7 +693,7 @@ jazyce \textit{C++}. V aplikaci \textit{BBPM} byla použita knihovna
 \label{section:gui}
 Grafické uživatelské rozhraní zajišťuje jednoduchou komunikaci mezi aplikací a
 uživatelem pomocí interaktivních komponentů. Pro návrh a tvorbu GUI byl použit
-nástroj \textit{Qt Designer}~\cite{QtDesigner}, který je součástí knihovny
+nástroj \textit{Qt~Designer}~\cite{QtDesigner}, který je součástí knihovny
 \textit{PySide2} a lze vidět na Obr.~\ref{fig:qt_designer}. Nástroj funguje na
 principu \textit{WYSIWYG} editorů a umožňuje tak rychlou a intuitivní tvorbu
 uživatelského rozhraní. V prostředí nástroje je vidět živý náhled aplikace v
@@ -844,9 +870,9 @@ zvolena 0,2~\si\mV~a minimální vzdálenost 0,4~\si\s~(200 vzorků).
 \end{figure}
 
 Zpracování komponentů (R vln) se odvíjí od zobrazených parametrů na hlavním
-panelu aplikace (viz Obr. \ref{fig:app_main_window}). Z detekovaných vln se
-počítá aktuální srdeční frekvence z diference posledních dvou detekovaných R vln
-následovně:
+panelu aplikace (viz Obr. \ref{fig:app_main_window}). Detekované R vlny slouží k 
+výpočtu srdeční frekvence. Diferencí časových hodnot R vln jsou získány R-R intervaly. 
+Aktuální srdeční frekvence je poté vypočtena použitím posledního R-R intervalu následovně:
 \begin{equation}
     \label{eq:calc_hr}
     HR = \frac{60}{RR}
