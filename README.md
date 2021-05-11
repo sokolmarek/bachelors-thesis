@@ -4,7 +4,7 @@
 
 This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. Unfortunately, the whole work is written in the Czech language. I may translate it into English in the future.
 
-### [Click here to read the thesis.](https://firebasestorage.googleapis.com/v0/b/mareksokol-e3c61.appspot.com/o/bachelors_thesis.pdf?alt=media&token=42bd0d03-d382-4928-b92e-329933564405)
+### [Click here to read the thesis.](https://firebasestorage.googleapis.com/v0/b/mareksokol-e3c61.appspot.com/o/bp_sokol.pdf?alt=media&token=8e2c5430-14c4-4757-91f0-43ba341d32d0)
 <sup>*[Click here for revised edition on CTU DSpace.](https://dspace.cvut.cz/)*</sup>
 
 ## Abstract
