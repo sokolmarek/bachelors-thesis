@@ -272,7 +272,7 @@ popisuje model Neuroviscerální integrace (NVI)~\cite{Smith2017}.
 Vliv parasympatiku je realizován uvolňováním mediátoru -- acetylcholinu -- z
 koncových postgangliových vláken. Odpověď probíhá v srdeční tkání díky
 muskarinovým cholingerním receptorům. Stimulací těchto receptorů se zpomaluje
-proces spontánní diastolické depolarizace. Následkem je nižší srdeční frekvence
+proces spontánní diastolické depolarizace. Následkem je nižší srdeční rytmus
 (negativní chronotropie) v SA uzlu a zpomalení síňokomorového převodu vzruchů v
 AV uzlu. Obecně stimulace parasympatiku způsobuje včetně zpomalení HR a
 síňokomorového převodu také snížení srdeční kontrakce a excitability
@@ -395,9 +395,9 @@ terapeutických případech. Než se ale na výstupu, například v podobě disp
 objeví EKG křivka či jiné vypočtené parametry, musí se signál
 předzpracovat, jinak by tyto parametry byly v praxi zavádějící.
 
-Biologické signály se zpravidla předzpracovávají použitím filtrů. Filtrace
-signálu mění tvar a spektrum původního signálu, čímž dochází k zvýraznění nebo
-potlačení specifických složek signálu. V případě EKG signálu se jedná o složky v
+Biologické signály se zpravidla předzpracovávají použitím filtrů. Filtrací
+signálu se mění tvar a spektrum původního signálu, čímž dochází k zvýraznění nebo
+potlačení jeho specifických složek. V případě EKG signálu se jedná o složky v
 jeho frekvenční doméně, reprezentované harmonickými komponenty, které popisují
 relace mezi amplitudou a časem~\cite{Jan2002}. Na základě původu a povahy
 signálu se filtry dělí na analogové, diskrétní a číslicové (digitální). Navzájem
@@ -680,14 +680,14 @@ zařízeních~\cite{Kohler2002}.
 
 \begin{figure}[h]
 	\centering
-	\begin{tikzpicture}[node distance=2.5cm, thick, scale=0.85, every node/.style={scale=0.9}]
+	\begin{tikzpicture}[node distance=2.5cm, thick, scale=0.84, every node/.style={scale=0.9}]
 		\node (pro1) [process, xshift=2cm, text width=2cm] {Lineární filtrace};
 		\node (pro2) [process, right of=pro1, xshift=0.8cm, text width=2cm] {Nelineární filtrace};
 		\node (Title1) [text=black!50, below of=pro1, node distance=1.2cm, xshift=1.7cm] {Předzpracování};
 		\node (blok1) [draw=black!50, dashed, inner sep=0.4cm, fit={(pro1) (pro2) (Title1)}] {};
 		\node (start) [left of=blok1, node distance=5cm] {};
 
-		\node (pro3) [process, right of=pro2, xshift=2cm, text width=2cm] {Detekční algoritmus};
+		\node (pro3) [process, right of=pro2, xshift=1.8cm, text width=2cm] {Detekční algoritmus};
 		\node (pro4) [process, right of=pro3, xshift=0.8cm, text width=2cm] {Rozhodovací pravidlo};
 		\node (Title2) [text=black!50, below of=pro3, node distance=1.2cm, xshift=1.7cm] {Rozhodování};
 		\node (blok2) [draw=black!50, dashed, inner sep=0.4cm, fit={(pro3) (pro4) (Title2)}] {};
@@ -919,7 +919,7 @@ tabulce~\ref{tab:hrv_factors}.
 
 Ačkoli hodnocení HRV našlo pochopitelně největší praktické uplatnění v oboru
 kardiologie, existují další obory, do kterých vnesla tato biometrika v
-posledních letech mnoho nových poznatků. Jedním z takových oborů je psychologie
+posledních letech mnoho nových a zásadních poznatků. Jedním z takových oborů je psychologie
 a kognitivní psychologie v rámci neuropsychofyziologických vlivů, které jsou
 důsledkem změn a procesů probíhajících v ANS~\cite{Bernardi2009}. Tak byla
 zformulovaná kognitivní teorie v~\cite{Forte2019,Plass2010}. Studie v rámci
