@@ -16,8 +16,9 @@ uplatněn, pokud je vypočítaný řád alespoň dvakrát menší než délka si
 případě nesplnění podmínky je stejný postup aplikován pro IIR verzi filtru, kde
 musí být vypočítaný řád alespoň třikrát menší než délka signálu. Pokud není
 vyhověno ani jedné podmínce je navržen IIR filtr s řádem odpovídajícím třetině
-délky signálu. Fázové zpoždění filtrů se kompenzuje automaticky. Pro všechny EKG
-signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
+délky signálu. Fázové zpoždění filtrů se kompenzuje automaticky. 
+
+Pro všechny EKG signály v rámci této práce byl algoritmem automaticky navržen FIR filtr s
 rozmezím dolního tolerančního pásma 6,32--7,50~\si\Hz, horního tolerančního
 pásma 35,00--68,75~\si\Hz~a zvlněním 0,1~\si\dB~v propustném pásmu. Pro návrh
 FIR filtru je využívaná metoda Kaiserova okna (viz

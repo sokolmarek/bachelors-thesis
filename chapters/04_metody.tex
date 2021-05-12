@@ -323,7 +323,7 @@ Algoritmus vychází z následujících kroků:
           \begin{gather}
               R_{max} = max(W_i^{L,R}) \nonumber \\
               L = R = \frac{0.4~Fs}{2}, \quad L,R \in \mathbb{Z^+} \nonumber \\
-              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, \quad \forall i \in \{1+L,...,N-R\}
+              W_i^{L,R} = \{x_{i-L},...,x_i,...,x_{i+R}\}, \quad i \in \{1+L,...,N-R\}
           \end{gather}
           kde $N$ je počet detekovaných R vln, $Fs$ vzorkovací frekvence, $R_i$
           potenciální R vlna, $x_i$ střed okna a $L$ spolu s $R$ posun od středu
@@ -338,7 +338,7 @@ Algoritmus vychází z následujících kroků:
           \end{gather}
     \item Výpočet R-R intervalů ($RR_i$) diferencí detekovaných R vln ($R_i$):
           \begin{equation}
-              RR_i = R_{i} - R_{i-1}, \quad \forall i \in \{2,...,N\}
+              RR_i = R_{i} - R_{i-1}, \quad i \in \{2,...,N\}
           \end{equation}
           Následně je provedena iterativní kontrola vypočítaných R-R intervalů.
           Intervaly delší než prahová hodnota $Th_{RR}$ indikují chybějící R
@@ -346,7 +346,7 @@ Algoritmus vychází z následujících kroků:
           plovoucího okna následovně:
           \begin{gather}
               n = \frac{0.4~Fs}{2}, \quad n \in \mathbb{Z^+} \nonumber \\
-              R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), \quad \forall i \in \{1,...,N\}
+              R_m = max(\{R_{i+n},...,R_i,...,R_{i+1-n}\}), \quad i \in \{1,...,N\}
           \end{gather}
           kde $R_m$ je doplněná R vlna. Prahová hodnota $Th_{RR}$ je počátečně
           nastavena jako:
@@ -420,7 +420,7 @@ všech detekovaných R-R intervalů $dRRs$, která slouží k rozlišení ektopi
 nesprávně detekovaných R vln od normálního sinusového rytmu~\cite{Lipponen2019}:
 \begin{gather}
     dRRs_1 = 0 \nonumber \\
-    dRRs_j = RR_j - RR_{j-1}, \quad \forall j \in \{2,...,N\}
+    dRRs_j = RR_j - RR_{j-1}, \quad j \in \{2,...,N\}
 \end{gather}
 kde $N$ je počet R-R intervalů. Pro detekci abnormálních intervalů je nastaven
 první práh $Th1$, který se adaptuje statistickým odhadem z časově proměnného
@@ -428,13 +428,13 @@ rozdělení $dRRs$ hodnot. Práh představuje sérii hodnot, definovaných produ
 faktoru $\alpha$ a mezikvartilového rozpětí $QD$ 91 okolních $dRRs$ intervalů
 následovně~\cite{Lipponen2019}:
 \begin{equation}
-    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{46,...,N-45\}
+    Th1 = \alpha~QD(|\{dRRs_{j-45},...,dRRs_{j+45}\}|), \quad j \in \{46,...,N-45\}
 \end{equation}
 kde $\alpha$ je bezrozměrný škálovací faktor, jehož hodnota byla empiricky zvolena
 5,2. Časová série $dRRs$ je následně normalizována prahovými
 hodnotami~\cite{Lipponen2019}:
 \begin{equation}
-    dRR_j = \frac{dRRs_j}{Th1_j}, \quad \forall j \in \{1,...,N\}
+    dRR_j = \frac{dRRs_j}{Th1_j}, \quad j \in \{1,...,N\}
 \end{equation}
 
 Veličiny $dRR$ jsou použité pro detekci ektopických, krátkých, dlouhých nebo
@@ -443,7 +443,7 @@ falešně pozitivní detekce R vln nebo jiných chyb, které nelze detekovat pou
 $dRR$, je definována série $mRRs$ jako rozdíl jednotlivých R-R intervalů a
 mediánu 11 okolních hodnot~\cite{Lipponen2019}:
 \begin{equation}
-    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad \forall j \in \{6,...,N-5\}
+    mRRs_j = RR_j - median(\{RR_{j-5},...,RR_{j+5}\}), \quad j \in \{6,...,N-5\}
 \end{equation}
 
 Vzhledem k tomu, že při srdeční frekvenci 60 bpm se v rámci falešně pozitivní detekce 
@@ -458,7 +458,7 @@ podmínkou~\cite{Lipponen2019}:
         2~mRRs_j, & \forall mRRs_j < 0    \\
         mRRs_j,   & \forall mRRs_j \geq 0
     \end{cases}
-    , \quad \forall j \in \{1,...,N\}
+    , \quad j \in \{1,...,N\}
 \end{equation}
 
 Při stejné srdeční frekvenci (60 bpm) se hodnoty $mRRs$ po úpravě blíží k
@@ -467,11 +467,11 @@ Při stejné srdeční frekvenci (60 bpm) se hodnoty $mRRs$ po úpravě blíží
 sérii $dRRs$, tak i pro $mRRs$ je zaveden totožně definovaný práh
 $Th2$~\cite{Lipponen2019}:
 \begin{equation}
-    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), \quad \forall j \in \{46,...,N-45\}
+    Th2 = \alpha~QD(|\{mRRs_{j-45},...,dRRs_{j+45}\}|), \quad j \in \{46,...,N-45\}
 \end{equation}
 a hodnoty $mRRs$ jsou následně normalizovány~\cite{Lipponen2019}:
 \begin{equation}
-    mRR_j = \frac{mRRs_j}{Th2_j}, \quad \forall j \in \{1,...,N\}
+    mRR_j = \frac{mRRs_j}{Th2_j}, \quad j \in \{1,...,N\}
 \end{equation}
 
 Prahové hodnoty $Th1$ a $Th2$ vycházejí z předpokladu, že časová řada R-R
@@ -528,13 +528,13 @@ Pro účely vizuálního hodnocení detekce ektopických
 srdečních stahů je vytvořen dvoudimenzionální prostor $S1$
 následovně~\cite{Lipponen2019}:
 \begin{gather}
-    S11_j = dRR_j, \quad \forall j \in \{1,...,N\} \nonumber \\
+    S11_j = dRR_j, \quad j \in \{1,...,N\} \nonumber \\
     S12_j =
     \begin{cases}
         max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j > 0 \\
         min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
-    , \quad \forall j \in \{2,...,N-1\}
+    , \quad j \in \{2,...,N-1\}
     \label{eq:subspace1}
 \end{gather}
 ve kterém se hodnoty $S11$ a $-S12$ zvětšují v rámci determinace NPN vzorem a
@@ -555,13 +555,13 @@ sérií sekvencí PN, pomalými cykly NP a nadbytečnými periodami jako NNP neb
 zobrazení těchto artefaktů a jejich detekčních hranic slouží 2D prostor $S2$
 definovaný~\cite{Lipponen2019}:
 \begin{gather}
-    S21_j = dRR_j, \quad \forall j \in \{1,...,N\} \nonumber \\
+    S21_j = dRR_j, \quad j \in \{1,...,N\} \nonumber \\
     S22_j =
     \begin{cases}
         min(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j \geq 0 \\
         max(\{dRR_{j-1}, dRR_{j+1}\}), & dRR_j < 0
     \end{cases}
-    , \quad \forall j \in \{2,...,N-1\}
+    , \quad j \in \{2,...,N-1\}
     \label{eq:subspace2}
 \end{gather}
 
