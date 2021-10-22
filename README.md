@@ -5,7 +5,7 @@
 This is my bachelor's thesis that I wrote over two months during my final year of studying the biomedical engineering program at the CTU,  Faculty of Biomedical Engineering. Unfortunately, the whole work is written in the Czech language. I may translate it into English in the future.
 
 ### [Click here to read the thesis.](https://firebasestorage.googleapis.com/v0/b/mareksokol-e3c61.appspot.com/o/2020_2021_LS_f_bc_483417_13459_sokolma5_1620856590.pdf?alt=media&token=6c0ff6fe-0dc1-4f1d-8474-4f4f06834455)
-<sup>*[Click here for revised edition on CTU DSpace.](https://dspace.cvut.cz/)*</sup>
+<sup>*[Click here for revised edition on CTU DSpace.](https://dspace.cvut.cz/handle/10467/97829)*</sup>
 
 ## Abstract
 This bachelor's work describes designing and implementing a software
